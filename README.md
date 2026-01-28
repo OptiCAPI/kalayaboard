@@ -20,6 +20,7 @@
 - `alumni.html`: প্রাক্তন শিক্ষার্থীদের তালিকা।
 - `style.css`: সিএসএস ডিজাইন (মোবাইল ফ্রেন্ডলি)।
 - `script.js`: জাভাস্ক্রিপ্ট লজিক (অডিও ও স্লাইডার)।
+- `data.js`: ছাত্র-ছাত্রীদের পরীক্ষার ফলাফল।
 - `login.html`: (Teacher Gateway)
 - `results.html`: (Public Result Search)
 - `routine.html`:(Routine and Syllabus)
@@ -57,6 +58,7 @@ Data Input (admin.html)
 Results Search (results.html)
 Attendance Tracker (attendance.html)
 Alumni Wall (alumni.html)
+Exam Results (data.js)
 Routine & Syllabus (routine.html)
 Global Styles & Scripts (style.css, script.js)
 Error Message (404.html)
