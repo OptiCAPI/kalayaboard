@@ -8,38 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Transcript Card Styling */
+        /* Mobile & Screen Styling */
         #resultArea {
             max-width: 800px;
             background: white;
             position: relative;
-            border: 4px double #006A4E; /* Professional Double Border */
-            padding: 40px;
-            border-radius: 0;
-            overflow: hidden;
+            border: 4px double #006A4E;
+            padding: 30px;
+            margin-top: 20px;
+            z-index: 1;
         }
 
-        /* DPE Watermark */
-        .watermark {
+        .watermark-img {
             position: absolute;
-            top: 50%;
+            top: 55%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 80px;
-            color: rgba(0, 106, 78, 0.08); /* 8% Transparency for subtlety */
-            white-space: nowrap;
-            pointer-events: none;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            opacity: 0.1; /* Light watermark */
             z-index: 0;
-            font-weight: bold;
-            text-transform: uppercase;
+            pointer-events: none;
         }
 
         .content-wrap { position: relative; z-index: 1; }
-
         .gov-logo { width: 60px; height: auto; margin-bottom: 10px; }
 
         .signature-box {
-            margin-top: 60px;
+            margin-top: 50px;
             border-top: 1px dashed #333;
             padding-top: 5px;
             width: 180px;
@@ -47,12 +42,33 @@
             text-align: center;
         }
 
-        /* Print Settings */
+        /* --- PROFESSIONAL PRINT SETTINGS --- */
         @media print {
-            .navbar, .search-form-card, .btn-print-action, .ticker-wrap { display: none !important; }
-            body { background: white !important; }
-            #resultArea { border: 4px double #006A4E !important; box-shadow: none !important; margin: 0 auto; }
-            @page { size: A4; margin: 1cm; }
+            /* Hide UI elements */
+            .navbar, .search-form-card, .btn-print-action, .ticker-wrap, .btn-call { 
+                display: none !important; 
+            }
+            
+            body { background: white !important; margin: 0; padding: 0; }
+            
+            /* Force Result Area to fill A4 with 1-inch border feel */
+            #resultArea { 
+                display: block !important;
+                border: 4px double #006A4E !important; 
+                box-shadow: none !important; 
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 40px !important; /* Internal padding */
+            }
+
+            @page { 
+                size: A4; 
+                margin: 1in; /* This creates the 1-inch border from page edge */
+            }
+
+            /* Ensure watermark prints */
+            .watermark-img { -webkit-print-color-adjust: exact; }
         }
     </style>
 </head>
@@ -71,7 +87,7 @@
             <h5 class="text-center fw-bold text-success mb-3">শিক্ষার্থীর তথ্য দিন</h5>
             <div class="mb-3">
                 <label class="form-label small fw-bold">রোল নম্বর</label>
-                <input type="number" class="form-control rounded-pill" id="rollInput">
+                <input type="number" class="form-control rounded-pill" id="rollInput" placeholder="উদা: ০৫">
             </div>
             <div class="mb-3">
                 <label class="form-label small fw-bold">শ্রেণি</label>
@@ -80,28 +96,24 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label small fw-bold">মূল্যায়ন</label>
+                <label class="form-label small fw-bold">মূল্যায়ন</label>
                 <select class="form-select rounded-pill" id="termSelect">
-                    <option>১ম প্রান্তিক মূল্যায়ণ</option><option selected>২য় প্রান্তিক মূল্যায়ণ</option><option>৩য় প্রান্তিক মূল্যায়ণ</option>
+                    <option>১ম প্রান্তিক মূল্যায়ন</option><option selected>২য় প্রান্তিক মূল্যায়ন</option><option>৩য় প্রান্তিক মূল্যায়ন</option>
                 </select>
             </div>
             <button class="btn btn-success w-100 rounded-pill fw-bold" onclick="generateResult()">ফলাফল দেখুন</button>
         </div>
 
         <div id="resultArea" class="mx-auto d-none shadow-lg">
-         <div id="resultArea" class="mx-auto d-none shadow-lg mt-5">
-    <img src="images/dpe.png" class="watermark-img" alt="Watermark">
-    
-    <div id="resultArea" class="mx-auto d-none shadow-lg mt-5">
-    <img src="images/dpe.png" class="watermark-img" alt="Watermark">
-    
-    <div class="content-wrap">
-        <div class="text-center mb-4">
-            <img src="images/govt.png" class="gov-logo" alt="Govt Logo">
-            <h3 class="fw-bold mb-0" style="color: #006A4E;">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h3>
-            <p class="small mb-0">উপজেলা: ইন্দুরকানী (জিয়ানগর), জেলা: পিরোজপুর</p>
-            <h5 class="mt-3 fw-bold border-bottom d-inline-block pb-1">একাডেমিক ট্রান্সক্রিপ্ট</h5>
-        </div>
+            <img src="images/dpe.png" class="watermark-img" alt="Watermark">
+            
+            <div class="content-wrap">
+                <div class="text-center mb-4">
+                    <img src="images/govt.png" class="gov-logo" alt="Govt Logo">
+                    <h3 class="fw-bold mb-0" style="color: #006A4E;">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h3>
+                    <p class="small mb-0">উপজেলা: ইন্দুরকানী (জিয়ানগর), জেলা: পিরোজপুর</p>
+                    <h5 class="mt-3 fw-bold border-bottom d-inline-block pb-1">একাডেমিক ট্রান্সক্রিপ্ট</h5>
+                </div>
 
                 <div class="row mb-4 mt-4 small">
                     <div class="col-7">
@@ -124,8 +136,7 @@
                             <th>গ্রেড পয়েন্ট</th>
                         </tr>
                     </thead>
-                    <tbody id="marksTableBody">
-                        </tbody>
+                    <tbody id="marksTableBody"></tbody>
                 </table>
 
                 <div class="row mt-4">
@@ -151,7 +162,6 @@
     </div>
 
     <script>
-        // Automatic Grade & Point Calculator
         function getGradeInfo(marks) {
             if (marks >= 80) return { letter: "A+", point: 5.0 };
             if (marks >= 70) return { letter: "A", point: 4.0 };
@@ -166,7 +176,6 @@
             const roll = document.getElementById('rollInput').value;
             if(!roll) return alert("রোল দিন!");
 
-            // Example Dynamic Data (In reality, you'd match this with a list)
             const mockMarks = [
                 { subject: "বাংলা", full: 100, obtained: 85 },
                 { subject: "গণিত", full: 100, obtained: 72 },
@@ -182,13 +191,7 @@
             mockMarks.forEach(m => {
                 const grade = getGradeInfo(m.obtained);
                 totalPoints += grade.point;
-                tableHTML += `<tr>
-                    <td>${m.subject}</td>
-                    <td>${m.full}</td>
-                    <td>${m.obtained}</td>
-                    <td>${grade.letter}</td>
-                    <td>${grade.point.toFixed(2)}</td>
-                </tr>`;
+                tableHTML += `<tr><td>${m.subject}</td><td>${m.full}</td><td>${m.obtained}</td><td>${grade.letter}</td><td>${grade.point.toFixed(2)}</td></tr>`;
             });
 
             document.getElementById('marksTableBody').innerHTML = tableHTML;
