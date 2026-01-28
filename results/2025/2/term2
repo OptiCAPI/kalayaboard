@@ -1,0 +1,17 @@
+const data_2025_2_term2 = [
+    {
+        roll: "10",
+        name: "সাদিয়া জান্নাত",
+        marks: [
+            { subject: "বাংলা", obtained: 75 },
+            { subject: "গণিত", obtained: 82 },
+            { subject: "ইংরেজি", obtained: 78 },
+            { subject: "বাংলাদেশ ও বিশ্বপরিচয়", obtained: 70 },
+            { subject: "সাধারণ বিজ্ঞান", obtained: 74 },
+            { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 88 },
+            { subject: "শিল্পকলা", obtained: 85 },
+            { subject: "শা. ও মানসিক স্বাস্থ্য শিক্ষা", obtained: 80 },
+            { subject: "সঙ্গীত", obtained: 72 }
+        ]
+    }
+];
