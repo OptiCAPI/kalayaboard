@@ -60,3 +60,34 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8f9fa; ov
     background-size: cover; 
     background-position: center;
 }
+
+/* Result Sheet/Market Sheet Design */
+<style>
+    /* Professional Border and Background */
+    #resultArea {
+        max-width: 800px;
+        background: white;
+        position: relative;
+        border: 4px double #006A4E;
+        padding: 40px;
+        z-index: 1;
+    }
+
+    /* Image Watermark (Center of the page) */
+    .watermark-img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px; /* Adjust size as needed */
+        opacity: 0.1; /* 10% Transparency - Very light for printing */
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .gov-logo { 
+        width: 70px; 
+        height: auto; 
+        margin-bottom: 5px; 
+    }
+</style>
