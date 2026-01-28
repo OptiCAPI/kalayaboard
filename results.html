@@ -155,7 +155,7 @@
         </div>
     </div>
 
-    <script src="data.js"></script>
+    <script src="data_2025_class5.js"></script>
 
     <script>
         function getGradeInfo(marks) {
@@ -205,12 +205,14 @@
                 document.getElementById('resultArea').classList.remove('d-none');
                 document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
             } else {
-    // Professional error display instead of simple alert
+    // Show professional error message on page
     document.getElementById('resultArea').innerHTML = `
-        <div class="alert alert-danger text-center shadow-sm" style="border-radius: 15px;">
-            <i class="fas fa-exclamation-circle fa-2x mb-2"></i><br>
-            <strong>দুঃখিত!</strong> এই রোল নম্বর বা তথ্যের কোনো ফলাফল পাওয়া যায়নি।<br>
-            <small>দয়া করে সঠিক রোল, শ্রেণি এবং মূল্যায়ন পুনরায় যাচাই করুন।</small>
+        <div class="alert alert-danger text-center shadow-sm" style="border-radius: 15px; border: 2px solid #dc3545;">
+            <i class="fas fa-exclamation-circle fa-3x mb-3"></i><br>
+            <h5 class="fw-bold">ফলাফল পাওয়া যায়নি!</h5>
+            <p>দুঃখিত, আপনার প্রদানকৃত রোল নম্বর, শ্রেণি বা মূল্যায়নের তথ্য আমাদের ডাটাবেজে নেই।</p>
+            <hr>
+            <small>সঠিক তথ্য দিয়ে পুনরায় চেষ্টা করুন অথবা প্রধান শিক্ষকের সাথে যোগাযোগ করুন।</small>
         </div>`;
     document.getElementById('resultArea').classList.remove('d-none');
             }
