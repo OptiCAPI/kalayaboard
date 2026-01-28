@@ -76,3 +76,11 @@ Music/Rhymes,jukebox.html,/audio (for MP3 files)
 Teacher Portal,login.html,(Redirects to admin.html)
 Attendance,attendance.html,(Logic handled in script.js)
 Exam Syllabus,routine.html,/doc (for PDF files)
+
+
+Image Size:.
+
+Image Type,Recommended Resolution,File Size Limit,Format
+Slider/Hero,1200×600 pixels,200 KB - 300 KB,.jpg
+Alumni/Teacher,400×400 pixels,50 KB - 80 KB,.jpg
+Logo,200×200 pixels,20 KB - 40 KB,.png (Transparent)
