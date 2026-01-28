@@ -86,3 +86,16 @@ Image Type,Recommended Resolution,File Size Limit,Format
 Slider/Hero,1200×600 pixels,200 KB - 300 KB,.jpg
 Alumni/Teacher,400×400 pixels,50 KB - 80 KB,.jpg
 Logo,200×200 pixels,20 KB - 40 KB,.png (Transparent)
+
+
+/ (Main Folder)
+│-- results.html (Current 2026 Search Page)
+└── results/
+    ├── 2023/
+    │   └── index.html (Archive Page)
+    ├── 2024/
+    │   └── index.html (Archive Page)
+    └── 2026/
+        └── 5/
+            └── term2.js (Data File)
+            
