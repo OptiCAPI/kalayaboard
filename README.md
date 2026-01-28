@@ -7,6 +7,8 @@ learning.html (Class 1-5 Content)
 
 jukebox.html (Audio Player)
 
+results.html (Public Result Search)
+
 login.html (Teacher Gateway)
 
 admin.html (Teacher Data Entry)
