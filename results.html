@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফলাফল অনুসন্ধান | কালবাড়িয়া সপ্রাবি</title>
+    <title>ফলাফল অনুসন্ধান | কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar navbar-dark bg-green shadow-sm mb-4">
+    <div class="container d-flex justify-content-between">
+        <a href="index.html" class="btn btn-light btn-sm rounded-pill">
+            <i class="fas fa-arrow-left"></i> হোম
+        </a>
+        <span class="navbar-brand fw-bold">ফলাফল অনুসন্ধান</span>
+        <div style="width: 45px;"></div> </div>
+    </nav>
     <div class="container mt-5">
         <div class="card p-4 shadow-sm mx-auto" style="max-width: 500px; border-radius: 20px;">
             <h4 class="text-center fw-bold text-success mb-4">ফলাফল খুঁজুন</h4>
@@ -21,13 +29,16 @@
                     <option>শ্রেণি: ১ম</option>
                     <option>শ্রেণি: ২য়</option>
                     <option>শ্রেণি: ৩য়</option>
+                    <option>শ্রেণি: ৪র্থ</option>
+                    <option>শ্রেণি: ৫ম</option>
                 </select>
             </div>
             <button class="btn btn-success w-100 rounded-pill" onclick="searchResult()">ফলাফল দেখুন</button>
             
             <div id="resultArea" class="mt-4 p-3 border rounded bg-light d-none">
                 <p class="mb-1"><strong>নাম:</strong> মোঃ আরিফ</p>
-                <p class="mb-1"><strong>প্রাপ্ত নম্বর:</strong> ৮৫ (A+)</p>
+                <p class="mb-1"><strong>বিষয়:</strong> বাংলা-৮৫ (A+),গণিত- , ইংরেজি- ,বাওবি- , বিজ্ঞান- ,ধর্ম- </p>
+                <p class="mb-1"><strong>মোট নম্বর:</strong> ৫২৫ (GPA-5.00)</p>
             </div>
         </div>
     </div>
