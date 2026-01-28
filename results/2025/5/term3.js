@@ -1,4 +1,27 @@
 // কালাইয়া বোর্ড সপ্রাবি - শিক্ষার্থী ডাটাবেজ
+const data_2026_5_term2 = [
+    {
+        roll: "5",
+        name: "মোঃ আরিফ হোসেন",
+        marks: [
+            { subject: "বাংলা", obtained: 85 },
+            { subject: "গণিত", obtained: 72 },
+            { subject: "ইংরেজি", obtained: 65 },
+            { subject: "বাংলাদেশ ও বিশ্বপরিচয়", obtained: 69 },
+            { subject: "সাধারণ বিজ্ঞান", obtained: 88 },
+            { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 95 },
+            { subject: "শিল্পকলা", obtained: 80 },
+            { subject: "শা. ও মানসিক স্বাস্থ্য শিক্ষা", obtained: 82 },
+            { subject: "সঙ্গীত", obtained: 78 }
+        ]
+    }
+    // Add more students here...
+];
+
+
+
+
+// Version 2
 const studentData = [
     {
         roll: "1",
