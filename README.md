@@ -64,3 +64,15 @@ Folder Name,Content,Example Filename
 images/,"Photos, Logos, Backgrounds","logo.png, school_bg.jpg, alumni1.jpg"
 audio/,"Rhymes, Songs, MP3s","ata_gache.mp3, twinkle.mp3"
 docs/,"Routines, Syllabus PDFs",routine_class3.pdf
+
+
+
+Final System Check:
+
+Feature,Target File,Folder Required
+Notice Board,index.html,(None - Change text in HTML)
+Class Lessons,learning.html,/images (for icons/thumbnails)
+Music/Rhymes,jukebox.html,/audio (for MP3 files)
+Teacher Portal,login.html,(Redirects to admin.html)
+Attendance,attendance.html,(Logic handled in script.js)
+Exam Syllabus,routine.html,/doc (for PDF files)
