@@ -20,10 +20,13 @@
 - `alumni.html`: প্রাক্তন শিক্ষার্থীদের তালিকা।
 - `style.css`: সিএসএস ডিজাইন (মোবাইল ফ্রেন্ডলি)।
 - `script.js`: জাভাস্ক্রিপ্ট লজিক (অডিও ও স্লাইডার)।
-- login.html (Teacher Gateway)
-- results.html (Public Result Search)
-- 
-- routine.html
+- `login.html`: (Teacher Gateway)
+- `results.html`: (Public Result Search)
+- `routine.html`:(Routine and Syllabus)
+- `404.html`: (typing mistake message)
+- `image/`: (for upload all pictures. ex- library.jpg)
+- `audio/`: (upload audio songs. ex- ata_gache.mp3)
+- `docs/`: (upload files. ex- syllabus_class3)
 
 ## 🚀 কিভাবে ব্যবহার করবেন? (How to Use)
 ১. এই রিপোজিটরিটি ডাউনলোড বা ক্লোন করুন।
@@ -56,3 +59,8 @@ Attendance Tracker (attendance.html)
 Alumni Wall (alumni.html)
 Routine & Syllabus (routine.html)
 Global Styles & Scripts (style.css, script.js)
+Error Message (404.html)
+Folder Name,Content,Example Filename
+images/,"Photos, Logos, Backgrounds","logo.png, school_bg.jpg, alumni1.jpg"
+audio/,"Rhymes, Songs, MP3s","ata_gache.mp3, twinkle.mp3"
+docs/,"Routines, Syllabus PDFs",routine_class3.pdf
