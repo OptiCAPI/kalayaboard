@@ -205,8 +205,14 @@
                 document.getElementById('resultArea').classList.remove('d-none');
                 document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
             } else {
-                alert("দুঃখিত! এই তথ্যের কোনো শিক্ষার্থী পাওয়া যায়নি।");
-                document.getElementById('resultArea').classList.add('d-none');
+    // Professional error display instead of simple alert
+    document.getElementById('resultArea').innerHTML = `
+        <div class="alert alert-danger text-center shadow-sm" style="border-radius: 15px;">
+            <i class="fas fa-exclamation-circle fa-2x mb-2"></i><br>
+            <strong>দুঃখিত!</strong> এই রোল নম্বর বা তথ্যের কোনো ফলাফল পাওয়া যায়নি।<br>
+            <small>দয়া করে সঠিক রোল, শ্রেণি এবং মূল্যায়ন পুনরায় যাচাই করুন।</small>
+        </div>`;
+    document.getElementById('resultArea').classList.remove('d-none');
             }
         }
     </script>
