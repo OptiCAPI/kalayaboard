@@ -1,8 +1,6 @@
-// ==========================================
-// ১. ডাইনামিক গ্যালারি (Hero Image Rotation)
-// ==========================================
+// ১. স্লাইডার ইমেজ (Images folder path)
 const images = [
-    "images/slider1.jpg",
+    "images/slider1.jpg", 
     "images/slider2.jpg",
     "images/slider3.jpg"
 ];
@@ -11,45 +9,21 @@ let currentIndex = 0;
 function changeImage() {
     const heroImg = document.getElementById('dynamic-hero');
     if(heroImg) {
-        // ছবি পরিবর্তনের সময় হালকা ফেড ইফেক্ট (Fade transition)
-        heroImg.style.opacity = 0.5; 
-        
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            heroImg.src = images[currentIndex];
-            heroImg.style.opacity = 1;
-        }, 500);
+        currentIndex = (currentIndex + 1) % images.length;
+        heroImg.src = images[currentIndex];
     }
 }
-// প্রতি ৬০ সেকেন্ডে ছবি পরিবর্তন হবে
-setInterval(changeImage, 60000); 
+setInterval(changeImage, 30000); // ৩০ সেকেন্ড পরপর পরিবর্তন
 
-
-// ==========================================
-// ২. জুকবক্স কন্ট্রোল (Audio Player Logic)
-// ==========================================
-function playAudio(rhymeFile) {
-    // অডিও পাথ তৈরি করা
-    let audioPath = "audio/" + rhymeFile;
+// ২. অডিও জুকবক্স (Audio folder path)
+function playAudio(fileName) {
+    // এটি অডিও ফোল্ডার থেকে ফাইলটি খুজবে
+    let audioPath = "audio/" + fileName; 
     let audio = new Audio(audioPath);
     
-    // আগের কোনো গান বাজতে থাকলে তা বন্ধ করা (Crucial for UX)
-    if (window.currentPlaying) {
-        window.currentPlaying.pause();
-        window.currentPlaying.currentTime = 0;
+    if (window.currentAudio) {
+        window.currentAudio.pause(); // নতুন গান শুরুর আগে আগেরটি বন্ধ হবে
     }
-    
-    // নতুন গান চালু করা
-    window.currentPlaying = audio;
-    audio.play().catch(error => {
-        console.log("Audio play failed. Check if file exists in /audio folder.");
-    });
-}
-
-
-// ==========================================
-// ৩. রেজাল্ট ও এটেনডেন্স (Demo Alert)
-// ==========================================
-function addStudentData() {
-    alert("তথ্য সফলভাবে ডাটাবেসে পাঠানো হয়েছে! (Demo)");
+    window.currentAudio = audio;
+    audio.play();
 }
