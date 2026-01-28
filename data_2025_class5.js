@@ -27,5 +27,20 @@ const studentData = [
             { subject: "প্রাথমিক বিজ্ঞান", full: 100, obtained: 68 },
             { subject: "ধর্ম ও নৈতিক শিক্ষা", full: 100, obtained: 80 }
         ]
+    },
+    {
+        roll: "5",
+        name: "মোঃ আরিফ হোসেন",
+        class: "৫ম শ্রেণি",
+        term: "২য় প্রান্তিক মূল্যায়ন",
+        marks: [
+            { subject: "বাংলা", full: 100, obtained: 85 },
+            { subject: "গণিত", full: 100, obtained: 72 },
+            { subject: "ইংরেজি", full: 100, obtained: 65 },
+            { subject: "বাওবি", full: 100, obtained: 69 },
+            { subject: "প্রাথমিক বিজ্ঞান", full: 100, obtained: 88 },
+            { subject: "ধর্ম ও নৈতিক শিক্ষা", full: 100, obtained: 95 }
+        ]
     }
+    // Add more students here...
 ];
