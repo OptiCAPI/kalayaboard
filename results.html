@@ -25,7 +25,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 300px;
-            opacity: 0.1; /* Light watermark */
+            opacity: 0.12; /* Optimized for printing */
             z-index: 0;
             pointer-events: none;
         }
@@ -44,31 +44,20 @@
 
         /* --- PROFESSIONAL PRINT SETTINGS --- */
         @media print {
-            /* Hide UI elements */
             .navbar, .search-form-card, .btn-print-action, .ticker-wrap, .btn-call { 
                 display: none !important; 
             }
-            
             body { background: white !important; margin: 0; padding: 0; }
-            
-            /* Force Result Area to fill A4 with 1-inch border feel */
             #resultArea { 
                 display: block !important;
                 border: 4px double #006A4E !important; 
                 box-shadow: none !important; 
                 width: 100% !important;
-                max-width: 100% !important;
                 margin: 0 !important;
-                padding: 40px !important; /* Internal padding */
+                padding: 40px !important; 
             }
-
-            @page { 
-                size: A4; 
-                margin: 1in; /* This creates the 1-inch border from page edge */
-            }
-
-            /* Ensure watermark prints */
-            .watermark-img { -webkit-print-color-adjust: exact; }
+            @page { size: A4; margin: 1in; }
+            .watermark-img { -webkit-print-color-adjust: exact; opacity: 0.15 !important; }
         }
     </style>
 </head>
@@ -106,7 +95,6 @@
 
         <div id="resultArea" class="mx-auto d-none shadow-lg">
             <img src="images/dpe.png" class="watermark-img" alt="Watermark">
-            
             <div class="content-wrap">
                 <div class="text-center mb-4">
                     <img src="images/govt.png" class="gov-logo" alt="Govt Logo">
@@ -117,7 +105,7 @@
 
                 <div class="row mb-4 mt-4 small">
                     <div class="col-7">
-                        <p class="mb-1"><strong>শিক্ষার্থীর নাম:</strong> <span id="outName">মোঃ আরিফ হোসেন</span></p>
+                        <p class="mb-1"><strong>শিক্ষার্থীর নাম:</strong> <span id="outName">-</span></p>
                         <p class="mb-1"><strong>শ্রেণি:</strong> <span id="outClass">-</span></p>
                     </div>
                     <div class="col-5 text-end">
@@ -161,6 +149,8 @@
         </div>
     </div>
 
+    <script src="data.js"></script>
+
     <script>
         function getGradeInfo(marks) {
             if (marks >= 80) return { letter: "A+", point: 5.0 };
@@ -173,35 +163,45 @@
         }
 
         function generateResult() {
-            const roll = document.getElementById('rollInput').value;
-            if(!roll) return alert("রোল দিন!");
+            const rollInput = document.getElementById('rollInput').value;
+            const classInput = document.getElementById('classSelect').value;
+            const termInput = document.getElementById('termSelect').value;
 
-            const mockMarks = [
-                { subject: "বাংলা", full: 100, obtained: 85 },
-                { subject: "গণিত", full: 100, obtained: 72 },
-                { subject: "ইংরেজি", full: 100, obtained: 65 },
-                { subject: "বাওবি", full: 100, obtained: 69 },
-                { subject: "প্রাথমিক বিজ্ঞান", full: 100, obtained: 88 },
-                { subject: "ধর্ম ও নৈতিক শিক্ষা", full: 100, obtained: 95 }
-            ];
+            if(!rollInput) return alert("রোল দিন!");
 
-            let tableHTML = "";
-            let totalPoints = 0;
+            // SEARCH IN DATA.JS
+            const student = studentData.find(s => 
+                s.roll == rollInput && 
+                s.class == classInput && 
+                s.term == termInput
+            );
 
-            mockMarks.forEach(m => {
-                const grade = getGradeInfo(m.obtained);
-                totalPoints += grade.point;
-                tableHTML += `<tr><td>${m.subject}</td><td>${m.full}</td><td>${m.obtained}</td><td>${grade.letter}</td><td>${grade.point.toFixed(2)}</td></tr>`;
-            });
+            if(student) {
+                let tableHTML = "";
+                let totalPoints = 0;
 
-            document.getElementById('marksTableBody').innerHTML = tableHTML;
-            document.getElementById('finalGPA').innerText = (totalPoints / mockMarks.length).toFixed(2);
-            document.getElementById('outRoll').innerText = roll;
-            document.getElementById('outClass').innerText = document.getElementById('classSelect').value;
-            document.getElementById('outTerm').innerText = document.getElementById('termSelect').value;
+                student.marks.forEach(m => {
+                    const grade = getGradeInfo(m.obtained);
+                    totalPoints += grade.point;
+                    tableHTML += `<tr><td>${m.subject}</td><td>${m.full}</td><td>${m.obtained}</td><td>${grade.letter}</td><td>${grade.point.toFixed(2)}</td></tr>`;
+                });
 
-            document.getElementById('resultArea').classList.remove('d-none');
-            document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('marksTableBody').innerHTML = tableHTML;
+                document.getElementById('outName').innerText = student.name;
+                document.getElementById('outRoll').innerText = student.roll;
+                document.getElementById('outClass').innerText = student.class;
+                document.getElementById('outTerm').innerText = student.term;
+
+                const gpa = (totalPoints / student.marks.length).toFixed(2);
+                document.getElementById('finalGPA').innerText = gpa;
+                document.getElementById('status').innerText = gpa >= 1.0 ? "উত্তীর্ণ" : "অনুত্তীর্ণ";
+
+                document.getElementById('resultArea').classList.remove('d-none');
+                document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("দুঃখিত! এই তথ্যের কোনো শিক্ষার্থী পাওয়া যায়নি।");
+                document.getElementById('resultArea').classList.add('d-none');
+            }
         }
     </script>
 </body>
