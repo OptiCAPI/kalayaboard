@@ -3,25 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফলাফল অনুসন্ধান | কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>একাডেমিক ট্রান্সক্রিপ্ট | কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Print styling to hide UI elements during printing */
-        @media print {
-            .navbar, .btn-call, .search-form-card, .btn-print-action, .footer-hide {
-                display: none !important;
-            }
-            .container { width: 100%; max-width: 100%; margin: 0; padding: 0; }
-            #resultArea { border: none !important; box-shadow: none !important; display: block !important; }
-            body { background: white; }
+        /* Transcript Card Styling */
+        #resultArea {
+            max-width: 800px;
+            background: white;
+            position: relative;
+            border: 4px double #006A4E; /* Professional Double Border */
+            padding: 40px;
+            border-radius: 0;
+            overflow: hidden;
         }
-        .marks-table th { background-color: #f8f9fa; }
-        .transcript-header { border-bottom: 2px solid #006A4E; }
+
+        /* DPE Watermark */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(0, 106, 78, 0.08); /* 8% Transparency for subtlety */
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .content-wrap { position: relative; z-index: 1; }
+
+        .gov-logo { width: 60px; height: auto; margin-bottom: 10px; }
+
+        .signature-box {
+            margin-top: 60px;
+            border-top: 1px dashed #333;
+            padding-top: 5px;
+            width: 180px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* Print Settings */
+        @media print {
+            .navbar, .search-form-card, .btn-print-action, .ticker-wrap { display: none !important; }
+            body { background: white !important; }
+            #resultArea { border: 4px double #006A4E !important; box-shadow: none !important; margin: 0 auto; }
+            @page { size: A4; margin: 1cm; }
+        }
     </style>
 </head>
 <body class="bg-light">
+
     <nav class="navbar navbar-dark bg-green shadow-sm mb-4">
         <div class="container d-flex justify-content-between">
             <a href="index.html" class="btn btn-light btn-sm rounded-pill"><i class="fas fa-arrow-left"></i> হোম</a>
@@ -31,94 +67,131 @@
     </nav>
 
     <div class="container mt-4 mb-5">
-        <div class="card p-4 shadow-sm mx-auto search-form-card mb-4" style="max-width: 500px; border-radius: 20px; border: none;">
-            <div class="text-center mb-4">
-                <i class="fas fa-file-invoice text-success fa-3x mb-2"></i>
-                <h4 class="fw-bold text-success">ফলাফল খুঁজুন</h4>
-            </div>
+        <div class="card p-4 shadow-sm mx-auto search-form-card mb-5" style="max-width: 500px; border-radius: 20px; border: none;">
+            <h5 class="text-center fw-bold text-success mb-3">শিক্ষার্থী তথ্য দিন</h5>
             <div class="mb-3">
-                <label class="form-label small fw-bold">রোল নম্বর দিন</label>
-                <input type="number" class="form-control rounded-pill" id="rollInput" placeholder="উদা: ০৫">
+                <label class="form-label small fw-bold">রোল নম্বর</label>
+                <input type="number" class="form-control rounded-pill" id="rollInput">
             </div>
             <div class="mb-3">
                 <label class="form-label small fw-bold">শ্রেণি</label>
                 <select class="form-select rounded-pill" id="classSelect">
-                    <option selected disabled>শ্রেণি নির্বাচন করুন</option>
                     <option>১ম শ্রেণি</option><option>২য় শ্রেণি</option><option>৩য় শ্রেণি</option><option>৪র্থ শ্রেণি</option><option>৫ম শ্রেণি</option>
                 </select>
             </div>
-            <div class="mb-4">
-                <label class="form-label small fw-bold">প্রান্তিক মূল্যায়ন</label>
+            <div class="mb-3">
+                <label class="form-label small fw-bold">মূল্যায়ন</label>
                 <select class="form-select rounded-pill" id="termSelect">
-                    <option selected disabled>মূল্যায়ন নির্বাচন করুন</option>
-                    <option>১ম প্রান্তিক</option><option>২য় প্রান্তিক</option><option>৩য় প্রান্তিক</option>
+                    <option>১ম প্রান্তিক</option><option selected>২য় প্রান্তিক</option><option>৩য় প্রান্তিক</option>
                 </select>
             </div>
-            <button class="btn btn-success w-100 rounded-pill py-2 fw-bold" onclick="searchResult()">ফলাফল দেখুন</button>
+            <button class="btn btn-success w-100 rounded-pill fw-bold" onclick="generateResult()">ফলাফল দেখুন</button>
         </div>
 
-        <div id="resultArea" class="card mx-auto d-none shadow-lg border-0 p-4" style="max-width: 700px; border-radius: 15px;">
-            <div class="text-center transcript-header pb-3 mb-4">
-                <h4 class="fw-bold text-dark mb-1">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h4>
-                <p class="mb-0 text-muted small">শিক্ষাই‌ শক্তি                       শিক্ষাই মুক্তি</p>
-                <h5 class="mt-3 text-success fw-bold">একাডেমিক ট্রান্সক্রিপ্ট</h5>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-6">
-                    <p class="mb-1"><strong>নাম:</strong> <span id="resName">মোঃ আরিফ হোসেন</span></p>
-                    <p class="mb-1"><strong>শ্রেণি:</strong> <span id="resClass">৫ম</span></p>
+        <div id="resultArea" class="mx-auto d-none shadow-lg">
+            <div class="watermark">DPE BANGLADESH</div>
+            
+            <div class="content-wrap">
+                <div class="text-center mb-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" class="gov-logo" alt="Govt Logo">
+                    <h3 class="fw-bold mb-0" style="color: #006A4E;">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h3>
+                    <p class="small mb-0">উপজেলা: ইন্দুরকানী (জিয়ানগর), জেলা: পিরোজপুর</p>
+                    <p class="mb-0 text-muted small">শিক্ষাই‌ শক্তি, শিক্ষাই মুক্তি</p>
+                    <h5 class="mt-3 fw-bold border-bottom d-inline-block pb-1">একাডেমিক ট্রান্সক্রিপ্ট</h5>
                 </div>
-                <div class="col-6 text-end">
-                    <p class="mb-1"><strong>রোল:</strong> <span id="resRoll">০৫</span></p>
-                    <p class="mb-1"><strong>পরীক্ষা:</strong> <span id="resTerm">২য় প্রান্তিক</span></p>
-                </div>
-            </div>
 
-            <div class="table-responsive">
-                <table class="table table-bordered marks-table text-center">
+                <div class="row mb-4 mt-4 small">
+                    <div class="col-7">
+                        <p class="mb-1"><strong>শিক্ষার্থীর নাম:</strong> <span id="outName">মোঃ আরিফ হোসেন</span></p>
+                        <p class="mb-1"><strong>শ্রেণি:</strong> <span id="outClass">-</span></p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-1"><strong>রোল নং:</strong> <span id="outRoll">-</span></p>
+                        <p class="mb-1"><strong>পরীক্ষা:</strong> <span id="outTerm">-</span></p>
+                    </div>
+                </div>
+
+                <table class="table table-bordered border-dark text-center align-middle small">
                     <thead class="table-light">
                         <tr>
                             <th>বিষয়</th>
+                            <th>পূর্ণমান</th>
                             <th>প্রাপ্ত নম্বর</th>
-                            <th>গ্রেড</th>
+                            <th>লেটার গ্রেড</th>
+                            <th>গ্রেড পয়েন্ট</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr><td>বাংলা</td><td>৮৫</td><td>A+</td></tr>
-                        <tr><td>গণিত</td><td>৭৮</td><td>A</td></tr>
-                        <tr><td>ইংরেজি</td><td>৮২</td><td>A+</td></tr>
-                        <tr><td>বিজ্ঞান</td><td>৯০</td><td>A+</td></tr>
-                    </tbody>
+                    <tbody id="marksTableBody">
+                        </tbody>
                 </table>
-            </div>
 
-            <div class="d-flex justify-content-between mt-4 border-top pt-3">
-                <div class="fw-bold">মোট জিপিএ: <span class="text-success">৫.০০</span></div>
-                <div class="fw-bold text-primary">ফলাফল: উত্তীর্ণ</div>
-            </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="p-2 border bg-light text-center fw-bold">
+                            মোট জিপিএ (GPA): <span id="finalGPA" class="text-success">০.০০</span> | ফলাফল: <span id="status">উত্তীর্ণ</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="mt-5 text-center btn-print-action">
-                <button class="btn btn-outline-dark px-5 rounded-pill" onclick="window.print()">
-                    <i class="fas fa-print me-2"></i> প্রিন্ট করুন
-                </button>
+                <div class="d-flex justify-content-between mt-5 pt-4">
+                    <div class="signature-box">শ্রেণি শিক্ষকের স্বাক্ষর</div>
+                    <div class="signature-box">প্রধান শিক্ষকের স্বাক্ষর</div>
+                </div>
+
+                <div class="mt-5 text-center btn-print-action">
+                    <button class="btn btn-dark rounded-pill px-4" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i> ট্রান্সক্রিপ্ট প্রিন্ট করুন
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function searchResult() {
+        // Automatic Grade & Point Calculator
+        function getGradeInfo(marks) {
+            if (marks >= 80) return { letter: "A+", point: 5.0 };
+            if (marks >= 70) return { letter: "A", point: 4.0 };
+            if (marks >= 60) return { letter: "A-", point: 3.5 };
+            if (marks >= 50) return { letter: "B", point: 3.0 };
+            if (marks >= 40) return { letter: "C", point: 2.0 };
+            if (marks >= 33) return { letter: "D", point: 1.0 };
+            return { letter: "F", point: 0.0 };
+        }
+
+        function generateResult() {
             const roll = document.getElementById('rollInput').value;
-            if(!roll) {
-                alert("দয়া করে রোল নম্বর দিন");
-                return;
-            }
-            // Populate data from inputs
-            document.getElementById('resRoll').innerText = roll;
-            document.getElementById('resClass').innerText = document.getElementById('classSelect').value;
-            document.getElementById('resTerm').innerText = document.getElementById('termSelect').value;
-            
-            // Show result area
+            if(!roll) return alert("রোল দিন!");
+
+            // Example Dynamic Data (In reality, you'd match this with a list)
+            const mockMarks = [
+                { subject: "বাংলা", full: 100, obtained: 85 },
+                { subject: "গণিত", full: 100, obtained: 72 },
+                { subject: "ইংরেজি", full: 100, obtained: 65 },
+                { subject: "প্রাথমিক বিজ্ঞান", full: 100, obtained: 88 }
+            ];
+
+            let tableHTML = "";
+            let totalPoints = 0;
+
+            mockMarks.forEach(m => {
+                const grade = getGradeInfo(m.obtained);
+                totalPoints += grade.point;
+                tableHTML += `<tr>
+                    <td>${m.subject}</td>
+                    <td>${m.full}</td>
+                    <td>${m.obtained}</td>
+                    <td>${grade.letter}</td>
+                    <td>${grade.point.toFixed(2)}</td>
+                </tr>`;
+            });
+
+            document.getElementById('marksTableBody').innerHTML = tableHTML;
+            document.getElementById('finalGPA').innerText = (totalPoints / mockMarks.length).toFixed(2);
+            document.getElementById('outRoll').innerText = roll;
+            document.getElementById('outClass').innerText = document.getElementById('classSelect').value;
+            document.getElementById('outTerm').innerText = document.getElementById('termSelect').value;
+
             document.getElementById('resultArea').classList.remove('d-none');
             document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
         }
