@@ -1,0 +1,12 @@
+const data_2025_3_term1 = [
+    { roll: "01", name: "Hira", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 640 }] },
+    { roll: "02", name: "Soaib", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 655 }] },
+    { roll: "03", name: "Arnab", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 579 }] },
+    { roll: "04", name: "Hasiba", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 645 }] },
+    { roll: "05", name: "Suvashree", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 562 }] },
+    { roll: "06", name: "Amena", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 547 }] },
+    { roll: "07", name: "Aysha", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 484 }] },
+    { roll: "08", name: "Tamim", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 476 }] },
+    { roll: "09", name: "Nahid", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 473 }] },
+    { roll: "10", name: "Fatima", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 528 }] }
+];
