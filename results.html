@@ -45,6 +45,17 @@
             z-index: 999; 
             pointer-events: none;
         }
+
+        /* প্রিন্ট টাইমস্ট্যাম্প স্টাইল */
+        #printTimestamp {
+            display: none;
+            position: absolute;
+            bottom: 5mm;
+            right: 10mm;
+            font-size: 10px;
+            color: #555;
+            z-index: 1000;
+        }
     
         .main-content { position: relative; z-index: 10; flex-grow: 1; }
         .table-main { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -65,6 +76,7 @@
         @media print {
             body { background: none; padding: 0; margin: 0; }
             .no-print, .navbar, .search-form-card, .premium-archive-section { display: none !important; }
+            #printTimestamp { display: block; }
             #resultArea { 
                 margin: 0 !important; 
                 width: 210mm !important; 
@@ -209,15 +221,18 @@
         
         const subjectsCount = is2026 ? s.marks.length : s.subjects.length;
         const gpa = (totalPoints / subjectsCount).toFixed(2);
+        const now = new Date();
+        const timestamp = now.toLocaleDateString('bn-BD') + " " + now.toLocaleTimeString('bn-BD');
 
         document.getElementById('resultArea').innerHTML = `
             <img src="images/dpe.png" class="watermark-img">
+            <div id="printTimestamp">প্রিন্ট কপি: ${timestamp}</div>
             <div class="main-content">
                 <div class="text-center" style="margin-top:0;">
                     <img src="images/govt.png" style="width:70px" class="mb-1">
                     <h2 class="premium-title mb-0" style="color: #006A4E; font-size: 30px;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
-                    <p class="mb-0 fw-bold">ইন্দুরকানী (জিয়ানগর), পিরোজপুর </p>
-                    <p class="mb-0 fw-bold">স্থাপিত: ১৯৩০</p>
+                    <p class="mb-0 fw-bold" style="font-size: 15px;">ইন্দুরকানী (জিয়ানগর), পিরোজপুর </p>
+                    <p class="mb-0 fw-bold" style="font-size: 15px;">স্থাপিত: ১৯৩০</p>
                     <h4 class="mt-4 border-bottom d-inline-block pb-1 fw-bold">একাডেমিক ট্রান্সক্রিপ্ট - ${toBanglaNum(selectedYear)}</h4>
                 </div>
 
