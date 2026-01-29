@@ -74,5 +74,89 @@
     </a>
 
     <script src="script.js"></script>
+    <section class="container my-5 py-4">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-success">আমাদের বিশেষ কার্যক্রম</h2>
+        <p class="text-muted">শিক্ষার্থীদের প্রতিভা বিকাশে আমরা আধুনিক শিক্ষা পদ্ধতি অনুসরণ করি</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="program-card h-100 shadow-sm border-0 p-4 text-center">
+                <div class="icon-box mb-3 mx-auto">
+                    <i class="fas fa-laptop-code fa-2x text-success"></i>
+                </div>
+                <h4 class="fw-bold">ডিজিটাল ল্যাব</h4>
+                <p class="text-muted small">আধুনিক কম্পিউটার ল্যাবের মাধ্যমে শিক্ষার্থীদের প্রযুক্তিতে দক্ষ করে তোলা হয়।</p>
+                <button class="btn btn-outline-success btn-sm rounded-pill px-4">আরও জানুন</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="program-card h-100 shadow-sm border-0 p-4 text-center">
+                <div class="icon-box mb-3 mx-auto">
+                    <i class="fas fa-music fa-2x text-warning"></i>
+                </div>
+                <h4 class="fw-bold">সাংস্কৃতিক চর্চা</h4>
+                <p class="text-muted small">সঙ্গীত, চারু ও কারুকলা এবং বিভিন্ন সাংস্কৃতিক প্রতিযোগিতার নিয়মিত আয়োজন।</p>
+                <button class="btn btn-outline-warning btn-sm rounded-pill px-4 text-dark">আরও জানুন</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="program-card h-100 shadow-sm border-0 p-4 text-center">
+                <div class="icon-box mb-3 mx-auto">
+                    <i class="fas fa-running fa-2x text-primary"></i>
+                </div>
+                <h4 class="fw-bold">খেলাধুলা</h4>
+                <p class="text-muted small">শারীরিক ও মানসিক বিকাশের জন্য নিয়মিত ক্রীড়া প্রতিযোগিতা নিশ্চিত করা হয়।</p>
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-4">আরও জানুন</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .program-card {
+        background: #ffffff;
+        border-radius: 20px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        border-bottom: 5px solid transparent !important;
+    }
+
+    .program-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        border-bottom: 5px solid #006A4E !important;
+    }
+
+    .icon-box {
+        width: 70px;
+        height: 70px;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+    .program-card:hover .icon-box {
+        background: #e8f5e9;
+        transform: rotate(360deg);
+    }
+
+    .program-card h4 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    /* wk12.org এর মত ইন্টারঅ্যাক্টিভ টাচ */
+    .program-card p {
+        line-height: 1.6;
+        min-height: 50px;
+    }
+</style>
 </body>
                                                                </html>
