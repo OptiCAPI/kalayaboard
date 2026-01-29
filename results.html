@@ -19,19 +19,19 @@
             min-height: 297mm; 
             background: white;
             margin: 20px auto; 
-            padding: 20mm; 
+            padding: 15mm; 
             box-sizing: border-box;
-            border: 10px double var(--primary-green); 
+            border: 12px double var(--primary-green); 
             position: relative; 
             overflow: hidden;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         /* প্রিমিয়াম ওয়াটারমার্ক: টেবিলের সামনে (z-index: 999) */
         .watermark-img {
             position: absolute; 
             top: 50%; left: 50%; 
-            transform: translate(-50%, -50%) rotate(-15deg);
+            transform: translate(-50%, -50%) rotate(0deg);
             width: 600px; 
             opacity: 0.06; /* ৫-৬% ভিজিবিলিটি */
             z-index: 999; 
@@ -50,7 +50,7 @@
                 margin: 0 !important; 
                 width: 210mm !important; 
                 height: 297mm !important; 
-                border: 10px double var(--primary-green) !important;
+                border: 12px double var(--primary-green) !important;
                 box-shadow: none;
                 page-break-after: always;
             }
@@ -194,8 +194,9 @@
             <img src="images/dpe.png" class="watermark-img">
             <div class="text-center position-relative" style="z-index:1000">
                 <img src="images/govt.png" style="width:75px">
-                <h2 class="fw-bold mb-0 premium-font" style="color: #006A4E; font-size: 28px;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
-                <p class="mb-0">ইন্দুরকানী, পিরোজপুর | স্থাপিত: ১৯৩০</p>
+                <h2 class="fw-bold mb-0 premium-font" style="color: #006A4E; font-size: 29px;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
+                <p class="mb-0">ইন্দুরকানী (জিয়ানগর), পিরোজপুর </p>
+                <p class="mb-0">স্থাপিত: ১৯৩০</p>
                 <h4 class="mt-3 border-bottom d-inline-block pb-1 fw-bold">একাডেমিক ট্রান্সক্রিপ্ট - ${selectedYear}</h4>
             </div>
 
