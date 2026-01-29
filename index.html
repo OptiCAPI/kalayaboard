@@ -14,7 +14,6 @@
         :root {
             --primary-green: #006A4E;
             --accent-yellow: #FFB800;
-            --glass: rgba(255, 255, 255, 0.9);
         }
 
         body { font-family: 'Hind Siliguri', sans-serif; background: #f4f7f6; overflow-x: hidden; }
@@ -23,141 +22,148 @@
         .ticker-container { background: #fff; border-bottom: 2px solid var(--primary-green); padding: 8px 0; }
         .custom-nav { background: var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .login-pill { background: var(--accent-yellow); color: #000; padding: 6px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .login-pill:hover { background: #fff; transform: scale(1.05); }
 
-        /* ২. হিরো সেকশন (Video/Premium Image) */
-        .hero-wrapper { 
-            position: relative; height: 75vh; width: 100%; 
-            display: flex; align-items: center; justify-content: center; 
-            color: white; overflow: hidden;
-        }
-        .hero-video { 
-            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; 
-            z-index: -1; transform: translate(-50%, -50%); object-fit: cover; 
-        }
-        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); }
-        .hero-content { z-index: 1; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        /* ২. হিরো সেকশন: wk12 স্টাইল */
+        .premium-hero { background: linear-gradient(135deg, #f8fdfb 0%, #e8f5e9 100%); min-height: 85vh; padding: 60px 0; position: relative; overflow: hidden; display: flex; align-items: center; }
+        .main-title { font-size: 3.5rem; font-weight: 800; color: #2c3e50; line-height: 1.2; }
+        .highlight { color: #006A4E; }
+        .hero-img-large { width: 100%; border-radius: 40px 10px 40px 10px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
-        /* ৩. ইন্টারেক্টিভ গ্রিড বাটন (wk12 style) */
-        .premium-card {
-            background: white; border-radius: 20px; padding: 30px; 
-            text-align: center; transition: 0.4s; cursor: pointer;
-            border-bottom: 5px solid transparent; text-decoration: none !important; color: inherit;
-            display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        .premium-card:hover { transform: translateY(-10px); border-bottom-color: var(--primary-green); }
-        .icon-circle { 
-            width: 70px; height: 70px; background: #f0fdf4; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
-            font-size: 28px; color: var(--primary-green); transition: 0.4s;
-        }
-        .premium-card:hover .icon-circle { background: var(--primary-green); color: white; transform: rotateY(360deg); }
+        /* ৩. ভিডিও ও স্বাগত বক্তব্য */
+        .welcome-video-section { background: #fff; padding: 80px 0; }
+        .video-box { position: relative; border-radius: 30px; overflow: hidden; border: 10px solid #f8f9fa; }
+        .play-btn-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: var(--primary-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; font-size: 24px; }
 
-        /* ৪. ইউনিক ফটো গ্রিড সেকশন */
-        .interactive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; grid-auto-rows: 250px; }
-        .grid-item { position: relative; overflow: hidden; border-radius: 25px; }
-        .grid-item.large { grid-row: span 2; }
-        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .grid-overlay { 
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,106,78,0.9), transparent);
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 25px; opacity: 0; transition: 0.4s; color: white;
-        }
-        .grid-item:hover .grid-overlay { opacity: 1; }
-        .grid-item:hover img { transform: scale(1.1); }
+        /* ৪. ৩ডি স্ক্রল রিভিল */
+        .reveal-section { position: relative; height: 140vh; background: #fff; }
+        .reveal-container { position: sticky; top: 15%; display: flex; flex-direction: column; align-items: center; }
+        .reveal-frame { width: 45%; transform: perspective(1000px) rotateX(15deg); border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); transition: 0.1s linear; }
+
+        /* ৫. ৮টি গ্রিড কার্ড */
+        .grid-card { display: flex; flex-direction: column; align-items: center; padding: 25px; border-radius: 28px; text-decoration: none !important; color: white !important; transition: 0.4s; height: 100%; text-align: center; }
+        .grid-card:hover { transform: translateY(-10px); }
+        .bg-gradient-emerald { background: linear-gradient(135deg, #10b981, #059669); }
+        .bg-gradient-amber   { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .bg-gradient-blue    { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .bg-gradient-purple  { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .bg-gradient-red     { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .bg-gradient-teal    { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+        .bg-gradient-orange  { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .bg-gradient-pink    { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+        /* ৬. ফিচার ও রিভিউ */
+        .feature-card { background: white; padding: 30px; border-radius: 30px; text-align: center; transition: 0.4s; height: 100%; border: 1px solid #eee; }
+        .testimonial-box { background: white; border-radius: 40px; border-left: 10px solid var(--primary-green); padding: 40px; }
+
+        /* ৭. প্রধান শিক্ষকের বার্তা */
+        .principal-img { width: 100%; height: 350px; object-fit: cover; border-radius: 30px; }
+        .text-green { color: var(--primary-green); }
+
     </style>
 </head>
 <body>
 
-<div class="ticker-container no-print">
+<div class="ticker-container">
     <div class="container d-flex align-items-center">
         <span class="badge bg-danger me-2">নোটিশ:</span>
-        <marquee class="fw-bold text-dark">আগামী ০৪/০১/২০২৫ রবিবার বিদ্যালয় বন্ধ থাকবে। বিস্তারিত জানতে বিদ্যালয়ের ছুটির তালিকা দেখুন।</marquee>
+        <marquee class="fw-bold">আগামী ০৪/০১/২০২৫ রবিবার বিদ্যালয় বন্ধ থাকবে। বিস্তারিত জানতে ছুটির তালিকা দেখুন।</marquee>
     </div>
 </div>
 
 <nav class="navbar navbar-dark custom-nav sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-            <img src="images/govt.png" width="35" class="me-2">
-            <span class="d-none d-sm-inline">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</span>
-            <span class="d-inline d-sm-none">কে.বি. সপ্রাবি</span>
+            <img src="images/govt.png" width="35" class="me-2"> কালাইয়া বোর্ড সপ্রাবি
         </a>
         <a href="login.html" class="login-pill"><i class="fas fa-lock me-1"></i> লগইন</a>
     </div>
 </nav>
 
-<div class="hero-wrapper">
-    <div class="video-overlay"></div>
-    <video autoplay muted loop playsinline class="hero-video">
-        <source src="videos/bg_video.mp4" type="video/mp4">
-    </video>
-    <div class="hero-content text-center container">
-        <h1 class="display-3 fw-bold mb-3">জ্ঞানের আলোয় উদ্ভাসিত ভবিষ্যৎ</h1>
-        <p class="fs-4">স্বাগতম পিরোজপুর জেলার অন্যতম শ্রেষ্ঠ বিদ্যাপীঠে</p>
-        <div class="mt-4">
-            <button class="btn btn-warning rounded-pill px-5 py-3 fw-bold shadow">ভর্তি ফরম</button>
+<section class="premium-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="main-title">কালাইয়া বোর্ড <br><span class="highlight">সরকারি প্রাথমিক বিদ্যালয়</span></h1>
+                <p class="fs-5 text-muted mt-4">জ্ঞানের আলোয় উদ্ভাসিত এক আদর্শ বিদ্যাপীঠ। আমরা শিক্ষার্থীদের সৃজনশীল মেধা বিকাশ এবং আধুনিক প্রযুক্তি নির্ভর শিক্ষা নিশ্চিত করি।</p>
+                <div class="mt-4">
+                    <a href="results.html" class="btn btn-success rounded-pill px-4 py-3 fw-bold">ফলাফল দেখুন</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <img src="images/classroom.jpg" alt="Classroom" class="hero-img-large">
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="container my-5 pt-4">
+<section class="welcome-video-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="fw-bold display-6">কেন আমাদের <br><span class="text-green">বিদ্যাপীঠ অনন্য?</span></h2>
+                <p class="mt-4 italic border-start border-warning border-4 ps-3">"আমরা বিশ্বাস করি প্রতিটি শিশুই অমিত সম্ভাবনার অধিকারী। আমাদের সুসজ্জিত ক্লাসরুম শিশুদের আনন্দদায়ক পাঠদান নিশ্চিত করে।"</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="video-box shadow-lg">
+                    <video id="schoolVideo" class="w-100" poster="images/classroom_poster.jpg">
+                        <source src="videos/school_clip.mp4" type="video/mp4">
+                    </video>
+                    <div class="play-btn-overlay" onclick="toggleVideo()"><i class="fas fa-play" id="playIcon"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reveal-section">
+    <div class="reveal-container text-center">
+        <h2 class="fw-bold text-green mb-4">আমাদের ক্যাম্পাস</h2>
+        <div class="reveal-frame">
+            <img src="images/full_school_view.jpg" class="w-100">
+        </div>
+    </div>
+</section>
+
+<section class="container my-5 py-5">
+    <h3 class="text-center fw-bold mb-5">আমাদের ডিজিটাল সেবা সমূহ</h3>
     <div class="row g-4">
-        <div class="col-md-3">
-            <a href="#" class="premium-card">
-                <div class="icon-circle"><i class="fas fa-laptop"></i></div>
-                <h5>ডিজিটাল ক্লাস</h5>
-                <p class="small text-muted">আধুনিক পাঠদান পদ্ধতি</p>
-            </a>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-emerald"><i class="fas fa-chalkboard-teacher fa-2x mb-2"></i><h5>ডিজিটাল ক্লাস</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-amber"><i class="fas fa-music fa-2x mb-2"></i><h5>জুকবক্স</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-blue"><i class="fas fa-calendar-alt fa-2x mb-2"></i><h5>রুটিন ও সিলেবাস</h5></a></div>
+        <div class="col-6 col-md-3"><a href="results.html" class="grid-card bg-gradient-purple"><i class="fas fa-file-invoice fa-2x mb-2"></i><h5>মূল্যায়ন ও ফল</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-red"><i class="fas fa-video fa-2x mb-2"></i><h5>ভিডিও</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-teal"><i class="fas fa-users fa-2x mb-2"></i><h5>শিক্ষকমন্ডলী</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-orange"><i class="fas fa-book fa-2x mb-2"></i><h5>বইসমূহ</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-pink"><i class="fas fa-umbrella-beach fa-2x mb-2"></i><h5>ছুটির তালিকা</h5></a></div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4 mb-5">
+            <div class="col-md-4"><div class="feature-card shadow-sm"><i class="fas fa-user-graduate fa-2x text-success mb-3"></i><h4>দক্ষ শিক্ষক</h4><p>আমাদের সকল শিক্ষক সুশিক্ষিত ও প্রশিক্ষণপ্রাপ্ত।</p></div></div>
+            <div class="col-md-4"><div class="feature-card shadow-sm"><i class="fas fa-laptop fa-2x text-primary mb-3"></i><h4>আইটি ল্যাব</h4><p>প্রযুক্তিগত শিক্ষায় আমরা সবসময় এক ধাপ এগিয়ে।</p></div></div>
+            <div class="col-md-4"><div class="feature-card shadow-sm"><i class="fas fa-heart fa-2x text-danger mb-3"></i><h4>নিরাপদ ক্যাম্পাস</h4><p>শিশুদের জন্য শতভাগ নিরাপদ ও মনোরম পরিবেশ।</p></div></div>
         </div>
-        <div class="col-md-3">
-            <a href="#" class="premium-card">
-                <div class="icon-circle"><i class="fas fa-music"></i></div>
-                <h5>জুকবক্স</h5>
-                <p class="small text-muted">শিক্ষামূলক গান ও আবৃত্তি</p>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="#" class="premium-card">
-                <div class="icon-circle"><i class="fas fa-book-open"></i></div>
-                <h5>রুটিন ও সিলেবাস</h5>
-                <p class="small text-muted">পাঠ্যক্রম ও সময়সূচী</p>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="results.html" class="premium-card">
-                <div class="icon-circle"><i class="fas fa-chart-line"></i></div>
-                <h5>মূল্যায়ন ও ফল</h5>
-                <p class="small text-muted">অনলাইন রেজাল্ট চেক</p>
-            </a>
+        <div class="testimonial-box shadow">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h4 class="fw-bold">অভিভাবকের অভিমত</h4>
+                    <p class="fs-5 italic text-muted">"এই স্কুলের শিক্ষা ব্যবস্থা এবং শিক্ষকদের আন্তরিকতা আমার সন্তানের মেধা বিকাশে অনেক সাহায্য করেছে।"</p>
+                    <p class="fw-bold mb-0">- মোহাম্মদ রহিম, অভিভাবক</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<section class="container mb-5">
-    <h2 class="text-center fw-bold mb-4">আমাদের ক্যাম্পাস</h2>
-    <div class="interactive-grid">
-        <div class="grid-item large">
-            <img src="images/slider1.jpg" alt="Campus">
-            <div class="grid-overlay">
-                <h3>প্রধান ভবন</h3>
-                <p>আমাদের ঐতিহাসিক ও সুসজ্জিত একাডেমিক ভবন।</p>
-            </div>
-        </div>
-        <div class="grid-item">
-            <img src="images/slider2.jpg" alt="Lab">
-            <div class="grid-overlay">
-                <h3>কম্পিউটার ল্যাব</h3>
-                <p>প্রযুক্তি নির্ভর শিক্ষা ব্যবস্থা।</p>
-            </div>
-        </div>
-        <div class="grid-item">
-            <img src="images/slider3.jpg" alt="Activities">
-            <div class="grid-overlay">
-                <h3>সাংস্কৃতিক চর্চা</h3>
-                <p>শিশুদের সৃজনশীল মেধা বিকাশ।</p>
-            </div>
+<section class="container py-5">
+    <div class="row align-items-center bg-white rounded-4 shadow overflow-hidden g-0">
+        <div class="col-md-4"><img src="images/principal.jpg" class="principal-img"></div>
+        <div class="col-md-8 p-5">
+            <h3 class="fw-bold text-green">প্রধান শিক্ষকের বার্তা</h3>
+            <p class="lead-text mt-3">"আমাদের লক্ষ্য শিশুদের নৈতিক ও সৃজনশীল মেধার পরিপূর্ণ বিকাশ ঘটানো। আধুনিক প্রযুক্তি এবং ডিজিটাল শিক্ষা ব্যবস্থার সমন্বয়ে আমরা একটি স্মার্ট প্রজন্ম গড়ে তুলতে অঙ্গীকারবদ্ধ।"</p>
+            <h6 class="mt-4 fw-bold">শুভেচ্ছান্তে, <br> প্রধান শিক্ষক</h6>
         </div>
     </div>
 </section>
@@ -168,6 +174,32 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // ভিডিও প্লে ফাংশন
+    function toggleVideo() {
+        const video = document.getElementById('schoolVideo');
+        const icon = document.getElementById('playIcon');
+        if (video.paused) { video.play(); icon.className = 'fas fa-pause'; } 
+        else { video.pause(); icon.className = 'fas fa-play'; }
+    }
+
+    // ৩ডি স্ক্রল রিভিল এনিমেশন
+    window.addEventListener('scroll', function() {
+        const revealSection = document.querySelector('.reveal-section');
+        const revealFrame = document.querySelector('.reveal-frame');
+        const rect = revealSection.getBoundingClientRect();
+        const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
+
+        if (scrollPercent > 0 && scrollPercent < 2) {
+            let width = 45 + (scrollPercent * 55);
+            let rotate = 15 - (scrollPercent * 15);
+            if (width > 100) width = 100;
+            if (rotate < 0) rotate = 0;
+            revealFrame.style.width = width + '%';
+            revealFrame.style.transform = `perspective(1000px) rotateX(${rotate}deg)`;
+        }
+    });
+</script>
+
 </body>
 </html>
