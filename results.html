@@ -8,64 +8,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary-green: #006A4E; }
-        body { background-color: #f0f2f5; font-family: 'Segoe UI', Arial, sans-serif; }
-
-        /* রেজাল্ট শিট কন্টেইনার */
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        
+        /* A4 Page Container */
         #resultArea {
-            width: 210mm; /* A4 Width */
-            min-height: 297mm; /* A4 Height */
-            background: white;
-            position: relative;
-            margin: 20px auto;
-            padding: 15mm;
-            box-sizing: border-box;
-            border: 8px double var(--primary-green);
-            z-index: 1;
+            width: 210mm; min-height: 297mm; background: white;
+            margin: 20px auto; padding: 12mm; box-sizing: border-box;
+            border: 8px double var(--primary-green); position: relative; z-index: 1;
         }
 
-        /* ওয়াটারমার্ক লজিক */
+        /* Watermark: ৫-৮% ভিজিবিলিটি, লেখার পিছনে */
         .watermark-img {
-            position: absolute;
-            top: 55%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-            opacity: 0.08; /* ৫-৮% ভিজিবিলিটি */
-            z-index: -1; /* লেখার পেছনে থাকবে */
-            pointer-events: none;
+            position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
+            width: 500px; opacity: 0.08; z-index: -1; pointer-events: none;
         }
 
-        /* প্রিন্ট সেটিংস */
+        .table-main th, .table-main td { border: 1px solid #000 !important; vertical-align: middle; }
+        
         @media print {
+            .no-print, .navbar, .search-form-card { display: none !important; }
             body { background: none; padding: 0; margin: 0; }
-            .navbar, .search-form-card, .btn-print-action, .modal { display: none !important; }
-            #resultArea { 
-                margin: 0 !important; 
-                border: 8px double var(--primary-green) !important;
-                width: 100% !important; 
-                height: 100vh !important;
-            }
-            @page { size: A4; margin: 0; }
+            #resultArea { margin: 0 !important; width: 100% !important; border: 8px double var(--primary-green) !important; }
+            @page { size: A4; margin: 5mm; }
         }
-
-        .transcript-title { border-bottom: 2px solid #000; display: inline-block; padding-bottom: 2px; margin-top: 10px; font-weight: bold; }
-        .table-bordered td, .table-bordered th { border: 1px solid #000 !important; }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-success shadow-sm mb-4">
+<nav class="navbar navbar-dark bg-success shadow-sm mb-4 no-print">
     <div class="container d-flex justify-content-between">
         <a href="index.html" class="btn btn-light btn-sm rounded-pill"><i class="fas fa-arrow-left"></i> হোম</a>
-        <span class="navbar-brand fw-bold" id="pageTitle">ফলাফল অনুসন্ধান</span>
+        <span class="navbar-brand fw-bold" id="pageTitle">ফলাফল পোর্টাল</span>
         <div style="width: 45px;"></div> 
     </div>
 </nav>
 
-<div class="container">
+<div class="container no-print">
     <div class="card p-4 shadow-sm mx-auto search-form-card mb-4" style="max-width: 550px; border-radius: 15px;">
-        <h5 class="text-center fw-bold text-success mb-3" id="searchHeading">শিক্ষাবর্ষের ফলাফল</h5>
+        <h5 class="text-center fw-bold text-success mb-3" id="searchHeading">ফলাফল অনুসন্ধান</h5>
         <div class="row g-2">
             <div class="col-6">
+                <label class="small fw-bold">শ্রেণি</label>
                 <select class="form-select rounded-pill" id="classSelect">
                     <option value="5" selected>৫ম শ্রেণি</option>
                     <option value="4">৪র্থ শ্রেণি</option>
@@ -73,6 +56,7 @@
                 </select>
             </div>
             <div class="col-6">
+                <label class="small fw-bold">মূল্যায়ন/বছর</label>
                 <select class="form-select rounded-pill" id="termSelect">
                     <option value="term1">১ম প্রান্তিক</option>
                     <option value="term2" selected>২য় প্রান্তিক</option>
@@ -80,20 +64,23 @@
                 </select>
             </div>
             <div class="col-12 mt-2">
-                <input type="number" class="form-control rounded-pill text-center" id="rollInput" placeholder="রোল নম্বর লিখুন (উদা: ০১)">
+                <input type="number" id="rollInput" class="form-control rounded-pill text-center" placeholder="রোল নম্বর (উদা: ০১)">
             </div>
         </div>
         <button class="btn btn-success w-100 rounded-pill fw-bold py-2 mt-3" onclick="generateResult()">ফলাফল দেখুন</button>
     </div>
-
-    <div id="resultArea" class="d-none"></div>
 </div>
 
+<div id="resultArea" class="d-none"></div>
+
 <script>
+    // URL থেকে বছর শনাক্ত করা
     const urlParams = new URLSearchParams(window.location.search);
     const selectedYear = urlParams.get('year') || "2026";
-    
+    const is2026 = (selectedYear === "2026");
+
     document.getElementById('pageTitle').innerText = `ফলাফল অনুসন্ধান (${selectedYear})`;
+    document.getElementById('searchHeading').innerText = is2026 ? "২০২৬ শিক্ষাবর্ষের ফলাফল" : `${selectedYear} এর সমন্বিত ফলাফল`;
 
     function generateResult() {
         const cls = document.getElementById('classSelect').value;
@@ -101,7 +88,9 @@
         const roll = document.getElementById('rollInput').value;
         if(!roll) return alert("রোল দিন!");
 
-        const scriptPath = `results/${selectedYear}/${cls}/${term}.js`;
+        // পাথ লজিক: ২০২৬ এর জন্য প্রান্তিক ফাইল, আর্কাইভের জন্য ফাইনাল ফাইল
+        const scriptPath = is2026 ? `results/2026/${cls}/${term}.js` : `results/${selectedYear}/${cls}/final.js`;
+        
         const oldScript = document.getElementById('data-script');
         if(oldScript) oldScript.remove();
 
@@ -110,78 +99,78 @@
         script.src = scriptPath;
         
         script.onload = function() {
-            const dataVarName = `data_${selectedYear}_${cls}_${term}`;
+            const dataVarName = is2026 ? `data_2026_${cls}_${term}` : `final_data_${selectedYear}`;
             const currentData = window[dataVarName];
             const student = currentData ? currentData.find(s => parseInt(s.roll) === parseInt(roll)) : null;
 
             if(student) {
-                renderTranscript(student, cls, term, selectedYear);
+                if(is2026) renderSingleTerm(student, cls, term, "2026");
+                else renderCombinedArchive(student, selectedYear);
             } else {
-                alert("দুঃখিত! এই রোলের কোনো ফলাফল পাওয়া যায়নি।");
+                alert("দুঃখিত, তথ্য পাওয়া যায়নি!");
             }
         };
         document.head.appendChild(script);
     }
 
-    function renderTranscript(student, cls, term, year) {
-        let tableRows = "";
-        let totalPoints = 0;
-        
-        student.marks.forEach(m => {
-            // ৫০ মার্কের বিষয় শনাক্তকরণ লজিক
-            let fullMark = 100;
-            const sName = m.subject;
-            if(sName.includes("স্বাস্থ্য") || sName.includes("সঙ্গীত") || sName.includes("চারু") || sName.includes("শিল্প")) {
-                fullMark = 50;
-            }
-
-            const gp = calculateGP(m.obtained, fullMark);
-            totalPoints += gp.point;
-            tableRows += `<tr><td class="text-start ps-3">${m.subject}</td><td>${fullMark}</td><td>${m.obtained}</td><td>${gp.letter}</td><td>${gp.point.toFixed(2)}</td></tr>`;
+    // লজিক ১: ২০২৬ সালের প্রান্তিক রেজাল্ট ডিজাইন
+    function renderSingleTerm(s, cls, term, year) {
+        let rows = "";
+        let totalGP = 0;
+        s.marks.forEach(m => {
+            let full = m.subject.match(/শারীরিক|সঙ্গীত|শিল্প|চারু/) ? 50 : 100;
+            let gp = calculateGP(m.obtained, full);
+            totalGP += gp.point;
+            rows += `<tr><td class="text-start ps-3">${m.subject}</td><td>${full}</td><td>${m.obtained}</td><td>${gp.letter}</td><td>${gp.point.toFixed(2)}</td></tr>`;
         });
+        const gpa = (totalGP / s.marks.length).toFixed(2);
+        displaySheet(s, cls, `${term === 'term1' ? '১ম' : term === 'term2' ? '২য়' : '৩য়'} প্রান্তিক`, year, rows, gpa, false);
+    }
 
-        const gpa = (totalPoints / student.marks.length).toFixed(2);
-        
+    // লজিক ২: আর্কাইভ (২০২৩-২০২৫) সমন্বিত রেজাল্ট ডিজাইন (15% + 15% + 70%)
+    function renderCombinedArchive(s, year) {
+        let rows = "";
+        let totalGP = 0;
+        s.subjects.forEach(sub => {
+            let full = sub.name.match(/শারীরিক|সঙ্গীত|শিল্প|চারু/) ? 50 : 100;
+            let finalScore = (sub.t1 * 0.15) + (sub.t2 * 0.15) + (sub.t3 * 0.70);
+            let gp = calculateGP(finalScore, full);
+            totalGP += gp.point;
+            rows += `<tr><td class="text-start ps-2">${sub.name}</td><td>${sub.t1}</td><td>${sub.t2}</td><td>${sub.t3}</td><td class="fw-bold">${finalScore.toFixed(2)}</td><td>${gp.letter}</td><td>${gp.point.toFixed(2)}</td></tr>`;
+        });
+        const gpa = (totalGP / s.subjects.length).toFixed(2);
+        displaySheet(s, "৫", "সমন্বিত মূল্যায়ন", year, rows, gpa, true);
+    }
+
+    // কমন ডিসপ্লে ফাংশন
+    function displaySheet(s, cls, examName, year, rows, gpa, isCombined) {
+        const tableHeader = isCombined ? 
+            `<tr><th rowspan="2">বিষয়ের নাম</th><th colspan="3">প্রান্তিক প্রাপ্ত নম্বর</th><th rowspan="2">মোট (১০০%)</th><th rowspan="2">গ্রেড</th><th rowspan="2">পয়েন্ট</th></tr><tr><th>১ম(১৫%)</th><th>২য়(১৫%)</th><th>৩য়(৭০%)</th></tr>` :
+            `<tr><th>বিষয়ের নাম</th><th>পূর্ণমান</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th><th>পয়েন্ট</th></tr>`;
+
         document.getElementById('resultArea').innerHTML = `
             <img src="images/dpe.png" class="watermark-img">
             <div class="text-center">
                 <img src="images/govt.png" style="width:70px" class="mb-2">
-                <h2 class="fw-bold mb-0" style="color: #006A4E; font-size: 26px;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
+                <h2 class="fw-bold mb-0" style="color: #006A4E;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
                 <p class="mb-0">ইন্দুরকানী, পিরোজপুর | স্থাপিত: ১৯৩০</p>
-                <h4 class="transcript-title">একাডেমিক ট্রান্সক্রিপ্ট - ${year}</h4>
+                <h4 class="mt-2 border-bottom d-inline-block pb-1 fw-bold">একাডেমিক ট্রান্সক্রিপ্ট - ${year}</h4>
             </div>
-
-            <div class="row mt-5 mb-3 px-2" style="font-size: 18px;">
-                <div class="col-7">
-                    <p class="mb-1"><strong>নাম:</strong> ${student.name}</p>
-                    <p class="mb-1"><strong>শ্রেণি:</strong> ${cls}ম শ্রেণি</p>
-                </div>
-                <div class="col-5 text-end">
-                    <p class="mb-1"><strong>রোল নম্বর:</strong> ${student.roll}</p>
-                    <p class="mb-1"><strong>পরীক্ষা:</strong> ${term === 'term1' ? '১ম' : term === 'term2' ? '২য়' : '৩য়'} প্রান্তিক</p>
-                </div>
+            <div class="row mt-4 mb-3 px-2" style="font-size: 18px;">
+                <div class="col-7"><p class="mb-1"><strong>নাম:</strong> ${s.name}</p><p class="mb-1"><strong>শ্রেণি:</strong> ${cls}ম শ্রেণি</p></div>
+                <div class="col-5 text-end"><p class="mb-1"><strong>রোল নম্বর:</strong> ${s.roll}</p><p class="mb-1"><strong>পরীক্ষা:</strong> ${examName}</p></div>
             </div>
-
-            <table class="table table-bordered text-center align-middle" style="font-size: 17px;">
-                <thead class="table-light">
-                    <tr><th>বিষয়ের নাম</th><th width="15%">পূর্ণমান</th><th width="15%">প্রাপ্ত নম্বর</th><th width="15%">গ্রেড</th><th width="15%">পয়েন্ট</th></tr>
-                </thead>
-                <tbody>${tableRows}</tbody>
-                <tfoot>
-                    <tr class="fw-bold bg-light">
-                        <td colspan="4" class="text-end pe-4">জিপিএ (GPA)</td>
-                        <td class="text-success" style="font-size: 20px;">${gpa}</td>
-                    </tr>
-                </tfoot>
+            <table class="table table-bordered text-center table-main">
+                <thead class="table-light">${tableHeader}</thead>
+                <tbody>${rows}</tbody>
+                <tfoot><tr class="fw-bold bg-light"><td colspan="${isCombined ? 6 : 4}" class="text-end pe-4">জিপিএ (GPA)</td><td class="text-success" style="font-size: 20px;">${gpa}</td></tr></tfoot>
             </table>
-
             <div class="d-flex justify-content-between mt-5 pt-5 px-3">
                 <div class="text-center">.........................<br>শ্রেণি শিক্ষক</div>
                 <div class="text-center">.........................<br>প্রধান শিক্ষক</div>
             </div>
-
-            <div class="mt-5 text-center btn-print-action">
-                <button class="btn btn-dark rounded-pill px-5" onclick="window.print()"><i class="fas fa-print me-2"></i> রেজাল্ট শিট প্রিন্ট করুন</button>
+            <div class="mt-5 text-center no-print">
+                <button class="btn btn-dark rounded-pill px-5" onclick="window.print()"><i class="fas fa-print me-2"></i> প্রিন্ট করুন</button>
             </div>
         `;
         document.getElementById('resultArea').classList.remove('d-none');
