@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>একাডেমিক ট্রান্সক্রিপ্ট | কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>একাডেমিক ট্রান্সক্রিপ্ট | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -44,7 +44,7 @@
                 <select class="form-select rounded-pill" id="classSelect">
                     <option value="5">৫ম শ্রেণি</option>
                     <option value="4">৪র্থ শ্রেণি</option>
-                    <option value="3">৩য় শ্রেণি</option>
+                    <option value="3" selected>৩য় শ্রেণি</option>
                     <option value="2">২য় শ্রেণি</option>
                     <option value="1">১ম শ্রেণি</option>
                 </select>
@@ -96,37 +96,30 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // URL থেকে বর্তমান বছর নির্ধারণ
+    // ১. পেজ লোড হওয়ার সময় URL থেকে বছর ও শ্রেণি সেট করা
     const urlParams = new URLSearchParams(window.location.search);
     const selectedYear = urlParams.get('year') || "2026";
+    const selectedClass = urlParams.get('class');
+
     document.getElementById('pageTitle').innerText = `ফলাফল অনুসন্ধান (${selectedYear})`;
     document.getElementById('searchHeading').innerText = `${selectedYear} শিক্ষাবর্ষের ফলাফল`;
+    
+    if(selectedClass) {
+        document.getElementById('classSelect').value = selectedClass;
+    }
 
+    // ২. রেজাল্ট জেনারেট করার মেইন ফাংশন
     function generateResult() {
         const cls = document.getElementById('classSelect').value;
         const term = document.getElementById('termSelect').value;
         const roll = document.getElementById('rollInput').value;
 
-        window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const year = urlParams.get('year');
-    const cls = urlParams.get('class');
-
-    if(year) {
-        // ড্রপডাউনে বছর দেখানোর প্রয়োজন নেই, লজিকে বছর সেট হবে
-        document.getElementById('pageTitle').innerText = `ফলাফল অনুসন্ধান (${year})`;
-    }
-    if(cls) {
-        document.getElementById('classSelect').value = cls;
-    }
-};
-        
         if(!roll) return alert("রোল দিন!");
 
-        // ডাইনামিক স্ক্রিপ্ট লোড
+        // ডাইনামিক স্ক্রিপ্ট পাথ
         const scriptPath = `results/${selectedYear}/${cls}/${term}.js`;
         
-        // পুরাতন স্ক্রিপ্ট রিমুভ
+        // পুরাতন স্ক্রিপ্ট পরিষ্কার করা
         const oldScript = document.getElementById('data-script');
         if(oldScript) oldScript.remove();
 
@@ -137,7 +130,8 @@
         script.onload = function() {
             const dataVarName = `data_${selectedYear}_${cls}_${term}`;
             const currentData = window[dataVarName];
-            // রোল ০২ বা ২ উভয়ই যাতে কাজ করে
+            
+            // রোল নম্বর ম্যাচ করা (রোল ৫ বা ০৫ উভয়ই কাজ করবে)
             const student = currentData ? currentData.find(s => parseInt(s.roll) === parseInt(roll)) : null;
 
             if(student) {
@@ -156,7 +150,7 @@
         let totalPoints = 0;
         
         if (!student.marks || student.marks.length === 0) {
-            tableRows = `<tr><td colspan="5" class="py-4 text-danger">এই শিক্ষার্থীর ফলাফল এখনো প্রক্রিয়াধীন।</td></tr>`;
+            tableRows = `<tr><td colspan="5" class="py-4 text-danger">এই শিক্ষার্থীর ফলাফল এখনো প্রক্রিয়াধীন।</td></tr>`;
         } else {
             student.marks.forEach(m => {
                 const gp = calculateGP(m.obtained);
