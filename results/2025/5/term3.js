@@ -16,7 +16,7 @@ const data_2025_5_term3 = [
         ]
     },
     {
-        roll: "25",
+        roll: "5",
         name: "তামিম ইকবাল",
         marks: [
             { subject: "বাংলা", obtained: 65 },
