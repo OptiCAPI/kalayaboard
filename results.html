@@ -95,6 +95,23 @@
             box-shadow: 0 4px 15px rgba(0,106,78,0.3);
             transition: 0.3s;
         }
+
+        /* এনিমেশন ইফেক্ট */
+@keyframes pulse-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+.premium-archive-btn {
+    animation: pulse-animation 2s infinite; /* বাটনটি মৃদুভাবে কাঁপবে */
+    transition: 0.3s;
+}
+
+.premium-archive-btn:hover {
+    animation: none; /* মাউস রাখলে কাঁপা থামবে */
+    transform: scale(1.05);
+}
     </style>
 </head>
 <body>
@@ -135,8 +152,8 @@
     </div>
 
     <div class="text-center premium-archive-section mb-4">
-        <button class="premium-archive-btn" data-bs-toggle="modal" data-bs-target="#archiveModal">
-            <i class="fas fa-gem me-2" style="color: #FFD700;"></i> আর্কাইভ ও শিক্ষাবর্ষ পরিবর্তন
+        <button type="button" class="premium-archive-btn" data-bs-toggle="modal" data-bs-target="#archiveModal">
+    <i class="fas fa-gem me-2" style="color: #FFD700;"></i> আর্কাইভ ও শিক্ষাবর্ষ পরিবর্তন
         </button>
     </div>
 </div>
@@ -288,5 +305,6 @@
         return { letter: "F", point: 0.0 };
     }
 </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
