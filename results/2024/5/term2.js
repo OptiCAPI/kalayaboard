@@ -13,8 +13,9 @@ var data_2024_5_term2 = [
             { subject: "বাংলাদেশ ও বিশ্ব পরিচয়", obtained: 97 },
             { subject: "প্রাথমিক বিজ্ঞান", obtained: 93 }, 
             { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 92 },
-            { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 45 }, 
-            { subject: "সঙ্গীত ও শিল্পকলা", obtained: 46 }
+            { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 50 }, 
+            { subject: "সঙ্গীত ও শিল্পকলা", obtained: 49 },
+            { subject: "চারু ও কারুকলা", obtained: 49 }
         ]
     },
     {
@@ -27,8 +28,9 @@ var data_2024_5_term2 = [
             { subject: "বাংলাদেশ ও বিশ্ব পরিচয়", obtained: 80 },
             { subject: "প্রাথমিক বিজ্ঞান", obtained: 59 }, 
             { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 82 },
-            { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 42 }, 
-            { subject: "সঙ্গীত ও শিল্পকলা", obtained: 40 }
+            { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 46 }, 
+            { subject: "সঙ্গীত ও শিল্পকলা", obtained: 45 },
+            { subject: "চারু ও কারুকলা", obtained: 40 }
         ]
     }
 ];
