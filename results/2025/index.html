@@ -29,6 +29,10 @@
                 // ফোল্ডার স্ট্রাকচার results/2025/index.html হলে ইন্ডেক্স ১ এ বছর থাকে
                 const year = pathArray[pathArray.length - 2]; 
 
+                {
+    window.location.href = "../../results.html?year=2025";
+};
+
                 if (year && !isNaN(year)) {
                     // মেইন রেজাল্ট পেজে রিডাইরেক্ট করা হচ্ছে
                     window.location.href = `../../results.html?year=${year}`;
