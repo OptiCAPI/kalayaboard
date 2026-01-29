@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary-green: #006A4E; }
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, sans-serif; }
         #resultArea {
             max-width: 850px; background: white; position: relative;
             border: 4px double var(--primary-green); padding: 40px; margin-top: 20px; z-index: 1;
@@ -16,116 +17,102 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 350px; opacity: 0.12; z-index: 0; pointer-events: none;
         }
-        .archive-box {
-            border: 2px dashed #ccc; border-radius: 15px; transition: 0.3s; cursor: pointer;
-        }
-        .archive-box:hover { background: #f8f9fa; border-color: var(--primary-green); color: var(--primary-green); }
-        
         @media print {
-            .navbar, .search-form-card, .btn-print-action, .archive-section { display: none !important; }
+            .navbar, .search-form-card, .btn-print-action, .archive-section, .modal { display: none !important; }
             body { background: white !important; }
-            #resultArea { width: 100% !important; border: 4px double var(--primary-green) !important; padding: 40px !important; }
-            @page { size: A4; margin: 1in; }
+            #resultArea { width: 100% !important; border: 4px double var(--primary-green) !important; box-shadow: none !important; }
+            @page { size: A4; margin: 0.5in; }
         }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-dark bg-success shadow-sm mb-4">
-        <div class="container d-flex justify-content-between">
-            <a href="index.html" class="btn btn-light btn-sm rounded-pill"><i class="fas fa-arrow-left"></i> হোম</a>
-            <span class="navbar-brand fw-bold">ফলাফল অনুসন্ধান (২০২৬)</span>
-            <div style="width: 45px;"></div> 
-        </div>
-    </nav>
-
-    <div class="container mt-4 mb-5">
-        <div class="card p-4 shadow-sm mx-auto search-form-card mb-4" style="max-width: 550px; border-radius: 20px; border: none;">
-            <h5 class="text-center fw-bold text-success mb-3">বর্তমান শিক্ষাবর্ষের ফলাফল</h5>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="small fw-bold">শ্রেণি</label>
-                    <select class="form-select rounded-pill" id="classSelect">
-                        <option value="5">৫ম শ্রেণি</option>
-                        <option value="4">৪র্থ শ্রেণি</option>
-                        <option value="3">৩য় শ্রেণি</option>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="small fw-bold">মূল্যায়ন</label>
-                    <select class="form-select rounded-pill" id="termSelect">
-                        <option value="term1">১ম প্রান্তিক</option>
-                        <option value="term2" selected>২য় প্রান্তিক</option>
-                        <option value="term3">৩য় প্রান্তিক</option>
-                    </select>
-                </div>
-                <div class="col-12 mb-3">
-                    <label class="small fw-bold">রোল নম্বর</label>
-                    <input type="number" class="form-control rounded-pill text-center" id="rollInput" placeholder="উদা: ০৫">
-                </div>
-            </div>
-            <button class="btn btn-success w-100 rounded-pill fw-bold py-2" onclick="generateResult()">ফলাফল দেখুন</button>
-            
-            <div class="text-center mt-4 archive-section">
-                <p class="text-muted small mb-2">পুরানো ফলাফল খুঁজছেন?</p>
-                <button class="btn btn-outline-secondary btn-sm rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#archiveModal">
-                    <i class="fas fa-archive me-2"></i> ফলাফল আর্কাইভ (২০২৪-২০২৫)
-                </button>
-            </div>
-        </div>
-
-        <div id="resultArea" class="mx-auto d-none shadow-lg">
-            </div>
+<nav class="navbar navbar-dark bg-success shadow-sm mb-4">
+    <div class="container d-flex justify-content-between">
+        <a href="index.html" class="btn btn-light btn-sm rounded-pill"><i class="fas fa-arrow-left"></i> হোম</a>
+        <span class="navbar-brand fw-bold" id="pageTitle">ফলাফল অনুসন্ধান (২০২৬)</span>
+        <div style="width: 45px;"></div> 
     </div>
+</nav>
 
-    <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 20px;">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold text-success"><i class="fas fa-folder-open me-2"></i> পুরানো ফলাফল আর্কাইভ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <h6 class="fw-bold border-bottom pb-2">২০২৫ শিক্ষাবর্ষ</h6>
-                            <div class="d-grid gap-2">
-                                <a href="results/2025/index.html" class="btn btn-light border text-start small"><i class="fas fa-file-pdf text-danger me-2"></i> সকল শ্রেণির ফলাফল (২০২৫)</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="fw-bold border-bottom pb-2">২০২৪ শিক্ষাবর্ষ</h6>
-                            <div class="d-grid gap-2">
-                                <a href="results/2024/index.html" class="btn btn-light border text-start small"><i class="fas fa-file-pdf text-danger me-2"></i> সকল শ্রেণির ফলাফল (২০২৪)</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 justify-content-center">
-                    <small class="text-muted">আর্কাইভ থেকে তথ্য দেখতে ইন্টারনেটের প্রয়োজন হতে পারে</small>
-                </div>
+<div class="container mt-4 mb-5">
+    <div class="card p-4 shadow-sm mx-auto search-form-card mb-4" style="max-width: 550px; border-radius: 20px; border: none;">
+        <h5 class="text-center fw-bold text-success mb-3" id="searchHeading">বর্তমান শিক্ষাবর্ষের ফলাফল</h5>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold">শ্রেণি</label>
+                <select class="form-select rounded-pill" id="classSelect">
+                    <option value="5">৫ম শ্রেণি</option>
+                    <option value="4">৪র্থ শ্রেণি</option>
+                    <option value="3">৩য় শ্রেণি</option>
+                    <option value="2">২য় শ্রেণি</option>
+                    <option value="1">১ম শ্রেণি</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold">মূল্যায়ন</label>
+                <select class="form-select rounded-pill" id="termSelect">
+                    <option value="term1">১ম প্রান্তিক</option>
+                    <option value="term2" selected>২য় প্রান্তিক</option>
+                    <option value="term3">৩য় প্রান্তিক</option>
+                </select>
+            </div>
+            <div class="col-12 mb-3">
+                <label class="small fw-bold">রোল নম্বর</label>
+                <input type="number" class="form-control rounded-pill text-center" id="rollInput" placeholder="উদা: ০৫">
             </div>
         </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    function generateResult() {
-        // ১. URL থেকে বছর এবং শ্রেণি নেওয়ার লজিক
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedYear = urlParams.get('year') || "2026"; 
+        <button class="btn btn-success w-100 rounded-pill fw-bold py-2" onclick="generateResult()">ফলাফল দেখুন</button>
         
+        <div class="text-center mt-4 archive-section">
+            <p class="text-muted small mb-2">অন্যান্য বছরের ফলাফল?</p>
+            <button class="btn btn-outline-secondary btn-sm rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#archiveModal">
+                <i class="fas fa-archive me-2"></i> আর্কাইভ দেখুন
+            </button>
+        </div>
+    </div>
+
+    <div id="resultArea" class="mx-auto d-none shadow-lg"></div>
+</div>
+
+<div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 20px;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold text-success"><i class="fas fa-folder-open me-2"></i> ফলাফল আর্কাইভ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <div class="row g-2">
+                    <div class="col-6"><a href="results.html?year=2026" class="btn btn-outline-success w-100 rounded-pill">২০২৬</a></div>
+                    <div class="col-6"><a href="results.html?year=2025" class="btn btn-outline-success w-100 rounded-pill">২০২৫</a></div>
+                    <div class="col-6"><a href="results.html?year=2024" class="btn btn-outline-success w-100 rounded-pill">২০২৪</a></div>
+                    <div class="col-6"><a href="results.html?year=2023" class="btn btn-outline-success w-100 rounded-pill">২০২৩</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // URL থেকে বর্তমান বছর নির্ধারণ
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedYear = urlParams.get('year') || "2026";
+    document.getElementById('pageTitle').innerText = `ফলাফল অনুসন্ধান (${selectedYear})`;
+    document.getElementById('searchHeading').innerText = `${selectedYear} শিক্ষাবর্ষের ফলাফল`;
+
+    function generateResult() {
         const cls = document.getElementById('classSelect').value;
         const term = document.getElementById('termSelect').value;
         const roll = document.getElementById('rollInput').value;
-        const resultArea = document.getElementById('resultArea');
-
+        
         if(!roll) return alert("রোল দিন!");
 
-        // ২. ডাটা স্ক্রিপ্টটি ডাইনামিকভাবে তৈরি করা
+        // ডাইনামিক স্ক্রিপ্ট লোড
         const scriptPath = `results/${selectedYear}/${cls}/${term}.js`;
         
-        // আগে যদি কোনো স্ক্রিপ্ট লোড করা থাকে তা সরিয়ে ফেলা (ক্লিনআপ)
+        // পুরাতন স্ক্রিপ্ট রিমুভ
         const oldScript = document.getElementById('data-script');
         if(oldScript) oldScript.remove();
 
@@ -133,11 +120,11 @@
         script.id = 'data-script';
         script.src = scriptPath;
         
-        // ৩. স্ক্রিপ্ট লোড হওয়ার পর রেজাল্ট রেন্ডার করা
         script.onload = function() {
             const dataVarName = `data_${selectedYear}_${cls}_${term}`;
             const currentData = window[dataVarName];
-            const student = currentData ? currentData.find(s => s.roll == roll || s.roll == roll.padStart(2, '0')) : null;
+            // রোল ০২ বা ২ উভয়ই যাতে কাজ করে
+            const student = currentData ? currentData.find(s => parseInt(s.roll) === parseInt(roll)) : null;
 
             if(student) {
                 renderTranscript(student, cls, term, selectedYear);
@@ -146,11 +133,7 @@
             }
         };
 
-        script.onerror = function() { 
-            showError(); 
-            console.error("ফাইল খুঁজে পাওয়া যায়নি:", scriptPath);
-        };
-        
+        script.onerror = function() { showError(); };
         document.head.appendChild(script);
     }
 
@@ -158,9 +141,8 @@
         let tableRows = "";
         let totalPoints = 0;
         
-        // যদি মার্কস না থাকে (রোল ৩-১৮ এর ক্ষেত্রে যেমন ছিল)
         if (!student.marks || student.marks.length === 0) {
-            tableRows = `<tr><td colspan="5" class="text-danger">এই শিক্ষার্থীর বিস্তারিত নম্বর এখনো এন্ট্রি করা হয়নি।</td></tr>`;
+            tableRows = `<tr><td colspan="5" class="py-4 text-danger">এই শিক্ষার্থীর ফলাফল এখনো প্রক্রিয়াধীন।</td></tr>`;
         } else {
             student.marks.forEach(m => {
                 const gp = calculateGP(m.obtained);
@@ -173,7 +155,7 @@
         
         document.getElementById('resultArea').innerHTML = `
             <img src="images/dpe.png" class="watermark-img">
-            <div class="content-wrap">
+            <div class="content-wrap" style="position:relative; z-index:2;">
                 <div class="text-center mb-4">
                     <img src="images/govt.png" style="width:60px" class="mb-2">
                     <h3 class="fw-bold mb-0" style="color: #006A4E;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h3>
@@ -181,12 +163,12 @@
                     <h5 class="mt-3 fw-bold border-bottom d-inline-block pb-1">একাডেমিক ট্রান্সক্রিপ্ট - ${year}</h5>
                 </div>
                 <div class="row mb-4 mt-4 small px-2">
-                    <div class="col-7 text-start">
-                        <p class="mb-1"><strong>নাম:</strong> ${student.name}</p>
+                    <div class="col-7">
+                        <p class="mb-1"><strong>শিক্ষার্থীর নাম:</strong> ${student.name}</p>
                         <p class="mb-1"><strong>শ্রেণি:</strong> ${cls}ম শ্রেণি</p>
                     </div>
                     <div class="col-5 text-end">
-                        <p class="mb-1"><strong>রোল নং:</strong> ${student.roll}</p>
+                        <p class="mb-1"><strong>রোল নম্বর:</strong> ${student.roll}</p>
                         <p class="mb-1"><strong>পরীক্ষা:</strong> ${term === 'term1' ? '১ম' : term === 'term2' ? '২য়' : '৩য়'} প্রান্তিক</p>
                     </div>
                 </div>
@@ -204,6 +186,7 @@
                 </div>
             </div>`;
         document.getElementById('resultArea').classList.remove('d-none');
+        window.scrollTo(0, document.getElementById('resultArea').offsetTop);
     }
 
     function calculateGP(m) {
@@ -221,17 +204,10 @@
             <div class="alert alert-danger text-center shadow-sm py-5" style="border-radius: 15px;">
                 <i class="fas fa-search fa-3x mb-3"></i>
                 <h5 class="fw-bold">ফলাফল পাওয়া যায়নি!</h5>
-                <p>আপনার রোল, শ্রেণি বা বছরের তথ্য আমাদের ডাটাবেজে নেই।</p>
+                <p>রোল নম্বর বা ডাটাবেজ ফাইলটি চেক করুন।</p>
             </div>`;
         document.getElementById('resultArea').classList.remove('d-none');
     }
-
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if(urlParams.get('class')) {
-            document.getElementById('classSelect').value = urlParams.get('class');
-        }
-    };
 </script>
 </body>
 </html>
