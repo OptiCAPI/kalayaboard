@@ -106,43 +106,49 @@
     };
 
     // ২. রেজাল্ট জেনারেট ফাংশন
-    function generateResult() {
-        const cls = document.getElementById('classSelect').value;
-        const term = document.getElementById('termSelect').value;
-        const roll = document.getElementById('rollInput').value;
+function generateResult() {
+    const cls = document.getElementById('classSelect').value;
+    const term = document.getElementById('termSelect').value;
+    const roll = document.getElementById('rollInput').value;
 
-        if(!roll) return alert("রোল দিন!");
+    // URL থেকে বছর নিন, না থাকলে ২০২৬
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedYear = urlParams.get('year') || "2026"; 
 
-        // ৩. ডাইনামিক স্ক্রিপ্ট লোড লজিক
-        const scriptPath = `results/${currentYear}/${cls}/${term}.js`;
-        
-        const oldScript = document.getElementById('data-script');
-        if(oldScript) oldScript.remove();
+    if(!roll) return alert("রোল দিন!");
 
-        const script = document.createElement('script');
-        script.id = 'data-script';
-        script.src = scriptPath;
-        
-        script.onload = function() {
-            // ভ্যারিয়েবল নাম চেক (যেমন: data_2024_5_term1)
-            const dataVarName = `data_${currentYear}_${cls}_${term}`;
-            const currentData = window[dataVarName];
-            
-            // রোল নম্বর ইনপুট ১ হলেও ডাটার ০১ এর সাথে ম্যাচ করবে
-            const student = currentData ? currentData.find(s => parseInt(s.roll) === parseInt(roll)) : null;
+    const scriptPath = `results/${selectedYear}/${cls}/${term}.js`;
+    
+    const oldScript = document.getElementById('data-script');
+    if(oldScript) oldScript.remove();
 
+    const script = document.createElement('script');
+    script.id = 'data-script';
+    script.src = scriptPath;
+    
+    script.onload = function() {
+        // ডাইনামিক ভেরিয়েবল থেকে ডাটা নেওয়া
+        const dataVarName = `data_${selectedYear}_${cls}_${term}`;
+        const currentData = window[dataVarName];
+
+        if(currentData) {
+            const student = currentData.find(s => parseInt(s.roll) === parseInt(roll));
             if(student) {
-                renderTranscript(student, cls, term, currentYear);
+                renderTranscript(student, cls, term, selectedYear);
             } else {
-                showError("দুঃখিত, এই রোলের কোনো তথ্য পাওয়া যায়নি।");
+                showError("এই রোল নম্বরটি ডাটাবেজে পাওয়া যায়নি।");
             }
-        };
+        } else {
+            showError("ডাটা লোড হয়েছে কিন্তু সঠিক বছরের ডাটা পাওয়া যায়নি।");
+        }
+    };
 
-        script.onerror = function() { 
-            showError("ডাটা ফাইল খুঁজে পাওয়া যায়নি। আপনার ফোল্ডার বা ফাইল পাথ চেক করুন।"); 
-        };
-        document.head.appendChild(script);
-    }
+    script.onerror = function() { 
+        showError("ফাইল খুঁজে পাওয়া যায়নি। পাথ চেক করুন: " + scriptPath);
+    };
+    
+    document.head.appendChild(script);
+}
 
     function renderTranscript(student, cls, term, year) {
         let tableRows = "";
