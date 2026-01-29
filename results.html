@@ -106,6 +106,20 @@
         const cls = document.getElementById('classSelect').value;
         const term = document.getElementById('termSelect').value;
         const roll = document.getElementById('rollInput').value;
+
+        window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const year = urlParams.get('year');
+    const cls = urlParams.get('class');
+
+    if(year) {
+        // ড্রপডাউনে বছর দেখানোর প্রয়োজন নেই, লজিকে বছর সেট হবে
+        document.getElementById('pageTitle').innerText = `ফলাফল অনুসন্ধান (${year})`;
+    }
+    if(cls) {
+        document.getElementById('classSelect').value = cls;
+    }
+};
         
         if(!roll) return alert("রোল দিন!");
 
