@@ -2,13 +2,51 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>আর্কাইভ লোডিং...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আর্কাইভ লোডিং... | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <style>
+        /* লোডিং দেখানোর জন্য সাধারণ স্টাইল */
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; margin: 0; background: #f4f7f6;
+        }
+        .loader { text-align: center; color: #006A4E; }
+    </style>
+
     <script>
-        // এই ফাইলটি যে ফোল্ডারে আছে সেই বছরের নাম অটোমেটিক নিয়ে মেইন পেজে পাঠিয়ে দিবে
-        const year = window.location.pathname.split('/').reverse()[1];
-        window.location.href = `../../results.html?year=${year}`;
+        /**
+         * লজিক ব্যাখ্যা:
+         * ১. window.location.pathname দিয়ে বর্তমান ফাইলের লোকেশন বের করা হয়।
+         * ২. split('/') দিয়ে লোকেশনকে ভাগ করা হয়।
+         * ৩. reverse()[1] দিয়ে ফোল্ডারের নাম (যেমন: 2025) সংগ্রহ করা হয়।
+         * ৪. সবশেষে মেইন results.html ফাইলে year প্যারামিটারসহ পাঠিয়ে দেওয়া হয়।
+         */
+        window.onload = function() {
+            try {
+                const pathArray = window.location.pathname.split('/');
+                // ফোল্ডার স্ট্রাকচার results/2025/index.html হলে ইন্ডেক্স ১ এ বছর থাকে
+                const year = pathArray[pathArray.length - 2]; 
+
+                if (year && !isNaN(year)) {
+                    // মেইন রেজাল্ট পেজে রিডাইরেক্ট করা হচ্ছে
+                    window.location.href = `../../results.html?year=${year}`;
+                } else {
+                    // বছর খুঁজে না পেলে সরাসরি মেইন পেজে পাঠিয়ে দিবে
+                    window.location.href = `../../results.html`;
+                }
+            } catch (error) {
+                console.error("Redirection Error:", error);
+                window.location.href = `../../results.html`;
+            }
+        };
     </script>
 </head>
 <body>
+    <div class="loader">
+        <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">আর্কাইভ লোড হচ্ছে...</div>
+        <p>অনুগ্রহ করে অপেক্ষা করুন, আপনাকে ফলাফল পাতায় নিয়ে যাওয়া হচ্ছে।</p>
+    </div>
 </body>
 </html>
