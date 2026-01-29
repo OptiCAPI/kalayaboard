@@ -110,104 +110,128 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function generateResult() {
-            const year = "2026"; // Locked for current search
-            const cls = document.getElementById('classSelect').value;
-            const term = document.getElementById('termSelect').value;
-            const roll = document.getElementById('rollInput').value;
-            const resultArea = document.getElementById('resultArea');
+    function generateResult() {
+        // ১. URL থেকে বছর এবং শ্রেণি নেওয়ার লজিক
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedYear = urlParams.get('year') || "2026"; 
+        
+        const cls = document.getElementById('classSelect').value;
+        const term = document.getElementById('termSelect').value;
+        const roll = document.getElementById('rollInput').value;
+        const resultArea = document.getElementById('resultArea');
 
-            if(!roll) return alert("রোল দিন!");
+        if(!roll) return alert("রোল দিন!");
 
-            // 1. Load Data script dynamically from your folder structure
-            const scriptPath = `results/${year}/${cls}/${term}.js`;
-            const script = document.createElement('script');
-            script.src = scriptPath;
-            
-            script.onload = function() {
-                const dataVarName = `data_${year}_${cls}_${term}`;
-                const currentData = window[dataVarName];
-                const student = currentData ? currentData.find(s => s.roll == roll) : null;
+        // ২. ডাটা স্ক্রিপ্টটি ডাইনামিকভাবে তৈরি করা
+        const scriptPath = `results/${selectedYear}/${cls}/${term}.js`;
+        
+        // আগে যদি কোনো স্ক্রিপ্ট লোড করা থাকে তা সরিয়ে ফেলা (ক্লিনআপ)
+        const oldScript = document.getElementById('data-script');
+        if(oldScript) oldScript.remove();
 
-                if(student) {
-                    renderTranscript(student, cls, term);
-                } else {
-                    showError();
-                }
-            };
+        const script = document.createElement('script');
+        script.id = 'data-script';
+        script.src = scriptPath;
+        
+        // ৩. স্ক্রিপ্ট লোড হওয়ার পর রেজাল্ট রেন্ডার করা
+        script.onload = function() {
+            const dataVarName = `data_${selectedYear}_${cls}_${term}`;
+            const currentData = window[dataVarName];
+            const student = currentData ? currentData.find(s => s.roll == roll || s.roll == roll.padStart(2, '0')) : null;
 
-            script.onerror = function() { showError(); };
-            document.head.appendChild(script);
-        }
+            if(student) {
+                renderTranscript(student, cls, term, selectedYear);
+            } else {
+                showError();
+            }
+        };
 
-        function renderTranscript(student, cls, term) {
-            let tableRows = "";
-            let totalPoints = 0;
+        script.onerror = function() { 
+            showError(); 
+            console.error("ফাইল খুঁজে পাওয়া যায়নি:", scriptPath);
+        };
+        
+        document.head.appendChild(script);
+    }
+
+    function renderTranscript(student, cls, term, year) {
+        let tableRows = "";
+        let totalPoints = 0;
+        
+        // যদি মার্কস না থাকে (রোল ৩-১৮ এর ক্ষেত্রে যেমন ছিল)
+        if (!student.marks || student.marks.length === 0) {
+            tableRows = `<tr><td colspan="5" class="text-danger">এই শিক্ষার্থীর বিস্তারিত নম্বর এখনো এন্ট্রি করা হয়নি।</td></tr>`;
+        } else {
             student.marks.forEach(m => {
                 const gp = calculateGP(m.obtained);
                 totalPoints += gp.point;
                 tableRows += `<tr><td>${m.subject}</td><td>১০০</td><td>${m.obtained}</td><td>${gp.letter}</td><td>${gp.point.toFixed(2)}</td></tr>`;
             });
-
-            const gpa = (totalPoints / student.marks.length).toFixed(2);
-            
-            document.getElementById('resultArea').innerHTML = `
-                <img src="images/dpe.png" class="watermark-img">
-                <div class="content-wrap">
-                    <div class="text-center mb-4">
-                        <img src="images/govt.png" style="width:60px" class="mb-2">
-                        <h3 class="fw-bold mb-0" style="color: #006A4E;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h3>
-                        <p class="small mb-0">ইন্দুরকানী, পিরোজপুর | স্থাপিত: ১৯৩০</p>
-                        <h5 class="mt-3 fw-bold border-bottom d-inline-block pb-1">একাডেমিক ট্রান্সক্রিপ্ট</h5>
-                    </div>
-                    <div class="row mb-4 mt-4 small px-2">
-                        <div class="col-7">
-                            <p class="mb-1"><strong>নাম:</strong> ${student.name}</p>
-                            <p class="mb-1"><strong>শ্রেণি:</strong> ${cls}ম শ্রেণি</p>
-                        </div>
-                        <div class="col-5 text-end">
-                            <p class="mb-1"><strong>রোল নং:</strong> ${student.roll}</p>
-                            <p class="mb-1"><strong>পরীক্ষা:</strong> ${term === 'term1' ? '১ম' : term === 'term2' ? '২য়' : '৩য়'} প্রান্তিক</p>
-                        </div>
-                    </div>
-                    <table class="table table-bordered border-dark text-center align-middle small">
-                        <thead class="table-light"><tr><th>বিষয়ের নাম</th><th>পূর্ণমান</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th><th>পয়েন্ট</th></tr></thead>
-                        <tbody>${tableRows}</tbody>
-                    </table>
-                    <div class="row mt-4"><div class="col-12"><div class="p-2 border bg-light text-center fw-bold">জিপিএ (GPA): <span class="text-success">${gpa}</span> | ফলাফল: উত্তীর্ণ</div></div></div>
-                    <div class="d-flex justify-content-between mt-5 pt-4">
-                        <div class="signature-box position-relative">
-                            <img src="images/signature_teacher.png" style="position:absolute; top:-40px; left:25%; width:80px"> শ্রেণি শিক্ষকের স্বাক্ষর
-                        </div>
-                        <div class="signature-box">প্রধান শিক্ষকের স্বাক্ষর ও সীল</div>
-                    </div>
-                    <div class="mt-5 text-center btn-print-action">
-                        <button class="btn btn-dark rounded-pill px-4" onclick="window.print()"><i class="fas fa-print me-2"></i> প্রিন্ট করুন</button>
-                    </div>
-                </div>`;
-            document.getElementById('resultArea').classList.remove('d-none');
         }
 
-        function calculateGP(m) {
-            if (m >= 80) return { letter: "A+", point: 5.0 };
-            if (m >= 70) return { letter: "A", point: 4.0 };
-            if (m >= 60) return { letter: "A-", point: 3.5 };
-            if (m >= 50) return { letter: "B", point: 3.0 };
-            if (m >= 40) return { letter: "C", point: 2.0 };
-            if (m >= 33) return { letter: "D", point: 1.0 };
-            return { letter: "F", point: 0.0 };
-        }
+        const gpa = student.marks.length > 0 ? (totalPoints / student.marks.length).toFixed(2) : "0.00";
+        
+        document.getElementById('resultArea').innerHTML = `
+            <img src="images/dpe.png" class="watermark-img">
+            <div class="content-wrap">
+                <div class="text-center mb-4">
+                    <img src="images/govt.png" style="width:60px" class="mb-2">
+                    <h3 class="fw-bold mb-0" style="color: #006A4E;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h3>
+                    <p class="small mb-0">ইন্দুরকানী, পিরোজপুর | স্থাপিত: ১৯৩০</p>
+                    <h5 class="mt-3 fw-bold border-bottom d-inline-block pb-1">একাডেমিক ট্রান্সক্রিপ্ট - ${year}</h5>
+                </div>
+                <div class="row mb-4 mt-4 small px-2">
+                    <div class="col-7 text-start">
+                        <p class="mb-1"><strong>নাম:</strong> ${student.name}</p>
+                        <p class="mb-1"><strong>শ্রেণি:</strong> ${cls}ম শ্রেণি</p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-1"><strong>রোল নং:</strong> ${student.roll}</p>
+                        <p class="mb-1"><strong>পরীক্ষা:</strong> ${term === 'term1' ? '১ম' : term === 'term2' ? '২য়' : '৩য়'} প্রান্তিক</p>
+                    </div>
+                </div>
+                <table class="table table-bordered border-dark text-center align-middle small">
+                    <thead class="table-light"><tr><th>বিষয়ের নাম</th><th>পূর্ণমান</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th><th>পয়েন্ট</th></tr></thead>
+                    <tbody>${tableRows}</tbody>
+                </table>
+                <div class="row mt-4"><div class="col-12"><div class="p-2 border bg-light text-center fw-bold">জিপিএ (GPA): <span class="text-success">${gpa}</span> | ফলাফল: ${gpa >= 1 ? 'উত্তীর্ণ' : 'অকৃতকার্য'}</div></div></div>
+                <div class="d-flex justify-content-between mt-5 pt-4">
+                    <div class="text-center">.........................<br>শ্রেণি শিক্ষকের স্বাক্ষর</div>
+                    <div class="text-center">.........................<br>প্রধান শিক্ষকের স্বাক্ষর ও সীল</div>
+                </div>
+                <div class="mt-5 text-center btn-print-action">
+                    <button class="btn btn-dark rounded-pill px-4" onclick="window.print()"><i class="fas fa-print me-2"></i> প্রিন্ট করুন</button>
+                </div>
+            </div>`;
+        document.getElementById('resultArea').classList.remove('d-none');
+    }
 
-        function showError() {
-            document.getElementById('resultArea').innerHTML = `
-                <div class="alert alert-danger text-center shadow-sm" style="border-radius: 15px; border: 2px solid #dc3545;">
-                    <i class="fas fa-exclamation-circle fa-3x mb-3"></i><br>
-                    <h5 class="fw-bold">ফলাফল পাওয়া যায়নি!</h5>
-                    <p>দুঃখিত, আপনার প্রদানকৃত রোল নম্বর, শ্রেণি বা মূল্যায়নের তথ্য আমাদের ডাটাবেজে নেই।</p>
-                    <hr><small>সঠিক তথ্য দিয়ে পুনরায় চেষ্টা করুন অথবা প্রধান শিক্ষকের সাথে যোগাযোগ করুন।</small>
-                </div>`;
-            document.getElementById('resultArea').classList.remove('d-none');
+    function calculateGP(m) {
+        if (m >= 80) return { letter: "A+", point: 5.0 };
+        if (m >= 70) return { letter: "A", point: 4.0 };
+        if (m >= 60) return { letter: "A-", point: 3.5 };
+        if (m >= 50) return { letter: "B", point: 3.0 };
+        if (m >= 40) return { letter: "C", point: 2.0 };
+        if (m >= 33) return { letter: "D", point: 1.0 };
+        return { letter: "F", point: 0.0 };
+    }
+
+    function showError() {
+        document.getElementById('resultArea').innerHTML = `
+            <div class="alert alert-danger text-center shadow-sm py-5" style="border-radius: 15px;">
+                <i class="fas fa-search fa-3x mb-3"></i>
+                <h5 class="fw-bold">ফলাফল পাওয়া যায়নি!</h5>
+                <p>আপনার রোল, শ্রেণি বা বছরের তথ্য আমাদের ডাটাবেজে নেই।</p>
+            </div>`;
+        document.getElementById('resultArea').classList.remove('d-none');
+    }
+
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.get('class')) {
+            document.getElementById('classSelect').value = urlParams.get('class');
         }
-    </script>
+    };
+</script>
 </body>
 </html>
