@@ -14,7 +14,7 @@ var data_2024_5_term2 = [
             { subject: "প্রাথমিক বিজ্ঞান", obtained: 93 }, 
             { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 92 },
             { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 50 }, 
-            { subject: "সঙ্গীত ও শিল্পকলা", obtained: 49 },
+            { subject: "সঙ্গীত", obtained: 49 },
             { subject: "চারু ও কারুকলা", obtained: 49 }
         ]
     },
@@ -29,7 +29,7 @@ var data_2024_5_term2 = [
             { subject: "প্রাথমিক বিজ্ঞান", obtained: 59 }, 
             { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 82 },
             { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 46 }, 
-            { subject: "সঙ্গীত ও শিল্পকলা", obtained: 45 },
+            { subject: "সঙ্গীত", obtained: 45 },
             { subject: "চারু ও কারুকলা", obtained: 40 }
         ]
     }
