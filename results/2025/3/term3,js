@@ -1,4 +1,7 @@
-const data_2025_3_term1 = [
+//class3 
+//
+
+const data_2025_3_term3 = [
     { roll: "01", name: "Hira", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 640 }] },
     { roll: "02", name: "Soaib", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 655 }] },
     { roll: "03", name: "Arnab", marks: [{ subject: "মোট প্রাপ্ত নম্বর", obtained: 579 }] },
