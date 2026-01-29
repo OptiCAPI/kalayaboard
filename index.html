@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-dark bg-green shadow-sm">
         <div class="container d-flex justify-content-between">
-            <span class="navbar-brand fw-bold">কালাইয়া বোর্ড সপ্রাবি</span>
+            <span class="navbar-brand fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</span>
             <a href="login.html" class="btn btn-light btn-sm rounded-pill"><i class="fas fa-lock"></i> শিক্ষক লগইন</a>
         </div>
     </nav>
@@ -32,41 +32,121 @@
         <div class="hero-overlay">স্বাগতম কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়ে</div>
     </div>
 
-    <div class="container my-4">
-        <div class="row g-3">
-            <div class="col-6">
-                <a href="learning.html" class="menu-link">
-                    <div class="menu-card border-blue">
-                        <i class="fas fa-laptop-code text-blue"></i>
-                        <p>ডিজিটাল ক্লাস</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6">
-                <a href="jukebox.html" class="menu-link">
-                    <div class="menu-card border-red">
-                        <i class="fas fa-music text-red"></i>
-                        <p>জুকবক্স</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6">
-                <a href="routine.html" class="menu-link">
-                    <div class="menu-card border-green">
-                        <i class="fas fa-calendar-alt text-green"></i>
-                        <p>রুটিন ও সিলেবাস</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6">
-                <a href="results.html" class="menu-link">
-                    <div class="menu-card border-orange">
-                        <i class="fas fa-poll text-orange"></i>
-                        <p>মূল্যায়ন ও ফল</p>
-                    </div>
-                </a>
-            </div>
+    <section class="container my-5">
+    <div class="row g-4">
+        <div class="col-6 col-md-3">
+            <a href="digital-class.html" class="premium-card bg-emerald">
+                <div class="card-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h5 class="card-title">ডিজিটাল ক্লাস</h5>
+                <span class="explore-link">প্রবেশ করুন <i class="fas fa-arrow-right"></i></span>
+            </a>
         </div>
+
+        <div class="col-6 col-md-3">
+            <a href="jukebox.html" class="premium-card bg-amber">
+                <div class="card-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h5 class="card-title">জুকবক্স</h5>
+                <span class="explore-link">শুনুন <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="routine.html" class="premium-card bg-blue">
+                <div class="card-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h5 class="card-title">রুটিন ও সিলেবাস</h5>
+                <span class="explore-link">ডাউনলোড <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <a href="results.html" class="premium-card bg-purple">
+                <div class="card-icon">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <h5 class="card-title">মূল্যায়ন ও ফল</h5>
+                <span class="explore-link">দেখুন <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* প্রিমিয়াম কার্ড ডিজাইন */
+    .premium-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 30px 15px;
+        text-decoration: none !important;
+        border-radius: 24px;
+        color: white !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .premium-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+
+    /* আইকন স্টাইল */
+    .card-icon {
+        font-size: 35px;
+        margin-bottom: 15px;
+        transition: transform 0.4s;
+    }
+
+    .premium-card:hover .card-icon {
+        transform: rotate(-10deg) scale(1.2);
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .explore-link {
+        font-size: 12px;
+        opacity: 0.8;
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .premium-card:hover .explore-link {
+        background: rgba(255,255,255,1);
+        color: #333;
+        opacity: 1;
+    }
+
+    /* প্রিমিয়াম কালার স্কিম (wk12.org ইন্সপায়ার্ড) */
+    .bg-emerald { background: linear-gradient(135deg, #00b09b, #96c93d); }
+    .bg-amber   { background: linear-gradient(135deg, #FFB75E, #ED8F03); }
+    .bg-blue    { background: linear-gradient(135deg, #2193b0, #6dd5ed); }
+    .bg-purple  { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+
+    /* মোবাইলের জন্য অপ্টিমাইজেশন */
+    @media (max-width: 576px) {
+        .premium-card { padding: 20px 10px; }
+        .card-title { font-size: 15px; }
+        .card-icon { font-size: 28px; }
+    }
+</style>
+
+    
     </div>
 
     <a href="tel:01727232360" class="btn-call shadow-lg">
