@@ -8,47 +8,117 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* ফন্ট ইমপোর্ট */
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap');
-        :root { --primary-green: #006A4E; }
+        
+        :root { 
+            --primary-green: #006A4E; 
+        }
     
-        body { background-color: #f0f2f5; font-family: 'Hind Siliguri', sans-serif; }
+        body { 
+            background-color: #f0f2f5; 
+            font-family: 'Hind Siliguri', sans-serif; 
+        }
     
         /* প্রিমিয়াম ফন্ট স্টাইল */
-        .premium-title { font-family: 'Kalpana', 'Constantia', serif; font-weight: bold; }
-        .student-name { font-family: 'Kalpana', 'Constantia', serif; font-style: italic; font-size: 24px; color: #000; }
-        .table-font { font-family: 'Hind Siliguri', sans-serif; font-size: 15px; }
+        .premium-title { 
+            font-family: 'Kalpana', 'Constantia', serif; 
+            font-weight: bold; 
+        }
+        
+        .student-name { 
+            font-family: 'Kalpana', 'Constantia', serif; 
+            font-style: italic; 
+            font-size: 24px; 
+            color: #000; 
+        }
+        
+        .table-font { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            font-size: 15px; 
+        }
 
         /* A4 Page Container */
         #resultArea {
-            width: 210mm; height: 297mm; background: white;
-            margin: 15px auto; padding: 10mm; box-sizing: border-box;
-            border: 12px double var(--primary-green); position: relative; 
-            display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            width: 210mm; 
+            height: 297mm; 
+            background: white;
+            margin: 15px auto; 
+            padding: 10mm; 
+            box-sizing: border-box;
+            border: 12px double var(--primary-green); 
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
             overflow: hidden;
         }
 
-        /* ওয়াটারমার্ক পজিশন (আপনার ৫২% সেটিংস অনুযায়ী) */
         .watermark-img {
-            position: absolute; top: 52%; left: 50%; transform: translate(-50%, -50%);
-            width: 460px; opacity: 0.05; z-index: 999; pointer-events: none;
+            position: absolute; 
+            top: 52%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 460px; 
+            opacity: 0.05; 
+            z-index: 999; 
+            pointer-events: none;
         }
 
-        /* প্রিন্ট টাইমস্ট্যাম্প */
         #printTimestamp {
-            display: none; position: absolute; bottom: 3mm; right: 80mm;
-            font-size: 10px; color: #555; z-index: 1000;
+            display: none;
+            position: absolute;
+            bottom: 3mm;
+            right: 80mm;
+            font-size: 10px;
+            color: #555;
+            z-index: 1000;
         }
     
-        .main-content { position: relative; z-index: 10; flex-grow: 1; }
-        .table-main { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .table-main th, .table-main td { border: 1.5px solid #000 !important; vertical-align: middle; padding: 6px !important; }
-
-        .footer-signatures {
-            position: absolute; bottom: 20mm; left: 15mm; right: 15mm;
-            display: flex; justify-content: space-between; z-index: 1000;
+        .main-content { 
+            position: relative; 
+            z-index: 10; 
+            flex-grow: 1; 
+        }
+        
+        .table-main { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px; 
+        }
+        
+        .table-main th, .table-main td { 
+            border: 1.5px solid #000 !important; 
+            vertical-align: middle; 
+            padding: 6px !important; 
         }
 
-        /* আর্কাইভ বাটন এনিমেশন */
+        .footer-signatures {
+            position: absolute;
+            bottom: 20mm;
+            left: 15mm;
+            right: 15mm;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        @media print {
+            body { background: none; padding: 0; margin: 0; }
+            .no-print, .navbar, .search-form-card, .premium-archive-section { display: none !important; }
+            #printTimestamp { display: block; }
+            #resultArea { 
+                margin: 0 !important; 
+                width: 210mm !important; 
+                height: 297mm !important; 
+                border: 12px double var(--primary-green) !important;
+                box-shadow: none;
+                page-break-after: always;
+            }
+            @page { size: A4; margin: 0; }
+        }
+
+        /* আর্কাইভ বাটন ও এনিমেশন */
         @keyframes pulse-animation {
             0% { transform: scale(1); }
             50% { transform: scale(1.03); }
@@ -57,8 +127,11 @@
 
         .premium-archive-btn {
             background: linear-gradient(45deg, #006A4E, #00a379);
-            color: white; border: none; padding: 12px 30px;
-            border-radius: 50px; font-weight: bold;
+            color: white; 
+            border: none; 
+            padding: 12px 30px;
+            border-radius: 50px; 
+            font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,106,78,0.3);
             transition: 0.3s;
             animation: pulse-animation 2s infinite;
@@ -69,16 +142,14 @@
             transform: scale(1.05);
         }
 
-        @media print {
-            body { background: none; padding: 0; margin: 0; }
-            .no-print, .navbar, .search-form-card, .premium-archive-section { display: none !important; }
-            #printTimestamp { display: block; }
-            #resultArea { 
-                margin: 0 !important; width: 210mm !important; height: 297mm !important; 
-                border: 12px double var(--primary-green) !important;
-                box-shadow: none; page-break-after: always;
-            }
-            @page { size: A4; margin: 0; }
+        /* সাল হাইলাইটার স্টাইল */
+        .year-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-left: 5px;
         }
     </style>
 </head>
@@ -94,7 +165,9 @@
 
 <div class="container no-print">
     <div class="card p-4 shadow-sm mx-auto search-form-card mb-3" style="max-width: 550px; border-radius: 15px;">
-        <h5 class="text-center fw-bold text-success mb-3">ফলাফল অনুসন্ধান</h5>
+        <h5 class="text-center fw-bold text-success mb-3" id="searchTitle">
+            ফলাফল অনুসন্ধান
+        </h5>
         <div class="row g-2">
             <div class="col-6">
                 <label class="small fw-bold">শ্রেণি</label>
@@ -135,10 +208,10 @@
             </div>
             <div class="modal-body p-4 text-center">
                 <div class="row g-3">
-                    <div class="col-6"><a href="results.html?year=2026" class="btn btn-outline-success w-100">২০২৬</a></div>
-                    <div class="col-6"><a href="results.html?year=2025" class="btn btn-outline-success w-100">২০২৫</a></div>
-                    <div class="col-6"><a href="results.html?year=2024" class="btn btn-outline-success w-100">২০২৪</a></div>
-                    <div class="col-6"><a href="results.html?year=2023" class="btn btn-outline-success w-100">২০২৩</a></div>
+                    <div class="col-6"><a href="results.html?year=2026" class="btn btn-outline-success w-100 py-2 fw-bold">২০২৬</a></div>
+                    <div class="col-6"><a href="results.html?year=2025" class="btn btn-outline-success w-100 py-2 fw-bold">২০২৫</a></div>
+                    <div class="col-6"><a href="results.html?year=2024" class="btn btn-outline-success w-100 py-2 fw-bold">২০২৪</a></div>
+                    <div class="col-6"><a href="results.html?year=2023" class="btn btn-outline-success w-100 py-2 fw-bold">২০২৩</a></div>
                 </div>
             </div>
         </div>
@@ -156,6 +229,12 @@
         const banglaNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
         return num.toString().split('').map(digit => banglaNums[digit] || digit).join('');
     }
+
+    // উইন্ডো লোড হওয়ার সাথে সাথে টাইটেলে সাল আপডেট করার লজিক
+    window.onload = function() {
+        const titleElement = document.getElementById('searchTitle');
+        titleElement.innerHTML = `ফলাফল অনুসন্ধান - <span class="year-badge">${toBanglaNum(selectedYear)}</span>`;
+    };
 
     function generateResult() {
         const cls = document.getElementById('classSelect').value;
@@ -213,7 +292,7 @@
             <img src="images/dpe.png" class="watermark-img">
             <div id="printTimestamp">প্রিন্ট কপি: ${timestamp}</div>
             <div class="main-content">
-                <div class="text-center" style="margin-top:0;">
+                <div class="text-center">
                     <img src="images/govt.png" style="width:70px" class="mb-1">
                     <h2 class="premium-title mb-0" style="color: #006A4E; font-size: 30px;">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
                     <p class="mb-0 fw-bold" style="font-size: 21px;">ইন্দুরকানী (জিয়ানগর), পিরোজপুর </p>
