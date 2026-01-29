@@ -3,91 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফলাফল আর্কাইভ ২০২৪ | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>আর্কাইভ | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary-green: #006A4E; }
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Arial, sans-serif; }
-        .archive-header { background: var(--primary-green); color: white; padding: 40px 0; border-radius: 0 0 40px 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .class-card { border: none; border-radius: 20px; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .class-card:hover { transform: translateY(-5px); }
-        .btn-archive {
-            background: white; border: 1px solid #eee; border-radius: 12px;
-            padding: 12px; text-align: left; transition: 0.2s;
-            display: flex; align-items: center; text-decoration: none; color: #333; margin-bottom: 10px;
-        }
-        .btn-archive:hover { background: var(--primary-green); color: white; border-color: var(--primary-green); }
-        .btn-home { background: rgba(255,255,255,0.2); color: white; border: 1px solid white; transition: 0.3s; }
-        .btn-home:hover { background: white; color: var(--primary-green); }
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        .archive-header { background: var(--primary-green); color: white; padding: 30px 0; border-radius: 0 0 25px 25px; }
+        .class-card { border: none; border-radius: 15px; transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit; }
+        .class-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); background: #e8f5e9; }
     </style>
 </head>
 <body>
-
     <div class="archive-header text-center mb-5">
         <div class="container">
-            <div class="mb-3">
-                <a href="../../results.html" class="btn btn-home rounded-pill px-4 shadow-sm">
-                    <i class="fas fa-arrow-left me-2"></i> মূল পাতায় ফিরে যান
-                </a>
-            </div>
-            <h2 class="fw-bold">২০২৪ শিক্ষাবর্ষের আর্কাইভ</h2>
-            [cite_start]<p class="mb-0">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় [cite: 3]</p>
-            [cite_start]<small>ইন্দুরকানী, পিরোজপুর [cite: 4]</small>
+            <a href="../../results.html" class="btn btn-outline-light rounded-pill btn-sm mb-3">
+                <i class="fas fa-arrow-left me-2"></i> মেইন রেজাল্ট পেজ
+            </a>
+            <h2 id="yearTitle" class="fw-bold">শিক্ষাবর্ষের আর্কাইভ</h2>
         </div>
     </div>
 
-    <div class="container py-2">
+    <div class="container">
         <div class="row g-4 justify-content-center">
-            
-            <div class="col-md-4">
-                <div class="card class-card p-4">
-                    <h5 class="fw-bold mb-3 text-success border-bottom pb-2">
-                        <i class="fas fa-user-graduate me-2"></i> ৫ম শ্রেণি
-                    </h5>
-                    <div class="d-grid">
-                        <a href="5/term1.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ১ম প্রান্তিক মূল্যায়ন</a>
-                        <a href="5/term2.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ২য় প্রান্তিক মূল্যায়ন</a>
-                        <a href="5/term3.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ৩য় প্রান্তিক মূল্যায়ন</a>
-                    </div>
-                </div>
-            </div>
+            <script>
+                const year = window.location.pathname.split('/').reverse()[1];
+                document.getElementById('yearTitle').innerText = year + " শিক্ষাবর্ষের আর্কাইভ";
+                
+                const classes = [
+                    { id: 5, name: "৫ম শ্রেণি", icon: "fa-graduation-cap" },
+                    { id: 4, name: "৪র্থ শ্রেণি", icon: "fa-book" },
+                    { id: 3, name: "৩য় শ্রেণি", icon: "fa-book-reader" },
+                    { id: 2, name: "২য় শ্রেণি", icon: "fa-child" },
+                    { id: 1, name: "১ম শ্রেণি", icon: "fa-pencil-alt" },
+                    { id: 0, name: "শিশু শ্রেণি", icon: "fa-baby" }
+                ];
 
-            <div class="col-md-4">
-                <div class="card class-card p-4">
-                    <h5 class="fw-bold mb-3 text-success border-bottom pb-2">
-                        <i class="fas fa-child me-2"></i> ৪র্থ শ্রেণি
-                    </h5>
-                    <div class="d-grid">
-                        <a href="4/term1.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ১ম প্রান্তিক মূল্যায়ন</a>
-                        <a href="4/term2.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ২য় প্রান্তিক মূল্যায়ন</a>
-                        <a href="4/term3.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ৩য় প্রান্তিক মূল্যায়ন</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card class-card p-4">
-                    <h5 class="fw-bold mb-3 text-success border-bottom pb-2">
-                        <i class="fas fa-book-reader me-2"></i> ৩য় শ্রেণি
-                    </h5>
-                    <div class="d-grid">
-                        <a href="3/term1.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ১ম প্রান্তিক মূল্যায়ন</a>
-                        <a href="3/term2.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ২য় প্রান্তিক মূল্যায়ন</a>
-                        <a href="3/term3.html" class="btn-archive"><i class="far fa-file-alt me-3 text-danger"></i> ৩য় প্রান্তিক মূল্যায়ন</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mt-5 p-4 bg-white shadow-sm text-center border" style="border-radius: 20px;">
-            <p class="mb-0 text-muted small">
-                [cite_start]এই আর্কাইভের ফলাফল আপনার অফিশিয়াল মার্কশিটের সাথে মিলিয়ে দেখুন। [cite: 7] <br>
-                যেকোনো প্রয়োজনে প্রধান শিক্ষকের কার্যালয়ে যোগাযোগ করুন।
-            </p>
+                classes.forEach(cls => {
+                    document.write(`
+                        <div class="col-md-4 col-6">
+                            <a href="../../results.html?year=${year}&class=${cls.id}" class="card class-card p-4 text-center">
+                                <i class="fas ${cls.icon} fa-3x text-success mb-3"></i>
+                                <h5 class="fw-bold">${cls.name}</h5>
+                                <small class="text-muted">ফলাফল দেখুন</small>
+                            </a>
+                        </div>
+                    `);
+                });
+            </script>
         </div>
     </div>
-
 </body>
 </html>
