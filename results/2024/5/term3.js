@@ -85,6 +85,15 @@ const data_2024_5_term3 = [
     { roll: "14", name: "নুসরাত (Nusrat)", marks: [] },
     { roll: "15", name: "মিম (Mim)", marks: [] },
     { roll: "16", name: "তানজিলা (Tanjila)", marks: [] },
-    { roll: "17", name: "নদী (Nodi)", marks: [] },
-    { roll: "18", name: "অজ্ঞাত (Unknown)", marks: [] }
+    { roll: "17", name: "নদী (Nodi)", marks: [
+        
+      ] 
+    },
+    { roll: "18", name: "অজ্ঞাত (Unknown)",
+     marks: [{ subject: "বাংলা", obtained: 0 }, { subject: "ইংরেজি", obtained: 0 },
+            { subject: "প্রাথমিক গণিত", obtained: 0 }, { subject: "বাংলাদেশ ও বিশ্ব পরিচয়", obtained: 0 },
+            { subject: "প্রাথমিক বিজ্ঞান", obtained: 0 }, { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 0 },
+            { subject: "শারীরিক-মানসিক স্বাস্থ্য", obtained: 0 }, { subject: "সঙ্গীত ও শিল্পকলা", obtained: 0 }
+       ]
+    }
 ];
