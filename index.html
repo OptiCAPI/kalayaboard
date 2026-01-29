@@ -3,240 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | ড্যাশবোর্ড</title>
+    <title>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | হোম</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় - একটি আধুনিক ডিজিটাল শিক্ষা পোর্টাল।">
-    <meta property="og:title" content="কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়">
-    <meta property="og:image" content="images/school_bg.jpg">
-    <meta name="theme-color" content="#006A4E">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary-green: #006A4E;
+            --accent-yellow: #FFB800;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f4f7f6; overflow-x: hidden; }
+
+        /* ১. নোটিশ ও নেভবার */
+        .ticker-container { background: #fff; border-bottom: 2px solid var(--primary-green); padding: 8px 0; }
+        .custom-nav { background: var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .login-pill { background: var(--accent-yellow); color: #000; padding: 6px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .login-pill:hover { background: #fff; transform: scale(1.05); }
+
+        /* ২. হিরো সেকশন (Video/Premium Image) */
+        .hero-wrapper { 
+            position: relative; height: 75vh; width: 100%; 
+            display: flex; align-items: center; justify-content: center; 
+            color: white; overflow: hidden;
+        }
+        .hero-video { 
+            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; 
+            z-index: -1; transform: translate(-50%, -50%); object-fit: cover; 
+        }
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); }
+        .hero-content { z-index: 1; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+        /* ৩. ইন্টারেক্টিভ গ্রিড বাটন (wk12 style) */
+        .premium-card {
+            background: white; border-radius: 20px; padding: 30px; 
+            text-align: center; transition: 0.4s; cursor: pointer;
+            border-bottom: 5px solid transparent; text-decoration: none !important; color: inherit;
+            display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .premium-card:hover { transform: translateY(-10px); border-bottom-color: var(--primary-green); }
+        .icon-circle { 
+            width: 70px; height: 70px; background: #f0fdf4; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+            font-size: 28px; color: var(--primary-green); transition: 0.4s;
+        }
+        .premium-card:hover .icon-circle { background: var(--primary-green); color: white; transform: rotateY(360deg); }
+
+        /* ৪. ইউনিক ফটো গ্রিড সেকশন */
+        .interactive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; grid-auto-rows: 250px; }
+        .grid-item { position: relative; overflow: hidden; border-radius: 25px; }
+        .grid-item.large { grid-row: span 2; }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .grid-overlay { 
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,106,78,0.9), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 25px; opacity: 0; transition: 0.4s; color: white;
+        }
+        .grid-item:hover .grid-overlay { opacity: 1; }
+        .grid-item:hover img { transform: scale(1.1); }
+    </style>
 </head>
 <body>
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            আগামী ০৪/০১/২০২৫ রবিবার বিদ্যালয় বন্ধ থাকবে। বিস্তারিত জানতে বিদ্যালয়ের ছুটির তালিকা দেখুন।
+<div class="ticker-container no-print">
+    <div class="container d-flex align-items-center">
+        <span class="badge bg-danger me-2">নোটিশ:</span>
+        <marquee class="fw-bold text-dark">আগামী ০৪/০১/২০২৫ রবিবার বিদ্যালয় বন্ধ থাকবে। বিস্তারিত জানতে বিদ্যালয়ের ছুটির তালিকা দেখুন।</marquee>
+    </div>
+</div>
+
+<nav class="navbar navbar-dark custom-nav sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+            <img src="images/govt.png" width="35" class="me-2">
+            <span class="d-none d-sm-inline">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</span>
+            <span class="d-inline d-sm-none">কে.বি. সপ্রাবি</span>
+        </a>
+        <a href="login.html" class="login-pill"><i class="fas fa-lock me-1"></i> লগইন</a>
+    </div>
+</nav>
+
+<div class="hero-wrapper">
+    <div class="video-overlay"></div>
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="videos/bg_video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content text-center container">
+        <h1 class="display-3 fw-bold mb-3">জ্ঞানের আলোয় উদ্ভাসিত ভবিষ্যৎ</h1>
+        <p class="fs-4">স্বাগতম পিরোজপুর জেলার অন্যতম শ্রেষ্ঠ বিদ্যাপীঠে</p>
+        <div class="mt-4">
+            <button class="btn btn-warning rounded-pill px-5 py-3 fw-bold shadow">ভর্তি ফরম</button>
         </div>
     </div>
+</div>
 
-    <nav class="navbar navbar-dark bg-green shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <span class="navbar-brand fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</span>
-            <a href="login.html" class="btn btn-light btn-sm rounded-pill"><i class="fas fa-lock"></i> শিক্ষক লগইন</a>
-        </div>
-    </nav>
-
-    <div class="hero-section">
-        <img id="dynamic-hero" src="images/slider1.jpg" class="img-fluid" alt="School">
-        <div class="hero-overlay">স্বাগতম কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়ে</div>
-    </div>
-
-    <section class="container my-5">
+<div class="container my-5 pt-4">
     <div class="row g-4">
-        <div class="col-6 col-md-3">
-            <a href="digital-class.html" class="premium-card bg-emerald">
-                <div class="card-icon">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
-                <h5 class="card-title">ডিজিটাল ক্লাস</h5>
-                <span class="explore-link">প্রবেশ করুন <i class="fas fa-arrow-right"></i></span>
+        <div class="col-md-3">
+            <a href="#" class="premium-card">
+                <div class="icon-circle"><i class="fas fa-laptop"></i></div>
+                <h5>ডিজিটাল ক্লাস</h5>
+                <p class="small text-muted">আধুনিক পাঠদান পদ্ধতি</p>
             </a>
         </div>
-
-        <div class="col-6 col-md-3">
-            <a href="jukebox.html" class="premium-card bg-amber">
-                <div class="card-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <h5 class="card-title">জুকবক্স</h5>
-                <span class="explore-link">শুনুন <i class="fas fa-arrow-right"></i></span>
+        <div class="col-md-3">
+            <a href="#" class="premium-card">
+                <div class="icon-circle"><i class="fas fa-music"></i></div>
+                <h5>জুকবক্স</h5>
+                <p class="small text-muted">শিক্ষামূলক গান ও আবৃত্তি</p>
             </a>
         </div>
-
-        <div class="col-6 col-md-3">
-            <a href="routine.html" class="premium-card bg-blue">
-                <div class="card-icon">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <h5 class="card-title">রুটিন ও সিলেবাস</h5>
-                <span class="explore-link">ডাউনলোড <i class="fas fa-arrow-right"></i></span>
+        <div class="col-md-3">
+            <a href="#" class="premium-card">
+                <div class="icon-circle"><i class="fas fa-book-open"></i></div>
+                <h5>রুটিন ও সিলেবাস</h5>
+                <p class="small text-muted">পাঠ্যক্রম ও সময়সূচী</p>
             </a>
         </div>
-
-        <div class="col-6 col-md-3">
-            <a href="results.html" class="premium-card bg-purple">
-                <div class="card-icon">
-                    <i class="fas fa-file-invoice"></i>
-                </div>
-                <h5 class="card-title">মূল্যায়ন ও ফল</h5>
-                <span class="explore-link">দেখুন <i class="fas fa-arrow-right"></i></span>
+        <div class="col-md-3">
+            <a href="results.html" class="premium-card">
+                <div class="icon-circle"><i class="fas fa-chart-line"></i></div>
+                <h5>মূল্যায়ন ও ফল</h5>
+                <p class="small text-muted">অনলাইন রেজাল্ট চেক</p>
             </a>
         </div>
     </div>
-</section>
+</div>
 
-<style>
-    /* প্রিমিয়াম কার্ড ডিজাইন */
-    .premium-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 30px 15px;
-        text-decoration: none !important;
-        border-radius: 24px;
-        color: white !important;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    }
-
-    .premium-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-    }
-
-    /* আইকন স্টাইল */
-    .card-icon {
-        font-size: 35px;
-        margin-bottom: 15px;
-        transition: transform 0.4s;
-    }
-
-    .premium-card:hover .card-icon {
-        transform: rotate(-10deg) scale(1.2);
-    }
-
-    .card-title {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .explore-link {
-        font-size: 12px;
-        opacity: 0.8;
-        background: rgba(255,255,255,0.2);
-        padding: 4px 12px;
-        border-radius: 20px;
-        transition: 0.3s;
-    }
-
-    .premium-card:hover .explore-link {
-        background: rgba(255,255,255,1);
-        color: #333;
-        opacity: 1;
-    }
-
-    /* প্রিমিয়াম কালার স্কিম (wk12.org ইন্সপায়ার্ড) */
-    .bg-emerald { background: linear-gradient(135deg, #00b09b, #96c93d); }
-    .bg-amber   { background: linear-gradient(135deg, #FFB75E, #ED8F03); }
-    .bg-blue    { background: linear-gradient(135deg, #2193b0, #6dd5ed); }
-    .bg-purple  { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
-
-    /* মোবাইলের জন্য অপ্টিমাইজেশন */
-    @media (max-width: 576px) {
-        .premium-card { padding: 20px 10px; }
-        .card-title { font-size: 15px; }
-        .card-icon { font-size: 28px; }
-    }
-</style>
-
-    
-    </div>
-
-    <a href="tel:01727232360" class="btn-call shadow-lg">
-        <i class="fas fa-phone"></i>
-    </a>
-
-    <script src="script.js"></script>
-    <section class="container my-5 py-4">
-    <div class="text-center mb-5">
-        <h2 class="fw-bold text-success">আমাদের বিশেষ কার্যক্রম</h2>
-        <p class="text-muted">শিক্ষার্থীদের প্রতিভা বিকাশে আমরা আধুনিক শিক্ষা পদ্ধতি অনুসরণ করি</p>
-    </div>
-
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-4">
-            <div class="program-card h-100 shadow-sm border-0 p-4 text-center">
-                <div class="icon-box mb-3 mx-auto">
-                    <i class="fas fa-laptop-code fa-2x text-success"></i>
-                </div>
-                <h4 class="fw-bold">ডিজিটাল ল্যাব</h4>
-                <p class="text-muted small">আধুনিক কম্পিউটার ল্যাবের মাধ্যমে শিক্ষার্থীদের প্রযুক্তিতে দক্ষ করে তোলা হয়।</p>
-                <button class="btn btn-outline-success btn-sm rounded-pill px-4">আরও জানুন</button>
+<section class="container mb-5">
+    <h2 class="text-center fw-bold mb-4">আমাদের ক্যাম্পাস</h2>
+    <div class="interactive-grid">
+        <div class="grid-item large">
+            <img src="images/slider1.jpg" alt="Campus">
+            <div class="grid-overlay">
+                <h3>প্রধান ভবন</h3>
+                <p>আমাদের ঐতিহাসিক ও সুসজ্জিত একাডেমিক ভবন।</p>
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="program-card h-100 shadow-sm border-0 p-4 text-center">
-                <div class="icon-box mb-3 mx-auto">
-                    <i class="fas fa-music fa-2x text-warning"></i>
-                </div>
-                <h4 class="fw-bold">সাংস্কৃতিক চর্চা</h4>
-                <p class="text-muted small">সঙ্গীত, চারু ও কারুকলা এবং বিভিন্ন সাংস্কৃতিক প্রতিযোগিতার নিয়মিত আয়োজন।</p>
-                <button class="btn btn-outline-warning btn-sm rounded-pill px-4 text-dark">আরও জানুন</button>
+        <div class="grid-item">
+            <img src="images/slider2.jpg" alt="Lab">
+            <div class="grid-overlay">
+                <h3>কম্পিউটার ল্যাব</h3>
+                <p>প্রযুক্তি নির্ভর শিক্ষা ব্যবস্থা।</p>
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="program-card h-100 shadow-sm border-0 p-4 text-center">
-                <div class="icon-box mb-3 mx-auto">
-                    <i class="fas fa-running fa-2x text-primary"></i>
-                </div>
-                <h4 class="fw-bold">খেলাধুলা</h4>
-                <p class="text-muted small">শারীরিক ও মানসিক বিকাশের জন্য নিয়মিত ক্রীড়া প্রতিযোগিতা নিশ্চিত করা হয়।</p>
-                <button class="btn btn-outline-primary btn-sm rounded-pill px-4">আরও জানুন</button>
+        <div class="grid-item">
+            <img src="images/slider3.jpg" alt="Activities">
+            <div class="grid-overlay">
+                <h3>সাংস্কৃতিক চর্চা</h3>
+                <p>শিশুদের সৃজনশীল মেধা বিকাশ।</p>
             </div>
         </div>
     </div>
 </section>
 
-<style>
-    .program-card {
-        background: #ffffff;
-        border-radius: 20px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        cursor: pointer;
-        border-bottom: 5px solid transparent !important;
-    }
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+        <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | ইন্দুরকানী, পিরোজপুর</p>
+    </div>
+</footer>
 
-    .program-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
-        border-bottom: 5px solid #006A4E !important;
-    }
-
-    .icon-box {
-        width: 70px;
-        height: 70px;
-        background: #f8f9fa;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: 0.3s;
-    }
-
-    .program-card:hover .icon-box {
-        background: #e8f5e9;
-        transform: rotate(360deg);
-    }
-
-    .program-card h4 {
-        color: #333;
-        margin-bottom: 15px;
-    }
-
-    /* wk12.org এর মত ইন্টারঅ্যাক্টিভ টাচ */
-    .program-card p {
-        line-height: 1.6;
-        min-height: 50px;
-    }
-</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-                                                               </html>
+</html>
