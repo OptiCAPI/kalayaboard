@@ -222,6 +222,15 @@
                 rows += `<tr><td class="text-start ps-2">${sub.name}</td><td>${sub.t1}</td><td>${sub.t2}</td><td>${sub.t3}</td><td class="fw-bold">${finalScore.toFixed(2)}</td><td>${gp.letter}</td><td>${gp.point.toFixed(2)}</td></tr>`;
             });
         }
+        
+        // ইংরেজি সংখ্যাকে বাংলায় রূপান্তর করার ফাংশন
+function toBanglaNum(num) {
+    const banglaNums = {
+        '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪',
+        '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'
+    };
+    return num.toString().split('').map(digit => banglaNums[digit] || digit).join('');
+}
 
         const subjectsCount = is2026 ? s.marks.length : s.subjects.length;
         const gpa = (totalPoints / subjectsCount).toFixed(2);
@@ -237,15 +246,22 @@
             </div>
 
             <div class="row mt-5 mb-3 px-2" style="font-size: 19px; position:relative; z-index:1000">
-                <div class="col-7">
-                    <p class="mb-1">শিক্ষার্থীর নাম:<strong> <span class="premium-font text-dark" style="font-size: 22px;">${s.name}</span></strong></p>
-                    <p class="mb-1">শ্রেণি:<strong> ${cls}ম শ্রেণি</strong></p>
-                </div>
-                <div class="col-5 text-end">
-                    <p class="mb-1"><strong>রোল নম্বর:</strong> ${s.roll}</p>
-                    <p class="mb-1"><strong>মূল্যায়ন:</strong> ${is2026 ? 'প্রান্তিক' : 'সমন্বিত'}</p>
-                </div>
-            </div>
+                
+                // শ্রেণি এবং রোল নাম্বার বাংলায় রূপান্তর
+const banglaClass = toBanglaNum(cls);
+const banglaRoll = toBanglaNum(s.roll);
+
+// HTML এর ভেতরে এভাবে ব্যবহার করুন:
+<div class="col-7">
+    <p class="mb-1">নাম:<strong> <span class="student-name" style="font-size: 22px;">${s.name}</span></strong></p>
+    <p class="mb-1">শ্রেণি:<strong> ${banglaClass}ম শ্রেণি</strong></p>
+</div>
+<div class="col-5 text-end">
+    <p class="mb-1"><strong>রোল:</strong> ${banglaRoll}</p>
+    <p class="mb-1"><strong>মূল্যায়ন:</strong> ${is2026 ? 'প্রান্তিক' : 'সমন্বিত'}</p>
+</div>
+                
+
 
             <table class="table table-bordered text-center table-main border-dark">
                 <thead class="table-light">
