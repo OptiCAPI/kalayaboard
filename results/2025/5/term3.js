@@ -1,34 +1,15 @@
 // কালাইয়া বোর্ড সপ্রাবি - শিক্ষার্থী ডাটাবেজ
+// 2025 class 5, 3rd terminal
+
 const data_2025_5_term3 = [
     {
-        roll: "25",
-        name: "তামিম ইকবাল",
+        roll: "01", name: "Israt Jahan",
         marks: [
-            { subject: "বাংলা", obtained: 65 },
-            { subject: "গণিত", obtained: 58 },
-            { subject: "ইংরেজি", obtained: 62 },
-            { subject: "বাংলাদেশ ও বিশ্বপরিচয়", obtained: 60 },
-            { subject: "সাধারণ বিজ্ঞান", obtained: 68 },
-            { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 75 },
-            { subject: "শিল্পকলা", obtained: 70 },
-            { subject: "শা. ও মানসিক স্বাস্থ্য শিক্ষা", obtained: 72 },
-            { subject: "সঙ্গীত", obtained: 66 }
+            { subject: "বাংলা", obtained: 99 }, { subject: "প্রাথমিক গণিত", obtained: 98 },
+            { subject: "ইংরেজি", obtained: 90 }, { subject: "বাংলাদেশ ও বিশ্ব পরিচয়", obtained: 98 },
+            { subject: "প্রাথমিক বিজ্ঞান", obtained: 87 }, { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 99 },
+            { subject: "শিল্পকলা", obtained: 47 }, { subject: "শা. ও মানসিক স্বাস্থ্য", obtained: 48 },
+            { subject: "সঙ্গীত", obtained: 48 }
         ]
-    },
-    {
-        roll: "5",
-        name: "তামিম ইকবাল",
-        marks: [
-            { subject: "বাংলা", obtained: 65 },
-            { subject: "গণিত", obtained: 58 },
-            { subject: "ইংরেজি", obtained: 62 },
-            { subject: "বাংলাদেশ ও বিশ্বপরিচয়", obtained: 60 },
-            { subject: "সাধারণ বিজ্ঞান", obtained: 68 },
-            { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: 75 },
-            { subject: "শিল্পকলা", obtained: 70 },
-            { subject: "শা. ও মানসিক স্বাস্থ্য শিক্ষা", obtained: 72 },
-            { subject: "সঙ্গীত", obtained: 66 }
-        ]
-    },
-    // Add more here...
+    }
 ];
