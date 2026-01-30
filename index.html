@@ -21,24 +21,82 @@
         /* Navigation & Sticky Menu */
         .custom-nav { background: var(--primary-green); padding: 12px 0; }
         
-        .sticky-sub-wrapper {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1100;
-            transition: transform 0.4s ease-in-out;
-            transform: translateY(120px); pointer-events: none;
-        }
+        ./* প্রিমিয়াম ফ্লোটিং মেনু স্টাইল (wk12 Style) */
+.sticky-sub-wrapper {
+    position: fixed;
+    top: 25px; /* স্ক্রিনের মাথা থেকে সামান্য নিচে পজিশন */
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(150px); /* শুরুতে পজিশন */
+    pointer-events: none;
+}
 
-        .nav-up { transform: translateY(-100%); }
-        .nav-down { transform: translateY(0); pointer-events: auto; }
+.nav-up { transform: translateY(-120%) !important; opacity: 0; }
+.nav-down { transform: translateY(0) !important; pointer-events: auto; opacity: 1; }
 
-        .floating-bar {
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px);
-            border-radius: 50px; padding: 10px 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);
-            margin: 10px auto; max-width: 95%;
-        }
+.floating-bar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px); /* গ্লাস ইফেক্ট */
+    border-radius: 100px;
+    padding: 6px 15px;
+    box-shadow: 0 10px 30px rgba(0, 106, 78, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    margin: 0 auto;
+    max-width: 600px; /* হরাইজন্টাল সাইজ কমানো হয়েছে */
+    display: flex;
+    justify-content: center;
+}
 
-        .sub-menu-list { list-style: none; display: flex; justify-content: space-around; margin: 0; padding: 0; }
-        .sub-menu-list a { text-decoration: none; color: #444; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.sub-menu-list {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* আইটেমগুলোর মাঝের গ্যাপ */
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.sub-menu-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.sub-menu-list a i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+/* হোভার ইফেক্ট */
+.sub-menu-list a:hover {
+    background: var(--primary-green);
+    color: #fff !important;
+}
+
+.sub-menu-list a:hover i {
+    transform: scale(1.2);
+    color: #fff !important;
+}
+
+/* মোবাইল ভিউ অপ্টিমাইজেশন */
+@media (max-width: 768px) {
+    .floating-bar {
+        max-width: 92%;
+        padding: 5px 10px;
+    }
+    .sub-menu-list { gap: 5px; }
+    .sub-menu-list a { font-size: 11px; padding: 6px 8px; }
+    .sub-menu-list a i { font-size: 14px; }
+}
 
         /* Teacher Login Button */
         .teacher-login-btn {
@@ -127,11 +185,11 @@
 </nav>
 
 <div class="sticky-sub-wrapper" id="stickyMenu">
-    <div class="container">
+    <div class="container d-flex justify-content-center">
         <div class="floating-bar">
             <ul class="sub-menu-list">
                 <li><a href="#"><i class="fas fa-user-plus text-success"></i> <span>ভর্তি</span></a></li>
-                <li><a href="#"><i class="fas fa-chalkboard-teacher text-primary"></i> <span>শিক্ষক ও কমিটি</span></a></li>
+                <li><a href="#"><i class="fas fa-chalkboard-teacher text-primary"></i> <span>কমিটি</span></a></li>
                 <li><a href="#"><i class="fas fa-images text-warning"></i> <span>গ্যালারি</span></a></li>
                 <li><a href="#"><i class="fas fa-bullhorn text-danger"></i> <span>নোটিশ</span></a></li>
                 <li><a href="#"><i class="fas fa-envelope text-info"></i> <span>যোগাযোগ</span></a></li>
@@ -281,22 +339,24 @@
     let lastScrollTop = 0;
     const stickyMenu = document.getElementById('stickyMenu');
     window.addEventListener('scroll', function() {
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-        if (st < 450) {
-            stickyMenu.classList.remove('nav-down');
-            stickyMenu.style.position = "relative";
-            stickyMenu.style.transform = "translateY(-30px)";
-            return;
-        }
-        stickyMenu.style.position = "fixed";
-        if (st > lastScrollTop && st > 100) {
-            stickyMenu.classList.remove('nav-down');
-            stickyMenu.classList.add('nav-up');
-        } else {
-            stickyMenu.classList.remove('nav-up');
-            stickyMenu.classList.add('nav-down');
-        }
-        lastScrollTop = st;
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (st < 300) {
+        stickyMenu.classList.remove('nav-down');
+        stickyMenu.style.transform = "translateY(150px)"; // স্ক্রল না করলে নিচে লুকিয়ে থাকবে
+        return;
+    }
+    
+    if (st > lastScrollTop && st > 300) {
+        // নিচে স্ক্রল করলে হাইড
+        stickyMenu.classList.remove('nav-down');
+        stickyMenu.classList.add('nav-up');
+    } else {
+        // উপরে স্ক্রল করলে শো
+        stickyMenu.classList.remove('nav-up');
+        stickyMenu.classList.add('nav-down');
+    }
+    lastScrollTop = st;
     });
 </script>
 
