@@ -74,6 +74,126 @@
             gap: 8px;
         }
 
+        <section class="welcome-video-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="welcome-text-box pe-lg-4">
+                    <span class="badge bg-soft-green text-success mb-2 px-3 py-2 rounded-pill fw-bold">স্বাগতম আমাদের বিদ্যালয়ে</span>
+                    <h2 class="display-6 fw-bold mb-4" style="color: var(--primary-green);">ডিজিটাল শিক্ষায় আমরা <br>সর্বদাই এক ধাপ এগিয়ে</h2>
+                    <p class="fs-5 text-muted mb-4 text-justify">
+                        কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়ের পক্ষ থেকে আপনাদের জানাই আন্তরিক শুভেচ্ছা। আমরা বিশ্বাস করি প্রতিটি শিশুই এক একটি রত্ন। তাদের সুপ্ত প্রতিভাকে বিকশিত করতে আমাদের রয়েছে আধুনিক প্রযুক্তিনির্ভর ক্লাসরুম এবং অভিজ্ঞ শিক্ষক মণ্ডলী। আমাদের ডিজিটাল শিক্ষা পদ্ধতির এক ঝলক দেখে নিন ডান পাশের ভিডিওতে।
+                    </p>
+                    <div class="d-flex gap-3">
+                        <div class="stat-item">
+                            <h4 class="fw-bold mb-0 text-success">৫০০+</h4>
+                            <small class="text-muted">শিক্ষার্থী</small>
+                        </div>
+                        <div class="stat-item border-start ps-3">
+                            <h4 class="fw-bold mb-0 text-success">১৫+</h4>
+                            <small class="text-muted">দক্ষ শিক্ষক</small>
+                        </div>
+                        <div class="stat-item border-start ps-3">
+                            <h4 class="fw-bold mb-0 text-success">১০০%</h4>
+                            <small class="text-muted">পাস হার</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="video-container shadow-lg position-relative">
+                    <video id="schoolWelcomeVideo" class="w-100 rounded-4" poster="images/video-poster.jpg">
+                        <source src="videos/school-intro.mp4" type="video/mp4">
+                        আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।
+                    </video>
+                    
+                    <div class="video-play-overlay" onclick="handleVideoPlay()">
+                        <div class="play-circle">
+                            <i class="fas fa-play" id="mainPlayBtn"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* শুভেচ্ছা সেকশন স্টাইল */
+    .bg-soft-green { background-color: #e8f5e9; }
+    .text-justify { text-align: justify; }
+
+    /* ভিডিও কন্টেইনার স্টাইল */
+    .video-container {
+        border: 10px solid #fff;
+        border-radius: 30px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    .video-container:hover {
+        transform: scale(1.02);
+    }
+
+    .video-play-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 106, 78, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .video-play-overlay:hover {
+        background: rgba(0, 106, 78, 0.4);
+    }
+
+    .play-circle {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        color: var(--primary-green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        box-shadow: 0 0 30px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    .video-play-overlay:hover .play-circle {
+        transform: scale(1.1);
+        background: var(--primary-green);
+        color: #fff;
+    }
+
+    .stat-item h4 { font-size: 1.5rem; }
+</style>
+
+<script>
+    function handleVideoPlay() {
+        const video = document.getElementById('schoolWelcomeVideo');
+        const overlay = document.querySelector('.video-play-overlay');
+        const playBtn = document.getElementById('mainPlayBtn');
+
+        if (video.paused) {
+            video.play();
+            overlay.style.opacity = '0'; // ভিডিও চললে ওভারলে অদৃশ্য হবে
+            overlay.style.pointerEvents = 'none'; // যেন ভিডিওর ওপর ক্লিক করা যায়
+            video.setAttribute("controls","controls"); // প্লে হলে কন্ট্রোলস আসবে
+        }
+    }
+</script>
+
         /* ৮টি গ্রিড বাটন স্টাইল */
         .grid-card {
             display: flex;
