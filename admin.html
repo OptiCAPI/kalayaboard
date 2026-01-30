@@ -2,45 +2,129 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>টিচার প্যানেল | ইনপুট</title>
+    <title>শিক্ষক প্যানেল | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary-green: #006A4E; --gold: #FFD700; }
+        body { background-color: #f8fdfb; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        
+        .admin-header { background: var(--primary-green); color: white; padding: 20px 0; border-bottom: 5px solid var(--gold); }
+        .card { border-radius: 15px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .btn-primary { background: var(--primary-green); border: none; }
+        .btn-primary:hover { background: #00563f; }
+        
+        .code-box { background: #282a36; color: #f8f8f2; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; position: relative; }
+        .copy-btn { position: absolute; right: 10px; top: 10px; }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <span class="navbar-brand">টিচার এডমিন প্যানেল</span>
-            <a href="index.html" class="btn btn-outline-danger btn-sm">লগ আউট</a>
-        </div>
-    </nav>
+<div class="admin-header text-center">
+    <h2 class="fw-bold"><i class="fas fa-user-shield me-2"></i> শিক্ষক প্যানেল</h2>
+    <a href="index.html" class="btn btn-outline-danger btn-sm">লগ আউট</a>
+    <p class="mb-0">ডিজিটাল রেজাল্ট এন্ট্রি ও ডাটা জেনারেটর</p>
+</div>
 
-    <div class="container mt-4">
-        <div class="card p-4 shadow-sm">
-            <h5 class="fw-bold mb-3">ছাত্র-ছাত্রীর নম্বর ইনপুট</h5>
-            <div class="mb-3">
-                <label>শ্রেণি নির্বাচন করুন</label>
-                <select class="form-select">
-                    <option>শ্রেণি: ১ম</option>
-                    <option>শ্রেণি: ২য়</option>
-                    <option>শ্রেণি: ৩য়</option>
-                </select>
-            </div>
-            
-            <div class="row g-2 mb-2 border-bottom pb-2">
-                <div class="col-8">রোল ০১: মোঃ আরিফ</div>
-                <div class="col-4"><input type="number" class="form-control" placeholder="মার্ক"></div>
-            </div>
-            <div class="row g-2 mb-2 border-bottom pb-2">
-                <div class="col-8">রোল ০২: সাফিয়া আক্তার</div>
-                <div class="col-4"><input type="number" class="form-control" placeholder="মার্ক"></div>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card p-4 mb-4">
+                <h4 class="text-success fw-bold mb-4 border-bottom pb-2">রেজাল্ট ডাটা জেনারেটর</h4>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="fw-bold small">শিক্ষাবর্ষ</label>
+                        <input type="number" id="year" class="form-control" value="2026">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="fw-bold small">শ্রেণি</label>
+                        <select id="class" class="form-select">
+                            <option value="5">৫ম</option>
+                            <option value="4">৪র্থ</option>
+                            <option value="3">৩য়</option>
+                            <option value="2">২য়</option>
+                            <option value="1">১ম</option>
+                            <option value="0">প্রাক</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="fw-bold small">মূল্যায়ন</label>
+                        <select id="term" class="form-select">
+                            <option value="term1">১ম প্রান্তিক</option>
+                            <option value="term2" selected>২য় প্রান্তিক</option>
+                            <option value="term3">৩য় প্রান্তিক</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="fw-bold text-danger mb-2">এক্সেল (Excel) থেকে ডাটা এখানে পেস্ট করুন:</label>
+                    <textarea id="excelInput" class="form-control" rows="8" placeholder="রোল   নাম   বাংলা   ইংরেজি   গণিত..."></textarea>
+                    <small class="text-muted mt-1 d-block font-italic">* ক্রম: রোল > নাম > বাংলা > ইংরেজি > গণিত > বিজ্ঞান > ধর্ম > শারীরিক > সঙ্গীত > শিল্প</small>
+                </div>
+
+                <button class="btn btn-primary btn-lg w-100 fw-bold shadow" onclick="generateJS()">কোড জেনারেট করুন</button>
             </div>
 
-            <button class="btn btn-success w-100 mt-3" onclick="addStudentData()">সব সেভ করুন</button>
+            <div id="resultBox" class="card p-4 d-none">
+                <h5 class="fw-bold text-dark mb-3">আপনার ডাটাবেজ ফাইল (.js) কোড:</h5>
+                <div class="code-box">
+                    <button class="btn btn-sm btn-outline-light copy-btn" onclick="copyCode()">কপি করুন</button>
+                    <code id="outputCode"></code>
+                </div>
+                <div class="alert alert-info mt-3 small">
+                    <i class="fas fa-info-circle me-1"></i> এই কোডটি কপি করে আপনার সার্ভারের নির্দিষ্ট ফোল্ডারে (যেমন: <b>results/2026/5/term2.js</b>) পেস্ট করুন।
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <script src="script.js"></script>
+<script>
+    function generateJS() {
+        const year = document.getElementById('year').value;
+        const cls = document.getElementById('class').value;
+        const term = document.getElementById('term').value;
+        const data = document.getElementById('excelInput').value.trim();
+        
+        if(!data) { alert("অনুগ্রহ করে ডাটা ইনপুট দিন!"); return; }
+
+        const lines = data.split('\n');
+        let students = [];
+
+        lines.forEach(line => {
+            const parts = line.split('\t'); // Excel tabs
+            if(parts.length >= 2) {
+                students.push({
+                    roll: parts[0].trim(),
+                    name: parts[1].trim(),
+                    marks: [
+                        { subject: "বাংলা", obtained: parts[2] || 0 },
+                        { subject: "ইংরেজি", obtained: parts[3] || 0 },
+                        { subject: "গণিত", obtained: parts[4] || 0 },
+                        { subject: "প্রাথমিক বিজ্ঞান", obtained: parts[5] || 0 },
+                        { subject: "ধর্ম ও নৈতিক শিক্ষা", obtained: parts[6] || 0 },
+                        { subject: "শারীরিক শিক্ষা ও স্বাস্থ্য", obtained: parts[7] || 0 },
+                        { subject: "সঙ্গীত", obtained: parts[8] || 0 },
+                        { subject: "শিল্পকলা", obtained: parts[9] || 0 }
+                    ]
+                });
+            }
+        });
+
+        const varName = `data_${year}_${cls}_${term}`;
+        const finalJS = `var ${varName} = ${JSON.stringify(students, null, 4)};`;
+        
+        document.getElementById('outputCode').innerText = finalJS;
+        document.getElementById('resultBox').classList.remove('d-none');
+    }
+
+    function copyCode() {
+        const text = document.getElementById('outputCode').innerText;
+        navigator.clipboard.writeText(text).then(() => alert("কোড কপি হয়েছে!"));
+    }
+</script>
+
 </body>
 </html>
