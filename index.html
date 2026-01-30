@@ -18,10 +18,9 @@
 
         body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; overflow-x: hidden; }
 
-        /* ১. নোটিশ ও নেভবার */
         .custom-nav { background: var(--primary-green); padding: 15px 0; }
         
-        /* ২. স্লাইডার হিরো সেকশন */
+        /* স্লাইডার হিরো */
         .hero-slider-section { background: #f0fdf4; padding: 40px 0; }
         .carousel-item img {
             height: 450px;
@@ -31,32 +30,30 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        /* ৩. ফ্লোটিং স্টিকি মেনু (wk12 Style) */
+        /* স্মার্ট স্টিকি মেনু স্টাইল (Scroll Up logic) */
         .sticky-sub-wrapper {
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            margin-top: -30px;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            transition: transform 0.4s ease-in-out;
+            transform: translateY(120px); /* শুরুতে পজিশন */
+            pointer-events: none;
         }
+
+        .nav-up { transform: translateY(-100%); }
+        .nav-down { transform: translateY(0); pointer-events: auto; }
 
         .floating-bar {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             border-radius: 50px;
-            padding: 12px 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        /* স্ক্রল করলে মেনুর স্টাইল পরিবর্তন */
-        .is-sticky .floating-bar {
-            border-radius: 0;
-            margin-top: 0;
-            width: 100%;
-            background: #fff;
-            padding: 8px 0;
+            margin: 10px auto;
+            max-width: 95%;
         }
 
         .sub-menu-list {
@@ -77,24 +74,37 @@
             gap: 8px;
         }
 
-        /* স্ক্রল করলে আইকন ছোট বা হাইড হয়ে টেক্সট ফোকাস হবে */
-        .is-sticky .sub-menu-list a i { font-size: 14px; }
-
-        /* ৪. গ্রিড বাটন */
+        /* ৮টি গ্রিড বাটন স্টাইল */
         .grid-card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            border-radius: 20px;
-            color: white !important;
+            justify-content: center;
+            padding: 25px 15px;
+            border-radius: 25px;
             text-decoration: none !important;
-            transition: 0.3s;
+            color: white !important;
+            transition: all 0.4s ease;
             height: 100%;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
-        .grid-card:hover { transform: translateY(-5px); }
 
-        /* ৫. প্যারেন্ট রিভিউ সেকশন */
+        .grid-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        .grid-card i { font-size: 30px; margin-bottom: 10px; }
+        .grid-card h5 { font-size: 16px; font-weight: 700; margin: 0; }
+
+        /* গ্রিড কালার গ্রেডিয়েন্ট */
+        .bg-emerald { background: linear-gradient(135deg, #10b981, #059669); }
+        .bg-amber   { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .bg-blue    { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .bg-purple  { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .bg-red     { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .bg-teal    { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+        .bg-orange  { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .bg-pink    { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+        /* রিভিউ ও অন্যান্য */
         .parent-review-section { background: #fff; padding: 60px 0; }
         .review-card {
             background: #f8fdfb;
@@ -103,11 +113,12 @@
             border-left: 8px solid var(--primary-green);
         }
 
-        .bg-gradient-green { background: linear-gradient(135deg, #10b981, #059669); }
-        .bg-gradient-blue  { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-        .bg-gradient-purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-        .bg-gradient-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
-
+        @media (max-width: 768px) {
+            .floating-bar { border-radius: 15px; padding: 8px 5px; }
+            .sub-menu-list a { font-size: 10px; flex-direction: column; gap: 2px; }
+            .grid-card { padding: 15px 5px; }
+            .grid-card h5 { font-size: 13px; }
+        }
     </style>
 </head>
 <body>
@@ -122,9 +133,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <h1 class="display-5 fw-bold mb-4">ভবিষ্যৎ গড়ি <br><span style="color:var(--primary-green)">জ্ঞানের আলোয়</span></h1>
-                <p class="text-muted fs-5">একটি আধুনিক, প্রযুক্তিনির্ভর এবং আনন্দদায়ক শিক্ষা পরিবেশ।</p>
-                <a href="#" class="btn btn-success rounded-pill px-4 py-2 mt-3">ভর্তি তথ্য</a>
+                <h1 class="display-5 fw-bold mb-4">ভবিষ্যৎ গড়ি <br><span style="color:var(--primary-green)">জ্ঞানের আলোয়</span></h1>
+                <p class="text-muted fs-5">একটি আধুনিক, প্রযুক্তিনির্ভর এবং আনন্দদায়ক শিক্ষা পরিবেশ।</p>
+                <a href="#" class="btn btn-success rounded-pill px-4 py-2 mt-3 shadow">ভর্তি তথ্য</a>
             </div>
             <div class="col-lg-7">
                 <div id="schoolCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -157,17 +168,22 @@
 </div>
 
 <section class="container my-5 py-4">
+    <h3 class="text-center fw-bold mb-5">আমাদের ডিজিটাল সেবা সমূহ</h3>
     <div class="row g-4">
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-green"><i class="fas fa-video mb-2"></i> ডিজিটাল ক্লাস</a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-blue"><i class="fas fa-music mb-2"></i> জুকবক্স</a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-purple"><i class="fas fa-file-alt mb-2"></i> রেজাল্ট</a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-orange"><i class="fas fa-book mb-2"></i> বইসমূহ</a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-emerald"><i class="fas fa-video"></i><h5>ডিজিটাল ক্লাস</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-amber"><i class="fas fa-music"></i><h5>জুকবক্স</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-blue"><i class="fas fa-file-alt"></i><h5>রুটিন ও সিলেবাস</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-purple"><i class="fas fa-poll"></i><h5>মূল্যায়ন ও ফল</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-red"><i class="fas fa-play-circle"></i><h5>ভিডিও গ্যালারি</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-teal"><i class="fas fa-users"></i><h5>শিক্ষকমন্ডলী</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-orange"><i class="fas fa-book"></i><h5>বইসমূহ</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-pink"><i class="fas fa-calendar-check"></i><h5>ছুটির তালিকা</h5></a></div>
     </div>
 </section>
 
 <section class="container mb-5 py-5 text-center">
-    <h2 class="fw-bold mb-4">আমাদের ক্যাম্পাস</h2>
-    <img src="images/campus.jpg" class="img-fluid rounded-4 shadow-lg" style="max-height: 500px; width: 80%;">
+    <h2 class="fw-bold mb-4" style="color:var(--primary-green)">আমাদের ক্যাম্পাস</h2>
+    <img src="images/campus.jpg" class="img-fluid rounded-4 shadow-lg" style="max-height: 500px; width: 85%;">
 </section>
 
 <section class="parent-review-section">
@@ -177,7 +193,7 @@
             <div class="col-md-8">
                 <div class="review-card shadow-sm">
                     <i class="fas fa-quote-left fa-2x text-success mb-3 opacity-25"></i>
-                    <p class="fs-5 italic">"স্কুলের পরিবেশ এবং শিক্ষকদের পাঠদান পদ্ধতি অত্যন্ত আধুনিক। আমার সন্তান খুব আনন্দের সাথে পড়াশোনা করছে।"</p>
+                    <p class="fs-5 italic">"স্কুলের পরিবেশ এবং শিক্ষকদের পাঠদান পদ্ধতি অত্যন্ত আধুনিক। আমার সন্তান খুব আনন্দের সাথে পড়াশোনা করছে।"</p>
                     <div class="mt-4">
                         <h6 class="fw-bold mb-0">জনাব রহিম আহমেদ</h6>
                         <small class="text-muted">অভিভাবক, ৪র্থ শ্রেণি</small>
@@ -193,25 +209,47 @@
         <div class="col-md-4"><img src="images/principal.jpg" class="w-100" style="height:300px; object-fit:cover;"></div>
         <div class="col-md-8 p-4">
             <h4 class="fw-bold text-success">প্রধান শিক্ষকের বার্তা</h4>
-            <p class="text-muted">"আমরা শিশুদের আগামীর স্মার্ট নাগরিক হিসেবে গড়ে তুলতে অঙ্গীকারবদ্ধ।"</p>
+            <p class="text-muted fs-5">"আমরা শিশুদের আগামীর স্মার্ট নাগরিক হিসেবে গড়ে তুলতে অঙ্গীকারবদ্ধ। আধুনিক প্রযুক্তি ও নৈতিক শিক্ষার সমন্বয়ে আমাদের পথচলা।"</p>
         </div>
     </div>
 </section>
 
 <footer class="bg-dark text-white py-4 mt-5 text-center">
-    <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+    <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | পিরোজপুর</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // স্টিকি মেনু স্ক্রিপ্ট
+    // Sticky on Scroll Up logic
+    let lastScrollTop = 0;
+    const stickyMenu = document.getElementById('stickyMenu');
+    const delta = 5;
+
     window.addEventListener('scroll', function() {
-        const menu = document.getElementById('stickyMenu');
-        if (window.scrollY > 400) {
-            menu.classList.add('is-sticky');
-        } else {
-            menu.classList.remove('is-sticky');
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+
+        // শুরুর পজিশনে থাকলে (Hero section)
+        if (st < 450) {
+            stickyMenu.classList.remove('nav-down');
+            stickyMenu.style.position = "relative";
+            stickyMenu.style.transform = "translateY(-30px)";
+            return;
         }
+
+        stickyMenu.style.position = "fixed";
+        
+        if (Math.abs(lastScrollTop - st) <= delta) return;
+
+        if (st > lastScrollTop && st > 100) {
+            // নিচে স্ক্রল করলে হাইড
+            stickyMenu.classList.remove('nav-down');
+            stickyMenu.classList.add('nav-up');
+        } else {
+            // উপরে স্ক্রল করলে শো
+            stickyMenu.classList.remove('nav-up');
+            stickyMenu.classList.add('nav-down');
+        }
+        lastScrollTop = st;
     });
 </script>
 
