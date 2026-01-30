@@ -9,6 +9,13 @@
         :root { --primary-green: #006A4E; --gold: #FFD700; }
         body { background-color: #f8fdfb; font-family: 'Segoe UI', Tahoma, sans-serif; }
         
+        /* লগইন স্ক্রিন স্টাইল */
+        #loginOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary-green); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+        }
+
         .admin-header { background: var(--primary-green); color: white; padding: 20px 0; border-bottom: 5px solid var(--gold); }
         .card { border-radius: 15px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         .btn-primary { background: var(--primary-green); border: none; }
@@ -16,65 +23,81 @@
         
         .code-box { background: #282a36; color: #f8f8f2; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; position: relative; }
         .copy-btn { position: absolute; right: 10px; top: 10px; }
+        
+        /* প্যানেলটি ডিফল্টভাবে লুকানো থাকবে */
+        #mainPanel { display: none; }
     </style>
 </head>
 <body>
 
-<div class="admin-header text-center">
-    <h2 class="fw-bold"><i class="fas fa-user-shield me-2"></i> শিক্ষক প্যানেল</h2>
-    <p class="mb-0">ডিজিটাল রেজাল্ট এন্ট্রি ও ডাটা জেনারেটর</p>
-    <a href="index.html" class="btn btn-outline-danger btn-sm">লগ আউট</a>
+<div id="loginOverlay">
+    <div class="card p-4 text-center" style="width: 350px;">
+        <i class="fas fa-lock fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold">শিক্ষক লগইন</h4>
+        <p class="small text-muted">প্যানেলে প্রবেশ করতে পাসওয়ার্ড দিন</p>
+        <input type="password" id="passInput" class="form-control mb-3 text-center" placeholder="পাসওয়ার্ড লিখুন">
+        <button class="btn btn-success w-100 fw-bold" onclick="checkLogin()">প্রবেশ করুন</button>
+        <p id="errMsg" class="text-danger mt-2 small d-none">ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
+    </div>
 </div>
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card p-4 mb-4">
-                <h4 class="text-success fw-bold mb-4 border-bottom pb-2">রেজাল্ট ডাটা জেনারেটর</h4>
-                
-                <div class="row g-3 mb-4">
-                    <div class="col-md-4">
-                        <label class="fw-bold small">শিক্ষাবর্ষ</label>
-                        <input type="number" id="year" class="form-control" value="2026">
+<div id="mainPanel">
+    <div class="admin-header text-center">
+        <h2 class="fw-bold"><i class="fas fa-user-shield me-2"></i> শিক্ষক প্যানেল</h2>
+        <p class="mb-0">ডিজিটাল রেজাল্ট এন্ট্রি ও ডাটা জেনারেটর</p>
+        <button onclick="logout()" class="btn btn-outline-light btn-sm mt-2">লগ আউট</button>
+    </div>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card p-4 mb-4">
+                    <h4 class="text-success fw-bold mb-4 border-bottom pb-2">রেজাল্ট ডাটা জেনারেটর</h4>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="fw-bold small">শিক্ষাবর্ষ</label>
+                            <input type="number" id="year" class="form-control" value="2026">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fw-bold small">শ্রেণি</label>
+                            <select id="class" class="form-select">
+                                <option value="5">৫ম</option>
+                                <option value="4">৪র্থ</option>
+                                <option value="3">৩য়</option>
+                                <option value="2">২য়</option>
+                                <option value="1">১ম</option>
+                                <option value="0">প্রাক</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fw-bold small">মূল্যায়ন</label>
+                            <select id="term" class="form-select">
+                                <option value="term1">১ম প্রান্তিক</option>
+                                <option value="term2" selected>২য় প্রান্তিক</option>
+                                <option value="term3">৩য় প্রান্তিক</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label class="fw-bold small">শ্রেণি</label>
-                        <select id="class" class="form-select">
-                            <option value="5">৫ম</option>
-                            <option value="4">৪র্থ</option>
-                            <option value="3">৩য়</option>
-                            <option value="2">২য়</option>
-                            <option value="1">১ম</option>
-                            <option value="0">প্রাক</option>
-                        </select>
+
+                    <div class="mb-4">
+                        <label class="fw-bold text-danger mb-2">এক্সেল (Excel) থেকে ডাটা এখানে পেস্ট করুন:</label>
+                        <textarea id="excelInput" class="form-control" rows="8" placeholder="রোল   নাম   বাংলা   ইংরেজি   গণিত ..."></textarea>
+                        <small class="text-muted mt-1 d-block font-italic">* ক্রম: রোল > নাম > বাংলা > ইংরেজি > গণিত > বিজ্ঞান > ধর্ম > শারীরিক > সঙ্গীত > শিল্প</small>
                     </div>
-                    <div class="col-md-4">
-                        <label class="fw-bold small">মূল্যায়ন</label>
-                        <select id="term" class="form-select">
-                            <option value="term1">১ম প্রান্তিক</option>
-                            <option value="term2" selected>২য় প্রান্তিক</option>
-                            <option value="term3">৩য় প্রান্তিক</option>
-                        </select>
-                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100 fw-bold shadow" onclick="generateJS()">কোড জেনারেট করুন</button>
                 </div>
 
-                <div class="mb-4">
-                    <label class="fw-bold text-danger mb-2">এক্সেল (Excel) থেকে ডাটা এখানে পেস্ট করুন:</label>
-                    <textarea id="excelInput" class="form-control" rows="8" placeholder="রোল   নাম   বাংলা   ইংরেজি   গণিত ..."></textarea>
-                    <small class="text-muted mt-1 d-block font-italic">* ক্রম: রোল > নাম > বাংলা > ইংরেজি > গণিত > বিজ্ঞান > ধর্ম > শারীরিক > সঙ্গীত > শিল্প</small>
-                </div>
-
-                <button class="btn btn-primary btn-lg w-100 fw-bold shadow" onclick="generateJS()">কোড জেনারেট করুন</button>
-            </div>
-
-            <div id="resultBox" class="card p-4 d-none">
-                <h5 class="fw-bold text-dark mb-3">আপনার ডাটাবেজ ফাইল (.js) কোড:</h5>
-                <div class="code-box">
-                    <button class="btn btn-sm btn-outline-light copy-btn" onclick="copyCode()">কপি করুন</button>
-                    <code id="outputCode"></code>
-                </div>
-                <div class="alert alert-info mt-3 small">
-                    <i class="fas fa-info-circle me-1"></i> এই কোডটি কপি করে আপনার সার্ভারের নির্দিষ্ট ফোল্ডারে (যেমন: <b>results/2026/5/term2.js</b>) পেস্ট করুন।
+                <div id="resultBox" class="card p-4 d-none">
+                    <h5 class="fw-bold text-dark mb-3">আপনার ডাটাবেজ ফাইল (.js) কোড:</h5>
+                    <div class="code-box">
+                        <button class="btn btn-sm btn-outline-light copy-btn" onclick="copyCode()">কপি করুন</button>
+                        <pre><code id="outputCode"></code></pre>
+                    </div>
+                    <div class="alert alert-info mt-3 small">
+                        <i class="fas fa-info-circle me-1"></i> এই কোডটি কপি করে আপনার সার্ভারের নির্দিষ্ট ফোল্ডারে পেস্ট করুন।
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,6 +105,33 @@
 </div>
 
 <script>
+    // আপনার সিক্রেট পাসওয়ার্ড এখানে সেট করুন
+    const MASTER_PASSWORD = "admin@kalaya"; 
+
+    function checkLogin() {
+        const pass = document.getElementById('passInput').value;
+        if(pass === MASTER_PASSWORD) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainPanel').style.display = 'block';
+            sessionStorage.setItem("isAdmin", "true");
+        } else {
+            document.getElementById('errMsg').classList.remove('d-none');
+        }
+    }
+
+    // পেজ লোড হলে চেক করবে আগে লগইন করা আছে কি না
+    window.onload = function() {
+        if(sessionStorage.getItem("isAdmin") === "true") {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainPanel').style.display = 'block';
+        }
+    }
+
+    function logout() {
+        sessionStorage.removeItem("isAdmin");
+        location.reload();
+    }
+
     function generateJS() {
         const year = document.getElementById('year').value;
         const cls = document.getElementById('class').value;
@@ -94,7 +144,7 @@
         let students = [];
 
         lines.forEach(line => {
-            const parts = line.split('\t'); // Excel tabs
+            const parts = line.split('\t'); 
             if(parts.length >= 2) {
                 students.push({
                     roll: parts[0].trim(),
@@ -122,7 +172,7 @@
 
     function copyCode() {
         const text = document.getElementById('outputCode').innerText;
-        navigator.clipboard.writeText(text).then(() => alert("কোড কপি হয়েছে!"));
+        navigator.clipboard.writeText(text).then(() => alert("কোড কপি হয়েছে!"));
     }
 </script>
 
