@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | হোম</title>
+    <title>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,221 +14,206 @@
         :root {
             --primary-green: #006A4E;
             --accent-yellow: #FFB800;
-            --glass-bg: rgba(255, 255, 255, 0.9);
         }
 
         body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; overflow-x: hidden; }
 
         /* ১. নোটিশ ও নেভবার */
-        .ticker-container { background: #fff; border-bottom: 2px solid var(--primary-green); padding: 8px 0; }
-        .custom-nav { background: var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .login-pill { background: var(--accent-yellow); color: #000; padding: 6px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+        .custom-nav { background: var(--primary-green); padding: 15px 0; }
+        
+        /* ২. স্লাইডার হিরো সেকশন */
+        .hero-slider-section { background: #f0fdf4; padding: 40px 0; }
+        .carousel-item img {
+            height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 8px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
 
-        /* ২. হিরো সেকশন: wk12 স্টাইল */
-        .premium-hero { background: linear-gradient(135deg, #f8fdfb 0%, #e8f5e9 100%); min-height: 80vh; padding: 60px 0; position: relative; display: flex; align-items: center; }
-        .main-title { font-size: 3.5rem; font-weight: 800; color: #2c3e50; line-height: 1.2; }
-        .hero-img-large { width: 100%; border-radius: 40px 10px 40px 10px; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        /* ৩. ফ্লোটিং স্টিকি মেনু (wk12 Style) */
+        .sticky-sub-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            margin-top: -30px;
+        }
 
-        /* ৩. ফ্লোটিং সাব-মেনু */
-        .floating-sub-menu { position: relative; z-index: 100; margin-top: -40px; }
-        .menu-glass-wrapper { background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 50px; padding: 12px 30px; border: 1px solid rgba(0,0,0,0.05); }
-        .sub-menu-list { list-style: none; display: flex; justify-content: space-around; margin: 0; padding: 0; }
-        .sub-menu-list a { text-decoration: none; color: #333; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .sub-menu-list a:hover { color: var(--primary-green); transform: translateY(-2px); }
+        .floating-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 12px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
 
-        /* ৪. ভিডিও ও স্বাগত বক্তব্য */
-        .welcome-video-section { background: #fff; padding: 80px 0; }
-        .video-box { position: relative; border-radius: 30px; overflow: hidden; border: 10px solid #f8f9fa; }
-        .play-btn-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: var(--primary-green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; font-size: 24px; }
+        /* স্ক্রল করলে মেনুর স্টাইল পরিবর্তন */
+        .is-sticky .floating-bar {
+            border-radius: 0;
+            margin-top: 0;
+            width: 100%;
+            background: #fff;
+            padding: 8px 0;
+        }
 
-        /* ৫. ৩ডি স্ক্রল রিভিল */
-        .reveal-section { position: relative; height: 130vh; background: #fff; }
-        .reveal-container { position: sticky; top: 15%; display: flex; flex-direction: column; align-items: center; }
-        .reveal-frame { width: 45%; transform: perspective(1000px) rotateX(15deg); border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); transition: 0.1s linear; }
+        .sub-menu-list {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* ৬. ৮টি গ্রিড কার্ড */
-        .grid-card { display: flex; flex-direction: column; align-items: center; padding: 25px; border-radius: 28px; text-decoration: none !important; color: white !important; transition: 0.4s; height: 100%; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .grid-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .bg-gradient-emerald { background: linear-gradient(135deg, #10b981, #059669); }
-        .bg-gradient-amber   { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .bg-gradient-blue    { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-        .bg-gradient-purple  { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-        .bg-gradient-red     { background: linear-gradient(135deg, #ef4444, #dc2626); }
-        .bg-gradient-teal    { background: linear-gradient(135deg, #14b8a6, #0d9488); }
-        .bg-gradient-orange  { background: linear-gradient(135deg, #f97316, #ea580c); }
-        .bg-gradient-pink    { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .sub-menu-list a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        /* ৭. মাল্টিমিডিয়া গ্যালারি ট্যাব */
-        .nav-pills .nav-link.active { background-color: var(--primary-green); }
-        .gallery-img { transition: 0.4s; cursor: pointer; border-radius: 15px; }
-        .gallery-img:hover { transform: scale(1.05); filter: brightness(0.8); }
+        /* স্ক্রল করলে আইকন ছোট বা হাইড হয়ে টেক্সট ফোকাস হবে */
+        .is-sticky .sub-menu-list a i { font-size: 14px; }
 
-        /* ৮. প্রধান শিক্ষকের বার্তা */
-        .principal-card { background: white; border-radius: 40px; border-left: 10px solid var(--primary-green); overflow: hidden; }
-        .principal-img { width: 100%; height: 350px; object-fit: cover; }
+        /* ৪. গ্রিড বাটন */
+        .grid-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-radius: 20px;
+            color: white !important;
+            text-decoration: none !important;
+            transition: 0.3s;
+            height: 100%;
+        }
+        .grid-card:hover { transform: translateY(-5px); }
+
+        /* ৫. প্যারেন্ট রিভিউ সেকশন */
+        .parent-review-section { background: #fff; padding: 60px 0; }
+        .review-card {
+            background: #f8fdfb;
+            padding: 30px;
+            border-radius: 30px;
+            border-left: 8px solid var(--primary-green);
+        }
+
+        .bg-gradient-green { background: linear-gradient(135deg, #10b981, #059669); }
+        .bg-gradient-blue  { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .bg-gradient-purple { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .bg-gradient-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
 
     </style>
 </head>
 <body>
 
-<div class="ticker-container no-print">
-    <div class="container d-flex align-items-center">
-        <span class="badge bg-danger me-2">নোটিশ:</span>
-        <marquee class="fw-bold">আগামী ০৪/০১/২০২৫ রবিবার বিদ্যালয় বন্ধ থাকবে। বিস্তারিত জানতে ছুটির তালিকা দেখুন।</marquee>
-    </div>
-</div>
-
-<nav class="navbar navbar-dark custom-nav sticky-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-            <img src="images/govt.png" width="35" class="me-2"> কালাইয়া বোর্ড সপ্রাবি
-        </a>
-        <a href="login.html" class="login-pill shadow-sm"><i class="fas fa-lock me-1"></i> লগইন</a>
+<nav class="navbar navbar-dark custom-nav">
+    <div class="container text-center justify-content-center">
+        <a class="navbar-brand fw-bold" href="#">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</a>
     </div>
 </nav>
 
-<section class="premium-hero">
+<section class="hero-slider-section">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6">
-                <span class="badge bg-success mb-2 px-3 py-2 rounded-pill">স্থাপিত: ১৯৩০</span>
-                <h1 class="main-title">কালাইয়া বোর্ড <br><span style="color:var(--primary-green)">সরকারি প্রাথমিক বিদ্যালয়</span></h1>
-                <p class="fs-5 text-muted mt-4">জ্ঞানের আলোয় উদ্ভাসিত এক আদর্শ বিদ্যাপীঠ। পিরোজপুর জেলার অন্যতম শ্রেষ্ঠ ডিজিটাল শিক্ষা প্রতিষ্ঠান।</p>
-                <div class="mt-4">
-                    <a href="results.html" class="btn btn-success btn-lg rounded-pill px-5 shadow">ফলাফল দেখুন</a>
-                </div>
+            <div class="col-lg-5">
+                <h1 class="display-5 fw-bold mb-4">ভবিষ্যৎ গড়ি <br><span style="color:var(--primary-green)">জ্ঞানের আলোয়</span></h1>
+                <p class="text-muted fs-5">একটি আধুনিক, প্রযুক্তিনির্ভর এবং আনন্দদায়ক শিক্ষা পরিবেশ।</p>
+                <a href="#" class="btn btn-success rounded-pill px-4 py-2 mt-3">ভর্তি তথ্য</a>
             </div>
-            <div class="col-lg-6 mt-5 mt-lg-0">
-                <img src="images/classroom.jpg" alt="Classroom" class="hero-img-large">
+            <div class="col-lg-7">
+                <div id="schoolCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images/slide1.jpg" class="d-block w-100" alt="Slider 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide2.jpg" class="d-block w-100" alt="Slider 2">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="floating-sub-menu no-print">
-    <div class="container">
-        <div class="menu-glass-wrapper shadow-lg">
+<div class="sticky-sub-wrapper" id="stickyMenu">
+    <div class="container px-0 px-lg-3">
+        <div class="floating-bar">
             <ul class="sub-menu-list">
-                <li><a href="#"><i class="fas fa-user-plus text-success"></i> ভর্তি</a></li>
-                <li><a href="#"><i class="fas fa-chalkboard-teacher text-primary"></i> শিক্ষক ও কমিটি</a></li>
-                <li><a href="#"><i class="fas fa-images text-warning"></i> গ্যালারি</a></li>
-                <li><a href="#"><i class="fas fa-bullhorn text-danger"></i> নোটিশ</a></li>
-                <li><a href="#"><i class="fas fa-map-marker-alt text-info"></i> যোগাযোগ</a></li>
+                <li><a href="#"><i class="fas fa-user-plus text-success"></i> <span>ভর্তি</span></a></li>
+                <li><a href="#"><i class="fas fa-chalkboard-teacher text-primary"></i> <span>শিক্ষক ও কমিটি</span></a></li>
+                <li><a href="#"><i class="fas fa-images text-warning"></i> <span>গ্যালারি</span></a></li>
+                <li><a href="#"><i class="fas fa-bullhorn text-danger"></i> <span>নোটিশ</span></a></li>
+                <li><a href="#"><i class="fas fa-envelope text-info"></i> <span>যোগাযোগ</span></a></li>
             </ul>
         </div>
     </div>
 </div>
 
-<section class="welcome-video-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5">
-                <h2 class="fw-bold display-6 mb-4">স্বাগতম আমাদের <br><span style="color:var(--primary-green)">ডিজিটাল ক্যাম্পাসে</span></h2>
-                <p class="fs-5 italic text-muted border-start border-success border-4 ps-3">"আমাদের লক্ষ্য শিশুদের নৈতিক ও সৃজনশীল মেধার পরিপূর্ণ বিকাশ ঘটানো। আধুনিক প্রযুক্তি নির্ভর শিক্ষা নিশ্চিত করাই আমাদের অঙ্গীকার।"</p>
-            </div>
-            <div class="col-lg-7">
-                <div class="video-box shadow-lg">
-                    <video id="schoolVideo" class="w-100" poster="images/classroom_poster.jpg">
-                        <source src="videos/school_clip.mp4" type="video/mp4">
-                    </video>
-                    <div class="play-btn-overlay" onclick="toggleVideo()"><i class="fas fa-play" id="playIcon"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="reveal-section">
-    <div class="reveal-container text-center">
-        <h2 class="fw-bold mb-4" style="color:var(--primary-green)">আমাদের ক্যাম্পাস দৃশ্য</h2>
-        <div class="reveal-frame">
-            <img src="images/full_school_view.jpg" class="w-100">
-        </div>
-    </div>
-</section>
-
-<section class="container my-5 py-5">
-    <h3 class="text-center fw-bold mb-5">শিক্ষার্থী ও অভিভাবক পোর্টাল</h3>
+<section class="container my-5 py-4">
     <div class="row g-4">
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-emerald"><i class="fas fa-chalkboard-teacher fa-2x mb-2"></i><h5>ডিজিটাল ক্লাস</h5></a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-amber"><i class="fas fa-music fa-2x mb-2"></i><h5>জুকবক্স</h5></a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-blue"><i class="fas fa-calendar-alt fa-2x mb-2"></i><h5>রুটিন ও সিলেবাস</h5></a></div>
-        <div class="col-6 col-md-3"><a href="results.html" class="grid-card bg-gradient-purple"><i class="fas fa-file-invoice fa-2x mb-2"></i><h5>মূল্যায়ন ও ফল</h5></a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-red"><i class="fas fa-video fa-2x mb-2"></i><h5>ভিডিও গ্যালারি</h5></a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-teal"><i class="fas fa-users fa-2x mb-2"></i><h5>শিক্ষকমন্ডলী</h5></a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-orange"><i class="fas fa-book fa-2x mb-2"></i><h5>বইসমূহ</h5></a></div>
-        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-pink"><i class="fas fa-umbrella-beach fa-2x mb-2"></i><h5>ছুটির তালিকা</h5></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-green"><i class="fas fa-video mb-2"></i> ডিজিটাল ক্লাস</a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-blue"><i class="fas fa-music mb-2"></i> জুকবক্স</a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-purple"><i class="fas fa-file-alt mb-2"></i> রেজাল্ট</a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-gradient-orange"><i class="fas fa-book mb-2"></i> বইসমূহ</a></div>
     </div>
 </section>
 
-<section class="container mb-5 py-5 bg-white rounded-4 shadow-sm">
-    <div class="text-center mb-5">
-        <h2 class="fw-bold">ফটো ও ভিডিও গ্যালারি</h2>
-    </div>
-    <ul class="nav nav-pills justify-content-center mb-4" id="galleryTab">
-        <li class="nav-item"><button class="nav-link active rounded-pill me-2" data-bs-toggle="pill" data-bs-target="#photos">ছবিসমূহ</button></li>
-        <li class="nav-item"><button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#videos">ভিডিওসমূহ</button></li>
-    </ul>
-    <div class="tab-content container">
-        <div class="tab-pane fade show active" id="photos">
-            <div class="row g-3">
-                <div class="col-md-4 col-6"><img src="images/g1.jpg" class="img-fluid gallery-img"></div>
-                <div class="col-md-4 col-6"><img src="images/g2.jpg" class="img-fluid gallery-img"></div>
-                <div class="col-md-4 col-6"><img src="images/g3.jpg" class="img-fluid gallery-img"></div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="videos">
-            <div class="row g-3">
-                <div class="col-md-6"><div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow"><iframe src="https://www.youtube.com/embed/YOUR_ID"></iframe></div></div>
-                <div class="col-md-6"><div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow"><iframe src="https://www.youtube.com/embed/YOUR_ID"></iframe></div></div>
+<section class="container mb-5 py-5 text-center">
+    <h2 class="fw-bold mb-4">আমাদের ক্যাম্পাস</h2>
+    <img src="images/campus.jpg" class="img-fluid rounded-4 shadow-lg" style="max-height: 500px; width: 80%;">
+</section>
+
+<section class="parent-review-section">
+    <div class="container">
+        <h3 class="fw-bold text-center mb-5">অভিভাবকদের মতামত</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="review-card shadow-sm">
+                    <i class="fas fa-quote-left fa-2x text-success mb-3 opacity-25"></i>
+                    <p class="fs-5 italic">"স্কুলের পরিবেশ এবং শিক্ষকদের পাঠদান পদ্ধতি অত্যন্ত আধুনিক। আমার সন্তান খুব আনন্দের সাথে পড়াশোনা করছে।"</p>
+                    <div class="mt-4">
+                        <h6 class="fw-bold mb-0">জনাব রহিম আহমেদ</h6>
+                        <small class="text-muted">অভিভাবক, ৪র্থ শ্রেণি</small>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="container py-5">
-    <div class="principal-card shadow-lg">
-        <div class="row align-items-center g-0">
-            <div class="col-md-4"><img src="images/principal.jpg" class="principal-img"></div>
-            <div class="col-md-8 p-5">
-                <h3 class="fw-bold" style="color:var(--primary-green)">প্রধান শিক্ষকের বার্তা</h3>
-                <p class="fs-5 text-muted mt-3">"একটি সমৃদ্ধ জাতি গঠনে মানসম্মত প্রাথমিক শিক্ষার বিকল্প নেই। আমরা শিশুদের মেধা ও নৈতিকতার সমন্বয়ে আগামীর স্মার্ট নাগরিক হিসেবে গড়ে তুলতে নিরলস কাজ করছি।"</p>
-                <h6 class="mt-4 fw-bold">শুভেচ্ছান্তে, <br> প্রধান শিক্ষক ও সভাপতি</h6>
-            </div>
+    <div class="row align-items-center bg-white rounded-4 shadow-sm overflow-hidden g-0">
+        <div class="col-md-4"><img src="images/principal.jpg" class="w-100" style="height:300px; object-fit:cover;"></div>
+        <div class="col-md-8 p-4">
+            <h4 class="fw-bold text-success">প্রধান শিক্ষকের বার্তা</h4>
+            <p class="text-muted">"আমরা শিশুদের আগামীর স্মার্ট নাগরিক হিসেবে গড়ে তুলতে অঙ্গীকারবদ্ধ।"</p>
         </div>
     </div>
 </section>
 
-<footer class="bg-dark text-white py-4">
-    <div class="container text-center">
-        <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | ইন্দুরকানী, পিরোজপুর</p>
-    </div>
+<footer class="bg-dark text-white py-4 mt-5 text-center">
+    <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    function toggleVideo() {
-        const video = document.getElementById('schoolVideo');
-        const icon = document.getElementById('playIcon');
-        if (video.paused) { video.play(); icon.className = 'fas fa-pause'; } 
-        else { video.pause(); icon.className = 'fas fa-play'; }
-    }
-
+    // স্টিকি মেনু স্ক্রিপ্ট
     window.addEventListener('scroll', function() {
-        const revealSection = document.querySelector('.reveal-section');
-        const revealFrame = document.querySelector('.reveal-frame');
-        const rect = revealSection.getBoundingClientRect();
-        const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
-
-        if (scrollPercent > 0 && scrollPercent < 2) {
-            let width = 45 + (scrollPercent * 55);
-            let rotate = 15 - (scrollPercent * 15);
-            if (width > 100) width = 100;
-            if (rotate < 0) rotate = 0;
-            revealFrame.style.width = width + '%';
-            revealFrame.style.transform = `perspective(1000px) rotateX(${rotate}deg)`;
+        const menu = document.getElementById('stickyMenu');
+        if (window.scrollY > 400) {
+            menu.classList.add('is-sticky');
+        } else {
+            menu.classList.remove('is-sticky');
         }
     });
 </script>
+
 </body>
 </html>
