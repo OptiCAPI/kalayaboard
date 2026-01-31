@@ -3,58 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>জুকবক্স | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>প্রিমিয়াম জুকবক্স | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap');
-        :root { --current-theme: #ff4757; }
         
+        :root { 
+            --current-theme: #ff4757; 
+        }
+
         body {
             background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
-            font-family: 'Hind Siliguri', sans-serif; min-height: 100vh; transition: 0.5s;
+            font-family: 'Hind Siliguri', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 50px;
+            transition: background 0.5s ease;
         }
 
+        /* প্লেয়ার কার্ড স্টাইল */
         .player-card {
-            background: rgba(255, 255, 255, 0.95); border-radius: 40px; border: 8px solid #fff;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15); margin-top: 20px; padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px;
+            border: 8px solid #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            margin-top: 20px;
+            padding: 25px;
+            position: relative;
         }
 
-        /* জিকজ্যাক অ্যানিমেশন (Visualizer) */
+        /* জিকজ্যাক ভিজ্যুয়ালাইজার */
         .visualizer {
-            display: flex; align-items: flex-end; justify-content: center;
-            gap: 3px; height: 30px; margin-bottom: 10px; opacity: 0; transition: 0.3s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            height: 40px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transition: 0.3s;
         }
         .playing .visualizer { opacity: 1; }
-        .bar { width: 4px; background: var(--current-theme); border-radius: 2px; animation: bounce 0.5s ease-in-out infinite alternate; }
-        @keyframes bounce { from { height: 5px; } to { height: 25px; } }
-        /* বিভিন্ন বার এর জন্য আলাদা ডিলে */
-        .bar:nth-child(2) { animation-delay: 0.1s; } .bar:nth-child(3) { animation-delay: 0.2s; }
-        .bar:nth-child(4) { animation-delay: 0.3s; } .bar:nth-child(5) { animation-delay: 0.15s; }
+        .bar { 
+            width: 6px; 
+            background: var(--current-theme); 
+            border-radius: 3px; 
+            animation: bounce 0.5s ease-in-out infinite alternate; 
+        }
+        @keyframes bounce { 
+            from { height: 5px; } 
+            to { height: 35px; } 
+        }
+        .bar:nth-child(even) { animation-duration: 0.7s; }
+        .bar:nth-child(3n) { animation-duration: 0.6s; }
 
-        /* এক লাইনের কন্ট্রোল বক্স */
+        /* এক লাইনের কন্ট্রোল */
         .inline-controls {
-            display: flex; align-items: center; justify-content: center;
-            gap: 15px; flex-wrap: wrap; margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .vol-group { display: flex; align-items: center; gap: 8px; background: #f0f0f0; padding: 5px 15px; border-radius: 30px; }
-        
-        .volume-slider { -webkit-appearance: none; width: 80px; height: 4px; background: #ccc; border-radius: 5px; outline: none; }
-        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--current-theme); cursor: pointer; border: 2px solid #fff; }
+        .btn-ctrl {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn-ctrl:hover { transform: scale(1.1); }
 
-        .btn-ctrl { width: 45px; height: 45px; border-radius: 50%; border: none; transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .btn-play { width: 60px; height: 60px; font-size: 1.2rem; background: var(--current-theme); color: white; }
+        .btn-play {
+            width: 65px;
+            height: 65px;
+            background: var(--current-theme);
+            color: white;
+            font-size: 1.5rem;
+            position: relative;
+        }
+        /* প্লে বাটন পালস অ্যানিমেশন */
+        .playing .btn-play {
+            animation: pulse-ring 1.5s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 71, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+        }
 
-        .progress-container { height: 8px; background: #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; cursor: pointer; }
-        .progress-bar { height: 100%; background: var(--current-theme); width: 0%; transition: width 0.1s linear; }
+        .vol-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.05);
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--current-theme);
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+
+        /* প্রগ্রেস বার */
+        .progress-container {
+            height: 10px;
+            background: #eee;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--current-theme);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* গানের লিস্ট ও হোভার অ্যানিমেশন */
+        .list-title {
+            color: #fff;
+            font-weight: bold;
+            margin: 20px 0 15px;
+            text-align: center;
+            background: rgba(0,0,0,0.15);
+            padding: 10px;
+            border-radius: 50px;
+            display: block;
+        }
 
         .song-btn {
-            background: #fff; border: none; border-radius: 15px; padding: 12px 20px; margin-bottom: 10px;
-            display: flex; align-items: center; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 6px solid #ddd; transition: 0.3s;
+            background: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 6px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .song-btn.active { background: #fff0f1; border-left-color: var(--current-theme); }
-        .list-title { color: #fff; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; background: rgba(0,0,0,0.1); padding: 8px; border-radius: 50px; }
+
+        .song-btn:hover {
+            transform: translateX(10px) scale(1.02);
+            background: #fffafa;
+        }
+
+        .song-btn i {
+            font-size: 1.6rem;
+            transition: 0.4s;
+        }
+
+        .song-btn:hover i {
+            transform: scale(1.4) rotate(10deg);
+        }
+
+        .song-btn.active {
+            background: #fff0f1;
+            border-left-color: var(--current-theme);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -69,26 +201,204 @@
 
     <div class="container">
         <div class="row justify-content-center mb-5">
-            <div class="col-md-8 text-center">
+            <div class="col-md-9 text-center">
                 <div class="player-card" id="playerArea">
                     <div class="visualizer">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
                         <div class="bar"></div><div class="bar"></div>
                     </div>
-                    
-                    <h4 id="display-title" class="fw-bold mb-1">একটি ছড়া বাছাই করো</h4>
+
+                    <h3 id="display-title" class="fw-bold mb-1">একটি ছড়া বাছাই করো</h3>
+                    <p class="text-muted small mb-3">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
                     
                     <div class="progress-container" onclick="seek(event)">
                         <div class="progress-bar" id="progressBar"></div>
                     </div>
 
                     <div class="inline-controls">
-                        <button class="btn-ctrl btn btn-light" onclick="stopAudio()"><i class="fas fa-stop"></i></button>
-                        
+                        <button class="btn-ctrl" onclick="stopAudio()" title="থামাও"><i class="fas fa-stop"></i></button>
                         <button class="btn-ctrl btn-play shadow-lg" id="playBtn" onclick="togglePlay()"><i class="fas fa-play"></i></button>
-                        
-                        <button class="btn-ctrl btn btn-light" onclick="restart()"><i class="fas fa-redo"></i></button>
+                        <button class="btn-ctrl" onclick="restart()" title="আবার শুরু"><i class="fas fa-redo"></i></button>
 
                         <div class="vol-group">
-                            <i class="fas
+                            <i class="fas fa-volume-down text-muted"></i>
+                            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1" oninput="changeVolume(this.value)">
+                            <i class="fas fa-volume-up text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <span class="list-title"><i class="fas fa-music me-2"></i> বাংলা গান ও ছড়া</span>
+                <div id="bangla-list">
+                    <button class="song-btn" id="song-rhyme1" onclick="playSong('rhyme1.mp3', 'আতা গাছে তোতা পাখি', this, '#2ecc71')">
+                        <i class="fas fa-play-circle text-success me-3"></i> <b>আতা গাছে তোতা পাখি</b>
+                    </button>
+                    <button class="song-btn" id="song-talgach1" onclick="playSong('talgach1.mp3', 'তালগাছ এক পায়ে দাঁড়িয়ে', this, '#1abc9c')">
+                        <i class="fas fa-play-circle text-info me-3"></i> <b>তালগাছ এক পায়ে দাঁড়িয়ে</b>
+                    </button>
+                    <button class="song-btn" id="song-bapuram" onclick="playSong('bapuram.mp3', 'বাপুরাম সাপুড়ে', this, '#e67e22')">
+                        <i class="fas fa-play-circle text-warning me-3"></i> <b>বাপুরাম সাপুড়ে</b>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <span class="list-title"><i class="fas fa-star me-2"></i> English Rhymes</span>
+                <div id="english-list">
+                    <button class="song-btn" id="song-twinkle" onclick="playSong('twinkle-english1.mp3', 'Twinkle Twinkle', this, '#3498db')">
+                        <i class="fas fa-play-circle text-primary me-3"></i> <b>Twinkle Twinkle Little Star</b>
+                    </button>
+                    <button class="song-btn" id="song-head" onclick="playSong('head-soulder.mp3', 'Head & Shoulders', this, '#9b59b6')">
+                        <i class="fas fa-play-circle me-3" style="color:#9b59b6;"></i> <b>Head, Shoulders, Knees & Toes</b>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer" ontimeupdate="updateProgress()" onended="songEnded()"></audio>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const progBar = document.getElementById('progressBar');
+        const titleDisp = document.getElementById('display-title');
+        const playerArea = document.getElementById('playerArea');
+        const volSlider = document.getElementById('volumeSlider');
+        const allButtons = Array.from(document.querySelectorAll('.song-btn'));
+
+        let currentActiveBtn = null;
+
+        // ১. উইন্ডো লোড হওয়ার সময় মেমরি থেকে ডাটা রিস্টোর করা
+        window.onload = function() {
+            const savedFile = localStorage.getItem('lastFile');
+            const savedTitle = localStorage.getItem('lastTitle');
+            const savedVol = localStorage.getItem('lastVol');
+            const savedColor = localStorage.getItem('lastColor');
+            const savedTime = localStorage.getItem('lastTime');
+
+            // ভলিউম রিস্টোর
+            if (savedVol !== null) {
+                audio.volume = savedVol;
+                volSlider.value = savedVol;
+            }
+
+            // গান রিস্টোর
+            if (savedFile) {
+                audio.src = "audio/" + savedFile;
+                titleDisp.innerText = savedTitle;
+                document.documentElement.style.setProperty('--current-theme', savedColor);
+                audio.currentTime = savedTime || 0;
+                
+                // বাটন হাইলাইট
+                const btnId = allButtons.find(b => b.getAttribute('onclick').includes(savedFile));
+                if(btnId) {
+                    btnId.classList.add('active');
+                    currentActiveBtn = btnId;
+                }
+            }
+        };
+
+        // ২. গান চালানোর মেইন ফাংশন
+        function playSong(file, title, btn, themeColor) {
+            const filePath = "audio/" + file;
+            
+            if (audio.src.includes(file) && !audio.paused) {
+                audio.pause();
+                updateUI(false);
+            } else {
+                audio.src = filePath;
+                audio.play().catch(e => console.log("Play interrupted"));
+                
+                // ডাইনামিক থিম ও তথ্য সেভ
+                titleDisp.innerText = title;
+                document.documentElement.style.setProperty('--current-theme', themeColor);
+                localStorage.setItem('lastFile', file);
+                localStorage.setItem('lastTitle', title);
+                localStorage.setItem('lastColor', themeColor);
+                
+                updateUI(true);
+            }
+
+            // বাটন স্টেট পরিবর্তন
+            if(currentActiveBtn) currentActiveBtn.classList.remove('active');
+            btn.classList.add('active');
+            currentActiveBtn = btn;
+        }
+
+        // ৩. প্রগ্রেস ট্র্যাক এবং সেভ করা
+        function updateProgress() {
+            if (audio.duration) {
+                const pc = (audio.currentTime / audio.duration) * 100;
+                progBar.style.width = pc + '%';
+                // প্রতি সেকেন্ডে সময় সেভ হচ্ছে (Full Recovery এর জন্য)
+                localStorage.setItem('lastTime', audio.currentTime);
+            }
+        }
+
+        // ৪. অটো-প্লে লজিক (Toggle Play)
+        function togglePlay() {
+            if (!audio.src || audio.src.endsWith('/')) {
+                // কোনো গান সিলেক্ট না থাকলে প্রথম গান বাজবে
+                document.getElementById('song-rhyme1').click();
+                return;
+            }
+            audio.paused ? audio.play() : audio.pause();
+            updateUI(!audio.paused);
+        }
+
+        // ৫. গান শেষ হলে পরবর্তী গান (Auto-play Next)
+        function songEnded() {
+            const currentIndex = allButtons.indexOf(currentActiveBtn);
+            if (currentIndex + 1 < allButtons.length) {
+                allButtons[currentIndex + 1].click();
+            } else {
+                resetPlayer();
+            }
+        }
+
+        // ৬. ভলিউম কন্ট্রোল
+        function changeVolume(val) {
+            audio.volume = val;
+            localStorage.setItem('lastVol', val);
+        }
+
+        // ইউজার ইন্টারফেস আপডেট
+        function updateUI(isPlaying) {
+            playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            isPlaying ? playerArea.classList.add('playing') : playerArea.classList.remove('playing');
+        }
+
+        function seek(e) {
+            const width = document.querySelector('.progress-container').clientWidth;
+            audio.currentTime = (e.offsetX / width) * audio.duration;
+        }
+
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+            updateUI(false);
+        }
+
+        function restart() {
+            audio.currentTime = 0;
+            audio.play();
+            updateUI(true);
+        }
+
+        function resetPlayer() {
+            updateUI(false);
+            progBar.style.width = '0%';
+            titleDisp.innerText = "একটি ছড়া বাছাই করো";
+            document.documentElement.style.setProperty('--current-theme', '#ff4757');
+            if(currentActiveBtn) currentActiveBtn.classList.remove('active');
+            localStorage.removeItem('lastTime');
+        }
+    </script>
+</body>
+</html>
