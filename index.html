@@ -11,14 +11,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
         
-        :root {
-            --primary-green: #006A4E;
-            --accent-yellow: #FFB800;
-        }
-
+        :root { --primary-green: #006A4E; --accent-yellow: #FFB800; }
         body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; overflow-x: hidden; }
 
-        /* ১. নেভবার ও ফ্লোটিং মেনু */
+        /* ১. নেভিগেশন ও স্টিকি মেনু */
         .custom-nav { background: var(--primary-green); padding: 12px 0; }
         .sticky-sub-wrapper {
             position: fixed; top: 15px; left: 0; width: 100%; z-index: 2000;
@@ -34,15 +30,21 @@
         .sub-menu-list a { text-decoration: none; color: #333; font-weight: 600; font-size: 13px; padding: 8px 15px; border-radius: 50px; transition: 0.3s; }
         .sub-menu-list a:hover { background: var(--primary-green); color: #fff !important; }
 
-        /* ২. হিরো ব্যানার */
+        /* ২. হিরো সেকশন */
         .hero-slider-section { background: #f0fdf4; padding: 60px 0; }
         .carousel-item img { height: 420px; object-fit: cover; border-radius: 25px; border: 6px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-        /* ৩. স্ক্রল জুম ও তথ্য */
-        #zoomImage { transition: transform 0.1s ease-out; border-radius: 25px; }
-        .video-container { border: 8px solid #fff; border-radius: 25px; overflow: hidden; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        /* ৩. স্ক্রল জুম স্পেশাল ইফেক্ট (ভিডিওর নিচে) */
+        .zoom-section { background: #fff; padding: 60px 0; text-align: center; }
+        .zoom-container { overflow: hidden; border-radius: 30px; max-width: 950px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        #scrollZoomImg { 
+            width: 100%; 
+            transform: scale(0.8); 
+            transition: transform 0.2s cubic-bezier(0.1, 0.5, 0.5, 1); 
+            will-change: transform;
+        }
 
-        /* ৪. ডিজিটাল সেবা (৮টি কার্ড) */
+        /* ৪. ডিজিটাল সেবা ৮টি কার্ড */
         .grid-card { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px 10px; border-radius: 25px; color: white !important; text-decoration: none !important; transition: 0.3s; height: 100%; }
         .grid-card:hover { transform: translateY(-10px); filter: brightness(1.1); }
         .bg-emerald { background: linear-gradient(135deg, #10b981, #059669); }
@@ -54,96 +56,88 @@
         .bg-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
         .bg-pink { background: linear-gradient(135deg, #ec4899, #db2777); }
 
-        /* ৫. ক্লাস গ্যালারি */
-        .gallery-icon-card { position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; transition: 0.4s; }
-        .gallery-icon-card img { width: 100%; height: 220px; object-fit: cover; transition: 0.6s; }
-        .gallery-icon-card:hover img { transform: scale(1.15); filter: blur(3px) brightness(0.6); }
-        .gallery-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; font-size: 1.3rem; opacity: 0; transition: 0.3s; text-align: center; width: 100%; z-index: 5; }
-        .gallery-icon-card:hover .gallery-overlay { opacity: 1; }
+        /* ৫. পপ-আপ অ্যানিমেশন */
+        @keyframes imgPop { from { opacity: 0; transform: scale(0.5) translateY(50px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .pop-img-animated { animation: imgPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; border-radius: 15px; width: 100%; height: 150px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        /* ৬. রিভিউ স্লাইডার */
-        .review-track { display: flex; gap: 20px; transition: transform 0.8s ease-in-out; }
-        .premium-review-card { min-width: calc(33.33% - 20px); background: #fff; padding: 30px; border-radius: 25px; border: 1px solid #eee; text-align: center; }
+        /* ৬. ইনফিনিট অটো স্লাইডার */
+        .infinite-slider-wrapper { background: #f1f5f9; padding: 50px 0; overflow: hidden; white-space: nowrap; }
+        .infinite-track { display: flex; gap: 30px; animation: slideInfinite 25s linear infinite; width: max-content; }
+        .infinite-track:hover { animation-play-state: paused; }
+        @keyframes slideInfinite { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .review-card-mini { background: white; padding: 25px; border-radius: 20px; min-width: 300px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 4px solid var(--primary-green); }
 
-        /* ৮. ছাত্রছাত্রী বার্তা স্লাইডার */
-        .slider-btn-custom { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: none; width: 45px; height: 45px; border-radius: 50%; z-index: 10; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--primary-green); }
-
-        /* ৯. ফুটার */
-        .contact-footer-wrapper { background: #004d39; color: white; border-top-left-radius: 60px; border-top-right-radius: 60px; padding: 70px 0 20px; margin-top: 80px; }
-        .footer-sub-menu { list-style: none; padding: 0; }
-        .footer-sub-menu a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; transition: 0.3s; display: block; margin-bottom: 10px; }
-        .footer-sub-menu a:hover { color: var(--accent-yellow); padding-left: 8px; }
-
-        @media (max-width: 768px) { .premium-review-card { min-width: 100%; } .floating-bar { max-width: 95%; } }
+        /* ফুটার */
+        .contact-footer-wrapper { background: #004d39; color: white; border-top-left-radius: 60px; border-top-right-radius: 60px; padding: 70px 0 20px; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark custom-nav">
+<nav class="navbar navbar-expand-lg navbar-dark custom-nav shadow-sm">
     <div class="container">
         <a class="navbar-brand fw-bold" href="#"><img src="images/govt.png" width="30"> কালাইয়া বোর্ড সপ্রাবি</a>
-        <a href="login.html" class="btn btn-warning btn-sm rounded-pill fw-bold px-3"><i class="fas fa-user-shield"></i> শিক্ষক প্যানেল</a>
+        <a href="login.html" class="btn btn-warning btn-sm rounded-pill fw-bold px-3 shadow-sm"><i class="fas fa-user-shield"></i> শিক্ষক প্যানেল</a>
     </div>
 </nav>
 
 <div class="sticky-sub-wrapper" id="stickyMenu">
-    <div class="container d-flex justify-content-center">
-        <div class="floating-bar">
-            <ul class="sub-menu-list">
-                <li><a href="index.html">হোম</a></li>
-                <li><a href="admission.html">ভর্তি</a></li>
-                <li><a href="results.html">রেজাল্ট</a></li>
-                <li><a href="notice.html">নোটিশ</a></li>
-            </ul>
-        </div>
-    </div>
+    <div class="container d-flex justify-content-center"><div class="floating-bar">
+        <ul class="sub-menu-list">
+            <li><a href="index.html">হোম</a></li>
+            <li><a href="admission.html">ভর্তি</a></li>
+            <li><a href="results.html">রেজাল্ট</a></li>
+            <li><a href="notice.html">নোটিশ</a></li>
+        </ul>
+    </div></div>
 </div>
 
 <section class="hero-slider-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5 mb-4 mb-lg-0">
-                <h1 class="display-5 fw-bold mb-3">ভবিষ্যৎ গড়ি <br><span style="color:var(--primary-green)">জ্ঞানের আলোয়</span></h1>
-                <p class="text-muted fs-5">একটি আধুনিক ও আনন্দদায়ক শিক্ষা পরিবেশ।</p>
-                <a href="admission.html" class="btn btn-success rounded-pill px-5 py-2 shadow fw-bold">ভর্তি তথ্য</a>
-            </div>
-            <div class="col-lg-7">
-                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active"><img src="images/slide1.jpg" class="d-block w-100"></div>
-                        <div class="carousel-item"><img src="images/slide2.jpg" class="d-block w-100"></div>
-                    </div>
+    <div class="container"><div class="row align-items-center">
+        <div class="col-lg-5 text-center text-lg-start">
+            <h1 class="display-5 fw-bold mb-3">ভবিষ্যৎ গড়ি <br><span style="color:var(--primary-green)">জ্ঞানের আলোয়</span></h1>
+            <p class="text-muted fs-5 mb-4">একটি আধুনিক, আনন্দদায়ক ও প্রযুক্তিগত শিক্ষা পরিবেশ।</p>
+            <a href="admission.html" class="btn btn-success rounded-pill px-5 py-2 shadow-lg fw-bold">ভর্তি তথ্য</a>
+        </div>
+        <div class="col-lg-7 mt-4 mt-lg-0">
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active"><img src="images/slide1.jpg" class="d-block w-100" alt="Slider 1"></div>
+                    <div class="carousel-item"><img src="images/slide2.jpg" class="d-block w-100" alt="Slider 2"></div>
                 </div>
             </div>
         </div>
-    </div>
+    </div></div>
 </section>
 
 <section class="py-5 bg-white">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row g-4 align-items-center mb-5">
             <div class="col-lg-6">
-                <h2 class="fw-bold mb-4" style="color: var(--primary-green);">ডিজিটাল শিক্ষায় আমরা এগিয়ে</h2>
-                <p class="text-muted fs-5 lh-lg">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় প্রতিটি শিশুর সুপ্ত প্রতিভাকে বিকশিত করতে আধুনিক প্রযুক্তিনির্ভর পাঠদান নিশ্চিত করে।</p>
-                <div class="d-flex gap-5 mt-4">
-                    <div class="text-center"><h2 class="fw-bold text-success mb-0">৫০০+</h2><small class="text-uppercase fw-bold text-muted">শিক্ষার্থী</small></div>
-                    <div class="text-center"><h2 class="fw-bold text-success mb-0">১৫+</h2><small class="text-uppercase fw-bold text-muted">শিক্ষক</small></div>
+                <h2 class="fw-bold mb-3" style="color: var(--primary-green);">ডিজিটাল শিক্ষায় আমরা এগিয়ে</h2>
+                <p class="text-muted">আমাদের স্মার্ট ক্লাসরুম এবং দক্ষ শিক্ষক মণ্ডলীর তত্ত্বাবধানে আপনার শিশুর মেধা বিকাশে আমরা বদ্ধপরিকর।</p>
+                <div class="d-flex gap-4 mt-4">
+                    <div class="bg-light p-3 rounded-4 flex-fill text-center"><h3 class="fw-bold text-success">৫০০+</h3><small>শিক্ষার্থী</small></div>
+                    <div class="bg-light p-3 rounded-4 flex-fill text-center"><h3 class="fw-bold text-success">১৫+</h3><small>শিক্ষক</small></div>
                 </div>
             </div>
-            <div class="col-lg-6 mt-5 mt-lg-0">
-                <div class="video-container mb-4">
-                    <video id="introVideo" class="w-100" muted autoplay loop playsinline>
+            <div class="col-lg-6">
+                <div class="video-container" style="border-radius: 25px; overflow: hidden; border: 8px solid #fff; shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <video class="w-100" muted autoplay loop playsinline>
                         <source src="videos/intro.mp4" type="video/mp4">
                     </video>
                 </div>
-                <img src="images/zoom_pic.jpg" id="zoomImage" class="w-100 shadow-lg" style="transform: scale(0.8);" alt="School">
+            </div>
+        </div>
+        <div class="text-center py-4">
+            <h4 class="fw-bold text-muted mb-4">আমাদের ক্যাম্পাস ভিউ</h4>
+            <div class="zoom-container">
+                <img src="images/zoom_pic.jpg" id="scrollZoomImg" alt="Campus">
             </div>
         </div>
     </div>
 </section>
 
 <section class="container py-5">
-    <h3 class="text-center fw-bold mb-5">আমাদের ডিজিটাল সেবা</h3>
     <div class="row g-4">
         <div class="col-6 col-md-3"><a href="class.html" class="grid-card bg-emerald shadow-sm"><i class="fas fa-video fa-2x mb-2"></i><h5>ক্লাস</h5></a></div>
         <div class="col-6 col-md-3"><a href="jukebox.html" class="grid-card bg-amber shadow-sm"><i class="fas fa-music fa-2x mb-2"></i><h5>জুকবক্স</h5></a></div>
@@ -158,200 +152,101 @@
 
 <section class="container py-5">
     <h3 class="text-center fw-bold mb-5" style="color: var(--primary-green);">শ্রেনী ভিত্তিক গ্যালারি</h3>
-    <div class="row g-4">
-        <div class="col-6 col-md-4">
-            <div class="gallery-icon-card" onclick="openGallery('pre')">
-                <img src="images/c_pre.jpg">
-                <div class="gallery-overlay">প্রাক-প্রাথমিক</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4">
-            <div class="gallery-icon-card" onclick="openGallery('c1')">
-                <img src="images/c_1.jpg">
-                <div class="gallery-overlay">প্রথম শ্রেণি</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4">
-            <div class="gallery-icon-card" onclick="openGallery('c2')">
-                <img src="images/c_2.jpg">
-                <div class="gallery-overlay">দ্বিতীয় শ্রেণি</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4">
-            <div class="gallery-icon-card" onclick="openGallery('c3')">
-                <img src="images/c_3.jpg">
-                <div class="gallery-overlay">তৃতীয় শ্রেণি</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4">
-            <div class="gallery-icon-card" onclick="openGallery('c4')">
-                <img src="images/c_4.jpg">
-                <div class="gallery-overlay">চতুর্থ শ্রেণি</div>
-            </div>
-        </div>
-        <div class="col-6 col-md-4">
-            <div class="gallery-icon-card" onclick="openGallery('c5')">
-                <img src="images/c_5.jpg">
-                <div class="gallery-overlay">পঞ্চম শ্রেণি</div>
-            </div>
-        </div>
+    <div class="row g-4 text-center">
+        <div class="col-6 col-md-4" onclick="openGallery('প্রাক-প্রাথমিক', 'images/pre_pop.jpg')"><div class="p-4 bg-white rounded-4 shadow-sm border cursor-pointer"><i class="fas fa-shapes fa-3x text-success mb-3"></i><h5>প্রাক-প্রাথমিক</h5></div></div>
+        <div class="col-6 col-md-4" onclick="openGallery('প্রথম শ্রেণি', 'images/c1_pop.jpg')"><div class="p-4 bg-white rounded-4 shadow-sm border cursor-pointer"><i class="fas fa-book-open fa-3x text-primary mb-3"></i><h5>প্রথম শ্রেণি</h5></div></div>
+        <div class="col-6 col-md-4" onclick="openGallery('দ্বিতীয় শ্রেণি', 'images/c2_pop.jpg')"><div class="p-4 bg-white rounded-4 shadow-sm border cursor-pointer"><i class="fas fa-pencil-alt fa-3x text-warning mb-3"></i><h5>দ্বিতীয় শ্রেণি</h5></div></div>
     </div>
 </section>
+
+<section class="infinite-slider-wrapper">
+    <div class="infinite-track">
+        <div class="review-card-mini"><h5>রহিম আহমেদ</h5><p>অসাধারণ শিক্ষা ব্যবস্থা!</p></div>
+        <div class="review-card-mini"><h5>নাসরিন সুলতানা</h5><p>খুবই দক্ষ শিক্ষক মণ্ডলী।</p></div>
+        <div class="review-card-mini"><h5>কামাল হোসেন</h5><p>আমার সন্তানের উন্নতি দেখে খুশি।</p></div>
+        <div class="review-card-mini"><h5>সুমি আক্তার</h5><p>ডিজিটাল ল্যাব চমৎকার!</p></div>
+        <div class="review-card-mini"><h5>রহিম আহমেদ</h5><p>অসাধারণ শিক্ষা ব্যবস্থা!</p></div>
+        <div class="review-card-mini"><h5>নাসরিন সুলতানা</h5><p>খুবই দক্ষ শিক্ষক মণ্ডলী।</p></div>
+        <div class="review-card-mini"><h5>কামাল হোসেন</h5><p>আমার সন্তানের উন্নতি দেখে খুশি।</p></div>
+        <div class="review-card-mini"><h5>সুমি আক্তার</h5><p>ডিজিটাল ল্যাব চমৎকার!</p></div>
+    </div>
+</section>
+
+<footer class="contact-footer-wrapper">
+    <div class="container text-center text-md-start">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <img src="images/govt.png" width="60" class="mb-3">
+                <h5>কালাইয়া বোর্ড সপ্রাবি</h5>
+                <p class="text-white-50 small">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <h6 class="text-warning fw-bold mb-3">যোগাযোগ</h6>
+                <p class="small text-white-50"><i class="fas fa-map-marker-alt me-2"></i> কালাইয়া, বাউফল, পটুয়াখালী</p>
+                <div class="mt-3">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-5 opacity-10">
+        <p class="text-center small text-white-50 pt-2 mb-0">© ২০২৬ সর্বস্বত্ব সংরক্ষিত।</p>
+    </div>
+</footer>
 
 <div class="modal fade" id="galleryModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content rounded-5 border-0">
             <div class="modal-body p-5 text-center">
                 <h4 id="modalTitle" class="fw-bold mb-4 text-success"></h4>
-                <div id="popPicContainer" class="row g-2 mb-4"></div>
-                <a href="admission.html" class="btn btn-success rounded-pill px-5 py-2 fw-bold">এখনই ভর্তি হন</a>
+                <div id="popPicContainer" class="row g-3"></div>
+                <button class="btn btn-success rounded-pill px-5 mt-4 fw-bold" data-bs-dismiss="modal">বন্ধ করুন</button>
             </div>
         </div>
     </div>
 </div>
 
-<section class="py-5 bg-light overflow-hidden">
-    <div class="container">
-        <h3 class="text-center fw-bold mb-5">অভিভাবকদের মতামত</h3>
-        <div class="review-wrapper">
-            <div class="review-track" id="reviewTrack">
-                <div class="premium-review-card shadow-sm"><h5>"অসাধারণ পরিবেশ"</h5><h6>- রহিম আহমেদ</h6></div>
-                <div class="premium-review-card shadow-sm"><h5>"ডিজিটাল শিক্ষা দারুণ"</h5><h6>- নাসরিন সুলতানা</h6></div>
-                <div class="premium-review-card shadow-sm"><h5>"আদর্শ বিদ্যাপীঠ"</h5><h6>- কামাল হোসেন</h6></div>
-                <div class="premium-review-card shadow-sm"><h5>"অসাধারণ পরিবেশ"</h5><h6>- রহিম আহমেদ</h6></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="container py-5">
-    <div class="row align-items-center bg-white rounded-4 shadow-sm overflow-hidden g-0 border">
-        <div class="col-md-4"><img src="images/principal.jpg" class="w-100" style="height:350px; object-fit:cover;"></div>
-        <div class="col-md-8 p-5">
-            <h4 class="fw-bold text-success mb-3">প্রধান শিক্ষকের বার্তা</h4>
-            <p class="text-muted fs-5">"আমরা শিশুদের আগামীর স্মার্ট নাগরিক হিসেবে গড়ে তুলতে অঙ্গীকারবদ্ধ।"</p>
-            <h6 class="fw-bold mt-4">- প্রধান শিক্ষক, কালাইয়া বোর্ড সপ্রাবি</h6>
-        </div>
-    </div>
-</section>
-
-<section class="container py-5 mb-5">
-    <div class="row g-4 align-items-stretch">
-        <div class="col-lg-6 position-relative">
-            <div id="studentCarousel" class="carousel slide h-100 bg-white p-5 rounded-4 border shadow-sm" data-bs-ride="carousel">
-                <div class="carousel-inner text-center">
-                    <div class="carousel-item active">
-                        <img src="images/s1.jpg" class="rounded-circle mb-3 border border-3 border-success" width="100" height="100">
-                        <h5>আরিফ হোসেন</h5>
-                        <p class="text-muted italic">"এই স্কুলে পড়া আমার জীবনের সেরা সিদ্ধান্ত।"</p>
-                    </div>
-                </div>
-                <button class="slider-btn-custom" style="left: 10px;" data-bs-target="#studentCarousel" data-bs-slide="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-btn-custom" style="right: 10px;" data-bs-target="#studentCarousel" data-bs-slide="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="h-100 rounded-4 overflow-hidden border shadow-sm">
-                <video class="w-100 h-100" style="object-fit: cover;" controls poster="images/thumb.jpg">
-                    <source src="videos/success.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="contact-footer-wrapper">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-4 text-center text-lg-start">
-                <img src="images/govt.png" width="70" class="mb-4">
-                <h5 class="fw-bold">কালাইয়া বোর্ড সপ্রাবি</h5>
-                <p class="text-white-50">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
-                <div class="mt-4">
-                    <a href="#" class="text-white me-3 fs-5"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-white me-3 fs-5"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="col-6 col-lg-2 offset-lg-1">
-                <h6 class="fw-bold mb-4 text-warning">নেভিগেশন</h6>
-                <ul class="footer-sub-menu">
-                    <li><a href="#">হোম পেজ</a></li>
-                    <li><a href="#">নোটিশ বোর্ড</a></li>
-                    <li><a href="#">রেজাল্ট</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-lg-2">
-                <h6 class="fw-bold mb-4 text-warning">একাডেমিক</h6>
-                <ul class="footer-sub-menu">
-                    <li><a href="#">ভর্তি ফরম</a></li>
-                    <li><a href="#">রুটিন</a></li>
-                    <li><a href="#">বই তালিকা</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <h6 class="fw-bold mb-4 text-warning">যোগাযোগ</h6>
-                <p class="small text-white-50"><i class="fas fa-map-marker-alt me-2"></i> কালাইয়া, বাউফল, পটুয়াখালী</p>
-                <a href="admission.html" class="btn btn-outline-warning btn-sm mt-3 px-4 rounded-pill">যোগাযোগ করুন</a>
-            </div>
-        </div>
-        <hr class="mt-5 opacity-10">
-        <p class="text-center mb-0 small text-white-50 pt-2">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়।</p>
-    </div>
-</footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // ১. স্টিকি মেনু ও স্ক্রল জুম
     let lastSt = 0;
     const sMenu = document.getElementById('stickyMenu');
-    const zImg = document.getElementById('zoomImage');
-    const vMain = document.getElementById('introVideo');
+    const zImg = document.getElementById('scrollZoomImg');
 
     window.addEventListener('scroll', () => {
         let st = window.pageYOffset || document.documentElement.scrollTop;
         
-        // ফ্লোটিং মেনু
+        // ফ্লোটিং মেনু লজিক
         if (st > 300) {
             if (st < lastSt) sMenu.classList.add('nav-down');
             else sMenu.classList.remove('nav-down');
         } else sMenu.classList.remove('nav-down');
 
-        // জুম ইফেক্ট
-        let scale = 0.8 + (st / 4000);
-        if(scale <= 1.1) zImg.style.transform = `scale(${scale})`;
+        // জুম লজিক (০.৮ থেকে ১.২ পর্যন্ত)
+        let rect = zImg.getBoundingClientRect();
+        if(rect.top < window.innerHeight && rect.bottom > 0) {
+            let scaleVal = 0.8 + ( (window.innerHeight - rect.top) / 3000 );
+            if(scaleVal <= 1.2) zImg.style.transform = `scale(${scaleVal})`;
+        }
 
         lastSt = st;
     });
 
-    // স্মার্ট পজ
-    document.addEventListener("visibilitychange", () => {
-        document.hidden ? vMain.pause() : vMain.play();
-    });
-
-    // পপ-আপ গ্যালারি
-    function openGallery(k) {
-        document.getElementById('modalTitle').innerText = "ক্লাস গ্যালারি";
-        const c = document.getElementById('popPicContainer');
-        c.innerHTML = '';
+    // ২. অ্যানিমেটেড গ্যালারি পপ-আপ
+    function openGallery(title, source) {
+        document.getElementById('modalTitle').innerText = title + " গ্যালারি";
+        const container = document.getElementById('popPicContainer');
+        container.innerHTML = '';
+        
+        // ৩টি ইমেজ অ্যানিমেশন ডিলে সহ সেট করা হলো
         for(let i=1; i<=3; i++) {
-            c.innerHTML += `<div class="col-4"><img src="images/class_pic.jpg" class="w-100 rounded shadow-sm pop-img-animated"></div>`;
+            const div = document.createElement('div');
+            div.className = 'col-md-4 col-6';
+            div.innerHTML = `<img src="${source}" class="pop-img-animated" style="animation-delay: ${i*0.2}s">`;
+            container.appendChild(div);
         }
         new bootstrap.Modal(document.getElementById('galleryModal')).show();
     }
-
-    // স্লাইডার
-    let idx = 0;
-    setInterval(() => {
-        idx++;
-        const track = document.getElementById('reviewTrack');
-        const card = document.querySelector('.premium-review-card');
-        if(!card) return;
-        const w = card.offsetWidth + 20;
-        track.style.transition = "0.8s ease-in-out";
-        track.style.transform = `translateX(-${idx * w}px)`;
-        if(idx >= 3) {
-            setTimeout(() => { track.style.transition = "none"; idx = 0; track.style.transform = "translateX(0)"; }, 800);
-        }
-    }, 10000);
 </script>
 </body>
 </html>
