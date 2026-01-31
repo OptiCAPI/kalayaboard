@@ -55,17 +55,171 @@
         .bg-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
         .bg-pink { background: linear-gradient(135deg, #ec4899, #db2777); }
 
-        /* ৫. পপ-আপ অ্যানিমেশন */
-        @keyframes imgPop { from { opacity: 0; transform: scale(0.5) translateY(50px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .pop-img-animated { animation: imgPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; border-radius: 15px; width: 100%; height: 150px; object-fit: cover; }
+        
+    /* মেইন কার্ড স্টাইল */
+    .class-card {
+        position: relative;
+        height: 380px;
+        border-radius: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.4s ease;
+    }
+    .class-card:hover {
+        transform: translateY(-10px);
+    }
+    .class-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: scale 0.6s ease;
+    }
+    .class-card:hover img {
+        scale: 1.1;
+    }
+    
+    /* ছবির ওপরের টেক্সট ওভারলে */
+    .class-card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(transparent, rgba(0, 77, 57, 0.95));
+        color: white;
+        text-align: center;
+    }
+    
+    /* অ্যারো বাটন অ্যানিমেশন */
+    .action-btn {
+        width: 45px;
+        height: 45px;
+        background: #FFB800;
+        color: #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px auto 0;
+        font-size: 18px;
+        border: 4px solid rgba(255,255,255,0.3);
+        transition: 0.3s;
+    }
+    .class-card:hover .action-btn {
+        background: #fff;
+        transform: rotate(45deg);
+    }
 
-        /* ৬. ইনফিনিট অটো স্লাইডার */
-        .infinite-slider-wrapper { background: #f1f5f9; padding: 50px 0; overflow: hidden; white-space: nowrap; }
-        .infinite-track { display: flex; gap: 30px; animation: slideInfinite 25s linear infinite; width: max-content; }
-        .infinite-track:hover { animation-play-state: paused; }
-        @keyframes slideInfinite { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .review-card-mini { background: white; padding: 25px; border-radius: 20px; min-width: 300px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 4px solid var(--primary-green); }
+    /* পপ-আপ ইমেজ অ্যানিমেশন */
+    @keyframes premiumPop {
+        0% { opacity: 0; transform: scale(0.7) translateY(30px); filter: blur(10px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+    }
+    .pop-img-premium {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        animation: premiumPop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
 
+    /* ইনফিনিটি স্লাইডার সেটিংস */
+    .infinity-wrapper {
+        overflow: hidden;
+        padding: 40px 0;
+        background: #fff;
+        position: relative;
+    }
+
+    .infinity-container {
+        display: flex;
+        gap: 30px;
+        width: max-content;
+        animation: scrollReview 40s linear infinite;
+    }
+
+    .infinity-container:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scrollReview {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* আধুনিক কার্ড ডিজাইন (আপনার স্ক্রিনশটের আদলে) */
+    .modern-review-card {
+        width: 350px;
+        background: #e6f1f3; /* ছবির হালকা নীল রং */
+        border-radius: 40px; /* প্রিমিয়াম রাউন্ডেড কোনা */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        transition: 0.4s;
+    }
+
+    .modern-review-card.alt-bg {
+        background: #f1dfb5; /* ছবির হালকা সোনালী রং */
+    }
+
+    /* ছবির বক্স */
+    .review-img-box {
+        height: 250px;
+        padding: 15px;
+    }
+
+    .review-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 30px; /* ছবির রাউন্ড কোনা */
+    }
+
+    /* টেক্সট কন্টেন্ট */
+    .review-content {
+        padding: 25px 30px 40px;
+        color: #043e44;
+    }
+
+    .role-text {
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .review-text {
+        font-size: 16px;
+        line-height: 1.6;
+        min-height: 80px;
+    }
+
+    /* নিচের আইকন বাটন */
+    .review-footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .arrow-circle {
+        width: 50px;
+        height: 50px;
+        background: #043e44;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        border: 4px solid rgba(255,255,255,0.4);
+    }
+
+    .alt-bg .arrow-circle {
+        background: #d4a332;
+    }
+        
         /* ৭. সাকসেস স্লাইডার কাস্টম */
         #studentSuccessCarousel .carousel-item { padding: 20px 40px; }
         .success-video-box { min-height: 350px; border-radius: 25px; overflow: hidden; }
@@ -155,24 +309,146 @@
 </section>
 
 <section class="container py-5">
-    <h3 class="text-center fw-bold mb-5" style="color: var(--primary-green);">শ্রেনী ভিত্তিক গ্যালারি</h3>
-    <div class="row g-4 text-center">
-        <div class="col-6 col-md-4" onclick="openGallery('প্রাক-প্রাথমিক', 'images/pre_pop.jpg')"><div class="p-4 bg-white rounded-4 shadow-sm border cursor-pointer"><i class="fas fa-shapes fa-3x text-success mb-3"></i><h5>প্রাক-প্রাথমিক</h5></div></div>
-        <div class="col-6 col-md-4" onclick="openGallery('প্রথম শ্রেণি', 'images/c1_pop.jpg')"><div class="p-4 bg-white rounded-4 shadow-sm border cursor-pointer"><i class="fas fa-book-open fa-3x text-primary mb-3"></i><h5>প্রথম শ্রেণি</h5></div></div>
-        <div class="col-6 col-md-4" onclick="openGallery('দ্বিতীয় শ্রেণি', 'images/c2_pop.jpg')"><div class="p-4 bg-white rounded-4 shadow-sm border cursor-pointer"><i class="fas fa-pencil-alt fa-3x text-warning mb-3"></i><h5>দ্বিতীয় শ্রেণি</h5></div></div>
+    <div class="text-center mb-5">
+        <h2 class="fw-bold" style="color: #006A4E;">আমাদের পাঠদান স্তর</h2>
+        <p class="text-muted">প্রতিটি স্তরে রয়েছে আধুনিক ও মানসম্মত শিক্ষার নিশ্চয়তা</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('প্রাক-প্রাথমিক', ['p1.jpg', 'p2.jpg', 'p3.jpg'])">
+            <div class="class-card shadow-lg">
+                <img src="images/pre_school.jpg" alt="Pre-Primary">
+                <div class="class-card-overlay">
+                    <h4 class="fw-bold">প্রাক-প্রাথমিক</h4>
+                    <p>শিশুদের আনন্দময় শিক্ষা</p>
+                    <div class="action-btn"><i class="fas fa-arrow-up"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('প্রথম শ্রেণি', ['c1_a.jpg', 'c1_b.jpg', 'c1_c.jpg'])">
+            <div class="class-card shadow-lg">
+                <img src="images/class1.jpg" alt="Class 1">
+                <div class="class-card-overlay">
+                    <h4 class="fw-bold">প্রথম শ্রেণি</h4>
+                    <p>মেধা বিকাশের প্রথম ধাপ</p>
+                    <div class="action-btn"><i class="fas fa-arrow-up"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('দ্বিতীয় শ্রেণি', ['c2_a.jpg', 'c2_b.jpg', 'c2_c.jpg'])">
+            <div class="class-card shadow-lg">
+                <img src="images/class2.jpg" alt="Class 2">
+                <div class="class-card-overlay">
+                    <h4 class="fw-bold">দ্বিতীয় শ্রেণি</h4>
+                    <p>সৃজনশীল পাঠদান</p>
+                    <div class="action-btn"><i class="fas fa-arrow-up"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('তৃতীয় শ্রেণি', ['c3_a.jpg', 'c3_b.jpg', 'c3_c.jpg'])">
+            <div class="class-card shadow-lg">
+                <img src="images/class3.jpg" alt="Class 3">
+                <div class="class-card-overlay">
+                    <h4 class="fw-bold">তৃতীয় শ্রেণি</h4>
+                    <p>জ্ঞান ও দক্ষতার সমন্বয়</p>
+                    <div class="action-btn"><i class="fas fa-arrow-up"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('চতুর্থ শ্রেণি', ['c4_a.jpg', 'c4_b.jpg', 'c4_c.jpg'])">
+            <div class="class-card shadow-lg">
+                <img src="images/class4.jpg" alt="Class 4">
+                <div class="class-card-overlay">
+                    <h4 class="fw-bold">চতুর্থ শ্রেণি</h4>
+                    <p>ভবিষ্যতের প্রস্তুতি</p>
+                    <div class="action-btn"><i class="fas fa-arrow-up"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('পঞ্চম শ্রেণি', ['c5_a.jpg', 'c5_b.jpg', 'c5_c.jpg'])">
+            <div class="class-card shadow-lg">
+                <img src="images/class5.jpg" alt="Class 5">
+                <div class="class-card-overlay">
+                    <h4 class="fw-bold">পঞ্চম শ্রেণি</h4>
+                    <p>প্রাথমিক সমাপনী স্তর</p>
+                    <div class="action-btn"><div class="action-btn"><i class="fas fa-arrow-up"></i></div></div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="infinite-slider-wrapper">
-    <div class="infinite-track">
-        <div class="review-card-mini"><h5>রহিম আহমেদ</h5><p>অসাধারণ শিক্ষা ব্যবস্থা!</p></div>
-        <div class="review-card-mini"><h5>নাসরিন সুলতানা</h5><p>খুবই দক্ষ শিক্ষক মণ্ডলী।</p></div>
-        <div class="review-card-mini"><h5>কামাল হোসেন</h5><p>আমার সন্তানের উন্নতি দেখে খুশি।</p></div>
-        <div class="review-card-mini"><h5>সুমি আক্তার</h5><p>ডিজিটাল ল্যাব চমৎকার!</p></div>
-        <div class="review-card-mini"><h5>রহিম আহমেদ</h5><p>অসাধারণ শিক্ষা ব্যবস্থা!</p></div>
-        <div class="review-card-mini"><h5>নাসরিন সুলতানা</h5><p>খুবই দক্ষ শিক্ষক মণ্ডলী।</p></div>
-        <div class="review-card-mini"><h5>কামাল হোসেন</h5><p>আমার সন্তানের উন্নতি দেখে খুশি।</p></div>
-        <div class="review-card-mini"><h5>সুমি আক্তার</h5><p>ডিজিটাল ল্যাব চমৎকার!</p></div>
+
+    <section class="review-infinity-section py-5">
+    <div class="container text-center mb-5">
+        <h2 class="fw-bold display-6" style="color: #043e44;">অভিভাবকদের প্রশংসাপত্র</h2>
+        <p class="text-muted">আমাদের মানসম্মত শিক্ষা নিয়ে অভিভাবকরা যা বলছেন</p>
+    </div>
+
+    <div class="infinity-wrapper">
+        <div class="infinity-container">
+            <div class="modern-review-card">
+                <div class="review-img-box">
+                    <img src="images/parent1.jpg" alt="Parent">
+                </div>
+                <div class="review-content text-center">
+                    <h4 class="fw-bold">রহিম আহমেদ</h4>
+                    <p class="role-text text-uppercase">অভিভাবক</p>
+                    <p class="review-text">"অসাধারণ শিক্ষা ব্যবস্থা! এখানকার শিক্ষকরা শিক্ষার্থীদের মেধা বিকাশে অত্যন্ত যত্নশীল এবং আধুনিক।"</p>
+                    <div class="review-footer">
+                        <div class="arrow-circle"><i class="fas fa-quote-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-review-card alt-bg">
+                <div class="review-img-box">
+                    <img src="images/parent2.jpg" alt="Parent">
+                </div>
+                <div class="review-content text-center">
+                    <h4 class="fw-bold">নাসরিন সুলতানা</h4>
+                    <p class="role-text text-uppercase">অভিভাবক</p>
+                    <p class="review-text">"খুবই দক্ষ শিক্ষক মণ্ডলী। ডিজিটাল ক্লাসরুম আমার সন্তানের শেখার আগ্রহ অনেক বাড়িয়ে দিয়েছে।"</p>
+                    <div class="review-footer">
+                        <div class="arrow-circle"><i class="fas fa-quote-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-review-card">
+                <div class="review-img-box">
+                    <img src="images/parent3.jpg" alt="Parent">
+                </div>
+                <div class="review-content text-center">
+                    <h4 class="fw-bold">কামাল হোসেন</h4>
+                    <p class="role-text text-uppercase">অভিভাবক</p>
+                    <p class="review-text">"আমার সন্তানের আমূল পরিবর্তন ও পড়াশোনায় উন্নতি দেখে আমি সত্যিই অভিভূত। ধন্যবাদ স্কুলকে!"</p>
+                    <div class="review-footer">
+                        <div class="arrow-circle"><i class="fas fa-quote-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-review-card alt-bg">
+                <div class="review-img-box">
+                    <img src="images/parent4.jpg" alt="Parent">
+                </div>
+                <div class="review-content text-center">
+                    <h4 class="fw-bold">সুমি আক্তার</h4>
+                    <p class="role-text text-uppercase">অভিভাবক</p>
+                    <p class="review-text">"ডিজিটাল ল্যাব চমৎকার! আধুনিক প্রযুক্তির মাধ্যমে পাঠদান পদ্ধতি সত্যিই প্রশংসনীয়।"</p>
+                    <div class="review-footer">
+                        <div class="arrow-circle"><i class="fas fa-quote-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
     </div>
 </section>
 
@@ -274,18 +550,27 @@
     });
 
     // গ্যালারি পপ-আপ
-    function openGallery(title, source) {
-        document.getElementById('modalTitle').innerText = title + " গ্যালারি";
-        const container = document.getElementById('popPicContainer');
-        container.innerHTML = '';
-        for(let i=1; i<=3; i++) {
-            const div = document.createElement('div');
-            div.className = 'col-md-4 col-6';
-            div.innerHTML = `<img src="${source}" class="pop-img-animated w-100 rounded shadow-sm" style="animation-delay: ${i*0.2}s">`;
-            container.appendChild(div);
-        }
-        new bootstrap.Modal(document.getElementById('galleryModal')).show();
+    function openPremiumGallery(className, imagesArray) {
+    document.getElementById('modalTitle').innerText = className + " - গ্যালারি";
+    const container = document.getElementById('popPicContainer');
+    container.innerHTML = ''; // আগের ছবি মুছে ফেলা
+
+    imagesArray.forEach((imgSrc, index) => {
+        const div = document.createElement('div');
+        div.className = 'col-md-4 col-6';
+        // প্রতিটি ছবির জন্য আলাদা আলাদা ডিলে (Delay) সেট করা যাতে একটির পর একটি আসে
+        div.innerHTML = `
+            <img src="images/${imgSrc}" class="pop-img-premium" 
+                 style="animation-delay: ${index * 0.15}s" 
+                 onerror="this.src='https://via.placeholder.com/300x200?text=Image+Missing'">
+        `;
+        container.appendChild(div);
+    });
+
+    const myModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+    myModal.show();
     }
+    
 </script>
 </body>
 </html>
