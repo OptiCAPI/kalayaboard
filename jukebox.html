@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রিমিয়াম জুকবক্স | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>প্রিমিয়াম জুকবক্স | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,7 +23,7 @@
             transition: background 0.5s ease;
         }
 
-        /* প্লেয়ার কার্ড স্টাইল */
+        /* প্লেয়ার কার্ড স্টাইল */
         .player-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 40px;
@@ -32,6 +32,34 @@
             margin-top: 20px;
             padding: 25px;
             position: relative;
+            overflow: hidden; /* গ্রেডিয়েন্ট ফ্লো আটকে রাখার জন্য */
+            z-index: 1;
+        }
+
+        /* নতুন সংযোজন: গ্রেডিয়েন্ট ফ্লো অ্যানিমেশন লেয়ার */
+        .gradient-flow-bg {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 300%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.4), 
+                var(--current-theme), 
+                rgba(255,255,255,0.4), 
+                transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .playing .gradient-flow-bg {
+            opacity: 0.15;
+            animation: flowMove 4s linear infinite;
+        }
+        @keyframes flowMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(33.33%); }
         }
 
         /* জিকজ্যাক ভিজ্যুয়ালাইজার */
@@ -90,7 +118,7 @@
             font-size: 1.5rem;
             position: relative;
         }
-        /* প্লে বাটন পালস অ্যানিমেশন */
+        
         .playing .btn-play {
             animation: pulse-ring 1.5s infinite;
         }
@@ -126,7 +154,6 @@
             border: 2px solid #fff;
         }
 
-        /* প্রগ্রেস বার */
         .progress-container {
             height: 10px;
             background: #eee;
@@ -142,7 +169,6 @@
             transition: width 0.1s linear;
         }
 
-        /* গানের লিস্ট ও হোভার অ্যানিমেশন */
         .list-title {
             color: #fff;
             font-weight: bold;
@@ -203,6 +229,8 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-9 text-center">
                 <div class="player-card" id="playerArea">
+                    <div class="gradient-flow-bg"></div>
+
                     <div class="visualizer">
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -274,7 +302,6 @@
 
         let currentActiveBtn = null;
 
-        // ১. উইন্ডো লোড হওয়ার সময় মেমরি থেকে ডাটা রিস্টোর করা
         window.onload = function() {
             const savedFile = localStorage.getItem('lastFile');
             const savedTitle = localStorage.getItem('lastTitle');
@@ -282,20 +309,17 @@
             const savedColor = localStorage.getItem('lastColor');
             const savedTime = localStorage.getItem('lastTime');
 
-            // ভলিউম রিস্টোর
             if (savedVol !== null) {
                 audio.volume = savedVol;
                 volSlider.value = savedVol;
             }
 
-            // গান রিস্টোর
             if (savedFile) {
                 audio.src = "audio/" + savedFile;
                 titleDisp.innerText = savedTitle;
                 document.documentElement.style.setProperty('--current-theme', savedColor);
                 audio.currentTime = savedTime || 0;
                 
-                // বাটন হাইলাইট
                 const btnId = allButtons.find(b => b.getAttribute('onclick').includes(savedFile));
                 if(btnId) {
                     btnId.classList.add('active');
@@ -304,7 +328,6 @@
             }
         };
 
-        // ২. গান চালানোর মেইন ফাংশন
         function playSong(file, title, btn, themeColor) {
             const filePath = "audio/" + file;
             
@@ -315,7 +338,6 @@
                 audio.src = filePath;
                 audio.play().catch(e => console.log("Play interrupted"));
                 
-                // ডাইনামিক থিম ও তথ্য সেভ
                 titleDisp.innerText = title;
                 document.documentElement.style.setProperty('--current-theme', themeColor);
                 localStorage.setItem('lastFile', file);
@@ -325,26 +347,21 @@
                 updateUI(true);
             }
 
-            // বাটন স্টেট পরিবর্তন
             if(currentActiveBtn) currentActiveBtn.classList.remove('active');
             btn.classList.add('active');
             currentActiveBtn = btn;
         }
 
-        // ৩. প্রগ্রেস ট্র্যাক এবং সেভ করা
         function updateProgress() {
             if (audio.duration) {
                 const pc = (audio.currentTime / audio.duration) * 100;
                 progBar.style.width = pc + '%';
-                // প্রতি সেকেন্ডে সময় সেভ হচ্ছে (Full Recovery এর জন্য)
                 localStorage.setItem('lastTime', audio.currentTime);
             }
         }
 
-        // ৪. অটো-প্লে লজিক (Toggle Play)
         function togglePlay() {
             if (!audio.src || audio.src.endsWith('/')) {
-                // কোনো গান সিলেক্ট না থাকলে প্রথম গান বাজবে
                 document.getElementById('song-rhyme1').click();
                 return;
             }
@@ -352,7 +369,6 @@
             updateUI(!audio.paused);
         }
 
-        // ৫. গান শেষ হলে পরবর্তী গান (Auto-play Next)
         function songEnded() {
             const currentIndex = allButtons.indexOf(currentActiveBtn);
             if (currentIndex + 1 < allButtons.length) {
@@ -362,13 +378,11 @@
             }
         }
 
-        // ৬. ভলিউম কন্ট্রোল
         function changeVolume(val) {
             audio.volume = val;
             localStorage.setItem('lastVol', val);
         }
 
-        // ইউজার ইন্টারফেস আপডেট
         function updateUI(isPlaying) {
             playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
             isPlaying ? playerArea.classList.add('playing') : playerArea.classList.remove('playing');
