@@ -675,28 +675,29 @@
         lastSt = st;
     });
 
-    // গ্যালারি পপ-আপ
+    // গ্যালারি পপ-আপ ফাংশন
     function openPremiumGallery(className, imagesArray) {
-    document.getElementById('modalTitle').innerText = className + " - গ্যালারি";
-    const container = document.getElementById('popPicContainer');
-    container.innerHTML = ''; // আগের ছবি মুছে ফেলা
+        document.getElementById('modalTitle').innerText = className + " - গ্যালারি";
+        const container = document.getElementById('popPicContainer');
+        container.innerHTML = ''; // আগের কন্টেন্ট ক্লিয়ার করা
 
-    imagesArray.forEach((imgSrc, index) => {
-        const div = document.createElement('div');
-        div.className = 'col-md-4 col-6';
-        // প্রতিটি ছবির জন্য আলাদা আলাদা ডিলে (Delay) সেট করা যাতে একটির পর একটি আসে
-        div.innerHTML = `
-            <img src="images/${imgSrc}" class="pop-img-premium" 
-                 style="animation-delay: ${index * 0.15}s" 
-                 onerror="this.src='https://via.placeholder.com/300x200?text=Image+Missing'">
-        `;
-        container.appendChild(div);
-    });
+        imagesArray.forEach((imgSrc, index) => {
+            const div = document.createElement('div');
+            div.className = 'col-md-4 col-6';
+            
+            // টেমপ্লেট লিটারেল (Backticks) ব্যবহার করে ইমেজ ইনসার্ট
+            div.innerHTML = `
+                <img src="images/${imgSrc}" class="pop-img-premium" 
+                     style="animation-delay: ${index * 0.15}s" 
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Image+Missing'">
+            `;
+            container.appendChild(div);
+        });
 
-    const myModal = new bootstrap.Modal(document.getElementById('galleryModal'));
-    myModal.show();
+        // বুটস্ট্র্যাপ মোডাল ট্রিগার করা
+        const myModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+        myModal.show();
     }
-    
 </script>
 </body>
 </html>
