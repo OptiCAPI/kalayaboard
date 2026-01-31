@@ -11,14 +11,27 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
         
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8fafc; color: #333; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0fdf4; color: #333; }
+        
+        /* Navbar */
         .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .navbar-brand, .nav-link { color: #fff !important; font-weight: 600; }
-        .form-container { background: #fff; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); padding: 40px; margin-top: 30px; margin-bottom: 50px; border-top: 10px solid #006A4E; }
-        .section-title { background: #f0fdf4; color: #006A4E; padding: 12px 20px; border-radius: 8px; font-weight: 600; margin-top: 35px; margin-bottom: 20px; border-left: 6px solid #FFB800; }
-        .form-label { font-weight: 600; font-size: 15px; }
-        .btn-submit { background: #006A4E; color: white; padding: 16px; border-radius: 50px; font-weight: 700; width: 100%; font-size: 18px; border: none; transition: 0.3s; }
-        footer { background: #1a1a1a; color: #ccc; padding: 30px 0; text-align: center; margin-top: 50px; }
+        
+        /* Container & Form */
+        .form-container { background: #fff; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); padding: 40px; margin-top: 30px; margin-bottom: 50px; border-top: 8px solid #006A4E; }
+        .form-header { text-align: center; margin-bottom: 40px; }
+        .form-header h2 { color: #006A4E; font-weight: 700; }
+        
+        .section-title { background: #e8f5e9; color: #006A4E; padding: 10px 20px; border-radius: 10px; font-weight: 600; margin-top: 30px; margin-bottom: 20px; border-left: 5px solid #FFB800; }
+        
+        .form-label { font-weight: 600; color: #444; }
+        .form-control { border-radius: 12px; padding: 12px; border: 1px solid #ddd; transition: 0.3s; }
+        .form-control:focus { border-color: #006A4E; box-shadow: 0 0 0 0.25rem rgba(0, 106, 78, 0.1); }
+        
+        .btn-submit { background: #006A4E; color: white; padding: 15px 40px; border-radius: 50px; font-weight: 700; border: none; width: 100%; font-size: 18px; transition: 0.4s; cursor: pointer; }
+        .btn-submit:hover { background: #004d39; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+
+        footer { background: #1a1a1a; color: #ccc; padding: 30px 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -31,7 +44,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html">হোম</a></li>
-                <li class="nav-item"><a class="nav-link" href="admission.html" style="color: #FFB800 !important;">অনলাইন ভর্তি</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#gallery">গ্যালারি</a></li>
+                <li class="nav-item"><a class="nav-link active" href="admission.html" style="color: #FFB800 !important;">অনলাইন ভর্তি</a></li>
             </ul>
         </div>
     </div>
@@ -41,29 +55,44 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="form-container">
-                <div class="text-center mb-4">
-                    <img src="images/govt.png" width="70" alt="Govt Logo" class="mb-3">
+                <div class="form-header">
+                    <img src="images/govt.png" width="80" alt="Govt Logo" class="mb-3">
                     <h2>ভর্তি আবেদন ফরম - ২০২৬</h2>
-                    <p class="text-muted">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়, ইন্দুরকানী, পিরোজপুর</p>
+                    <p class="text-muted">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়, পিরোজপুর</p>
                 </div>
 
                 <form id="admissionForm">
-                    <div class="section-title"><i class="fas fa-user-graduate me-2"></i> শিক্ষার্থীর তথ্য</div>
+                    <div class="section-title"><i class="fas fa-user-graduate me-2"></i> শিক্ষার্থীর ব্যক্তিগত তথ্য</div>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">শিক্ষার্থীর নাম (বাংলায়)</label>
-                            <input type="text" id="std_name" class="form-control" required>
+                            <input type="text" id="std_name_bn" class="form-control" placeholder="উদাঃ আবদুর রহমান" required>
                         </div>
                         <div class="col-md-6">
+                            <label class="form-label">শিক্ষার্থীর নাম (ইংরেজিতে)</label>
+                            <input type="text" id="std_name_en" class="form-control" placeholder="Ex: Abdur Rahman" required>
+                        </div>
+                        <div class="col-md-4">
                             <label class="form-label">ভর্তির শ্রেণি</label>
-                            <select id="std_class" class="form-select" required>
-                                <option value="">নির্বাচন করুন</option>
+                            <select id="std_class" class="form-select form-control" required>
+                                <option value="">শ্রেণি নির্বাচন করুন</option>
                                 <option>প্রাক-প্রাথমিক</option>
                                 <option>প্রথম শ্রেণি</option>
                                 <option>দ্বিতীয় শ্রেণি</option>
                                 <option>তৃতীয় শ্রেণি</option>
                                 <option>চতুর্থ শ্রেণি</option>
                                 <option>পঞ্চম শ্রেণি</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">জন্ম তারিখ</label>
+                            <input type="date" id="std_dob" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">লিঙ্গ</label>
+                            <select id="std_gender" class="form-select form-control" required>
+                                <option>ছাত্র</option>
+                                <option>ছাত্রী</option>
                             </select>
                         </div>
                     </div>
@@ -79,23 +108,41 @@
                             <input type="text" id="mother_name" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">পিতা/মাতার এনআইডি (১০ বা ১৭ ডিজিট)</label>
-                            <input type="text" id="nid_no" class="form-control" pattern="\d{10}|\d{17}" title="১০ অথবা ১৭ ডিজিট নম্বর দিন" required>
+                            <label class="form-label">মোবাইল নম্বর (১১ ডিজিট)</label>
+                            <input type="tel" id="mobile" class="form-control" placeholder="017XXXXXXXX" pattern="[0-9]{11}" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">মোবাইল নম্বর (১১ ডিজিট)</label>
-                            <input type="tel" id="mobile_no" class="form-control" pattern="[0-9]{11}" title="সঠিক ১১ ডিজিট মোবাইল নম্বর দিন" placeholder="017XXXXXXXX" required>
+                            <label class="form-label">জাতীয় পরিচয়পত্র নম্বর (১০/১৭ ডিজিট)</label>
+                            <input type="text" id="nid" class="form-control" pattern="\d{10}|\d{17}" required>
                         </div>
                     </div>
 
                     <div class="section-title"><i class="fas fa-home me-2"></i> বর্তমান ঠিকানা</div>
                     <div class="row g-3">
                         <div class="col-12">
-                            <textarea id="present_address" class="form-control" rows="3" placeholder="গ্রাম, ডাকঘর, উপজেলা, জেলা..." required></textarea>
+                            <textarea id="address" class="form-control" rows="3" placeholder="গ্রাম, ডাকঘর, উপজেলা, জেলা..." required></textarea>
                         </div>
                     </div>
 
-                    <div class="mt-5 text-center">
+                    <div class="section-title"><i class="fas fa-camera me-2"></i> প্রয়োজনীয় কাগজপত্র (ছবি/স্ক্যান)</div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">শিক্ষার্থীর পাসপোর্ট সাইজ ছবি</label>
+                            <input type="file" class="form-control" accept="image/*" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">জন্ম নিবন্ধনের কপি</label>
+                            <input type="file" class="form-control" accept="image/*,.pdf" required>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="confirm" required>
+                            <label class="form-check-label small text-muted" for="confirm">
+                                আমি ঘোষণা করছি যে, উপরে প্রদত্ত সকল তথ্য সঠিক।
+                            </label>
+                        </div>
                         <button type="submit" class="btn btn-submit shadow">আবেদন সম্পন্ন করুন</button>
                     </div>
                 </form>
@@ -116,33 +163,34 @@
 <script>
     (function() { emailjs.init("YOUR_PUBLIC_KEY"); })();
 
-    document.getElementById('admissionForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = e.target.querySelector('button');
-        btn.innerHTML = 'প্রসেস হচ্ছে...';
+    document.getElementById('admissionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const btn = event.target.querySelector('button');
+        btn.innerHTML = 'পাঠানো হচ্ছে...';
         btn.disabled = true;
 
         const params = {
-            student_name: document.getElementById('std_name').value,
+            student_name: document.getElementById('std_name_bn').value,
             student_class: document.getElementById('std_class').value,
             father_name: document.getElementById('father_name').value,
             mother_name: document.getElementById('mother_name').value,
-            nid_no: document.getElementById('nid_no').value,
-            mobile: document.getElementById('mobile_no').value,
-            address: document.getElementById('present_address').value
+            mobile: document.getElementById('mobile').value,
+            nid: document.getElementById('nid').value,
+            address: document.getElementById('address').value
         };
 
         emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-            .then(() => {
-                Swal.fire('সফল!', 'আবেদনটি ইমেইলে পাঠানো হয়েছে।', 'success');
-                this.reset();
+            .then(function() {
+                Swal.fire('সফল!', 'আবেদনটি ইমেইলে পাঠানো হয়েছে।', 'success');
+                document.getElementById('admissionForm').reset();
                 btn.innerHTML = 'আবেদন সম্পন্ন করুন';
                 btn.disabled = false;
-            }, () => {
-                Swal.fire('এরর!', 'আবার চেষ্টা করুন।', 'error');
+            }, function(error) {
+                Swal.fire('এরর!', 'ইমেইল পাঠানো যায়নি। আবার চেষ্টা করুন।', 'error');
                 btn.disabled = false;
             });
     });
 </script>
+
 </body>
 </html>
