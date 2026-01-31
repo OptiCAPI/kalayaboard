@@ -67,14 +67,34 @@
         }
 
         /* --- Video & Elements --- */
-        .video-container { border: 8px solid #fff; border-radius: 25px; overflow: hidden; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .video-play-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 106, 78, 0.2); display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-        }
-        .play-circle { width: 70px; height: 70px; background: #fff; color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; }
+.video-container { 
+    border: 8px solid #fff; 
+    border-radius: 25px; 
+    overflow: hidden; 
+    position: relative; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+}
 
+/* সাউন্ড বাটন স্টাইল */
+.mute-control {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    color: #006A4E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.mute-control:hover { transform: scale(1.1); background: #fff; }
         /* --- Grid Cards --- */
         .grid-card {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
