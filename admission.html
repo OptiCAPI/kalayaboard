@@ -3,63 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
-        
-        :root { --primary-green: #006A4E; --accent-yellow: #FFB800; }
-        body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; overflow-x: hidden; }
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ভর্তি আবেদন - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
         
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0fdf4; color: #333; }
-        .form-container { background: #fff; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); padding: 40px; margin-top: 50px; margin-bottom: 50px; border-top: 8px solid #006A4E; }
-        .form-header { text-align: center; margin-bottom: 40px; }
-        .form-header h2 { color: #006A4E; font-weight: 700; }
-        .section-title { background: #e8f5e9; color: #006A4E; padding: 10px 20px; border-radius: 10px; font-weight: 600; margin-top: 30px; margin-bottom: 20px; border-left: 5px solid #FFB800; }
-        .form-label { font-weight: 600; color: #444; }
-        .form-control { border-radius: 12px; padding: 12px; border: 1px solid #ddd; transition: 0.3s; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8fafc; color: #333; }
+
+        /* Navbar Style */
+        .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #fff !important; font-weight: 600; }
+        .nav-link:hover { color: #FFB800 !important; }
+
+        /* Form Design */
+        .form-container { 
+            background: #fff; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+            padding: 40px; 
+            margin-top: 50px; 
+            margin-bottom: 50px; 
+            border-top: 10px solid #006A4E; 
+        }
+        .form-header h2 { color: #006A4E; font-weight: 700; margin-bottom: 5px; }
+        .section-title { 
+            background: #f0fdf4; 
+            color: #006A4E; 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            margin-top: 35px; 
+            margin-bottom: 20px; 
+            border-left: 6px solid #FFB800; 
+        }
+        .form-label { font-weight: 600; font-size: 15px; }
+        .form-control { border-radius: 10px; padding: 12px; border: 1px solid #ced4da; }
         .form-control:focus { border-color: #006A4E; box-shadow: 0 0 0 0.25rem rgba(0, 106, 78, 0.1); }
-        .btn-submit { background: #006A4E; color: white; padding: 15px 40px; border-radius: 50px; font-weight: 700; border: none; width: 100%; font-size: 18px; transition: 0.4s; }
-        .btn-submit:hover { background: #004d39; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+
+        .btn-submit { 
+            background: #006A4E; 
+            color: white; 
+            padding: 16px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            width: 100%; 
+            font-size: 18px; 
+            border: none;
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background: #004d39; transform: scale(1.02); }
+
+        /* Footer */
+        footer { background: #1a1a1a; color: #ccc; padding: 30px 0; text-align: center; margin-top: 50px; }
     </style>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/govt.png" alt="Logo" width="40" class="me-2"> কালাইয়া বোর্ড সপ্রাবি
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">হোম</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#gallery">গ্যালারি</a></li>
+                <li class="nav-item"><a class="nav-link active" href="admission.html" style="color: #FFB800 !important;">অনলাইন ভর্তি</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-9">
             <div class="form-container">
-                <div class="form-header">
-                    <img src="images/govt.png" width="80" alt="Govt Logo" class="mb-3">
+                <div class="form-header text-center">
+                    <img src="images/govt.png" width="70" alt="Govt Logo" class="mb-3">
                     <h2>ভর্তি আবেদন ফরম - ২০২৬</h2>
-                    <p class="text-muted">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়, ইন্দুরকানী, পিরোজপুর</p>
+                    <p class="text-muted small">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়, ইন্দুরকানী, পিরোজপুর</p>
                 </div>
 
                 <form id="admissionForm">
-                    <div class="section-title"><i class="fas fa-user-graduate me-2"></i> শিক্ষার্থীর ব্যক্তিগত তথ্য</div>
+                    <div class="section-title"><i class="fas fa-user-graduate me-2"></i> শিক্ষার্থীর তথ্য</div>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label">শিক্ষার্থীর নাম (বাংলায়)</label>
-                            <input type="text" class="form-control" placeholder="উদাঃ আবদুর রহমান" required>
+                            <label class="form-label">নাম (বাংলায়)</label>
+                            <input type="text" id="name_bn" class="form-control" placeholder="উদাঃ আবদুর রহমান" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">শিক্ষার্থীর নাম (ইংরেজিতে)</label>
-                            <input type="text" class="form-control" placeholder="Ex: Abdur Rahman" required>
+                            <label class="form-label">নাম (ইংরেজিতে)</label>
+                            <input type="text" id="name_en" class="form-control" placeholder="Ex: Abdur Rahman" required>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">ভর্তির শ্রেণি</label>
-                            <select class="form-select form-control" required>
-                                <option value="">শ্রেণি নির্বাচন করুন</option>
+                            <select id="student_class" class="form-select form-control" required>
+                                <option value="">নির্বাচন করুন</option>
                                 <option>প্রাক-প্রাথমিক</option>
                                 <option>প্রথম শ্রেণি</option>
                                 <option>দ্বিতীয় শ্রেণি</option>
@@ -70,11 +115,11 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">জন্ম তারিখ</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" id="dob" class="form-control" required>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">লিঙ্গ</label>
-                            <select class="form-select form-control" required>
+                            <select id="gender" class="form-select form-control" required>
                                 <option>ছাত্র</option>
                                 <option>ছাত্রী</option>
                             </select>
@@ -85,49 +130,24 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">পিতার নাম</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" id="father_name" class="form-control" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">মাতার নাম</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" id="mother_name" class="form-control" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">মোবাইল নম্বর (যোগাযোগের জন্য)</label>
-                            <input type="tel" class="form-control" placeholder="017XXXXXXXX" required>
+                            <label class="form-label">মোবাইল নম্বর</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="017XXXXXXXX" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">জাতীয় পরিচয়পত্র নম্বর (পিতা/মাতা)</label>
-                            <input type="number" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="section-title"><i class="fas fa-home me-2"></i> বর্তমান ঠিকানা</div>
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <textarea class="form-control" rows="3" placeholder="গ্রাম, ডাকঘর, উপজেলা, জেলা..." required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="section-title"><i class="fas fa-camera me-2"></i> প্রয়োজনীয় কাগজপত্র</div>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label">শিক্ষার্থীর পাসপোর্ট সাইজ ছবি</label>
-                            <input type="file" class="form-control" accept="image/*" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">জন্ম নিবন্ধনের কপি (স্ক্যান/ছবি)</label>
-                            <input type="file" class="form-control" accept="image/*, .pdf" required>
+                            <label class="form-label">ঠিকানা</label>
+                            <input type="text" id="address" class="form-control" placeholder="গ্রাম, উপজেলা" required>
                         </div>
                     </div>
 
                     <div class="mt-5">
-                        <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" id="confirm" required>
-                            <label class="form-check-label small text-muted" for="confirm">
-                                আমি ঘোষণা করছি যে, উপরে প্রদত্ত সকল তথ্য সঠিক। কোনো ভুল তথ্য প্রমাণিত হলে আবেদন বাতিল বলে গণ্য হবে।
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-submit">আবেদন সম্পন্ন করুন</button>
+                        <button type="submit" class="btn btn-submit shadow">আবেদন সম্পন্ন করুন</button>
                     </div>
                 </form>
             </div>
@@ -135,53 +155,47 @@
     </div>
 </div>
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<footer>
+    <div class="container">
+        <p class="mb-1">&copy; ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়। সকল স্বত্ব সংরক্ষিত।</p>
+        <small>ইন্দুরকানী, পিরোজপুর</small>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script type="text/javascript">
+<script>
     (function() {
-        // এখানে আপনার Public Key বসান
-        emailjs.init("YOUR_PUBLIC_KEY");
+        emailjs.init("YOUR_PUBLIC_KEY"); // আপনার পাবলিক কি এখানে বসান
     })();
 
     document.getElementById('admissionForm').addEventListener('submit', function(event) {
         event.preventDefault();
-
-        // বাটন লোডিং স্টেট
         const btn = event.target.querySelector('button');
-        btn.innerHTML = 'প্রসেস হচ্ছে...';
+        btn.innerHTML = 'পাঠানো হচ্ছে...';
         btn.disabled = true;
 
-        // ইমেইল পাঠানোর প্যারামিটার
         const params = {
-            student_name: document.querySelector('input[placeholder="উদাঃ আবদুর রহমান"]').value,
-            student_class: document.querySelector('select.form-select').value,
-            phone: document.querySelector('input[type="tel"]').value,
-            address: document.querySelector('textarea').value
+            student_name: document.getElementById('name_bn').value,
+            student_class: document.getElementById('student_class').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value
         };
 
-        // EmailJS এর মাধ্যমে ইমেইল পাঠানো
         emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-            .then(function() {
-                Swal.fire({
-                    title: 'সফল হয়েছে!',
-                    text: 'আবেদনটি সরাসরি স্কুলের ইমেইলে পাঠিয়ে দেওয়া হয়েছে।',
-                    icon: 'success',
-                    confirmButtonColor: '#006A4E'
-                });
-                document.getElementById('admissionForm').reset();
+            .then(() => {
+                Swal.fire('সফল!', 'আবেদনটি স্কুলে পাঠানো হয়েছে।', 'success');
+                this.reset();
                 btn.innerHTML = 'আবেদন সম্পন্ন করুন';
                 btn.disabled = false;
-            }, function(error) {
-                Swal.fire({
-                    title: 'ভুল হয়েছে!',
-                    text: 'দুঃখিত, কারিগরি সমস্যার কারণে পাঠানো যায়নি।',
-                    icon: 'error'
-                });
+            }, (err) => {
+                Swal.fire('দুঃখিত!', 'আবার চেষ্টা করুন।', 'error');
                 btn.disabled = false;
             });
     });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
