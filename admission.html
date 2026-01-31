@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ভর্তি আবেদন - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0fdf4; color: #333; }
+        .form-container { background: #fff; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); padding: 40px; margin-top: 50px; margin-bottom: 50px; border-top: 8px solid #006A4E; }
+        .form-header { text-align: center; margin-bottom: 40px; }
+        .form-header h2 { color: #006A4E; font-weight: 700; }
+        .section-title { background: #e8f5e9; color: #006A4E; padding: 10px 20px; border-radius: 10px; font-weight: 600; margin-top: 30px; margin-bottom: 20px; border-left: 5px solid #FFB800; }
+        .form-label { font-weight: 600; color: #444; }
+        .form-control { border-radius: 12px; padding: 12px; border: 1px solid #ddd; transition: 0.3s; }
+        .form-control:focus { border-color: #006A4E; box-shadow: 0 0 0 0.25rem rgba(0, 106, 78, 0.1); }
+        .btn-submit { background: #006A4E; color: white; padding: 15px 40px; border-radius: 50px; font-weight: 700; border: none; width: 100%; font-size: 18px; transition: 0.4s; }
+        .btn-submit:hover { background: #004d39; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="form-container">
+                <div class="form-header">
+                    <img src="images/govt.png" width="80" alt="Govt Logo" class="mb-3">
+                    <h2>ভর্তি আবেদন ফরম - ২০২৬</h2>
+                    <p class="text-muted">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়, ইন্দুরকানী, পিরোজপুর</p>
+                </div>
+
+                <form id="admissionForm">
+                    <div class="section-title"><i class="fas fa-user-graduate me-2"></i> শিক্ষার্থীর ব্যক্তিগত তথ্য</div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">শিক্ষার্থীর নাম (বাংলায়)</label>
+                            <input type="text" class="form-control" placeholder="উদাঃ আবদুর রহমান" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">শিক্ষার্থীর নাম (ইংরেজিতে)</label>
+                            <input type="text" class="form-control" placeholder="Ex: Abdur Rahman" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">ভর্তির শ্রেণি</label>
+                            <select class="form-select form-control" required>
+                                <option value="">শ্রেণি নির্বাচন করুন</option>
+                                <option>প্রাক-প্রাথমিক</option>
+                                <option>প্রথম শ্রেণি</option>
+                                <option>দ্বিতীয় শ্রেণি</option>
+                                <option>তৃতীয় শ্রেণি</option>
+                                <option>চতুর্থ শ্রেণি</option>
+                                <option>পঞ্চম শ্রেণি</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">জন্ম তারিখ</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">লিঙ্গ</label>
+                            <select class="form-select form-control" required>
+                                <option>ছাত্র</option>
+                                <option>ছাত্রী</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="section-title"><i class="fas fa-users me-2"></i> পিতা ও মাতার তথ্য</div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">পিতার নাম</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">মাতার নাম</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">মোবাইল নম্বর (যোগাযোগের জন্য)</label>
+                            <input type="tel" class="form-control" placeholder="017XXXXXXXX" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">জাতীয় পরিচয়পত্র নম্বর (পিতা/মাতা)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="section-title"><i class="fas fa-home me-2"></i> বর্তমান ঠিকানা</div>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <textarea class="form-control" rows="3" placeholder="গ্রাম, ডাকঘর, উপজেলা, জেলা..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section-title"><i class="fas fa-camera me-2"></i> প্রয়োজনীয় কাগজপত্র</div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">শিক্ষার্থীর পাসপোর্ট সাইজ ছবি</label>
+                            <input type="file" class="form-control" accept="image/*" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">জন্ম নিবন্ধনের কপি (স্ক্যান/ছবি)</label>
+                            <input type="file" class="form-control" accept="image/*, .pdf" required>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="confirm" required>
+                            <label class="form-check-label small text-muted" for="confirm">
+                                আমি ঘোষণা করছি যে, উপরে প্রদত্ত সকল তথ্য সঠিক। কোনো ভুল তথ্য প্রমাণিত হলে আবেদন বাতিল বলে গণ্য হবে।
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-submit">আবেদন সম্পন্ন করুন</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    (function() {
+        // এখানে আপনার Public Key বসান
+        emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+
+    document.getElementById('admissionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // বাটন লোডিং স্টেট
+        const btn = event.target.querySelector('button');
+        btn.innerHTML = 'প্রসেস হচ্ছে...';
+        btn.disabled = true;
+
+        // ইমেইল পাঠানোর প্যারামিটার
+        const params = {
+            student_name: document.querySelector('input[placeholder="উদাঃ আবদুর রহমান"]').value,
+            student_class: document.querySelector('select.form-select').value,
+            phone: document.querySelector('input[type="tel"]').value,
+            address: document.querySelector('textarea').value
+        };
+
+        // EmailJS এর মাধ্যমে ইমেইল পাঠানো
+        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+            .then(function() {
+                Swal.fire({
+                    title: 'সফল হয়েছে!',
+                    text: 'আবেদনটি সরাসরি স্কুলের ইমেইলে পাঠিয়ে দেওয়া হয়েছে।',
+                    icon: 'success',
+                    confirmButtonColor: '#006A4E'
+                });
+                document.getElementById('admissionForm').reset();
+                btn.innerHTML = 'আবেদন সম্পন্ন করুন';
+                btn.disabled = false;
+            }, function(error) {
+                Swal.fire({
+                    title: 'ভুল হয়েছে!',
+                    text: 'দুঃখিত, কারিগরি সমস্যার কারণে পাঠানো যায়নি।',
+                    icon: 'error'
+                });
+                btn.disabled = false;
+            });
+    });
+</script>
+
+</body>
+</html>
