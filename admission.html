@@ -171,40 +171,66 @@
     </div>
 </footer>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    (function() { emailjs.init("YOUR_PUBLIC_KEY"); })(); // আপনার EmailJS Public Key
 
-<script>
-    (function() { emailjs.init("YOUR_PUBLIC_KEY"); })();
+    const imgbb_api_key = "YOUR_IMGBB_API_KEY"; // এখানে আপনার ImgBB API Key বসান
 
-    document.getElementById('admissionForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const btn = event.target.querySelector('button');
-        btn.innerHTML = 'পাঠানো হচ্ছে...';
+    document.getElementById('admissionForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ছবি আপলোড হচ্ছে...';
         btn.disabled = true;
 
-        const params = {
-            student_name: document.getElementById('std_name_bn').value,
-            student_class: document.getElementById('std_class').value,
-            father_name: document.getElementById('father_name').value,
-            mother_name: document.getElementById('mother_name').value,
-            mobile: document.getElementById('mobile').value,
-            nid: document.getElementById('nid').value,
-            address: document.getElementById('address').value
-        };
-
-        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-            .then(function() {
-                Swal.fire('সফল!', 'আবেদনটি ইমেইলে পাঠানো হয়েছে।', 'success');
-                document.getElementById('admissionForm').reset();
-                btn.innerHTML = 'আবেদন সম্পন্ন করুন';
-                btn.disabled = false;
-            }, function(error) {
-                Swal.fire('এরর!', 'ইমেইল পাঠানো যায়নি। আবার চেষ্টা করুন।', 'error');
-                btn.disabled = false;
+        try {
+            // ১. শিক্ষার্থীর ছবি আপলোড
+            const stdImg = document.querySelector('input[accept="image/*"]').files[0];
+            const stdFormData = new FormData();
+            stdFormData.append("image", stdImg);
+            const stdRes = await fetch(`https://api.imgbb.com/1/upload?key=${imgbb_api_key}`, {
+                method: "POST",
+                body: stdFormData
             });
+            const stdData = await stdRes.json();
+            const stdImgLink = stdData.data.url;
+
+            // ২. জন্ম নিবন্ধন ছবি আপলোড
+            const docImg = document.querySelectorAll('input[accept*="image/*"]')[1].files[0];
+            const docFormData = new FormData();
+            docFormData.append("image", docImg);
+            const docRes = await fetch(`https://api.imgbb.com/1/upload?key=${imgbb_api_key}`, {
+                method: "POST",
+                body: docFormData
+            });
+            const docData = await docRes.json();
+            const docImgLink = docData.data.url;
+
+            // ৩. EmailJS এর মাধ্যমে ডাটা ও লিঙ্ক পাঠানো
+            const params = {
+                student_name: document.getElementById('std_name_bn').value,
+                student_class: document.getElementById('std_class').value,
+                father_name: document.getElementById('father_name').value,
+                mother_name: document.getElementById('mother_name').value,
+                mobile: document.getElementById('mobile').value,
+                nid: document.getElementById('nid').value,
+                address: document.getElementById('address').value,
+                img_url: stdImgLink,   // ImgBB থেকে পাওয়া লিঙ্ক
+                nid_url: docImgLink    // ImgBB থেকে পাওয়া লিঙ্ক
+            };
+
+            emailjs.send("kalayaboard", "YOUR_TEMPLATE_ID", params)
+                .then(() => {
+                    Swal.fire('সফল!', 'আবেদন ও ছবি সফলভাবে পাঠানো হয়েছে।', 'success');
+                    this.reset();
+                    btn.innerHTML = 'আবেদন সম্পন্ন করুন';
+                    btn.disabled = false;
+                });
+
+        } catch (error) {
+            console.error(error);
+            Swal.fire('এরর!', 'ছবি আপলোড করতে সমস্যা হয়েছে। ফাইলের সাইজ কমিয়ে চেষ্টা করুন।', 'error');
+            btn.disabled = false;
+            btn.innerHTML = 'আবেদন সম্পন্ন করুন';
+        }
     });
 </script>
-
-</body>
-</html>
