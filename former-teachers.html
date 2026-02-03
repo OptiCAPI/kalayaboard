@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রাক্তন শিক্ষক তালিকা - কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8f9fa; }
+        
+        .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #fff !important; font-weight: 600; }
+        
+        /* Header */
+        .header-section { 
+            background: linear-gradient(135deg, #006A4E 0%, #004d39 100%); 
+            color: white; padding: 60px 0; text-align: center; 
+            border-bottom: 5px solid #FFB800;
+        }
+
+        /* Table Design */
+        .table-container { 
+            background: white; 
+            border-radius: 25px; 
+            padding: 30px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            margin-top: -40px;
+        }
+        .custom-table { border-radius: 15px; overflow: hidden; }
+        .custom-table thead { background: #e8f5e9; color: #006A4E; }
+        .custom-table th { padding: 20px; border: none; font-weight: 700; }
+        .custom-table td { padding: 18px; vertical-align: middle; border-bottom: 1px solid #eee; }
+        
+        .honor-badge {
+            background: #fff8e1;
+            color: #ff8f00;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #ffe082;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: #006A4E;
+            border: 2px solid #006A4E;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .back-btn:hover { background: #006A4E; color: white; }
+
+        footer { background: #1a1a1a; color: #ccc; padding: 30px 0; text-align: center; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/govt.png" alt="Logo" width="35" class="me-2"> কালাইয়া বোর্ড সপ্রাবি
+        </a>
+    <ul class="navbar-nav ms-auto">
+    <li class="nav-item"><a class="nav-link" href="index.html">হোম</a></li>
+    <li class="nav-item"><a class="nav-link" href="admission-info.html">ভর্তি তথ্য</a></li>
+    <li class="nav-item"><a class="nav-link" href="teachers.html">শিক্ষকবৃন্দ</a></li>
+    <li class="nav-item"><a class="nav-link" href="contact.html">যোগাযোগ</a></li>
+</ul>
+    </div>
+</nav>
+
+<header class="header-section">
+    <div class="container">
+        <h1 class="fw-bold mb-3"><i class="fas fa-medal me-2"></i> প্রাক্তন শিক্ষকবৃন্দ</h1>
+        <p class="lead">যাঁদের পদচিহ্ন আমাদের এই বিদ্যাপীঠকে করেছে মহিমান্বিত</p>
+    </div>
+</header>
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="table-container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold text-dark m-0">শিক্ষক তালিকা</h4>
+                    <a href="teachers.html" class="back-btn"><i class="fas fa-arrow-left me-2"></i> বর্তমান শিক্ষক</a>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table custom-table">
+                        <thead>
+                            <tr>
+                                <th>ক্রমিক</th>
+                                <th>শিক্ষকের নাম</th>
+                                <th>পদবী</th>
+                                <th>কার্যকাল (সাল)</th>
+                                <th>অবস্থা</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>০১</td>
+                                <td class="fw-bold">মোঃ নজরুল ইসলাম</td>
+                                <td>সাবেক প্রধান শিক্ষক</td>
+                                <td>১৯৯৫ - ২০০৫</td>
+                                <td><span class="honor-badge">অবসরপ্রাপ্ত</span></td>
+                            </tr>
+                            <tr>
+                                <td>০২</td>
+                                <td class="fw-bold">মীর আব্দুল কাদের</td>
+                                <td>সাবেক সহকারী শিক্ষক</td>
+                                <td>১৯৯০ - ২০১২</td>
+                                <td><span class="honor-badge">অবসরপ্রাপ্ত</span></td>
+                            </tr>
+                            <tr>
+                                <td>০৩</td>
+                                <td class="fw-bold">মোসাঃ রাবেয়া খাতুন</td>
+                                <td>সাবেক সহকারী শিক্ষক</td>
+                                <td>২০০৮ - ২০২০</td>
+                                <td><span class="honor-badge">অবসরপ্রাপ্ত</span></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4 p-3 bg-light rounded text-center">
+                    <p class="mb-0 text-muted small"><i class="fas fa-info-circle me-1"></i> এই তালিকায় কোনো তথ্য সংশোধন বা নতুন নাম যুক্ত করতে অফিস সহকারীকে জানান।</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+</footer>
+
+</body>
+</html>
