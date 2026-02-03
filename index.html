@@ -168,14 +168,16 @@
 
     /* আধুনিক কার্ড ডিজাইন (আপনার স্ক্রিনশটের আদলে) */
     .modern-review-card {
-        width: 250px;
+        width: 300px;
+        height: 250px
         background: #e6f1f3; /* ছবির হালকা নীল রং */
         border-radius: 40px; /* প্রিমিয়াম রাউন্ডেড কোনা */
         overflow: hidden;
         display: flex;
         flex-direction: column;
         box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-        transition: 0.4s;
+        transition: 0.5s;
+        justify-content: center; /* কন্টেন্টগুলো মাঝখানে রাখার জন্য */
     }
 
     .modern-review-card.alt-bg {
@@ -628,8 +630,17 @@
                 <h5>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
                 <p class="text-white-50 small">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
             </div>
+            <div class="col-md-4">
+                <h5>গুরুত্বপূর্ণ লিঙ্ক</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white text-decoration-none">হোম</a></li>
+                    <li><a href="admission-info.html" class="text-white text-decoration-none">ভর্তি নির্দেশিকা</a></li>
+                    <li><a href="admission.html" class="text-white text-decoration-none">অনলাইন আবেদন</a></li>
+                    <li><a href="contact.html" class="text-white text-decoration-none">যোগাযোগ করুন</a></li>
+                </ul>
+</div>
             <div class="col-md-4 offset-md-4 text-md-end">
-                <h6 class="text-warning fw-bold mb-3">যোগাযোগ</h6>
+                <h6 class="text-warning fw-bold mb-3">ঠিকানা</h6>
                 <p class="small text-white-50">কালাইয়া, ইন্দুরকানী, পিরোজপুর </p>
                 <div class="mt-3">
                     <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
