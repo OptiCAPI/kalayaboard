@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডিজিটাল ক্লাস | কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f1f5f9; }
+        
+        .header-box { background: #006A4E; color: white; padding: 40px 0; border-radius: 0 0 40px 40px; margin-bottom: 30px; border-bottom: 5px solid #FFB800; }
+        
+        .nav-pills .nav-link {
+            background: white; color: #006A4E; border: 1px solid #006A4E;
+            margin: 5px; border-radius: 15px; font-weight: 600; transition: 0.3s;
+        }
+        .nav-pills .nav-link.active { background: #006A4E !important; color: #FFB800 !important; border-color: #FFB800; }
+        
+        .resource-card {
+            background: white; border-radius: 20px; padding: 15px 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 15px;
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid transparent; transition: 0.3s;
+        }
+        .resource-card:hover { border-color: #006A4E; transform: translateY(-5px); }
+        
+        .icon-box {
+            width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-right: 15px;
+        }
+        .bg-vid { background: #ffebee; color: #d32f2f; }
+        .bg-ppt { background: #e3f2fd; color: #1976d2; }
+        
+        /* Video Container */
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        footer { margin-top: 50px; text-align: center; padding: 20px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <header class="header-box shadow">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-2">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
+            <h4 class="m-0"><i class="fas fa-laptop-code me-2"></i> ডিজিটাল অনলাইন ক্লাস</h4>
+            <a href="index.html" class="btn btn-sm btn-outline-light mt-3 rounded-pill">
+                <i class="fas fa-arrow-left me-1"></i> হোমপেজে ফিরুন
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <ul class="nav nav-pills justify-content-center mb-5" id="pills-tab" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#class1">Class 1</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class2">Class 2</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class3">Class 3</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class4">Class 4</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class5">Class 5</button></li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+            
+            <div class="tab-pane fade show active" id="class1">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm p-3" style="border-radius: 20px;">
+                            <div class="video-wrapper mb-3">
+                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <h6 class="fw-bold mb-1">বাংলা: স্বরবর্ণের সঠিক উচ্চারণ</h6>
+                            <p class="text-muted small mb-0">শিক্ষক: মোঃ আবদুর রহমান</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm p-3" style="border-radius: 20px;">
+                            <div class="video-wrapper mb-3">
+                                <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <h6 class="fw-bold mb-1">গণিত: মজার ছলে ১-১০ পর্যন্ত গণনা</h6>
+                            <p class="text-muted small mb-0">শিক্ষক: মোসাঃ নুসরাত জাহান</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="fw-bold mt-4 mb-3"><i class="fas fa-file-download me-2"></i> পড়াশোনার সামগ্রী (Class 1)</h5>
+                <div class="resource-card">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box bg-ppt"><i class="fas fa-file-powerpoint"></i></div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">আজকের পাঠের পাওয়ারপয়েন্ট ফাইল</h6>
+                            <small class="text-muted">Size: 2.5 MB</small>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-sm rounded-pill px-4">ডাউনলোড</a>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="class2">
+                <div class="text-center py-5">
+                    <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">এই শ্রেণির ভিডিও শীঘ্রই আপলোড করা হবে।</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© ২০২৬ ডিজিটাল শিক্ষা কার্যক্রম - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
