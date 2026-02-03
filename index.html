@@ -334,34 +334,51 @@
             }
         }
                 
-        /* ৭. সাকসেস স্লাইডার কাস্টম */
-        studentSuccessCarousel .carousel-item { padding: 20px 40px; }
-        .success-video-box { min-height: 350px; border-radius: 25px; overflow: hidden; }
-
-        .success-bg { background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('images/pattern.png'); }
-.success-card {
-    background: #fff;
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-    position: relative;
-    border-top: 5px solid var(--primary-green);
-}
-.floating-icon-box {
-    position: absolute;
-    top: -20px; right: 20px;
-    background: #FFB800;
-    width: 50px; height: 50px;
-    border-radius: 15px;
-    display: flex; align-items: center; justify-content: center;
-    animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+       /* ১০. স্লাইডার কাস্টম বাটন স্টাইল */
+.custom-ctrl {
+    width: 40px !important;
+    height: 40px !important;
+    background: #006A4E !important;
+    border-radius: 50%;
+    top: 50% !important;
+    transform: translateY(-50%);
+    opacity: 0.8 !important;
+    font-size: 14px;
 }
 
-        /* ৮. প্রধান শিক্ষক */
+.custom-ctrl:hover {
+    opacity: 1 !important;
+    background: #FFB800 !important;
+    color: #000;
+}
+
+/* বাটন পজিশন */
+#photoSuccessCarousel .carousel-control-prev, 
+#videoSuccessCarousel .carousel-control-prev { left: -20px; }
+
+#photoSuccessCarousel .carousel-control-next, 
+#videoSuccessCarousel .carousel-control-next { right: -20px; }
+
+/* সাকসেস কার্ড ও ভিডিও বক্স অ্যানিমেশন */
+.success-card, .success-video-box {
+    transition: 0.4s;
+}
+.success-card:hover {
+    box-shadow: 0 15px 30px rgba(0,106,78,0.1) !important;
+}
+
+/* মোবাইলে বাটনের পজিশন ঠিক করা */
+@media (max-width: 768px) {
+    .custom-ctrl {
+        top: 100% !important;
+        transform: translateY(10px);
+    }
+    #photoSuccessCarousel .carousel-control-prev, 
+    #videoSuccessCarousel .carousel-control-prev { left: 30%; }
+    #photoSuccessCarousel .carousel-control-next, 
+    #videoSuccessCarousel .carousel-control-next { right: 30%; }
+}
+        /* ১১. প্রধান শিক্ষক */
 
         .principal-section { background: #fff; padding: 60px 0; border-bottom: 1px solid #eee; }
 .principal-img-frame {
@@ -378,7 +395,7 @@
     z-index: -1;
 }
 
-        /* মেইন ফুটার স্টাইল */
+        /* ১২. মেইন ফুটার স্টাইল */
     .main-footer {
         background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
         color: #ffffff;
@@ -587,51 +604,24 @@
     <div class="row g-4">
         <div class="col-6 col-md-3"><a href="class.html" class="grid-card bg-emerald shadow-sm"><i class="fas fa-video fa-2x mb-2"></i><h5>আজকের ক্লাস</h5></a></div>
         <div class="col-6 col-md-3"><a href="jukebox.html" class="grid-card bg-amber shadow-sm"><i class="fas fa-music fa-2x mb-2"></i><h5>অডিও জুকবক্স</h5></a></div>
+        <div class="col-6 col-md-3"><a href="gallery.html" class="grid-card bg-red shadow-sm"><i class="fas fa-play-circle fa-2x mb-2"></i><h5>ভিডিও</h5></a></div>
         <div class="col-6 col-md-3"><a href="routine.html" class="grid-card bg-blue shadow-sm"><i class="fas fa-file-alt fa-2x mb-2"></i><h5>ক্লাস রুটিন</h5></a></div>
         <div class="col-6 col-md-3"><a href="digital-class.html" class="grid-card bg-indigo"><i class="fas fa-laptop-code"></i><h5>ডিজিটাল ক্লাস</h5></a></div>
         <div class="col-6 col-md-3"><a href="results.html" class="grid-card bg-purple shadow-sm"><i class="fas fa-poll fa-2x mb-2"></i><h5>রেজাল্ট</h5></a></div>
-        <div class="col-6 col-md-3"><a href="gallery.html" class="grid-card bg-red shadow-sm"><i class="fas fa-play-circle fa-2x mb-2"></i><h5>ভিডিও</h5></a></div>
         <div class="col-6 col-md-3"><a href="books.html" class="grid-card bg-orange shadow-sm"><i class="fas fa-book fa-2x mb-2"></i><h5>বইসমূহ</h5></a></div>
         <div class="col-6 col-md-3"><a href="holidays.html" class="grid-card bg-pink shadow-sm"><i class="fas fa-calendar-check fa-2x mb-2"></i><h5>ছুটির তালিকা</h5></a></div>
         <div class="col-6 col-md-3"><a href="teachers.html" class="grid-card bg-teal shadow-sm"><i class="fas fa-users fa-2x mb-2"></i><h5>শিক্ষকমন্ডলী</h5></a></div>
-        <div class="col-6 col-md-3">
-        <a href="former-teachers.html" class="grid-card bg-rose">
-            <i class="fas fa-user-graduate"></i>
-            <span><h5>প্রাক্তন ছাত্রছাত্রী</h5></span>
-        </a>
-    </div>
-        <div class="col-6 col-md-3">
-        <a href="gallery.html" class="grid-card bg-purple">
-            <i class="fas fa-images"></i>
-            <span><h5>ফটো গ্যালারি</h5></span>
-        </a>
-    </div>
-        <div class="col-6 col-md-3">
-        <a href="notice.html" class="grid-card bg-amber">
-            <i class="fas fa-bullhorn"></i>
-            <span><h5>নোটিশ বোর্ড</h5></span>
-        </a>
-    </div>
-        <div class="col-6 col-md-3">
-        <a href="#" class="grid-card bg-lime">
-            <i class="fas fa-comment-dots"></i>
-            <span><h5>অভিযোগ বক্স</h5></span>
-        </a>
-    </div>
-
-    <div class="col-6 col-md-3">
-        <a href="#" class="grid-card bg-pink">
-            <i class="fas fa-history"></i>
-            <span><h5>স্কুলের ইতিহাস</h5></span>
-        </a>  
-    </div>
+        <div class="col-6 col-md-3"><a href="gallery.html" class="grid-card bg-purple"><i class="fas fa-images"></i><span><h5>ফটো গ্যালারি</h5></span></a></div>
+        <div class="col-6 col-md-3"><a href="notice.html" class="grid-card bg-amber"><i class="fas fa-bullhorn"></i><span><h5>নোটিশ বোর্ড</h5></span></a></div>
+        <div class="col-6 col-md-3"><a href="history" class="grid-card bg-pink"><i class="fas fa-history"></i><span><h5>স্কুলের ইতিহাস</h5></span></a></div>
+        <div class="col-6 col-md-3"><a href="#" class="grid-card bg-lime"><i class="fas fa-comment-dots"></i><span><h5>অভিযোগ ও পরামর্শ বক্স</h5></span></a></div>
 </section>
 
 <section class="container py-5">
     <div class="text-center mb-5">
         <h2 class="fw-bold" style="color: #006A4E;">আমাদের পাঠদান স্তর</h2>
         <p class="text-muted">প্রতিটি স্তরে রয়েছে আধুনিক ও মানসম্মত শিক্ষার নিশ্চয়তা</p>
-    </div>
+    </div> 
 
     <div class="row g-4">
         <div class="col-md-4 col-sm-6" onclick="openPremiumGallery('প্রাক-প্রাথমিক', ['p1.jpg', 'p2.jpg', 'p3.jpg'])">
@@ -833,60 +823,81 @@
     </div>
 </section>
 
-    <section class="py-5 success-bg">
+    <section class="py-5 success-bg" style="background-color: #f8fafc;">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold" style="color: #006A4E;">আমাদের কৃতি শিক্ষার্থী</h2>
-            <p class="text-muted">সাফল্যের শিখরে আমাদের প্রিয় শিক্ষার্থীরা</p>
+            <h2 class="fw-bold" style="color: #006A4E;">কৃতি শিক্ষার্থী ও সাফল্য গাথা</h2>
+            <p class="text-muted">আমাদের শিক্ষার্থীদের অর্জন ও ভিডিও বার্তা</p>
         </div>
 
-        <div id="studentSuccessCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-md-5">
-                            <div class="success-video-box shadow-lg">
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <h5 class="fw-bold mb-4 text-secondary"><i class="fas fa-user-graduate me-2 text-success"></i>সেরা শিক্ষার্থী</h5>
+                <div id="photoSuccessCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="success-card shadow-sm border-0 h-100 p-4" style="background: white; border-radius: 25px;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="images/student1.jpg" class="rounded-circle border border-3 border-success me-3" width="80" height="80" style="object-fit: cover;">
+                                    <div>
+                                        <h4 class="fw-bold mb-0 text-dark">সাদিয়া আফরিন</h4>
+                                        <p class="text-success small fw-bold mb-0">বৃত্তিপ্রাপ্ত (৫ম শ্রেণি)</p>
+                                    </div>
+                                </div>
+                                <p class="fst-italic text-muted">"আমি এই স্কুল থেকে যে সাপোর্ট পেয়েছি তা অবিশ্বাস্য। শিক্ষকদের ডিজিটাল কন্টেন্টের মাধ্যমে জটিল বিষয়গুলো সহজে বোঝা যেত।"</p>
+                                <div class="text-end"><i class="fas fa-quote-right text-light fs-1"></i></div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="success-card shadow-sm border-0 h-100 p-4" style="background: white; border-radius: 25px;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="images/student2.jpg" class="rounded-circle border border-3 border-success me-3" width="80" height="80" style="object-fit: cover;">
+                                    <div>
+                                        <h4 class="fw-bold mb-0 text-dark">আহসান হাবিব</h4>
+                                        <p class="text-success small fw-bold mb-0">সেরা শিক্ষার্থী (২০২৫)</p>
+                                    </div>
+                                </div>
+                                <p class="fst-italic text-muted">"স্কুলের লাইব্রেরি এবং জুকবক্স আমার প্রিয়। পড়ালেখার পাশাপাশি খেলাধুলা এবং সাংস্কৃতিক প্রতিযোগিতায় অংশগ্রহণের সুযোগ পেয়ে আমি আনন্দিত।"</p>
+                                <div class="text-end"><i class="fas fa-quote-right text-light fs-1"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev custom-ctrl" type="button" data-bs-target="#photoSuccessCarousel" data-bs-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control-next custom-ctrl" type="button" data-bs-target="#photoSuccessCarousel" data-bs-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <h5 class="fw-bold mb-4 text-secondary"><i class="fas fa-video me-2 text-danger"></i>সাফল্যের ভিডিও</h5>
+                <div id="videoSuccessCarousel" class="carousel slide" data-bs-ride="false">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="success-video-box shadow-sm" style="border-radius: 25px; overflow: hidden; border: 5px solid #fff;">
                                 <video class="w-100" controls poster="images/video_thumb1.jpg">
                                     <source src="videos/success1.mp4" type="video/mp4">
                                 </video>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="success-card">
-                                <div class="floating-icon-box"><i class="fas fa-trophy text-white fs-4"></i></div>
-                                <h4 class="fw-bold">সাদিয়া আফরিন</h4>
-                                <p class="text-success small fw-bold">বৃত্তিপ্রাপ্ত (৫ম শ্রেণি)</p>
-                                <p class="fst-italic text-muted">"আমি এই স্কুল থেকে যে সাপোর্ট পেয়েছি তা অবিশ্বাস্য। বিশেষ করে শিক্ষকদের ডিজিটাল কন্টেন্টের মাধ্যমে জটিল বিষয়গুলো সহজে বোঝা যেত। ধন্যবাদ আমার প্রিয় শিক্ষকদের!"</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-md-5">
-                            <div class="success-video-box shadow-lg">
+                        <div class="carousel-item">
+                            <div class="success-video-box shadow-sm" style="border-radius: 25px; overflow: hidden; border: 5px solid #fff;">
                                 <video class="w-100" controls poster="images/video_thumb2.jpg">
                                     <source src="videos/success2.mp4" type="video/mp4">
                                 </video>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="success-card">
-                                <div class="floating-icon-box"><i class="fas fa-medal text-white fs-4"></i></div>
-                                <h4 class="fw-bold">আহসান হাবিব</h4>
-                                <p class="text-success small fw-bold">সেরা শিক্ষার্থী (২০২৫)</p>
-                                <p class="fst-italic text-muted">"স্কুলের লাইব্রেরি এবং জুকবক্স আমার প্রিয়। পড়ালেখার পাশাপাশি খেলাধুলা এবং সাংস্কৃতিক প্রতিযোগিতায় অংশগ্রহণের সুযোগ পেয়ে আমি আনন্দিত।"</p>
-                            </div>
-                        </div>
                     </div>
+                    <button class="carousel-control-prev custom-ctrl" type="button" data-bs-target="#videoSuccessCarousel" data-bs-slide="prev">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="carousel-control-next custom-ctrl" type="button" data-bs-target="#videoSuccessCarousel" data-bs-slide="next">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#studentSuccessCarousel" data-bs-slide="prev" style="width: 5%;">
-                <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#studentSuccessCarousel" data-bs-slide="next" style="width: 5%;">
-                <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-            </button>
         </div>
     </div>
 </section>
