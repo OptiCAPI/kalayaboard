@@ -3,96 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>রুটিন ও সিলেবাস | কালবাড়িয়া সপ্রাবি</title>
+    <title>রুটিন ও সিলেবাস ২০২৬ | কালাইয়া বোর্ড সপ্রাবি</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8fafc; color: #334155; }
+        
+        /* Navbar */
+        .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .nav-link { color: #fff !important; font-weight: 600; transition: 0.3s; }
+        .nav-link:hover { color: #FFB800 !important; }
 
-    <nav class="navbar navbar-dark bg-primary shadow-sm mb-4">
+        /* Header Section */
+        .routine-header {
+            background: linear-gradient(135deg, #006A4E 0%, #004d39 100%);
+            color: white; padding: 60px 0; text-align: center;
+            border-radius: 0 0 50px 50px; margin-bottom: 40px;
+        }
+
+        /* Table Design */
+        .table-container {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: none;
+        }
+        .table thead { background: #006A4E; color: white; border: none; }
+        .table th { padding: 15px; font-weight: 600; border: none; }
+        .table td { padding: 12px; border-bottom: 1px solid #f1f5f9; }
+        .table tr:hover { background-color: #f8fafc; }
+
+        /* Syllabus Card */
+        .syllabus-card {
+            background: white; border-radius: 20px; padding: 25px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid #ef4444; transition: 0.3s;
+        }
+        .syllabus-card:hover { transform: translateY(-5px); }
+
+        /* Footer Styles */
+        .main-footer { background: linear-gradient(135deg, #003d2d 0%, #001a13 100%); color: #ffffff; padding: 60px 0 30px; margin-top: 80px; }
+        .footer-logo { width: 60px; height: auto; }
+        .footer-title { color: #FFB800; font-weight: 700; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
+        .footer-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: #FFB800; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: #FFB800; padding-left: 8px; }
+        .social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 10px; text-decoration: none; }
+        .text-light-50 { color: rgba(255,255,255,0.6) !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a href="index.html" class="btn btn-light btn-sm"><i class="fas fa-home"></i></a>
-            <span class="navbar-brand">রুটিন ও সিলেবাস</span>
-            <li class="nav-item"><a class="nav-link" href="admission.html"style="color: #FFB800 !important;">অনলাইন ভর্তি</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">যোগাযোগ</a></li>
-                <li class="nav-item ms-lg-3"><img src="images/dpe.png" alt="DPE" width="40"></li>
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/govt.png" alt="Logo" width="35" class="me-2">
+                <span class="text-white fw-bold">কালাইয়া বোর্ড সপ্রাবি</span>
+            </a>
+            <div class="ms-auto d-flex align-items-center">
+                <a href="index.html" class="nav-link px-3"><i class="fas fa-home"></i></a>
+                <a href="admission.html" class="nav-link px-3" style="color: #FFB800 !important;">অনলাইন ভর্তি</a>
+                <img src="images/dpe.png" alt="DPE" width="35" class="ms-3 d-none d-md-block">
+            </div>
         </div>
     </nav>
 
+    <header class="routine-header">
+        <div class="container">
+            <h2 class="fw-bold mb-2">রুটিন ও সিলেবাস - ২০২৬</h2>
+            <p class="lead opacity-75">নতুন শিক্ষাক্রম অনুযায়ী শ্রেণি পাঠদান ও মূল্যায়ন পরিকল্পনা</p>
+        </div>
+    </header>
+
     <div class="container">
-        <h5 class="fw-bold text-dark mb-3"><i class="fas fa-clock text-primary me-2"></i>শ্রেণি রুটিন (Weekly Routine)</h5>
-        <div class="table-responsive shadow-sm bg-white rounded-3 p-2 mb-4">
-            <table class="table table-bordered text-center align-middle">
-                <thead class="table-primary small">
-                    <tr>
-                        <th>দিন</th>
-                        <th>১ম পিরিয়ড</th>
-                        <th>২য় পিরিয়ড</th>
-                    </tr>
-                </thead>
-                <tbody class="small">
-                    <tr>
-                        <td>রবিবার</td>
-                        <td>বাংলা</td>
-                        <td>গণিত</td>
-                    </tr>
-                    <tr>
-                        <td>সোমবার</td>
-                        <td>ইংরেজি</td>
-                        <td>পরিবেশ</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="mb-5">
+            <h4 class="fw-bold mb-4 d-flex align-items-center">
+                <span class="bg-primary text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-calendar-alt"></i>
+                </span>
+                সাপ্তাহিক শ্রেণি রুটিন
+            </h4>
+            
+            <div class="table-container table-responsive">
+                <table class="table text-center align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>বার (Day)</th>
+                            <th>১ম পিরিয়ড</th>
+                            <th>২য় পিরিয়ড</th>
+                            <th>৩য় পিরিয়ড</th>
+                            <th>৪র্থ পিরিয়ড</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold text-success">রবিবার</td>
+                            <td>বাংলা</td>
+                            <td>গণিত</td>
+                            <td>ইংরেজি</td>
+                            <td>শিল্প ও সংস্কৃতি</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-success">সোমবার</td>
+                            <td>ইংরেজি</td>
+                            <td>পরিবেশ</td>
+                            <td>বাংলা</td>
+                            <td>শারীরিক শিক্ষা</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-success">মঙ্গলবার</td>
+                            <td>গণিত</td>
+                            <td>বাংলা</td>
+                            <td>ইংরেজি</td>
+                            <td>ধর্ম</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
         </div>
 
-        <h5 class="fw-bold text-dark mb-3"><i class="fas fa-book-open text-danger me-2"></i>মূল্যায়ন সিলেবাস (Syllabus)</h5>
-        <div class="card border-0 shadow-sm p-3 mb-5" style="border-radius: 15px;">
-            <div class="d-flex justify-content-between align-items-center">
-                <span>২য় প্রান্তিক সিলেবাস ২০২৪ (সকল শ্রেণি)</span>
-                <a href="doc/syllabus_2026.pdf" class="btn btn-danger btn-sm rounded-pill" download>
-                    <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
+        <div class="mb-5">
+            <h4 class="fw-bold mb-4 d-flex align-items-center">
+                <span class="bg-danger text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-book"></i>
+                </span>
+                মূল্যায়ন ও সিলেবাস
+            </h4>
+
+            <div class="syllabus-card">
+                <div>
+                    <h5 class="fw-bold mb-1">১ম প্রান্তিক মূল্যায়ন সিলেবাস ২০২৬</h5>
+                    <p class="text-muted mb-0 small">ফাইল টাইপ: PDF | সাইজ: ২.৪ এমবি</p>
+                </div>
+                <a href="doc/syllabus_2026.pdf" class="btn btn-danger rounded-pill px-4 shadow-sm" download>
+                    <i class="fas fa-download me-2"></i> ডাউনলোড
                 </a>
             </div>
         </div>
-    </div> 
-<footer class="main-footer">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <img src="images/govt.png" alt="Logo" class="footer-logo mb-3">
-                <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
-                <p class="text-light-50 mt-3">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
-                <div class="social-links mt-4">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-md-center">
-                <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
-                <ul class="footer-links d-inline-block text-start">
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
-                    <li><a href="admission-info.html"><i class="fas fa-chevron-right"></i> ভর্তি তথ্য</a></li>
-                    <li><a href="notice.html"><i class="fas fa-chevron-right"></i> নোটিশ বোর্ড</a></li>
-                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> ফটো গ্যালারি</a></li>
-                    <li><a href="digital-class.html"><i class="fas fa-chevron-right"></i> ডিজিটাল ক্লাস</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <h5 class="footer-title">ঠিকানা</h5>
-                <div class="contact-info text-light-50">
-                    <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, ইন্দুরকানী, পিরোজপুর।</p>
-                    <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-warning btn-sm rounded-pill mt-2">গুগল ম্যাপে দেখুন</a>
-                </div>
-            </div>
-        </div>
-        <hr class="mt-5 mb-4 border-light opacity-10">
-        <p class="text-center text-light-50 small mb-0">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি। সর্বস্বত্ব সংরক্ষিত।</p>
     </div>
-</footer>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <img src="images/govt.png" alt="Logo" class="footer-logo mb-3">
+                    <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
+                    <p class="text-light-50 mt-3">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-md-center">
+                    <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
+                    <ul class="footer-links d-inline-block text-start">
+                        <li><a href="index.html">হোম</a></li>
+                        <li><a href="admission-info.html">ভর্তি তথ্য</a></li>
+                        <li><a href="notice.html">নোটিশ বোর্ড</a></li>
+                        <li><a href="gallery.html">ফটো গ্যালারি</a></li>
+                        <li><a href="digital-class.html">ডিজিটাল ক্লাস</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-title">ঠিকানা</h5>
+                    <div class="contact-info text-light-50">
+                        <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, ইন্দুরকানী, পিরোজপুর।</p>
+                        <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
+                        <a href="#" target="_blank" class="btn btn-warning btn-sm rounded-pill mt-2 fw-bold">গুগল ম্যাপে দেখুন</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 border-light opacity-10">
+            <p class="text-center text-light-50 small mb-0">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি। সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
 </body>
 </html>
