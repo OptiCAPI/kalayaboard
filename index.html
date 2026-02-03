@@ -334,66 +334,113 @@
             }
         }
                 
-       /* ১০. স্লাইডার কাস্টম বাটন স্টাইল */
-.custom-ctrl {
-    width: 40px !important;
-    height: 40px !important;
-    background: #006A4E !important;
-    border-radius: 50%;
-    top: 50% !important;
-    transform: translateY(-50%);
-    opacity: 0.8 !important;
-    font-size: 14px;
-}
+       /* ১০. স্লাইডার কাস্টম টেস্টমোনিয়াল কার্ড */
+        .custom-testimonial-card {
+            background: #fff;
+            border: 1px solid #e0eadd;
+            border-radius: 40px;
+            min-height: 350px;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 80%;
+        }
+        
+        /* স্লাইডার বাটন (বাম দিকের জন্য) */
+        .testimonial-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        
+        .testimonial-controls button {
+            background: none;
+            border: none;
+            color: #006A4E;
+            font-size: 18px;
+            transition: 0.3s;
+            opacity: 0.5;
+        }
+        
+        .testimonial-controls button:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* ভিডিও স্লাইডার স্টাইল */
+        .video-slider-container {
+            border-radius: 40px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            height: 350px;
+        }
+        
+        .play-btn-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0,0,0,0.4);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* ভিডিওর নেক্সট বাটন (ডানে) */
+        .video-ctrl-next {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 50%;
+            color: #333;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            opacity: 1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .video-ctrl-next:hover {
+            background: #006A4E;
+            color: #fff;
+        }
+        
+        /* মোবাইলের জন্য ফিক্স */
+        @media (max-width: 768px) {
+            .testimonial-text { font-size: 0.95rem; max-width: 100%; }
+            .video-wrapper, .custom-testimonial-card { min-height: 300px; }
+        }
 
-.custom-ctrl:hover {
-    opacity: 1 !important;
-    background: #FFB800 !important;
-    color: #000;
-}
-
-/* বাটন পজিশন */
-#photoSuccessCarousel .carousel-control-prev, 
-#videoSuccessCarousel .carousel-control-prev { left: -20px; }
-
-#photoSuccessCarousel .carousel-control-next, 
-#videoSuccessCarousel .carousel-control-next { right: -20px; }
-
-/* সাকসেস কার্ড ও ভিডিও বক্স অ্যানিমেশন */
-.success-card, .success-video-box {
-    transition: 0.4s;
-}
-.success-card:hover {
-    box-shadow: 0 15px 30px rgba(0,106,78,0.1) !important;
-}
-
-/* মোবাইলে বাটনের পজিশন ঠিক করা */
-@media (max-width: 768px) {
-    .custom-ctrl {
-        top: 100% !important;
-        transform: translateY(10px);
-    }
-    #photoSuccessCarousel .carousel-control-prev, 
-    #videoSuccessCarousel .carousel-control-prev { left: 30%; }
-    #photoSuccessCarousel .carousel-control-next, 
-    #videoSuccessCarousel .carousel-control-next { right: 30%; }
-}
+        
         /* ১১. প্রধান শিক্ষক */
-
         .principal-section { background: #fff; padding: 60px 0; border-bottom: 1px solid #eee; }
-.principal-img-frame {
-    border: 10px solid #f0fdf4;
-    border-radius: 30px;
-    position: relative;
-}
-.principal-img-frame::after {
-    content: '';
-    position: absolute;
-    top: 20px; left: -20px; width: 100%; height: 100%;
-    border: 2px solid var(--primary-green);
-    border-radius: 30px;
-    z-index: -1;
-}
+        .principal-img-frame {
+            border: 10px solid #f0fdf4;
+            border-radius: 30px;
+            position: relative;
+        }
+        .principal-img-frame::after {
+            content: '';
+            position: absolute;
+            top: 20px; left: -20px; width: 100%; height: 100%;
+            border: 2px solid var(--primary-green);
+            border-radius: 30px;
+            z-index: -1;
+        }
 
         /* ১২. মেইন ফুটার স্টাইল */
     .main-footer {
@@ -823,78 +870,70 @@
     </div>
 </section>
 
-    <section class="py-5 success-bg" style="background-color: #f8fafc;">
+   <section class="py-5 success-bg" style="background-color: #f8fafc;">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold" style="color: #006A4E;">কৃতি শিক্ষার্থী ও সাফল্য গাথা</h2>
             <p class="text-muted">আমাদের শিক্ষার্থীদের অর্জন ও ভিডিও বার্তা</p>
         </div>
 
-        <div class="row g-5">
+        <div class="row g-4 align-items-stretch">
             <div class="col-lg-6">
-                <h5 class="fw-bold mb-4 text-secondary"><i class="fas fa-user-graduate me-2 text-success"></i>সেরা শিক্ষার্থী</h5>
-                <div id="photoSuccessCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="success-card shadow-sm border-0 h-100 p-4" style="background: white; border-radius: 25px;">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img src="images/student1.jpg" class="rounded-circle border border-3 border-success me-3" width="80" height="80" style="object-fit: cover;">
-                                    <div>
-                                        <h4 class="fw-bold mb-0 text-dark">সাদিয়া আফরিন</h4>
-                                        <p class="text-success small fw-bold mb-0">বৃত্তিপ্রাপ্ত (৫ম শ্রেণি)</p>
-                                    </div>
+                <div id="photoSuccessCarousel" class="carousel slide h-100 shadow-sm custom-testimonial-card" data-bs-ride="carousel">
+                    <div class="carousel-inner h-100">
+                        <div class="carousel-item active h-100">
+                            <div class="d-flex flex-column justify-content-center align-items-center text-center p-5 h-100">
+                                <p class="testimonial-text mb-4 text-muted fst-italic">"আমি এই স্কুল থেকে যে সাপোর্ট পেয়েছি তা অবিশ্বাস্য। শিক্ষকদের ডিজিটাল কন্টেন্টের মাধ্যমে জটিল বিষয়গুলো সহজে বোঝা যেত। ধন্যবাদ আমার প্রিয় শিক্ষকদের!"</p>
+                                <div class="student-info">
+                                    <h5 class="fw-bold mb-0" style="color: #006A4E;">সাদিয়া আফরিন</h5>
+                                    <p class="small fw-bold text-secondary">বৃত্তিপ্রাপ্ত (৫ম শ্রেণি)</p>
                                 </div>
-                                <p class="fst-italic text-muted">"আমি এই স্কুল থেকে যে সাপোর্ট পেয়েছি তা অবিশ্বাস্য। শিক্ষকদের ডিজিটাল কন্টেন্টের মাধ্যমে জটিল বিষয়গুলো সহজে বোঝা যেত।"</p>
-                                <div class="text-end"><i class="fas fa-quote-right text-light fs-1"></i></div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="success-card shadow-sm border-0 h-100 p-4" style="background: white; border-radius: 25px;">
-                                <div class="d-flex align-items-center mb-3">
-                                    <img src="images/student2.jpg" class="rounded-circle border border-3 border-success me-3" width="80" height="80" style="object-fit: cover;">
-                                    <div>
-                                        <h4 class="fw-bold mb-0 text-dark">আহসান হাবিব</h4>
-                                        <p class="text-success small fw-bold mb-0">সেরা শিক্ষার্থী (২০২৫)</p>
-                                    </div>
+                        <div class="carousel-item h-100">
+                            <div class="d-flex flex-column justify-content-center align-items-center text-center p-5 h-100">
+                                <p class="testimonial-text mb-4 text-muted fst-italic">"স্কুলের লাইব্রেরি এবং জুকবক্স আমার প্রিয়। পড়ালেখার পাশাপাশি খেলাধুলা এবং সাংস্কৃতিক প্রতিযোগিতায় অংশগ্রহণের সুযোগ পেয়ে আমি আনন্দিত।"</p>
+                                <div class="student-info">
+                                    <h5 class="fw-bold mb-0" style="color: #006A4E;">আহসান হাবিব</h5>
+                                    <p class="small fw-bold text-secondary">সেরা শিক্ষার্থী (২০২৫)</p>
                                 </div>
-                                <p class="fst-italic text-muted">"স্কুলের লাইব্রেরি এবং জুকবক্স আমার প্রিয়। পড়ালেখার পাশাপাশি খেলাধুলা এবং সাংস্কৃতিক প্রতিযোগিতায় অংশগ্রহণের সুযোগ পেয়ে আমি আনন্দিত।"</p>
-                                <div class="text-end"><i class="fas fa-quote-right text-light fs-1"></i></div>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev custom-ctrl" type="button" data-bs-target="#photoSuccessCarousel" data-bs-slide="prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-control-next custom-ctrl" type="button" data-bs-target="#photoSuccessCarousel" data-bs-slide="next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                    
+                    <div class="testimonial-controls">
+                        <button class="prev-btn" type="button" data-bs-target="#photoSuccessCarousel" data-bs-slide="prev">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button class="next-btn" type="button" data-bs-target="#photoSuccessCarousel" data-bs-slide="next">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <h5 class="fw-bold mb-4 text-secondary"><i class="fas fa-video me-2 text-danger"></i>সাফল্যের ভিডিও</h5>
-                <div id="videoSuccessCarousel" class="carousel slide" data-bs-ride="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="success-video-box shadow-sm" style="border-radius: 25px; overflow: hidden; border: 5px solid #fff;">
-                                <video class="w-100" controls poster="images/video_thumb1.jpg">
+                <div id="videoSuccessCarousel" class="carousel slide shadow-sm video-slider-container" data-bs-ride="false">
+                    <div class="carousel-inner h-100">
+                        <div class="carousel-item active h-100">
+                            <div class="video-wrapper">
+                                <video class="w-100 h-100" poster="images/video_thumb1.jpg" style="object-fit: cover;">
                                     <source src="videos/success1.mp4" type="video/mp4">
                                 </video>
+                                <button class="play-btn-overlay"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="success-video-box shadow-sm" style="border-radius: 25px; overflow: hidden; border: 5px solid #fff;">
-                                <video class="w-100" controls poster="images/video_thumb2.jpg">
+                        <div class="carousel-item h-100">
+                            <div class="video-wrapper">
+                                <video class="w-100 h-100" poster="images/video_thumb2.jpg" style="object-fit: cover;">
                                     <source src="videos/success2.mp4" type="video/mp4">
                                 </video>
+                                <button class="play-btn-overlay"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev custom-ctrl" type="button" data-bs-target="#videoSuccessCarousel" data-bs-slide="prev">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <button class="carousel-control-next custom-ctrl" type="button" data-bs-target="#videoSuccessCarousel" data-bs-slide="next">
-                        <i class="fas fa-arrow-right"></i>
+                    <button class="carousel-control-next video-ctrl-next" type="button" data-bs-target="#videoSuccessCarousel" data-bs-slide="next">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
@@ -909,7 +948,7 @@
                 <div class="principal-img-frame">
                     <img src="images/head_teacher.jpg" class="img-fluid rounded-4" alt="Head Teacher" onerror="this.src='https://via.placeholder.com/400x500?text=Head+Teacher'">
                 </div>
-                <h4 class="fw-bold mt-4 mb-1">জনাব মোহাম্মদ আলী</h4>
+                <h4 class="fw-bold mt-4 mb-1">রীনা আকতার</h4>
                 <p class="text-success fw-bold">প্রধান শিক্ষক</p>
             </div>
             <div class="col-lg-8">
