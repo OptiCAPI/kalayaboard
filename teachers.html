@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শিক্ষক পরিচিতি - কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0fdf4; }
+        
+        .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #fff !important; font-weight: 600; }
+        
+        .header-section { background: #006A4E; color: white; padding: 50px 0; text-align: center; border-radius: 0 0 50px 50px; margin-bottom: 50px; }
+        
+        /* Teacher Card Styles */
+        .teacher-card {
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            text-align: center;
+            padding: 25px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.4s;
+            border: 1px solid #eef2f5;
+            height: 100%;
+        }
+        .teacher-card:hover { transform: translateY(-10px); border-color: #006A4E; }
+        
+        .teacher-img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #e8f5e9;
+            margin-bottom: 15px;
+        }
+        
+        .teacher-name { color: #006A4E; font-weight: 700; font-size: 19px; margin-bottom: 5px; }
+        .teacher-desig { color: #FFB800; font-weight: 600; font-size: 15px; margin-bottom: 10px; }
+        .teacher-msg { font-style: italic; color: #666; font-size: 13px; line-height: 1.4; border-top: 1px solid #eee; pt-2; margin-top: 10px; padding-top: 10px;}
+        
+        /* Premium Button Style */
+        .former-teachers-btn {
+            background: linear-gradient(135deg, #006A4E 0%, #004d39 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(0, 106, 78, 0.2);
+            transition: 0.4s;
+            border: 2px solid transparent;
+        }
+        .former-teachers-btn:hover {
+            color: #FFB800;
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 106, 78, 0.3);
+            border: 2px solid #FFB800;
+        }
+
+        footer { background: #1a1a1a; color: #ccc; padding: 30px 0; text-align: center; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/govt.png" alt="Logo" width="35" class="me-2"> কালাইয়া বোর্ড সপ্রাবি
+        </a>
+    </div>
+</nav>
+
+<header class="header-section">
+    <div class="container">
+        <h1 class="fw-bold">আমাদের শিক্ষকবৃন্দ</h1>
+        <p class="lead">সুযোগ্য নির্দেশনায় আমরা গড়ে তুলছি আগামীর ভবিষ্যৎ</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-5 col-lg-4">
+            <div class="teacher-card shadow-lg" style="border-top: 5px solid #FFB800;">
+                <img src="images/head.jpg" alt="Headmaster" class="teacher-img" style="width: 150px; height: 150px;">
+                <div class="teacher-name">রীনা আকতার</div>
+                <div class="teacher-desig">প্রধান শিক্ষক</div>
+                <p class="teacher-msg">"শিক্ষাই আলো, প্রতিটি শিক্ষার্থীর সম্ভাবনাকে জাগিয়ে তোলাই আমাদের লক্ষ্য।"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-3">
+            <div class="teacher-card">
+                <img src="images/t1.jpg" alt="Teacher" class="teacher-img">
+                <div class="teacher-name">মোসাঃ হ্যাপি খাতুন</div>
+                <div class="teacher-desig">সহকারী শিক্ষক</div>
+                <p class="teacher-msg">"ভালোবাসা ও ধৈর্য দিয়ে শিশুদের গড়ে তুলতে চাই।"</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="teacher-card">
+                <img src="images/t2.jpg" alt="Teacher" class="teacher-img">
+                <div class="teacher-name">অপূর্ব কুমার মন্ডল</div>
+                <div class="teacher-desig">সহকারী শিক্ষক</div>
+                <p class="teacher-msg">"জ্ঞান ভিত্তিক সমাজ গড়তে প্রাথমিক শিক্ষাই মূল ভিত্তি।"</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="teacher-card">
+                <img src="images/t3.jpg" alt="Teacher" class="teacher-img">
+                <div class="teacher-name">মোসাঃ শারমিন আক্তার</div>
+                <div class="teacher-desig">সহকারী শিক্ষক</div>
+                <p class="teacher-msg">"শিশুদের সৃজনশীলতাকে বিকশিত করাই আমার আনন্দের কাজ।"</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="teacher-card">
+                <img src="images/t4.jpg" alt="Teacher" class="teacher-img">
+                <div class="teacher-name">উৎপল মন্ডল</div>
+                <div class="teacher-desig">সহকারী শিক্ষক</div>
+                <p class="teacher-msg">"আগামীর সুন্দর পৃথিবী গড়তে শিশুদের সুশিক্ষার বিকল্প নেই।"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 pt-5">
+        <hr style="width: 50%; margin: 0 auto 40px; border-color: #006A4E; opacity: 0.2;">
+        <h5 class="mb-3 text-muted">সম্মানিত গুণীজন</h5>
+        <a href="former-teachers.html" class="former-teachers-btn">
+            <i class="fas fa-history me-2"></i> প্রাক্তন শিক্ষক তালিকা দেখুন
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+</footer>
+
+</body>
+</html>
