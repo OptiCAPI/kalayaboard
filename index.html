@@ -558,6 +558,14 @@
         </div>
     </div>
 </div>
+    <div class="scrolling-notice-bar py-2" style="background: #FFB800; color: #000;">
+    <div class="container d-flex align-items-center">
+        <span class="badge bg-danger me-3 px-3 py-2">নোটিশ:</span>
+        <marquee id="marquee-notices" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+            লোড হচ্ছে...
+        </marquee>
+    </div>
+</div>
 
 <div class="sticky-sub-wrapper" id="stickyMenu">
     <div class="container d-flex justify-content-center"><div class="floating-bar">
@@ -1092,6 +1100,32 @@
         const myModal = new bootstrap.Modal(document.getElementById('galleryModal'));
         myModal.show();
     }
+
+    // স্লাইডার (Scrolling/Marquee) নোটিশ বারে অটোমেটিক শো করবে-
+    const csv_notice_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?output=csv";
+
+    async function updateScrollingNotice() {
+        try {
+            const response = await fetch(csv_notice_url);
+            const data = await response.text();
+            const rows = data.split('\n').slice(1); 
+            let noticeText = "";
+
+            rows.forEach(row => {
+                const col = row.split(',');
+                if (col.length >= 2 && col[1].trim() !== "") {
+                    // প্রতিটি নোটিশের পর একটি গ্যাপ বা আইকন যোগ করা
+                    noticeText += ` <i class="fas fa-circle ms-4 me-2" style="font-size: 8px;"></i> ${col[1]} `;
+                }
+            });
+
+            document.getElementById('marquee-notices').innerHTML = noticeText || "বর্তমানে কোনো নোটিশ নেই।";
+        } catch (e) {
+            document.getElementById('marquee-notices').innerHTML = "নোটিশ লোড করা যাচ্ছে না।";
+        }
+    }
+
+    updateScrollingNotice();
 </script>
 </body>
 </html>
