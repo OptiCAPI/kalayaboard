@@ -90,4 +90,23 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8f9fa; ov
         height: auto; 
         margin-bottom: 5px; 
     }
+
+/* মেইন ফুটার স্টাইল */
+.main-footer {
+    background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
+    color: #ffffff;
+    padding: 80px 0 30px;
+    font-size: 15px;
+}
+.footer-logo { width: 60px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+.footer-title { color: #FFB800; font-weight: 700; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
+.footer-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: #FFB800; border-radius: 5px; }
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links li a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; display: inline-block; }
+.footer-links li a i { font-size: 10px; margin-right: 8px; color: #FFB800; }
+.footer-links li a:hover { color: #FFB800; transform: translateX(8px); }
+.social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 10px; transition: 0.3s; text-decoration: none; }
+.social-links a:hover { background: #FFB800; color: #000; transform: translateY(-5px); }
+.text-light-50 { color: rgba(255,255,255,0.7) !important; }
 </style>
