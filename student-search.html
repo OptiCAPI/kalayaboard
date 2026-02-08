@@ -43,20 +43,24 @@
             margin-top: -65px;
             background: #fff;
         }
-    /* সুন্দর গৌণ বাটনের কাস্টম স্টাইল */
+        
+    /* সুন্দর গৌণ বাটনের কাস্টম স্টাইল (হলুদ হোভার ইফেক্টসহ) */
     .btn-secondary-custom {
-        background-color: #fff; /* সাদা ব্যাকগ্রাউন্ড */
-        color: #006A4E; /* মূল থিম কালার লেখা */
-        border: 2px solid #006A4E; /* মূল থিম কালার বর্ডার */
+        background-color: #fff; /* সাধারণ অবস্থায় সাদা ব্যাকগ্রাউন্ড */
+        color: #006A4E; /* মূল থিম কালার (সবুজ) লেখা */
+        border: 2px solid #006A4E; /* সবুজ বর্ডার */
         font-weight: 600;
         transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
     }
 
     .btn-secondary-custom:hover {
-        background-color: #006A4E; /* হোভার করলে ব্যাকগ্রাউন্ড সবুজ হবে */
-        color: #fff; /* লেখা সাদা হবে */
+        background-color: #FFB800; /* হোভার করলে ব্যাকগ্রাউন্ড আপনার পছন্দের উজ্জ্বল হলুদ হবে */
+        border-color: #FFB800; /* বর্ডারও হলুদ হয়ে যাবে */
+        color: #000; /* হলুদের ওপর কালো বা গাঢ় লেখা বেশি ফুটে ওঠে */
         transform: translateY(-2px); /* হালকা উপরে উঠবে */
-        box-shadow: 0 5px 15px rgba(0, 106, 78, 0.2) !important;
+        box-shadow: 0 5px 15px rgba(255, 184, 0, 0.3) !important;
     }
 </style>
 </head>
@@ -93,12 +97,11 @@
         </div>
     </div>
 <div class="row justify-content-center mt-3">
-    <div class="col-md-8 col-lg-6 text-center">
-        <div class="animate__animated animate__fadeInUp">
-            <a href="result-search.html" class="btn btn-secondary-custom px-5 py-2 rounded-pill shadow-sm">
-                <i class="fas fa-poll-h me-2"></i> ফলাফল অনুসন্ধান করুন
-            </a>
-        </div>
+    <div class="text-center mt-3">
+    <a href="result-search.html" class="btn-secondary-custom px-5 py-2 rounded-pill shadow-sm">
+        <i class="fas fa-poll-h me-2"></i> ফলাফল অনুসন্ধান করুন
+    </a>
+</div>
     </div>
 </div>
 
