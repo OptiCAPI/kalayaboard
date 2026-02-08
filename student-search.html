@@ -43,7 +43,22 @@
             margin-top: -65px;
             background: #fff;
         }
-    </style>
+    /* সুন্দর গৌণ বাটনের কাস্টম স্টাইল */
+    .btn-secondary-custom {
+        background-color: #fff; /* সাদা ব্যাকগ্রাউন্ড */
+        color: #006A4E; /* মূল থিম কালার লেখা */
+        border: 2px solid #006A4E; /* মূল থিম কালার বর্ডার */
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-secondary-custom:hover {
+        background-color: #006A4E; /* হোভার করলে ব্যাকগ্রাউন্ড সবুজ হবে */
+        color: #fff; /* লেখা সাদা হবে */
+        transform: translateY(-2px); /* হালকা উপরে উঠবে */
+        box-shadow: 0 5px 15px rgba(0, 106, 78, 0.2) !important;
+    }
+</style>
 </head>
 <body>
 
@@ -77,23 +92,17 @@
             </div>
         </div>
     </div>
-                    <div class="mb-3">
-                    <a href="result-search.html" class="btn btn-outline-warning text-dark fw-bold btn-sm px-4 rounded-pill shadow-sm">
-                        <i class="fas fa-poll-h me-2"></i> ফলাফল অনুসন্ধান করুন
-                    </a>
-                
-
-        <div class="col-md-8 col-lg-6 mt-4 d-none" id="resultSection">
-            </div>
-
-        <div class="col-md-6 mt-3 text-center d-none" id="errorMsg">
-            <div class="alert alert-danger rounded-pill">
-                <i class="fas fa-exclamation-circle me-2"></i> কোনো তথ্য পাওয়া যায়নি!
-            </div>
+<div class="row justify-content-center mt-3">
+    <div class="col-md-8 col-lg-6 text-center">
+        <div class="animate__animated animate__fadeInUp">
+            <a href="result-search.html" class="btn btn-secondary-custom px-5 py-2 rounded-pill shadow-sm">
+                <i class="fas fa-poll-h me-2"></i> ফলাফল অনুসন্ধান করুন
+            </a>
         </div>
-
     </div>
 </div>
+
+
 
 <footer class="bg-dark text-white text-center py-3 mt-5">
     <small>© ২০২৬ কালাইয়া বোর্ড সপ্রাবি</small>
