@@ -1316,6 +1316,74 @@ async function updateScrollingNotice() {
 // ৩. পেজ লোড হওয়ার পর ফাংশনটি চালু করা
 updateScrollingNotice();
 </script>
+
+<script>
+// ১. আপনার স্টুডেন্ট ডাটাবেজ শিটের CSV লিঙ্ক (Publish to web থেকে প্রাপ্ত)
+const STUDENT_DB_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQiLzaDQoM0qIVAwp7obqRfdhkE1jVJQkVSdfnuq82VEALLRnFZXmyICoVoZ3VziihMNv5kcPDPFf4T/pub?gid=1732228779&single=true&output=csv";
+
+async function findStudent() {
+    const inputId = document.getElementById('searchInput').value.trim();
+    const resultSec = document.getElementById('resultSection');
+    const errorMsg = document.getElementById('errorMsg');
+
+    // প্রাথমিক অবস্থা: রেজাল্ট এবং এরর মেসেজ হাইড করা
+    resultSec.classList.add('d-none');
+    errorMsg.classList.add('d-none');
+
+    if (!inputId) {
+        alert("দয়া করে একটি স্টুডেন্ট আইডি লিখুন!");
+        return;
+    }
+
+    try {
+        // ২. ডাটাবেজ ফাইলটি ফেচ করা
+        const response = await fetch(STUDENT_DB_URL);
+        const data = await response.text();
+        
+        // ৩. রো গুলোকে আলাদা করা এবং প্রথম লাইন (Header) বাদ দেওয়া
+        const rows = data.split('\n').slice(1);
+        
+        let found = false;
+
+        // ৪. প্রতিটি রো চেক করে দেখা আইডি মিলে কি না
+        for (let row of rows) {
+            // CSV কলামগুলোকে কমা দিয়ে আলাদা করা
+            // কলাম অর্ডার: ID(0), Name(1), Class(2), Roll(3), DOB(4), Father(5), Mother(6), Photo(7)
+            const col = row.split(',');
+
+            if (col[0].trim() === inputId) {
+                found = true;
+                
+                // ৫. HTML এলিমেন্টে ডাটা বসানো
+                document.getElementById('stID').innerText = col[0].trim();
+                document.getElementById('stName').innerText = col[1].trim();
+                document.getElementById('stClass').innerText = col[2].trim();
+                document.getElementById('stRoll').innerText = col[3].trim();
+                document.getElementById('stDOB').innerText = col[4].trim();
+                document.getElementById('stFather').innerText = col[5].trim();
+                document.getElementById('stMother').innerText = col[6].trim();
+                
+                // ছবির লিঙ্ক থাকলে সেটি লোড করা, না থাকলে ডিফল্ট ইমেজ
+                let photoUrl = col[7] && col[7].trim() !== "" ? col[7].trim() : "images/student-placeholder.png";
+                document.getElementById('stImg').src = photoUrl;
+
+                // রেজাল্ট সেকশনটি দেখানো
+                resultSec.classList.remove('d-none');
+                break; // ডাটা পেয়ে গেলে লুপ বন্ধ করা
+            }
+        }
+
+        // ৬. যদি আইডি না পাওয়া যায়
+        if (!found) {
+            errorMsg.classList.remove('d-none');
+        }
+
+    } catch (error) {
+        console.error("Database Error:", error);
+        alert("সার্ভার থেকে ডাটা লোড করতে সমস্যা হচ্ছে। পরে চেষ্টা করুন।");
+    }
+}
+</script>
     
 </body>
 </html>
