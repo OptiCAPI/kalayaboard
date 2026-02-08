@@ -1278,42 +1278,44 @@
     }
 
     // এই ফাংশনটিই শিট থেকে ডাটা আনছে
+<script>
+// ১. প্রথমে লিঙ্ক বা ভেরিয়েবল সেট করুন
+const csv_notice_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?gid=0&single=true&output=csv";
+
+// ২. ডাটা আনার ফাংশন
 async function updateScrollingNotice() {
     try {
-        // এই লাইনটি গুগল শিট কল করছে
-        const response = await fetch(csv_notice_url); 
+        const response = await fetch(csv_notice_url);
         const data = await response.text();
-        // ...বাকি প্রসেসিং...
         
-        // এই লাইনটি HTML-এর id="marquee-notices"-এ লেখা বসাচ্ছে
-        document.getElementById('marquee-notices').innerHTML = noticeText; 
-    } catch (e) { ... }
-}
-    // স্লাইডার (Scrolling/Marquee) নোটিশ বারে অটোমেটিক শো করবে-
-    const csv_notice_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?output=csv";
+        // সিএসভি ডাটা প্রসেসিং (হেডার বাদে বাকি রো নেওয়া)
+        const rows = data.split('\n').slice(1); 
+        let noticeText = "";
 
-    async function updateScrollingNotice() {
-        try {
-            const response = await fetch(csv_notice_url);
-            const data = await response.text();
-            const rows = data.split('\n').slice(1); 
-            let noticeText = "";
+        rows.forEach(row => {
+            // কমা দিয়ে কলাম আলাদা করা
+            const col = row.split(',');
+            // যদি ২য় কলামে (Index 1) কোনো টেক্সট থাকে
+            if (col.length >= 2 && col[1].trim() !== "") {
+                noticeText += ` <i class="fas fa-circle ms-4 me-2" style="font-size: 8px;"></i> ${col[1].trim()} `;
+            }
+        });
 
-            rows.forEach(row => {
-                const col = row.split(',');
-                if (col.length >= 2 && col[1].trim() !== "") {
-                    // প্রতিটি নোটিশের পর একটি গ্যাপ বা আইকন যোগ করা
-                    noticeText += ` <i class="fas fa-circle ms-4 me-2" style="font-size: 8px;"></i> ${col[1]} `;
-                }
-            });
-
-            document.getElementById('marquee-notices').innerHTML = noticeText || "বর্তমানে কোনো নোটিশ নেই।";
-        } catch (e) {
-            document.getElementById('marquee-notices').innerHTML = "নোটিশ লোড করা যাচ্ছে না।";
+        // এইচটিএমএল-এ ডাটা পুশ করা
+        const marqueeElement = document.getElementById('marquee-notices');
+        if(marqueeElement) {
+            marqueeElement.innerHTML = noticeText || "বর্তমানে কোনো নতুন নোটিশ নেই।";
         }
+        
+    } catch (e) {
+        console.error("Error fetching notice:", e);
+        document.getElementById('marquee-notices').innerHTML = "দুঃখিত, নোটিশ লোড করা সম্ভব হচ্ছে না।";
     }
+}
 
-    updateScrollingNotice();
+// ৩. পেজ লোড হওয়ার পর ফাংশনটি চালু করা
+updateScrollingNotice();
 </script>
+    
 </body>
 </html>
