@@ -573,20 +573,12 @@
     </div>
 </nav>
 
-    <div class="notice-marquee">
-    <div class="container">
-        <div class="d-flex align-items-center">
-            <span class="notice-label">নোটিশ</span>
-            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                ২০২৬ শিক্ষাবর্ষের ভর্তি কার্যক্রম শুরু হয়েছে। আগামী ১০ই জানুয়ারির মধ্যে ফরম জমা দিতে হবে। | বার্ষিক ক্রীড়া প্রতিযোগিতা আগামী মাসে অনুষ্ঠিত হবে।
-            </marquee>
-        </div>
+<div class="d-flex align-items-center shadow-sm border-bottom">
+    <div class="bg-primary text-white px-3 py-2 fw-bold text-nowrap">
+        <i class="fas fa-bullhorn me-2"></i>নোটিশ:
     </div>
-</div>
-    <div class="scrolling-notice-bar py-2" style="background: #FFB800; color: #000;">
-    <div class="container d-flex align-items-center">
-        <span class="badge bg-danger me-3 px-3 py-2">নোটিশ:</span>
-        <marquee id="marquee-notices" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+    <div class="marquee-container flex-grow-1 bg-white text-dark py-2">
+        <marquee id="marquee-notices" class="fw-bold" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="6">
             লোড হচ্ছে...
         </marquee>
     </div>
@@ -1285,6 +1277,18 @@
         myModal.show();
     }
 
+    // এই ফাংশনটিই শিট থেকে ডাটা আনছে
+async function updateScrollingNotice() {
+    try {
+        // এই লাইনটি গুগল শিট কল করছে
+        const response = await fetch(csv_notice_url); 
+        const data = await response.text();
+        // ...বাকি প্রসেসিং...
+        
+        // এই লাইনটি HTML-এর id="marquee-notices"-এ লেখা বসাচ্ছে
+        document.getElementById('marquee-notices').innerHTML = noticeText; 
+    } catch (e) { ... }
+}
     // স্লাইডার (Scrolling/Marquee) নোটিশ বারে অটোমেটিক শো করবে-
     const csv_notice_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?output=csv";
 
