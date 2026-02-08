@@ -530,31 +530,6 @@
     .copyright-text {
         font-size: 14px;
     }
-
-        /* মোবাইলে প্যাডিং কমানো */
-.main-footer {
-    padding: 40px 0 20px; /* উপরের বিশাল গ্যাপ কমানো হয়েছে */
-    font-size: 14px; /* ফন্ট সাইজ একটু ছোট করা হয়েছে মোবাইলের জন্য */
-}
-
-/* টাইটেলের নিচের দাগ ছোট করা */
-.footer-title {
-    font-size: 16px;
-    font-weight: 700;
-    border-bottom: 1px solid #FFB800;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-/* লিঙ্কের স্টাইল */
-.footer-links li { margin-bottom: 8px; }
-.footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; }
-
-/* সোশ্যাল আইকন সাইজ ঠিক রাখা */
-.social-links a {
-    width: 30px; height: 30px; font-size: 14px; /* মোবাইলে আইকন বাটন ছোট করা হয়েছে */
-    margin-right: 5px;
-}
     </style>
 </head>
 
@@ -999,14 +974,14 @@
     <div class="container">
         <div class="row g-4">
             
-            <div class="col-lg-4 col-md-12 text-center text-lg-start">
+            <div class="col-lg-4 col-md-6">
                 <div class="footer-about">
                     <img src="images/govt.png" alt="School Logo" class="footer-logo mb-3">
                     <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
-                    <p class="text-light-50 mt-3 small">
+                    <p class="text-light-50 mt-3">
                         জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য। আমরা মানসম্মত প্রাথমিক শিক্ষা নিশ্চিত করতে প্রতিশ্রুতিবদ্ধ।
                     </p>
-                    <div class="social-links mt-4 justify-content-center justify-content-lg-start">
+                    <div class="social-links mt-4">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fas fa-envelope"></i></a>
@@ -1014,7 +989,7 @@
                 </div>
             </div>
 
-            <div class="col-6 col-lg-2">
+            <div class="col-lg-2 col-md-6">
                 <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
                 <ul class="footer-links">
                     <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
@@ -1025,7 +1000,7 @@
                 </ul>
             </div>
 
-            <div class="col-6 col-lg-2">
+            <div class="col-lg-2 col-md-6">
                 <h5 class="footer-title">অন্যান্য</h5>
                 <ul class="footer-links">
                     <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> ফটো গ্যালারি</a></li>
@@ -1034,6 +1009,14 @@
                     <li><a href="contact.html"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
                 </ul>
             </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5 class="footer-title">ঠিকানা ও যোগাযোগ</h5>
+                <div class="contact-info text-light-50">
+                    <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, ইন্দুরকানী, পিরোজপুর।</p>
+                    <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
+                    <p><i class="fas fa-envelope me-2 text-warning"></i> info@kalaiaschool.gov.bd</p>
+                </div>
                 <div class="mt-4">
                     <a href="https://maps.google.com" target="_blank" class="btn btn-warning btn-sm rounded-pill px-4 fw-bold shadow-sm">
                         <i class="fas fa-map-marked-alt me-1"></i> গুগল ম্যাপে দেখুন
@@ -1048,155 +1031,15 @@
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start">
                 <p class="copyright-text mb-0 text-light-50">
-                    © ২০২৬ <strong>কালাইয়া বোর্ড সপ্রাবি</strong>। সর্বস্বত্ব সংরক্ষিত।
+                    &copy; ২০২৬ <strong>কালাইয়া বোর্ড সপ্রাবি</strong>। সর্বস্বত্ব সংরক্ষিত।
                 </p>
             </div>
             <div class="col-md-6 text-center text-md-end">
-                <p class="small text-light-50 mb-0">কারিগরি সহযোগিতায়: <a href="#" class="text-warning text-decoration-none">OptiCAPI AI Solutions</a></p>
+                <p class="small text-light-50 mb-0">কারিগরি সহযোগিতায়: <a href="#" class="text-warning text-decoration-none">OptiCAPI AI Solutions</a></p>
             </div>
         </div>
     </div>
 </footer>
-
-<div class="modal fade" id="galleryModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content rounded-5 border-0">
-            <div class="modal-body p-5 text-center">
-                <h4 id="modalTitle" class="fw-bold mb-4 text-success"></h4>
-                <div id="popPicContainer" class="row g-3"></div>
-                <button class="btn btn-succ<div class="col-6 col-lg-2">
-                <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
-                    <li><a href="admission-info.html"><i class="fas fa-chevron-right"></i> ভর্তি তথ্য</a></li>
-                    <li><a href="teachers.html"><i class="fas fa-chevron-right"></i> শিক্ষকবৃন্দ</a></li>
-                    <li><a href="notice.html"><i class="fas fa-chevron-right"></i> নোটিশ বোর্ড</a></li>
-                    <li><a href="digital-class.html"><i class="fas fa-chevron-right"></i> ডিজিটাল ক্লাস</a></li>
-                </ul>
-            </div>
-
-            <div class="col-6 col-lg-2">
-                <h5 class="footer-title">অন্যান্য</h5>
-                <ul class="footer-links">
-                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> ফটো গ্যালারি</a></li>
-                    <li><a href="former-teachers.html"><i class="fas fa-chevron-right"></i> প্রাক্তন শিক্ষার্থী</a></li>
-                    <li><a href="admission.html"><i class="fas fa-chevron-right"></i> অনলাইন আবেদন</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
-                </ul>
-            </div>ess rounded-pill px-5 mt-4 fw-bold shadow-sm" data-bs-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* বেসিক ফুটার স্টাইল (ডেস্কটপ ও ডিফল্ট) */
-    .main-footer {
-        background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
-        color: #ffffff;
-        padding: 80px 0 30px;
-        font-family: 'Hind Siliguri', sans-serif;
-    }
-    
-    .footer-logo { width: 60px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
-    
-    .footer-title {
-        color: #FFB800;
-        font-weight: 700;
-        margin-bottom: 25px;
-        position: relative;
-        padding-bottom: 10px;
-        font-size: 18px;
-    }
-    
-    .footer-title::after {
-        content: ''; position: absolute; left: 0; bottom: 0;
-        width: 40px; height: 3px; background: #FFB800; border-radius: 5px;
-    }
-
-    /* টেক্সট এলাইনমেন্ট ফিক্স (মোবাইল সেন্টারের জন্য) */
-    .text-center .footer-title::after { left: 50%; transform: translateX(-50%); }
-    
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin-bottom: 12px; }
-    .footer-links li a {
-        color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; display: inline-block; font-size: 15px;
-    }
-    .footer-links li a i { font-size: 10px; margin-right: 8px; color: #FFB800; }
-    .footer-links li a:hover { color: #FFB800; transform: translateX(8px); }
-    
-    .social-links { display: flex; gap: 10px; }
-    .social-links a {
-        width: 35px; height: 35px; background: rgba(255,255,255,0.1);
-        display: inline-flex; align-items: center; justify-content: center;
-        border-radius: 50%; color: white; transition: 0.3s; text-decoration: none;
-    }
-    .social-links a:hover { background: #FFB800; color: #000; transform: translateY(-5px); }
-    
-    .text-light-50 { color: rgba(255,255,255,0.6) !important; }
-    .copyright-text { font-size: 14px; }
-
-    /* ----- মোবাইল রেসপন্সিভ ফিক্স (শুধুমাত্র ছোট ডিভাইসের জন্য) ----- */
-    @media (max-width: 768px) {
-        .main-footer { padding: 40px 0 20px; } /* প্যাডিং কমানো হলো */
-        
-        .footer-title { font-size: 16px; margin-bottom: 15px; } /* টাইটেল ছোট */
-        .footer-title::after { display: none; } /* মোবাইলে আন্ডারলাইন বাদ বা সিম্পল রাখা */
-        
-        .footer-links li { margin-bottom: 6px; }
-        .footer-links li a { font-size: 13px; } /* লিঙ্কের ফন্ট ছোট */
-        
-        .footer-about p { display: none; } /* খুব ছোট স্ক্রিনে ডেসক্রিপশন হাইড (অপশনাল) */
-        
-        /* সোশ্যাল আইকন মাঝখানে আনা */
-        .social-links { justify-content: center; margin-bottom: 20px; }
-        
-        .footer-logo { width: 50px; margin-bottom: 10px !important; }
-    }
-</style>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // আপনার আগের স্ক্রিপ্টগুলো এখানে ঠিকঠাক কাজ করবে
-    let lastSt = 0;
-    const sMenu = document.getElementById('stickyMenu'); // এটি যদি হেডার এ থাকে তবে কাজ করবে
-    
-    // নোটিশ স্ক্রলিং আপডেট
-    const csv_notice_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?output=csv";
-
-    async function updateScrollingNotice() {
-        try {
-            const response = await fetch(csv_notice_url);
-            const data = await response.text();
-            const rows = data.split('\n').slice(1); 
-            let noticeText = "";
-            rows.forEach(row => {
-                const col = row.split(',');
-                if (col.length >= 2 && col[1].trim() !== "") {
-                    noticeText += ` <i class="fas fa-circle ms-4 me-2" style="font-size: 8px;"></i> ${col[1]} `;
-                }
-            });
-            const marquee = document.getElementById('marquee-notices');
-            if(marquee) marquee.innerHTML = noticeText || "বর্তমানে কোনো নোটিশ নেই।";
-        } catch (e) { console.log("Notice Error"); }
-    }
-    updateScrollingNotice();
-
-    // গ্যালারি ফাংশন
-    function openPremiumGallery(className, imagesArray) {
-        document.getElementById('modalTitle').innerText = className + " - গ্যালারি";
-        const container = document.getElementById('popPicContainer');
-        container.innerHTML = ''; 
-        imagesArray.forEach((imgSrc, index) => {
-            const div = document.createElement('div');
-            div.className = 'col-md-4 col-6';
-            div.innerHTML = `<img src="images/${imgSrc}" class="img-fluid rounded shadow-sm" style="width:100%">`;
-            container.appendChild(div);
-        });
-        const myModal = new bootstrap.Modal(document.getElementById('galleryModal'));
-        myModal.show();
-    }
-    </script>
 
 <div class="modal fade" id="galleryModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
