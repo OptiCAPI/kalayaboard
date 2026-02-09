@@ -3,242 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রাক্তন শিক্ষক তালিকা - কালাইয়া বোর্ড সপ্রাবি</title>
-    
+    <title>প্রাক্তন শিক্ষক অ্যালবাম - কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8f9fa; }
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
         
-        .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .navbar-brand, .nav-link { color: #fff !important; font-weight: 600; }
-        
-        /* Header */
-        .header-section { 
-            background: linear-gradient(135deg, #006A4E 0%, #004d39 100%); 
-            color: white; padding: 60px 0; text-align: center; 
-            border-bottom: 5px solid #FFB800;
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background-color: #f4f1ea; /* ভিন্টেজ পেপার কালার */
+            overflow-x: hidden; 
         }
 
-        /* Table Design */
-        .table-container { 
-            background: white; 
-            border-radius: 25px; 
-            padding: 30px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-            margin-top: -40px;
-        }
-        .custom-table { border-radius: 15px; overflow: hidden; }
-        .custom-table thead { background: #e8f5e9; color: #006A4E; }
-        .custom-table th { padding: 20px; border: none; font-weight: 700; }
-        .custom-table td { padding: 18px; vertical-align: middle; border-bottom: 1px solid #eee; }
-        
-        .honor-badge {
-            background: #fff8e1;
-            color: #ff8f00;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid #ffe082;
+        /* ১. ভিন্টেজ ফটো কার্ড ডিজাইন */
+        .ex-photo-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: #fff;
+            padding: 10px; /* পোলারয়েড স্টাইল */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            border: 1px solid #dcd3bc;
         }
 
-        .back-btn {
-            background: transparent;
-            color: #006A4E;
+        .ex-photo-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: sepia(0.4) grayscale(0.2); /* পুরনো ছবির আবহ */
+            transition: 0.6s ease;
+        }
+
+        .ex-photo-card:hover {
+            transform: rotate(-2deg) scale(1.05); /* হালকা বাঁকা হয়ে জুম হবে */
+            box-shadow: 0 15px 35px rgba(101, 67, 33, 0.3);
+            border-color: #8b4513;
+        }
+
+        .ex-photo-card:hover img {
+            filter: sepia(0); /* হোভার করলে আসল রঙ ফিরে আসবে */
+        }
+
+        /* ২. নস্টালজিক ওভারলে */
+        .ex-info {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 15px;
+            background: rgba(44, 33, 20, 0.85); /* ডার্ক উডেন থিম */
+            backdrop-filter: blur(5px);
+            text-align: center;
+            color: #f1e4d1;
+        }
+
+        .ex-info h5 { margin: 0; font-weight: 700; font-size: 1.1rem; }
+        .ex-info p { margin: 0; font-size: 0.8rem; opacity: 0.8; }
+        .service-year { font-size: 0.7rem; color: #ffb800; display: block; margin-top: 5px; }
+
+        /* ৩. প্রিমিয়াম হেডার স্টাইল */
+        .vintage-header {
+            padding: 80px 0 50px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://www.transparenttextures.com/patterns/old-map.png');
+            color: #fff;
+            margin-bottom: 50px;
+            border-bottom: 5px solid #ffb800;
+        }
+
+        /* ৪. স্কেলিটন লোডার */
+        .skeleton-ex {
+            background: linear-gradient(110deg, #e3d9c6 8%, #ede4d3 18%, #e3d9c6 33%);
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+            border-radius: 15px;
+            aspect-ratio: 4/5;
+        }
+        @keyframes shine { to { background-position-x: -200%; } }
+
+        /* বাটন স্টাইল */
+        .btn-back {
             border: 2px solid #006A4E;
-            padding: 10px 25px;
+            color: #006A4E;
+            font-weight: 700;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-weight: 600;
             transition: 0.3s;
             text-decoration: none;
         }
-        .back-btn:hover { background: #006A4E; color: white; }
-
-        /* ফুটার লোগো এবং ফুটার ডিজাইন ফিক্স */
-        .footer-logo { 
-            width: 60px; /* লোগোর সাইজ ছোট করার জন্য */
-            height: auto;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); 
+        .btn-back:hover {
+            background: #006A4E;
+            color: #fff;
         }
-        
-        .main-footer {
-            background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
-            color: #ffffff;
-            padding: 80px 0 30px;
-            font-size: 15px;
-            text-align: left; /* ফুটারের টেক্সট বাম দিকে রাখার জন্য */
-        }
-        
-        .footer-title { 
-            color: #FFB800; 
-            font-weight: 700; 
-            margin-bottom: 25px; 
-            position: relative; 
-            padding-bottom: 10px; 
-        }
-        
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
-        .footer-links li a:hover { color: #FFB800; padding-left: 10px; }
-        
-        .social-links a { 
-            width: 35px; height: 35px; 
-            background: rgba(255,255,255,0.1); 
-            display: inline-flex; align-items: center; justify-content: center; 
-            border-radius: 50%; color: white; margin-right: 10px; text-decoration: none;
-        }
-        .text-light-50 { color: rgba(255,255,255,0.7) !important; }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="images/govt.png" alt="Logo" width="35" class="me-2"> কালাইয়া বোর্ড সপ্রাবি
-        </a>
-    <ul class="navbar-nav ms-auto">
-    <li class="nav-item"><a class="nav-link" href="index.html">হোম</a></li>
-    <li class="nav-item"><a class="nav-link" href="admission-info.html">ভর্তি তথ্য</a></li>
-    <li class="nav-item"><a class="nav-link" href="teachers.html">শিক্ষকবৃন্দ</a></li>
-    <li class="nav-item"><a class="nav-link" href="contact.html">যোগাযোগ</a></li>
-</ul>
-    </div>
-</nav>
-
-<header class="header-section">
-    <div class="container">
-        <h1 class="fw-bold mb-3"><i class="fas fa-medal me-2"></i> প্রাক্তন শিক্ষকবৃন্দ</h1>
-        <p class="lead">যাঁদের পদচিহ্ন আমাদের এই বিদ্যাপীঠকে করেছে মহিমান্বিত</p>
-    </div>
-</header>
-
-<div class="container mb-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="table-container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h4 class="fw-bold text-dark m-0">শিক্ষক তালিকা</h4>
-                    <a href="teachers.html" class="back-btn"><i class="fas fa-arrow-left me-2"></i> বর্তমান শিক্ষক</a>
-                </div>
-                
-                <div class="table-responsive">
-                    <table class="table custom-table">
-                        <thead>
-                            <tr>
-                                <th>ক্রমিক</th>
-                                <th>শিক্ষকের নাম</th>
-                                <th>পদবী</th>
-                                <th>কার্যকাল (সাল)</th>
-                                <th>অবস্থা</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>০১</td>
-                                <td class="fw-bold">মোঃ নজরুল ইসলাম</td>
-                                <td>সাবেক প্রধান শিক্ষক</td>
-                                <td>১৯৯৫ - ২০০৫</td>
-                                <td><span class="honor-badge">অবসরপ্রাপ্ত</span></td>
-                            </tr>
-                            <tr>
-                                <td>০২</td>
-                                <td class="fw-bold">মীর আব্দুল কাদের</td>
-                                <td>সাবেক সহকারী শিক্ষক</td>
-                                <td>১৯৯০ - ২০১২</td>
-                                <td><span class="honor-badge">অবসরপ্রাপ্ত</span></td>
-                            </tr>
-                            <tr>
-                                <td>০৩</td>
-                                <td class="fw-bold">মোসাঃ রাবেয়া খাতুন</td>
-                                <td>সাবেক সহকারী শিক্ষক</td>
-                                <td>২০০৮ - ২০২০</td>
-                                <td><span class="honor-badge">অবসরপ্রাপ্ত</span></td>
-                            </tr>
-                            </tbody>
-                    </table>
-                </div>
-                
-                <div class="mt-4 p-3 bg-light rounded text-center">
-                    <p class="mb-0 text-muted small"><i class="fas fa-info-circle me-1"></i> এই তালিকায় কোনো তথ্য সংশোধন বা নতুন নাম যুক্ত করতে অফিস সহকারীকে জানান।</p>
-                </div>
-            </div>
+    <div id="loading-area" class="container py-5 text-center">
+        <h3 class="mb-4">স্মৃতিগুলো লোড হচ্ছে...</h3>
+        <div class="row g-4 justify-content-center">
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton-ex"></div></div>
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton-ex"></div></div>
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton-ex"></div></div>
         </div>
     </div>
-</div>
 
-<footer class="main-footer">
-    <div class="container">
-        <div class="row g-4">
-            
-            <div class="col-lg-4 col-md-6">
-                <div class="footer-about">
-                    <img src="images/govt.png" alt="School Logo" class="footer-logo mb-3">
-                    <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
-                    <p class="text-light-50 mt-3">
-                        জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য। আমরা মানসম্মত প্রাথমিক শিক্ষা নিশ্চিত করতে প্রতিশ্রুতিবদ্ধ।
-                    </p>
-                    <div class="social-links mt-4">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+    <div id="main-content" class="d-none animate__animated">
+        
+        <header class="vintage-header text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">প্রাক্তন শিক্ষক ও গুণীজন</h1>
+                <p class="lead opacity-75 animate__animated animate__fadeInUp">যাঁদের হাত ধরে আমাদের পথচলা শুরু</p>
+            </div>
+        </header>
+
+        <div class="container pb-5">
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="ex-photo-card animate__animated animate__zoomIn">
+                        <img src="images/ex_teacher1.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Former+Teacher'">
+                        <div class="ex-info">
+                            <h5>মরহুম মোঃ আব্দুল জলিল</h5>
+                            <p>সাবেক প্রধান শিক্ষক</p>
+                            <span class="service-year">কর্মকাল: ১৯৭৫ - ২০০৫</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-2 col-md-6">
-                <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
-                    <li><a href="admission-info.html"><i class="fas fa-chevron-right"></i> ভর্তি তথ্য</a></li>
-                    <li><a href="teachers.html"><i class="fas fa-chevron-right"></i> শিক্ষকবৃন্দ</a></li>
-                    <li><a href="notice.html"><i class="fas fa-chevron-right"></i> নোটিশ বোর্ড</a></li>
-                    <li><a href="digital-class.html"><i class="fas fa-chevron-right"></i> ডিজিটাল ক্লাস</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-2 col-md-6">
-                <h5 class="footer-title">অন্যান্য</h5>
-                <ul class="footer-links">
-                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> ফটো গ্যালারি</a></li>
-                    <li><a href="former-teachers.html"><i class="fas fa-chevron-right"></i> প্রাক্তন শিক্ষার্থী</a></li>
-                    <li><a href="admission.html"><i class="fas fa-chevron-right"></i> অনলাইন আবেদন</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <h5 class="footer-title">ঠিকানা ও যোগাযোগ</h5>
-                <div class="contact-info text-light-50">
-                    <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, ইন্দুরকানী, পিরোজপুর।</p>
-                    <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
-                    <p><i class="fas fa-envelope me-2 text-warning"></i> info@kalaiaschool.gov.bd</p>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="ex-photo-card animate__animated animate__zoomIn animate__delay-1s">
+                        <img src="images/ex_teacher2.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Former+Teacher'">
+                        <div class="ex-info">
+                            <h5>রতন কুমার দাস</h5>
+                            <p>সাবেক সহকারী শিক্ষক</p>
+                            <span class="service-year">কর্মকাল: ১৯৮০ - ২০১২</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-warning btn-sm rounded-pill px-4 fw-bold shadow-sm">
-                        <i class="fas fa-map-marked-alt me-1"></i> গুগল ম্যাপে দেখুন
-                    </a>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="ex-photo-card animate__animated animate__zoomIn animate__delay-1s">
+                        <img src="images/ex_teacher3.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Former+Teacher'">
+                        <div class="ex-info">
+                            <h5>সালেহা বেগম</h5>
+                            <p>সাবেক সহকারী শিক্ষিকা</p>
+                            <span class="service-year">কর্মকাল: ১৯৮৫ - ২০১৫</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
-
-        <hr class="mt-5 mb-4 border-light opacity-10">
-
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="copyright-text mb-0 text-light-50">
-                    &copy; ২০২৬ <strong>কালাইয়া বোর্ড সপ্রাবি</strong>। সর্বস্বত্ব সংরক্ষিত।
-                </p>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <p class="small text-light-50 mb-0">কারিগরি সহযোগিতায়: <a href="#" class="text-warning text-decoration-none">OptiCAPI AI Solutions</a></p>
+            <div class="text-center mt-5 pt-5">
+                <a href="teachers.html" class="btn-back">
+                    <i class="fas fa-arrow-left me-2"></i> বর্তমান শিক্ষক গ্যালারিতে ফিরে যান
+                </a>
             </div>
         </div>
     </div>
-</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loading-area').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.classList.remove('d-none');
+                main.classList.add('animate__fadeIn');
+            }, 1800);
+        });
+    </script>
 </body>
 </html>
