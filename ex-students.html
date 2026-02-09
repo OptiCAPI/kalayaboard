@@ -63,3 +63,20 @@
         </div>
         </div>
 </div>
+
+
+<script>
+        window.addEventListener('load', function() {
+            const loadingArea = document.getElementById('loading-area');
+            const mainContent = document.getElementById('main-content');
+            
+            // ১.৫ সেকেন্ড পর শিমার সরিয়ে আসল ডাটা দেখাবে
+            setTimeout(() => {
+                loadingArea.style.display = 'none'; // শিমার এরিয়া বন্ধ
+                mainContent.classList.remove('d-none'); // আসল কন্টেন্ট চালু
+                mainContent.classList.add('animate__fadeInUp'); // এনিমাশন যোগ
+            }, 1500); 
+        });
+    </script>
+</body>
+</html>
