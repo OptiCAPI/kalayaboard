@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শিক্ষক গ্যালারি - প্রিমিয়াম স্টাইল</title>
+    <title>শিক্ষক ফটো গ্যালারি - কালাইয়া বোর্ড সপ্রাবি</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -23,6 +23,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
             cursor: pointer;
+            margin-bottom: 20px;
         }
 
         .photo-card img {
@@ -31,7 +32,6 @@
             transition: 0.6s ease;
         }
 
-        /* মাউস নিলে জুম এবং শ্যাডো */
         .photo-card:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 106, 78, 0.25);
@@ -39,7 +39,7 @@
 
         .photo-card:hover img { transform: scale(1.15); }
 
-        /* ২. গ্লাস টেক্সট ওভারলে (Glassmorphism) */
+        /* ২. গ্লাস টেক্সট ওভারলে */
         .photo-info {
             position: absolute;
             bottom: 0; left: 0; right: 0;
@@ -48,14 +48,12 @@
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        .photo-info h5 { margin: 0; font-weight: 700; color: white; }
+        .photo-info h5 { margin: 0; font-weight: 700; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         .photo-info p { margin: 0; font-size: 0.85rem; color: #f8f9fa; }
 
-        /* ৩. স্লিম স্কেলিটন লোডার */
+        /* ৩. স্কেলিটন লোডার */
         .skeleton {
             background: linear-gradient(110deg, #e0e0e0 8%, #f0f0f0 18%, #e0e0e0 33%);
             background-size: 200% 100%;
@@ -65,61 +63,35 @@
         @keyframes shine { to { background-position-x: -200%; } }
         .skeleton-card { aspect-ratio: 4/5; width: 100%; }
 
-        /* ৪. প্রিমিয়াম গোল্ডেন বাটন */
+        /* ৪. প্রিমিয়াম বাটন */
         .btn-premium {
             background: linear-gradient(45deg, #FFB800, #FFD700);
             color: #000 !important;
             font-weight: 700;
-            padding: 18px 50px;
+            padding: 15px 40px;
             border-radius: 100px;
-            border: none;
-            box-shadow: 0 10px 25px rgba(255, 184, 0, 0.4);
-            transition: 0.4s;
             text-decoration: none;
             display: inline-block;
-            font-size: 1.1rem;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(255, 184, 0, 0.3);
         }
-        .btn-premium:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 15px 35px rgba(255, 184, 0, 0.6);
-            background: linear-gradient(45deg, #006A4E, #004d39);
-            color: #fff !important;
-        }
-        
-    /* ফুটার লোগো এবং ফুটার ডিজাইন ফিক্স */
-        .footer-logo { 
-            width: 60px; /* লোগোর সাইজ ছোট করার জন্য */
-            height: auto;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); 
-        }
-        
+        .btn-premium:hover { transform: scale(1.05); background: #006A4E; color: #fff !important; }
+
+        /* ৫. মেইন ফুটার স্টাইল */
         .main-footer {
             background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
             color: #ffffff;
-            padding: 80px 0 30px;
-            font-size: 15px;
-            text-align: left; /* ফুটারের টেক্সট বাম দিকে রাখার জন্য */
+            padding: 60px 0 30px;
+            font-size: 14px;
         }
-        
-        .footer-title { 
-            color: #FFB800; 
-            font-weight: 700; 
-            margin-bottom: 25px; 
-            position: relative; 
-            padding-bottom: 10px; 
-        }
-        
+        .footer-logo { width: 60px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+        .footer-title { color: #FFB800; font-weight: 700; margin-bottom: 20px; }
         .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 8px; }
         .footer-links li a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
-        .footer-links li a:hover { color: #FFB800; padding-left: 10px; }
-        
-        .social-links a { 
-            width: 35px; height: 35px; 
-            background: rgba(255,255,255,0.1); 
-            display: inline-flex; align-items: center; justify-content: center; 
-            border-radius: 50%; color: white; margin-right: 10px; text-decoration: none;
-        }
-        .text-light-50 { color: rgba(255,255,255,0.7) !important; }
+        .footer-links li a:hover { color: #FFB800; padding-left: 8px; }
+        .social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 10px; transition: 0.3s; }
+        .social-links a:hover { background: #FFB800; color: #000; }
     </style>
 </head>
 <body>
@@ -135,14 +107,14 @@
 
     <div id="main-content" class="container py-5 d-none">
         <div class="text-center mb-5 animate__animated animate__fadeInDown">
-            <h2 class="fw-bold text-success display-5">শিক্ষক ফটো গ্যালারি</h2>
-            <p class="text-muted">আমাদের সুযোগ্য কারিগরগণ</p>
+            <h2 class="fw-bold text-success display-6">শিক্ষক ফটো গ্যালারি</h2>
+            <div class="bg-warning mx-auto mb-3" style="height: 3px; width: 60px;"></div>
         </div>
 
         <div class="row g-4 justify-content-center">
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="photo-card animate__animated animate__zoomIn">
-                    <img src="images/head_teacher.jpg" onerror="this.src='https://images.unsplash.com/photo-1544717297-fa154daaf762?w=400&h=500&fit=crop'">
+                    <img src="images/head_teacher.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Reena+Akter'">
                     <div class="photo-info">
                         <h5>রীনা আকতার</h5>
                         <p>প্রধান শিক্ষক</p>
@@ -152,136 +124,107 @@
 
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="photo-card animate__animated animate__zoomIn animate__delay-1s">
-                    <img src="images/t1.jpg" onerror="this.src='https://images.unsplash.com/photo-1577896851231-70ef14603e80?w=400&h=500&fit=crop'">
+                    <img src="images/t1.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Happy+Akter'">
                     <div class="photo-info">
                         <h5>হ্যাপি আক্তার</h5>
                         <p>সহকারী শিক্ষক</p>
                     </div>
                 </div>
             </div>
-<div class="col-md-6 col-lg-4">
-                <div class="teacher-card d-flex align-items-center shadow-sm">
-                    <img src="images/t2.jpg" class="teacher-img me-3" onerror="this.src='https://via.placeholder.com/80'">
-                    <div>
-                        <h5 class="fw-bold mb-1">অপূর্ব কুমার মন্ডল</h5>
-                        <p class="mb-0 text-muted small">সহকারী শিক্ষক</p>
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="photo-card animate__animated animate__zoomIn animate__delay-1s">
+                    <img src="images/t2.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Apurba+Mondal'">
+                    <div class="photo-info">
+                        <h5>অপূর্ব কুমার মন্ডল</h5>
+                        <p>সহকারী শিক্ষক</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="teacher-card d-flex align-items-center shadow-sm">
-                    <img src="images/t3.jpg" class="teacher-img me-3" onerror="this.src='https://via.placeholder.com/80'">
-                    <div>
-                        <h5 class="fw-bold mb-1">শারমিন আক্তার</h5>
-                        <p class="mb-0 text-muted small">সহকারী শিক্ষক</p>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="photo-card animate__animated animate__zoomIn animate__delay-2s">
+                    <img src="images/t3.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Sharmin+Akter'">
+                    <div class="photo-info">
+                        <h5>শারমিন আক্তার</h5>
+                        <p>সহকারী শিক্ষক</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="teacher-card d-flex align-items-center shadow-sm">
-                    <img src="images/t4.jpg" class="teacher-img me-3" onerror="this.src='https://via.placeholder.com/80'">
-                    <div>
-                        <h5 class="fw-bold mb-1">উৎপল মন্ডল</h5>
-                        <p class="mb-0 text-muted small">সহকারী শিক্ষক</p>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="photo-card animate__animated animate__zoomIn animate__delay-2s">
+                    <img src="images/t4.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=Utpal+Mondal'">
+                    <div class="photo-info">
+                        <h5>উৎপল মন্ডল</h5>
+                        <p>সহকারী শিক্ষক</p>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
-        <div class="text-center mt-5 pt-5">
+        <div class="text-center mt-5 pt-4">
             <a href="ex-teachers.html" class="btn-premium">
                 <i class="fas fa-history me-2"></i> প্রাক্তন শিক্ষক অ্যালবাম দেখুন
             </a>
         </div>
     </div>
-<footer class="main-footer">
-    <div class="container">
-        <div class="row g-4">
-            
-            <div class="col-lg-4 col-md-6">
-                <div class="footer-about">
-                    <img src="images/govt.png" alt="School Logo" class="footer-logo mb-3">
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <img src="images/govt.png" class="footer-logo mb-3">
                     <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
-                    <p class="text-light-50 mt-3">
-                        জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য। আমরা মানসম্মত প্রাথমিক শিক্ষা নিশ্চিত করতে প্রতিশ্রুতিবদ্ধ।
-                    </p>
+                    <p class="text-light-50 mt-3">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
                     <div class="social-links mt-4">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-2 col-md-6">
-                <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
-                    <li><a href="admission-info.html"><i class="fas fa-chevron-right"></i> ভর্তি তথ্য</a></li>
-                    <li><a href="teachers.html"><i class="fas fa-chevron-right"></i> শিক্ষকবৃন্দ</a></li>
-                    <li><a href="notice.html"><i class="fas fa-chevron-right"></i> নোটিশ বোর্ড</a></li>
-                    <li><a href="digital-class.html"><i class="fas fa-chevron-right"></i> ডিজিটাল ক্লাস</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-2 col-md-6">
-                <h5 class="footer-title">অন্যান্য</h5>
-                <ul class="footer-links">
-                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> ফটো গ্যালারি</a></li>
-                    <li><a href="former-teachers.html"><i class="fas fa-chevron-right"></i> প্রাক্তন শিক্ষার্থী</a></li>
-                    <li><a href="admission.html"><i class="fas fa-chevron-right"></i> অনলাইন আবেদন</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <h5 class="footer-title">ঠিকানা ও যোগাযোগ</h5>
-                <div class="contact-info text-light-50">
-                    <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, ইন্দুরকানী, পিরোজপুর।</p>
-                    <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
-                    <p><i class="fas fa-envelope me-2 text-warning"></i> info@kalaiaschool.gov.bd</p>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title">লিঙ্কসমূহ</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">হোম</a></li>
+                        <li><a href="teachers.html">শিক্ষকবৃন্দ</a></li>
+                        <li><a href="gallery.html">গ্যালারি</a></li>
+                        <li><a href="contact.html">যোগাযোগ</a></li>
+                    </ul>
                 </div>
-                <div class="mt-4">
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-warning btn-sm rounded-pill px-4 fw-bold shadow-sm">
-                        <i class="fas fa-map-marked-alt me-1"></i> গুগল ম্যাপে দেখুন
-                    </a>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title">অ্যাকাডেমিক</h5>
+                    <ul class="footer-links">
+                        <li><a href="notice.html">নোটিশ বোর্ড</a></li>
+                        <li><a href="admission.html">ভর্তি তথ্য</a></li>
+                        <li><a href="result.html">ফলাফল</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-title">যোগাযোগ</h5>
+                    <p class="mb-1"><i class="fas fa-map-marker-alt text-warning me-2"></i> কালাইয়া, পিরোজপুর।</p>
+                    <p class="mb-1"><i class="fas fa-phone-alt text-warning me-2"></i> +৮৮০ ১৯XXXXXXXX</p>
+                    <p><i class="fas fa-envelope text-warning me-2"></i> info@kalaiaschool.gov.bd</p>
+                    <a href="#" class="btn btn-outline-warning btn-sm rounded-pill px-4 mt-2">গুগল ম্যাপ</a>
                 </div>
             </div>
-
-        </div>
-
-        <hr class="mt-5 mb-4 border-light opacity-10">
-
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="copyright-text mb-0 text-light-50">
-                    &copy; ২০২৬ <strong>কালাইয়া বোর্ড সপ্রাবি</strong>। সর্বস্বত্ব সংরক্ষিত।
-                </p>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <p class="small text-light-50 mb-0">কারিগরি সহযোগিতায়: <a href="#" class="text-warning text-decoration-none">OptiCAPI AI Solutions</a></p>
+            <hr class="mt-5 border-light opacity-10">
+            <div class="text-center opacity-75 small">
+                © ২০২৬ কালাইয়া বোর্ড সপ্রাবি। কারিগরি সহযোগিতায়: OptiCAPI AI
             </div>
         </div>
-    </div>
     </footer>
-    
-    <script>
-        // নিশ্চিত লোডিং স্ক্রিপ্ট
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingArea = document.getElementById('loading-area');
-            const mainContent = document.getElementById('main-content');
 
-            // ১.৫ সেকেন্ড কাউন্টডাউন শুরু
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                loadingArea.classList.add('animate__animated', 'animate__fadeOut');
-                
-                setTimeout(() => {
-                    loadingArea.style.display = 'none';
-                    mainContent.classList.remove('d-none');
-                    mainContent.classList.add('animate__fadeIn');
-                }, 500);
+                document.getElementById('loading-area').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.classList.remove('d-none');
+                main.classList.add('animate__fadeInUp');
             }, 1500);
         });
     </script>
