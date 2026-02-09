@@ -1,0 +1,46 @@
+<style>
+    .gallery-card {
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #fff;
+        transition: 0.4s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .gallery-card:hover {
+        transform: scale(1.03) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 106, 78, 0.2);
+    }
+    .img-hover-zoom {
+        height: 250px;
+        overflow: hidden;
+    }
+    .img-hover-zoom img {
+        transition: transform .5s ease;
+        object-fit: cover;
+        width: 100%; height: 100%;
+    }
+    .gallery-card:hover .img-hover-zoom img {
+        transform: scale(1.1);
+    }
+</style>
+
+<div class="container py-5">
+    <div class="text-center mb-5 animate__animated animate__fadeInDown">
+        <h2 class="fw-bold text-success">স্মৃতিবিজড়িত পুনর্মিলনী ও প্রাক্তন অ্যালবাম</h2>
+        <div class="mx-auto bg-warning" style="height: 3px; width: 60px;"></div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4 animate__animated animate__zoomIn">
+            <div class="gallery-card">
+                <div class="img-hover-zoom">
+                    <img src="images/ex1.jpg" alt="Batch 2020">
+                </div>
+                <div class="p-3 text-center">
+                    <h5 class="fw-bold mb-0">ব্যাচ ২০২০ পুনর্মিলনী</h5>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
