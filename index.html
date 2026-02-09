@@ -442,94 +442,87 @@
             z-index: -1;
         }
 
-        /* ১২. মেইন ফুটার স্টাইল */
-    .main-footer {
-        background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
-        color: #ffffff;
-        padding: 80px 0 30px;
-        font-size: 15px;
-    }
-    
-    .footer-logo {
-        width: 60px;
-        filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-    }
-    
-    .footer-title {
-        color: #FFB800; /* গোল্ডেন কালার টাইটেল */
-        font-weight: 700;
-        margin-bottom: 25px;
-        position: relative;
-        padding-bottom: 10px;
-    }
-    
-    .footer-title::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 40px;
-        height: 3px;
-        background: #FFB800;
-        border-radius: 5px;
-    }
-    
-    /* ফুটার লিঙ্ক স্টাইল */
-    .footer-links {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .footer-links li {
-        margin-bottom: 12px;
-    }
-    
-    .footer-links li a {
-        color: rgba(255,255,255,0.7);
-        text-decoration: none;
-        transition: 0.3s;
-        display: inline-block;
-    }
-    
-    .footer-links li a i {
-        font-size: 10px;
-        margin-right: 8px;
-        color: #FFB800;
-    }
-    
-    .footer-links li a:hover {
-        color: #FFB800;
-        transform: translateX(8px);
-    }
-    
-    /* সোশ্যাল আইকন স্টাইল */
-    .social-links a {
-        width: 35px;
-        height: 35px;
-        background: rgba(255,255,255,0.1);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        color: white;
-        margin-right: 10px;
-        transition: 0.3s;
-        text-decoration: none;
-    }
-    
-    .social-links a:hover {
-        background: #FFB800;
-        color: #000;
-        transform: translateY(-5px);
-    }
-    
-    .text-light-50 {
-        color: rgba(255,255,255,0.7) !important;
-    }
-    
-    .copyright-text {
-        font-size: 14px;
-    }
+/* ১২. স্লিম মেইন ফুটার স্টাইল */
+.main-footer {
+    background: linear-gradient(135deg, #003d2d 0%, #001a13 100%);
+    color: #ffffff;
+    /* প্যাডিং ৮০ পিক্সেল থেকে কমিয়ে ৪০ করা হয়েছে */
+    padding: 40px 0 20px; 
+    font-size: 15px;
+}
+
+.footer-logo {
+    width: 50px; /* লোগো সামান্য ছোট করা হয়েছে */
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+}
+
+.footer-title {
+    color: #FFB800;
+    font-weight: 700;
+    /* মার্জিন ২৫ থেকে কমিয়ে ১৫ করা হয়েছে */
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 8px;
+    font-size: 18px;
+}
+
+/* টাইটেলের নিচের দাগ */
+.footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background: #FFB800;
+    border-radius: 5px;
+}
+
+/* ফুটার লিঙ্ক গ্যাপ কমানো */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 6px; /* ১২ পিক্সেল থেকে কমিয়ে ৬ করা হয়েছে */
+}
+
+.footer-links li a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+    font-size: 14px;
+}
+
+/* ঠিকানা ও যোগাযোগ সেকশনের গ্যাপ কমানো */
+.main-footer p {
+    margin-bottom: 8px; /* লাইনের মাঝের গ্যাপ নিয়ন্ত্রণ */
+    line-height: 1.4;
+}
+
+/* সোশ্যাল আইকন সাইজ */
+.social-links a {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    margin-right: 8px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* কপিরাইট সেকশন স্লিম করা */
+.copyright-area {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
 
         /* মোবাইলে প্যাডিং কমানো */
 .main-footer {
