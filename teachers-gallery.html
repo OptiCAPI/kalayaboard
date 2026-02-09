@@ -3,69 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শিক্ষক ও কর্মকর্তা - কালাইয়া সপ্রাবি</title>
+    <title>শিক্ষক গ্যালারি - প্রিমিয়াম স্টাইল</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8f9fa; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0f4f8; overflow-x: hidden; }
 
-        /* কার্ড ডিজাইন */
-        .teacher-card {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            border-radius: 15px;
-            padding: 20px;
-            border-left: 5px solid #0d6efd;
-            transition: 0.3s;
-            height: 100%;
+        /* ১. ফটো গ্যালারি কার্ড ডিজাইন */
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
         }
-        .teacher-card:hover {
-            background: #0d6efd;
-            color: white !important;
-            transform: translateX(10px);
-        }
-        .teacher-card:hover h5, .teacher-card:hover p { color: white !important; }
-        
-        .teacher-img {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            border: 3px solid #0d6efd;
+
+        .photo-card img {
+            width: 100%; height: 100%;
             object-fit: cover;
+            transition: 0.6s ease;
         }
-        .teacher-card:hover .teacher-img { border-color: white; }
 
-        /* Skeleton Loader */
+        /* মাউস নিলে জুম এবং শ্যাডো */
+        .photo-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 106, 78, 0.25);
+        }
+
+        .photo-card:hover img { transform: scale(1.15); }
+
+        /* ২. গ্লাস টেক্সট ওভারলে (Glassmorphism) */
+        .photo-info {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .photo-info h5 { margin: 0; font-weight: 700; color: white; }
+        .photo-info p { margin: 0; font-size: 0.85rem; color: #f8f9fa; }
+
+        /* ৩. স্লিম স্কেলিটন লোডার */
         .skeleton {
-            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-            border-radius: 15px;
+            background: linear-gradient(110deg, #e0e0e0 8%, #f0f0f0 18%, #e0e0e0 33%);
             background-size: 200% 100%;
             animation: 1.5s shine linear infinite;
+            border-radius: 20px;
         }
         @keyframes shine { to { background-position-x: -200%; } }
-        .loading-card { height: 120px; width: 100%; margin-bottom: 20px; }
+        .skeleton-card { aspect-ratio: 4/5; width: 100%; }
 
-        /* প্রাক্তন শিক্ষক বাটন */
-        .btn-former {
-            background: #FFB800;
-            color: #000;
+        /* ৪. প্রিমিয়াম গোল্ডেন বাটন */
+        .btn-premium {
+            background: linear-gradient(45deg, #FFB800, #FFD700);
+            color: #000 !important;
             font-weight: 700;
-            padding: 15px 40px;
-            border-radius: 50px;
+            padding: 18px 50px;
+            border-radius: 100px;
             border: none;
+            box-shadow: 0 10px 25px rgba(255, 184, 0, 0.4);
             transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(255, 184, 0, 0.3);
             text-decoration: none;
             display: inline-block;
+            font-size: 1.1rem;
         }
-        .btn-former:hover {
-            background: #006A4E;
-            color: #fff;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 106, 78, 0.4);
+        .btn-premium:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 184, 0, 0.6);
+            background: linear-gradient(45deg, #006A4E, #004d39);
+            color: #fff !important;
         }
-/* ফুটার লোগো এবং ফুটার ডিজাইন ফিক্স */
+        
+    /* ফুটার লোগো এবং ফুটার ডিজাইন ফিক্স */
         .footer-logo { 
             width: 60px; /* লোগোর সাইজ ছোট করার জন্য */
             height: auto;
@@ -104,46 +125,41 @@
 <body>
 
     <div id="loading-area" class="container py-5">
-        <div class="text-center mb-5">
-            <div class="skeleton mx-auto" style="height: 40px; width: 300px;"></div>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4"><div class="skeleton loading-card"></div></div>
-            <div class="col-md-6 col-lg-4"><div class="skeleton loading-card"></div></div>
-            <div class="col-md-6 col-lg-4"><div class="skeleton loading-card"></div></div>
-            <div class="col-md-6 col-lg-4"><div class="skeleton loading-card"></div></div>
-            <div class="col-md-6 col-lg-4"><div class="skeleton loading-card"></div></div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton skeleton-card"></div></div>
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton skeleton-card"></div></div>
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton skeleton-card"></div></div>
+            <div class="col-6 col-md-4 col-lg-3"><div class="skeleton skeleton-card"></div></div>
         </div>
     </div>
 
-    <div id="main-content" class="container py-5 d-none animate__animated">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-primary">আমাদের নিবেদিতপ্রাণ শিক্ষকবৃন্দ</h2>
-            <p class="text-muted">জ্ঞানের আলো ছড়িয়ে দিচ্ছেন যারা</p>
+    <div id="main-content" class="container py-5 d-none">
+        <div class="text-center mb-5 animate__animated animate__fadeInDown">
+            <h2 class="fw-bold text-success display-5">শিক্ষক ফটো গ্যালারি</h2>
+            <p class="text-muted">আমাদের সুযোগ্য কারিগরগণ</p>
         </div>
 
         <div class="row g-4 justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="teacher-card d-flex align-items-center shadow-sm">
-                    <img src="images/head_teacher.jpg" class="teacher-img me-3" onerror="this.src='https://via.placeholder.com/80'">
-                    <div>
-                        <h5 class="fw-bold mb-1">রীনা আকতার</h5>
-                        <p class="mb-0 text-muted small">প্রধান শিক্ষক</p>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="photo-card animate__animated animate__zoomIn">
+                    <img src="images/head_teacher.jpg" onerror="this.src='https://images.unsplash.com/photo-1544717297-fa154daaf762?w=400&h=500&fit=crop'">
+                    <div class="photo-info">
+                        <h5>রীনা আকতার</h5>
+                        <p>প্রধান শিক্ষক</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="teacher-card d-flex align-items-center shadow-sm">
-                    <img src="images/t1.jpg" class="teacher-img me-3" onerror="this.src='https://via.placeholder.com/80'">
-                    <div>
-                        <h5 class="fw-bold mb-1">হ্যাপি আক্তার</h5>
-                        <p class="mb-0 text-muted small">সহকারী শিক্ষক</p>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="photo-card animate__animated animate__zoomIn animate__delay-1s">
+                    <img src="images/t1.jpg" onerror="this.src='https://images.unsplash.com/photo-1577896851231-70ef14603e80?w=400&h=500&fit=crop'">
+                    <div class="photo-info">
+                        <h5>হ্যাপি আক্তার</h5>
+                        <p>সহকারী শিক্ষক</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4">
+<div class="col-md-6 col-lg-4">
                 <div class="teacher-card d-flex align-items-center shadow-sm">
                     <img src="images/t2.jpg" class="teacher-img me-3" onerror="this.src='https://via.placeholder.com/80'">
                     <div>
@@ -172,13 +188,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div class="text-center mt-5 py-4 animate__animated animate__fadeInUp animate__delay-1s">
-            <hr class="mb-5 opacity-10">
-            <h4 class="mb-4 fw-bold">আমাদের প্রাক্তন শিক্ষকদের দেখতে চান?</h4>
-            <a href="former-teachers.html" class="btn-former">
-                <i class="fas fa-history me-2"></i> প্রাক্তন শিক্ষক ও গুণীজন প্রোফাইল
+        <div class="text-center mt-5 pt-5">
+            <a href="ex-teachers.html" class="btn-premium">
+                <i class="fas fa-history me-2"></i> প্রাক্তন শিক্ষক অ্যালবাম দেখুন
             </a>
         </div>
     </div>
@@ -251,20 +265,24 @@
             </div>
         </div>
     </div>
-</footer>
+    </footer>
+    
     <script>
-        window.addEventListener('load', function() {
+        // নিশ্চিত লোডিং স্ক্রিপ্ট
+        document.addEventListener('DOMContentLoaded', function() {
             const loadingArea = document.getElementById('loading-area');
             const mainContent = document.getElementById('main-content');
-            
+
+            // ১.৫ সেকেন্ড কাউন্টডাউন শুরু
             setTimeout(() => {
                 loadingArea.classList.add('animate__animated', 'animate__fadeOut');
+                
                 setTimeout(() => {
                     loadingArea.style.display = 'none';
                     mainContent.classList.remove('d-none');
-                    mainContent.classList.add('animate__fadeInUp');
+                    mainContent.classList.add('animate__fadeIn');
                 }, 500);
-            }, 1500); 
+            }, 1500);
         });
     </script>
 </body>
