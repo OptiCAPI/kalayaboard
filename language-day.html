@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>২১শে ফেব্রুয়ারি স্মৃতিমালা - কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background-color: #f5f5f5; 
+            color: #333;
+        }
+
+        /* হেডার ডিজাইন */
+        .shok-header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/alpana_bg.jpg');
+            background-size: cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 5px solid #d32f2f; /* লাল বর্ডার */
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: #fff; color: #000; }
+
+        /* গ্যালারি কার্ড */
+        .ekushey-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.4s;
+            border-bottom: 4px solid #000;
+        }
+        .ekushey-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #d32f2f;
+        }
+
+        .img-box {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .ekushey-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* বছর ভিত্তিক সেকশন টাইটেল */
+        .year-title {
+            border-left: 5px solid #d32f2f;
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* ফুটার */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 30px 0;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header class="shok-header animate__animated animate__fadeIn">
+    <div class="container">
+        <a href="gallery.html" class="back-btn"><i class="fas fa-arrow-left me-1"></i> গ্যালারিতে ফিরে যান</a>
+        <h1 class="display-4 fw-bold animate__animated animate__zoomIn">২১শে ফেব্রুয়ারি স্মৃতিমালা</h1>
+        <p class="lead">আমার ভাইয়ের রক্তে রাঙানো একুশে ফেব্রুয়ারি, আমি কি ভুলিতে পারি</p>
+    </div>
+</header>
+
+<div class="container py-5">
+    
+    <h3 class="year-title">২০২৫ সালের শ্রদ্ধাঞ্জলি</h3>
+    <div class="row g-4">
+        <div class="col-md-4 col-sm-6 animate__animated animate__fadeInUp">
+            <div class="ekushey-card">
+                <a href="images/ekushey1.jpg" data-lightbox="ekushey25" data-title="শহীদ মিনারে পুষ্পস্তবক অর্পণ">
+                    <div class="img-box">
+                        <img src="images/ekushey1.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Shaheed+Minar'">
+                    </div>
+                </a>
+                <div class="caption">পুষ্পস্তবক অর্পণ - ২০২৫</div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 animate__animated animate__fadeInUp animate__delay-1s">
+            <div class="ekushey-card">
+                <a href="images/ekushey2.jpg" data-lightbox="ekushey25" data-title="প্রভাতফেরি">
+                    <div class="img-box">
+                        <img src="images/ekushey2.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Probhat+Feri'">
+                    </div>
+                </a>
+                <div class="caption">প্রভাতফেরি - ২০২৫</div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 animate__animated animate__fadeInUp animate__delay-2s">
+            <div class="ekushey-card">
+                <a href="images/ekushey3.jpg" data-lightbox="ekushey25" data-title="চিত্রাঙ্কন প্রতিযোগিতা">
+                    <div class="img-box">
+                        <img src="images/ekushey3.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Art+Competition'">
+                    </div>
+                </a>
+                <div class="caption">চিত্রাঙ্কন প্রতিযোগিতা</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="year-title">২০২৪ সালের স্মৃতি</h3>
+    <div class="row g-4">
+        <div class="col-md-4 col-sm-6">
+            <div class="ekushey-card">
+                <a href="images/ekushey4.jpg" data-lightbox="ekushey24">
+                    <div class="img-box"><img src="images/ekushey4.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Event+2024'"></div>
+                </a>
+                <div class="caption">সাংস্কৃতিক অনুষ্ঠান ২০২৪</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>অমর একুশে ফেব্রুয়ারি - ভাষা শহীদদের প্রতি বিনম্র শ্রদ্ধা</p>
+    <small>© কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</small>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+</body>
+</html>
