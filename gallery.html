@@ -39,48 +39,41 @@
         .cat-overlay h3 { font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-size: 1.5rem; }
         .open-hint { color: #FFB800; font-size: 0.85rem; font-weight: 600; }
 
-        /* স্পেশাল গোল্ডেন কার্ড */
         .special-card { border: 4px solid #FFD700 !important; }
         .special-gradient { background: linear-gradient(transparent, rgba(184, 134, 11, 0.95)) !important; }
 
-         /* কন্টেইনার সেটআপ - এটি খুব জরুরি */
         .national-days-container {
-            position: relative; /* রিলেটিভ রাখতেই হবে */
+            position: relative;
             width: 100%;
-            z-index: 50; /* অন্য কার্ডের উপরে দেখানোর জন্য */
-            overflow: visible; /* পপ-আপ যাতে কেটে না যায় */
+            z-index: 50;
+            overflow: visible;
         }
         
-        /* পপ-আপ লিস্ট ডিজাইন */
         .hover-popup-list {
             position: absolute;
-            top: 95%; /* কার্ডের একটু নিচে থেকে শুরু হবে */
+            top: 95%;
             left: 0;
             width: 100%;
             background: white;
             border-radius: 0 0 15px 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* শ্যাডো একটু বাড়ালাম */
-            
-            /* শুরুতে লুকানো থাকবে */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
-            
             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 100; /* সবার উপরে থাকবে */
+            z-index: 100;
             border: 2px solid #006A4E;
-            border-top: none; /* উপরের বর্ডার বাদ দিলাম যাতে কার্ডের সাথে মিলে যায় */
+            border-top: none;
             overflow: hidden;
         }
         
-        /* হোভার করলে যা হবে */
         .national-days-container:hover .hover-popup-list {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
 
-         .popup-item {
+        .popup-item {
             padding: 12px 20px;
             color: #006A4E;
             font-weight: 600;
@@ -92,31 +85,19 @@
             background: white;
         }
         
-        .popup-item:last-child {
-            border-bottom: none;
-        }
+        .popup-item:last-child { border-bottom: none; }
+        .popup-item:hover { background-color: #006A4E; color: white; padding-left: 30px; }
+        .popup-item i { width: 25px; }
         
-        .popup-item:hover {
-            background-color: #006A4E;
-            color: white;
-            padding-left: 30px; /* হোভার করলে লেখা ডানে সরবে */
-        }
-        
-        .popup-item i {
-            width: 25px; /* আইকনগুলো সমান দূরত্বে রাখার জন্য */
-        }
-        
-        /* হোভার করলে কার্ডের নিচের কোণা সোজা হয়ে যাবে */
         .national-days-container:hover .category-card {
             border-radius: 20px 20px 0 0;
-            border-bottom: none; /* কার্ড এবং লিস্টের মাঝের দাগ মুছে ফেলার জন্য */
+            border-bottom: none;
         }
-        /* --- ড্রপডাউন র‍্যাপার (সংবর্ধনার জন্য - ক্লিক লজিক) --- */
+
         .year-wrapper { display: none; background: #fff; border-radius: 20px; padding: 20px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .year-btn { background: #f8f9fa; border: 1px solid #ddd; padding: 8px 20px; border-radius: 50px; font-weight: 600; margin: 5px; cursor: pointer; transition: 0.3s; }
         .year-btn:hover { background: #006A4E; color: #fff; }
 
-        /* --- ব্যাক টু টপ বাটন --- */
         #backToTop {
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
             border: none; outline: none; background: #006A4E; color: white;
@@ -197,9 +178,9 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 col-sm-6">
             <div class="national-days-container">
-                
                 <div class="category-card animate__animated animate__zoomIn animate__delay-2s">
                     <img src="images/events_cover.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=National+Days'">
                     <div class="cat-overlay">
@@ -207,7 +188,6 @@
                         <span class="open-hint">কার্সর রাখুন <i class="fas fa-chevron-down"></i></span>
                     </div>
                 </div>
-        
                 <div class="hover-popup-list">
                     <div class="popup-item" onclick="location.href='language-day.html'">
                         <i class="fas fa-pen-nib me-2"></i> ২১শে ফেব্রুয়ারি
@@ -219,11 +199,13 @@
                         <i class="fas fa-trophy me-2"></i> ১৬ই ডিসেম্বর
                     </div>
                 </div>
-        
             </div>
         </div>
         
-    </div> </div> <button onclick="topFunction()" id="backToTop" title="উপরে যান">
+    </div> 
+</div>
+
+<button onclick="topFunction()" id="backToTop" title="উপরে যান">
     <i class="fas fa-chevron-up"></i>
 </button>
 
@@ -235,13 +217,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    // শুধু সংবর্ধনা কার্ডের জন্য ক্লিক লজিক (Toggle)
     function toggleLocal(id) {
         $('.year-wrapper').not('#' + id).slideUp();
-        $('#' + id).slideToggle(400); // 400ms duration animation
+        $('#' + id).slideToggle(400);
     }
 
-    // ব্যাক টু টপ বাটন লজিক
     window.onscroll = function() {scrollFunction()};
     function scrollFunction() {
         if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
