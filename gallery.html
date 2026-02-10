@@ -43,15 +43,65 @@
         /* স্পেশাল গোল্ডেন কার্ড (বিদায়ী ব্যাচ ও সংবর্ধনা) */
         .special-card { border: 4px solid #FFD700 !important; }
         .special-gradient { background: linear-gradient(transparent, rgba(184, 134, 11, 0.95)) !important; }
-
-        /* ড্রপডাউন র‍্যাপার */
-        .year-wrapper { display: none; background: #fff; border-radius: 20px; padding: 20px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .year-btn {
-            background: #f8f9fa; border: 1px solid #ddd; padding: 8px 20px;
-            border-radius: 50px; font-weight: 600; margin: 5px; cursor: pointer; transition: 0.3s;
+        /* কন্টেইনার সেটআপ */
+        .national-days-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
-        .year-btn:hover { background: #006A4E; color: #fff; }
-        
+    
+        /* পপ-আপ লিস্টের ডিজাইন (শুরুতে অদৃশ্য থাকবে) */
+        .hover-popup-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease-in-out;
+            z-index: 99;
+            border: 2px solid #006A4E;
+            overflow: hidden;
+        }
+    
+        /* কন্টেইনারে হোভার করলে পপ-আপ দেখাবে */
+        .national-days-container:hover .hover-popup-list {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    
+        /* প্রতিটি আইটেমের ডিজাইন */
+        .popup-item {
+            padding: 12px 20px;
+            color: #006A4E;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+        }
+    
+        .popup-item:last-child {
+            border-bottom: none;
+        }
+    
+        /* হোভার করলে আইটেমের রং পরিবর্তন */
+        .popup-item:hover {
+            background-color: #006A4E;
+            color: white;
+        }
+    
+        /* কার্ডের নিচের কোণাগুলো একটু অ্যাডজাস্ট করা */
+        .national-days-container:hover .category-card {
+            border-radius: 15px 15px 0 0;
+        }
+        /* --- ব্যাক টু টপ বাটন (এটি থাকবে) --- */
         #backToTop {
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
             border: none; outline: none; background: #006A4E; color: white;
@@ -59,6 +109,55 @@
             transition: 0.3s; width: 50px; height: 50px;
         }
         #backToTop:hover { background: #FFB800; color: black; transform: scale(1.1); }
+        
+        /* --- নতুন পপ-আপ গ্যালারি ডিজাইন (পুরনো wrapper এর বদলে এটি ব্যবহার করুন) --- */
+        .national-days-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .hover-popup-list {
+            position: absolute;
+            top: 90%; /* কার্ডের সাথে লেগে থাকবে */
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 100;
+            border: 2px solid #006A4E;
+            overflow: hidden;
+        }
+        
+        /* হোভার করলে পপ-আপ দেখাবে */
+        .national-days-container:hover .hover-popup-list {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .popup-item {
+            padding: 12px 20px;
+            color: #333;
+            font-weight: 600;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .popup-item:last-child { border-bottom: none; }
+        
+        .popup-item:hover {
+            background-color: #006A4E;
+            color: white;
+            padding-left: 30px; /* হোভার করলে লেখা একটু ডানে সরবে */
+        }
 
         .footer { background: #001a13; color: white; padding: 30px 0; margin-top: 60px; }
     </style>
@@ -144,14 +243,20 @@
                     <span class="open-hint">ছবিগুলো দেখুন <i class="fas fa-chevron-down"></i></span>
                 </div>
             </div>
-            <div id="cat-events" class="year-wrapper">
-                <div class="year-btn">২১শে ফেব্রুয়ারি</div>
-                <div class="year-btn">১৬ই ডিসেম্বর</div>
+            <div class="hover-popup-list">
+                <div class="popup-item" onclick="location.href='language-day.html'">
+                    <i class="fas fa-pen-nib me-2"></i> ২১শে ফেব্রুয়ারি
+                </div>
+                <div class="popup-item" onclick="location.href='independence-day.html'">
+                    <i class="fas fa-sun me-2"></i> ২৬শে মার্চ
+                </div>
+                <div class="popup-item" onclick="location.href='victory-day.html'">
+                    <i class="fas fa-trophy me-2"></i> ১৬ই ডিসেম্বর
+                </div>
             </div>
-        </div>
-        <button onclick="topFunction()" id="backToTop" title="উপরে যান">
-    <i class="fas fa-chevron-up"></i>
-</button>
+            <button onclick="topFunction()" id="backToTop" title="উপরে যান">
+        <i class="fas fa-chevron-up"></i>
+    </button>
     </div>
 </div>
 
