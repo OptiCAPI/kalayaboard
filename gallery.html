@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
@@ -22,7 +21,7 @@
             color: white; padding: 70px 0; text-align: center; border-radius: 0 0 50px 50px; 
         }
 
-        /* কার্ড ডিজাইন */
+        /* --- কার্ড ডিজাইন --- */
         .category-card {
             position: relative; border-radius: 20px; overflow: hidden; height: 300px;
             cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.08);
@@ -40,68 +39,42 @@
         .cat-overlay h3 { font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-size: 1.5rem; }
         .open-hint { color: #FFB800; font-size: 0.85rem; font-weight: 600; }
 
-        /* স্পেশাল গোল্ডেন কার্ড (বিদায়ী ব্যাচ ও সংবর্ধনা) */
+        /* স্পেশাল গোল্ডেন কার্ড */
         .special-card { border: 4px solid #FFD700 !important; }
         .special-gradient { background: linear-gradient(transparent, rgba(184, 134, 11, 0.95)) !important; }
-        /* কন্টেইনার সেটআপ */
-        .national-days-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-    
-        /* পপ-আপ লিস্টের ডিজাইন (শুরুতে অদৃশ্য থাকবে) */
+
+        /* --- জাতীয় দিবস Hover পপ-আপ ডিজাইন --- */
+        .national-days-container { position: relative; width: 100%; }
+        
+        /* পপ-আপ লিস্টের এন্ট্রান্স অ্যানিমেশন */
         .hover-popup-list {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease-in-out;
-            z-index: 99;
-            border: 2px solid #006A4E;
-            overflow: hidden;
+            position: absolute; top: 90%; left: 0; width: 100%;
+            background: white; border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            opacity: 0; visibility: hidden;
+            transform: translateY(15px); /* নিচে থেকে উপরে আসবে */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* স্মুথ ট্রানজিশন */
+            z-index: 100; border: 2px solid #006A4E; overflow: hidden;
         }
-    
-        /* কন্টেইনারে হোভার করলে পপ-আপ দেখাবে */
-        .national-days-container:hover .hover-popup-list {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-    
-        /* প্রতিটি আইটেমের ডিজাইন */
+
+        /* হোভার করলে পপ-আপ দৃশ্যমান হবে */
+        .national-days-container:hover .hover-popup-list { opacity: 1; visibility: visible; transform: translateY(0); }
+        .national-days-container:hover .category-card { border-radius: 20px 20px 0 0; }
+
         .popup-item {
-            padding: 12px 20px;
-            color: #006A4E;
-            font-weight: 600;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
+            padding: 12px 20px; color: #333; font-weight: 600;
+            border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center;
         }
-    
-        .popup-item:last-child {
-            border-bottom: none;
-        }
-    
-        /* হোভার করলে আইটেমের রং পরিবর্তন */
-        .popup-item:hover {
-            background-color: #006A4E;
-            color: white;
-        }
-    
-        /* কার্ডের নিচের কোণাগুলো একটু অ্যাডজাস্ট করা */
-        .national-days-container:hover .category-card {
-            border-radius: 15px 15px 0 0;
-        }
-        /* --- ব্যাক টু টপ বাটন (এটি থাকবে) --- */
+        .popup-item:last-child { border-bottom: none; }
+        .popup-item:hover { background-color: #006A4E; color: white; padding-left: 30px; }
+
+        /* --- ড্রপডাউন র‍্যাপার (সংবর্ধনার জন্য - ক্লিক লজিক) --- */
+        .year-wrapper { display: none; background: #fff; border-radius: 20px; padding: 20px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .year-btn { background: #f8f9fa; border: 1px solid #ddd; padding: 8px 20px; border-radius: 50px; font-weight: 600; margin: 5px; cursor: pointer; transition: 0.3s; }
+        .year-btn:hover { background: #006A4E; color: #fff; }
+
+        /* --- ব্যাক টু টপ বাটন --- */
         #backToTop {
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
             border: none; outline: none; background: #006A4E; color: white;
@@ -110,63 +83,6 @@
         }
         #backToTop:hover { background: #FFB800; color: black; transform: scale(1.1); }
         
-        /* --- নতুন পপ-আপ গ্যালারি ডিজাইন (পুরনো wrapper এর বদলে এটি ব্যবহার করুন) --- */
-        .national-days-container {
-            position: relative;
-            width: 100%;
-        }
-        
-        .hover-popup-list {
-            position: absolute;
-            top: 90%; /* কার্ডের সাথে লেগে থাকবে */
-            left: 0;
-            width: 100%;
-            background: white;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 100;
-            border: 2px solid #006A4E;
-            overflow: hidden;
-        }
-        
-        /* হোভার করলে পপ-আপ দেখাবে */
-        .national-days-container:hover .hover-popup-list {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .popup-item {
-            padding: 12px 20px;
-            color: #333;
-            font-weight: 600;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-        }
-        
-        .popup-item:last-child { border-bottom: none; }
-        
-        .popup-item:hover {
-            background-color: #006A4E;
-            color: white;
-            padding-left: 30px; /* হোভার করলে লেখা একটু ডানে সরবে */
-        }
-        .btn-independence {
-            border-left: 5px solid #006A4E !important; /* পতাকার সবুজ রং */
-        }
-        
-        .btn-independence:hover {
-            background-color: #006A4E !important;
-            color: white !important;
-            border-color: #d32f2f !important; /* হোভার করলে লাল বর্ডার */
-        }
         .footer { background: #001a13; color: white; padding: 30px 0; margin-top: 60px; }
     </style>
 </head>
@@ -179,7 +95,7 @@
 <header class="gallery-header animate__animated animate__fadeIn">
     <div class="container">
         <h1 class="display-5 fw-bold">স্মৃতিময় ফটো গ্যালারি</h1>
-        <p class="lead opacity-75">আমাদের বিদ্যালয়ের সকল কার্যক্রমের ছবি এখানে সাজানো আছে</p>
+        <p class="lead opacity-75">আমাদের বিদ্যালয়ের সকল কার্যক্রমের ছবি এখানে সাজানো আছে</p>
     </div>
 </header>
 
@@ -200,7 +116,7 @@
             <div class="category-card animate__animated animate__zoomIn animate__delay-1s" onclick="location.href='culture-gallery.html'">
                 <img src="images/culture_cover.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Culture'">
                 <div class="cat-overlay">
-                    <h3><i class="fas fa-music me-2"></i>sসাংস্কৃতিক অনুষ্ঠান</h3>
+                    <h3><i class="fas fa-music me-2"></i> সাংস্কৃতিক অনুষ্ঠান</h3>
                     <span class="open-hint">অ্যালবাম দেখুন <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
@@ -225,9 +141,9 @@
                 </div>
             </div>
             <div id="cat-reception" class="year-wrapper">
-                <div class="year-btn" onclick="toggleYear('rec-2025')">২০২৫ সংবর্ধনা</div>
-                <div class="year-btn" onclick="toggleYear('rec-2024')">২০২৪ সংবর্ধনা</div>
-                </div>
+                <div class="year-btn" onclick="location.href='rec-2025.html'">২০২৫ সংবর্ধনা</div>
+                <div class="year-btn" onclick="location.href='rec-2024.html'">২০২৪ সংবর্ধনা</div>
+            </div>
         </div>
 
         <div class="col-md-4 col-sm-6">
@@ -235,35 +151,38 @@
                 <img src="images/p2.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Students'">
                 <div class="cat-overlay">
                     <h3><i class="fas fa-user-graduate me-2"></i> কৃতী শিক্ষার্থী</h3>
-                    <span class="open-hint">তালিকা দেখুন <i class="fas fa-chevron-down"></i></span>
+                    <span class="open-hint">তালিকা দেখুন <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4 col-sm-6">
-            <div class="category-card animate__animated animate__zoomIn animate__delay-2s" onclick="toggleLocal('cat-events')">
-                <img src="images/events_cover.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=National+Days'">
-                <div class="cat-overlay">
-                    <h3><i class="fas fa-flag me-2"></i> জাতীয় দিবস</h3>
-                    <span class="open-hint">ছবিগুলো দেখুন <i class="fas fa-chevron-down"></i></span>
+            <div class="national-days-container">
+                <div class="category-card animate__animated animate__zoomIn animate__delay-2s">
+                    <img src="images/events_cover.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=National+Days'">
+                    <div class="cat-overlay">
+                        <h3><i class="fas fa-flag me-2"></i> জাতীয় দিবস</h3>
+                        <span class="open-hint">কার্সর রাখুন <i class="fas fa-chevron-down"></i></span>
+                    </div>
+                </div>
+                
+                <div class="hover-popup-list">
+                    <div class="popup-item" onclick="location.href='language-day.html'">
+                        <i class="fas fa-pen-nib me-2"></i> ২১শে ফেব্রুয়ারি
+                    </div>
+                    <div class="popup-item" onclick="location.href='independence-day.html'">
+                        <i class="fas fa-sun me-2"></i> ২৬শে মার্চ (স্বাধীনতা)
+                    </div>
+                    <div class="popup-item" onclick="location.href='victory-day.html'">
+                        <i class="fas fa-trophy me-2"></i> ১৬ই ডিসেম্বর
+                    </div>
                 </div>
             </div>
-            <div class="hover-popup-list">
-                <div class="popup-item" onclick="location.href='language-day.html'">
-                    <i class="fas fa-pen-nib me-2"></i> ২১শে ফেব্রুয়ারি
-                </div>
-                <div class="popup-item" onclick="location.href='independence-day.html'">
-                    <i class="fas fa-sun me-2"></i> ২৬শে মার্চ
-                </div>
-                <div class="popup-item" onclick="location.href='victory-day.html'">
-                    <i class="fas fa-trophy me-2"></i> ১৬ই ডিসেম্বর
-                </div>
-            </div>
-            <button onclick="topFunction()" id="backToTop" title="উপরে যান">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-    </div>
-</div>
+        </div>
+
+    </div> </div> <button onclick="topFunction()" id="backToTop" title="উপরে যান">
+    <i class="fas fa-chevron-up"></i>
+</button>
 
 <footer class="footer text-center">
     <div class="container">
@@ -273,21 +192,25 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    // শুধু সংবর্ধনা কার্ডের জন্য ক্লিক লজিক (Toggle)
     function toggleLocal(id) {
         $('.year-wrapper').not('#' + id).slideUp();
-        $('#' + id).slideToggle(400);
+        $('#' + id).slideToggle(400); // 400ms duration animation
     }
-window.onscroll = function() {scrollFunction()};
-function scrollFunction() {
-    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-        document.getElementById("backToTop").style.display = "block";
-    } else {
-        document.getElementById("backToTop").style.display = "none";
+
+    // ব্যাক টু টপ বাটন লজিক
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            document.getElementById("backToTop").style.display = "block";
+        } else {
+            document.getElementById("backToTop").style.display = "none";
+        }
     }
-}
-function topFunction() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-}
+    function topFunction() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
 </script>
+
 </body>
 </html>
