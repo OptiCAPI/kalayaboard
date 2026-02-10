@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফটো গ্যালারি - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
+    <title>ফটো গ্যালারি - কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,241 +11,172 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
         body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0f4f8; }
-        
-        /* নেভিগেশন */
+
         .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 15px 0; }
-        .navbar-brand { color: #fff !important; font-weight: 700; font-size: 1.2rem; }
-        
-        /* হেডার */
+        .navbar-brand { color: #fff !important; font-weight: 700; }
+
         .gallery-header { 
             background: linear-gradient(rgba(0, 106, 78, 0.9), rgba(0, 106, 78, 0.9)), url('https://www.transparenttextures.com/patterns/cubes.png');
-            color: white; padding: 80px 0; text-align: center; border-radius: 0 0 50px 50px; 
+            color: white; padding: 60px 0; text-align: center; border-radius: 0 0 50px 50px; 
         }
-        
-        /* আইকন মেনু (Filter Menu) */
-        .category-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: -40px 0 50px; position: relative; z-index: 10; }
-        .cat-item { 
-            background: white; padding: 15px 25px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-decoration: none; 
-            color: #444; font-weight: 600; transition: 0.4s; text-align: center;
-            border: 2px solid transparent; cursor: pointer; min-width: 140px;
-        }
-        .cat-item i { display: block; font-size: 24px; margin-bottom: 8px; color: #006A4E; transition: 0.3s; }
-        .cat-item:hover, .cat-item.active { transform: translateY(-8px); border-color: #FFB800; color: #006A4E; background: #fff; }
-        .cat-item.active i { color: #FFB800; }
 
-        /* গ্যালারি কার্ড */
-        .gallery-card { 
-            position: relative; border-radius: 25px; overflow: hidden; height: 280px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: 0.5s; 
-            background: #fff; border: 5px solid #fff;
+        /* ক্যাটাগরি কার্ড ডিজাইন */
+        .category-card {
+            position: relative; border-radius: 20px; overflow: hidden; height: 300px;
+            cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: 0.4s; border: 4px solid #fff;
         }
-        .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
-        .gallery-card:hover img { transform: scale(1.15) rotate(2deg); }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .category-card:hover img { transform: scale(1.1); filter: brightness(70%); }
         
-        .img-overlay { 
-            position: absolute; inset: 0; 
-            background: rgba(0, 106, 78, 0.7); 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transition: 0.4s; backdrop-filter: blur(3px);
+        .cat-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(transparent, rgba(0, 106, 78, 0.9));
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 30px;
         }
-        .gallery-card:hover .img-overlay { opacity: 1; }
-        .img-overlay i { color: #FFB800; font-size: 35px; margin-bottom: 10px; }
-        .img-overlay span { color: white; font-weight: 600; font-size: 0.9rem; }
+        .cat-overlay h3 { color: white; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
-        /* ফুটার ডিজাইন */
-        .main-footer { background: linear-gradient(135deg, #003d2d 0%, #001a13 100%); color: #ffffff; padding: 80px 0 30px; font-size: 15px; }
-        .footer-logo { width: 70px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
-        .footer-title { color: #FFB800; font-weight: 700; margin-bottom: 25px; border-bottom: 2px solid rgba(255, 184, 0, 0.2); display: inline-block; padding-bottom: 5px; }
+        /* সাব-মেনু বক্স */
+        .year-wrapper { display: none; background: #fff; border-radius: 20px; padding: 25px; margin-top: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-bottom: 5px solid #006A4E; }
+        
+        .year-btn {
+            background: #f8f9fa; border: 2px solid #dee2e6; color: #444;
+            padding: 10px 25px; border-radius: 50px; font-weight: 700;
+            margin: 5px; cursor: pointer; transition: 0.3s; display: inline-block;
+        }
+        .year-btn i { transition: 0.5s; color: #006A4E; }
+        .year-btn:hover, .year-btn.active { background: #006A4E; border-color: #006A4E; color: #fff; }
+        .year-btn.active i { transform: rotate(180deg); color: #FFB800; }
+
+        /* ইমেজ পুল */
+        .image-pool { display: none; margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 20px; }
+        .img-item { border-radius: 15px; overflow: hidden; height: 180px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; }
+        .img-item img { width: 100%; height: 100%; object-fit: cover; }
+        .img-item:hover { transform: translateY(-5px); }
+
+        /* ফুটার */
+        .main-footer { background: linear-gradient(135deg, #003d2d 0%, #001a13 100%); color: #ffffff; padding: 60px 0 20px; font-size: 15px; }
+        .footer-logo { width: 60px; }
+        .footer-title { color: #FFB800; font-weight: 700; margin-bottom: 20px; }
         .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 10px; }
         .footer-links li a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
-        .footer-links li a:hover { color: #FFB800; padding-left: 8px; }
-        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 12px; transition: 0.3s; }
-        .social-links a:hover { background: #FFB800; color: #000; transform: translateY(-5px); }
-        .text-light-50 { color: rgba(255,255,255,0.7) !important; }
+        .footer-links li a:hover { color: #FFB800; padding-left: 10px; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-        <a class="navbar-brand animate__animated animate__fadeInLeft" href="index.html">
+    <div class="container text-center text-md-start">
+        <a class="navbar-brand" href="index.html">
             <img src="images/govt.png" alt="Logo" width="35" class="me-2"> কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়
         </a>
     </div>
 </nav>
 
 <header class="gallery-header">
-    <div class="container animate__animated animate__zoomIn">
-        <h1 class="fw-bold display-5">স্মৃতিময় ফটো গ্যালারি</h1>
-        <p class="lead opacity-75">আমাদের স্কুলের প্রতিটি মুহূর্ত হোক চিরস্মরণীয়</p>
+    <div class="container animate__animated animate__fadeIn">
+        <h1 class="fw-bold display-5">স্মৃতিময় ফটো গ্যালারি</h1>
+        <p class="lead opacity-75">ক্যাটাগরিতে ক্লিক করে সাল অনুযায়ী ছবিগুলো দেখুন</p>
     </div>
 </header>
 
-<div class="container mt-5">
-    <div class="category-menu animate__animated animate__fadeInUp">
-        <div class="cat-item active" onclick="filterGallery('all')"><i class="fas fa-images"></i> সব ছবি</div>
-        <div class="cat-item" onclick="filterGallery('student')"><i class="fas fa-trophy"></i> কৃতী শিক্ষার্থী</div>
-        <div class="cat-item" onclick="filterGallery('event')"><i class="fas fa-calendar-check"></i> বিভিন্ন অনুষ্ঠান</div>
-        <div class="cat-item" onclick="filterGallery('sports')"><i class="fas fa-running"></i> ক্রীড়া ও সংস্কৃতি</div>
-        <div class="cat-item" onclick="filterGallery('picnic')"><i class="fas fa-bus"></i> পিকনিক</div>
-        <div class="cat-item" onclick="filterGallery('batch')"><i class="fas fa-graduation-cap"></i> ৫ম ব্যাচ ২০২৫</div>
-    </div>
-
-    <div class="row g-4" id="gallery-wrapper">
-        <div class="col-md-4 col-sm-6 gallery-item sports">
-            <a href="images/p1.jpg" data-lightbox="school-gallery" data-title="বার্ষিক ক্রীড়া প্রতিযোগিতা ২০২৫">
-                <div class="gallery-card animate__animated animate__fadeIn">
-                    <img src="images/p1.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Sports+Image'">
-                    <div class="img-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>বড় করে দেখুন</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4 col-sm-6 gallery-item student">
-            <a href="gallery/2023/farewell1.jpg" data-lightbox="school-gallery" data-title="কৃতী শিক্ষার্থী সংবর্ধনা">
-                <div class="gallery-card animate__animated animate__fadeIn animate__delay-1s">
-                    <img src="gallery/2023/farewell1.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Student+Image'">
-                    <div class="img-overlay"><i class="fas fa-search-plus"></i><span>বড় করে দেখুন</span></div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4 col-sm-6 gallery-item event">
-            <a href="gallery/2023/p3.jpg" data-lightbox="school-gallery" data-title="সাংস্কৃতিক অনুষ্ঠানের প্রস্তুতি">
-                <div class="gallery-card animate__animated animate__fadeIn animate__delay-1s">
-                    <img src="gallery/2023/p3.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Event+Image'">
-                    <div class="img-overlay"><i class="fas fa-search-plus"></i><span>বড় করে দেখুন</span></div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4 col-sm-6 gallery-item picnic">
-            <a href="gallery/2023/p4.jpg" data-lightbox="school-gallery" data-title="বার্ষিক বনভোজন">
-                <div class="gallery-card animate__animated animate__fadeIn animate__delay-2s">
-                    <img src="gallery/2023/p4.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Picnic+Image'">
-                    <div class="img-overlay"><i class="fas fa-search-plus"></i><span>বড় করে দেখুন</span></div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4 col-sm-6 gallery-item batch">
-            <a href="gallery/2025/p5.jpg" data-lightbox="school-gallery" data-title="৫ম ব্যাচ ২০২৫ - গ্রুপ ফটো">
-                <div class="gallery-card animate__animated animate__fadeIn animate__delay-2s">
-                    <img src="gallery/2025/p5.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Batch+2025'">
-                    <div class="img-overlay"><i class="fas fa-search-plus"></i><span>বড় করে দেখুন</span></div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4 col-sm-6 gallery-item event">
-            <a href="gallery/2025/p6.jpg" data-lightbox="school-gallery" data-title="বিজয় দিবস উদযাপন">
-                <div class="gallery-card animate__animated animate__fadeIn animate__delay-2s">
-                    <img src="gallery/2025/p6.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Victory+Day'">
-                    <div class="img-overlay"><i class="fas fa-search-plus"></i><span>বড় করে দেখুন</span></div>
-                </div>
-            </a>
-        </div>
-
-
-        <div class="col-md-4 col-sm-6 gallery-item batch">
-            <a href="gallery/2023/1.jpg" data-lightbox="school-gallery" data-title="৫ম ব্যাচ ২০২৩ - গ্রুপ ফটো">
-                <div class="gallery-card animate__animated animate__fadeIn animate__delay-2s">
-                    <img src="gallery/2023/1.jpg" alt="Gallery Image" onerror="this.src='https://via.placeholder.com/400x300?text=Batch+2025'">
-                    <div class="img-overlay"><i class="fas fa-search-plus"></i><span>বড় করে দেখুন</span></div>
-                </div>
-            </a>
-        </div>
-
+<div class="container py-5">
+    <div class="row g-4">
         
+        <div class="col-md-4 col-sm-6">
+            <div class="category-card animate__animated animate__zoomIn" onclick="toggleCategory('cat-students')">
+                <img src="images/p2.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Students'">
+                <div class="cat-overlay"><h3><i class="fas fa-trophy me-2"></i> কৃতী শিক্ষার্থী</h3></div>
+            </div>
+            
+            <div id="cat-students" class="year-wrapper">
+                <div class="year-btn" onclick="toggleYear('student-2025', this)"><i class="fas fa-chevron-down me-2"></i> ২০২৫ সাল</div>
+                <div class="year-btn" onclick="toggleYear('student-2024', this)"><i class="fas fa-chevron-down me-2"></i> ২০২৪ সাল</div>
+                
+                <div id="student-2025" class="image-pool row g-2">
+                    <div class="col-4"><a href="images/p2.jpg" data-lightbox="students-25"><div class="img-item"><img src="images/p2.jpg"></div></a></div>
+                    <div class="col-4"><a href="images/p5.jpg" data-lightbox="students-25"><div class="img-item"><img src="images/p5.jpg"></div></a></div>
+                </div>
+                <div id="student-2024" class="image-pool row g-2">
+                    <div class="col-4"><a href="images/p1.jpg" data-lightbox="students-24"><div class="img-item"><img src="images/p1.jpg"></div></a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="category-card animate__animated animate__zoomIn animate__delay-1s" onclick="toggleCategory('cat-events')">
+                <img src="images/p3.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Events'">
+                <div class="cat-overlay"><h3><i class="fas fa-calendar-alt me-2"></i> বিভিন্ন অনুষ্ঠান</h3></div>
+            </div>
+            <div id="cat-events" class="year-wrapper">
+                <div class="year-btn" onclick="toggleYear('event-2025', this)"><i class="fas fa-chevron-down me-2"></i> ২০২৫ সাল</div>
+                <div id="event-2025" class="image-pool row g-2">
+                    <div class="col-4"><a href="images/p6.jpg" data-lightbox="event-25"><div class="img-item"><img src="images/p6.jpg"></div></a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="category-card animate__animated animate__zoomIn animate__delay-1s" onclick="toggleCategory('cat-picnic')">
+                <img src="images/p4.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Picnic'">
+                <div class="cat-overlay"><h3><i class="fas fa-bus me-2"></i> পিকনিক</h3></div>
+            </div>
+            <div id="cat-picnic" class="year-wrapper">
+                <p class="text-muted small">২০২৫ সালের বনভোজন শীঘ্রই আসছে...</p>
+            </div>
+        </div>
+
     </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
-<script>
-    // লাইটবক্স অপশন
-    lightbox.option({
-      'albumLabel': "ছবি %1 এর %2",
-      'fadeDuration': 400,
-      'wrapAround': true,
-      'imageFadeDuration': 400
-    });
-
-    // গ্যালারি ফিল্টার ফাংশন
-    function filterGallery(category) {
-        // মেনু এক্টিভ ক্লাস পরিবর্তন
-        $('.cat-item').removeClass('active');
-        event.currentTarget.classList.add('active');
-
-        // ফিল্টারিং এনিমেশন
-        if(category === 'all'){
-            $('.gallery-item').show(400);
-        } else {
-            $('.gallery-item').hide(200);
-            $('.' + category).show(400);
-        }
-    }
-</script>
 
 <footer class="main-footer mt-5">
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
-                <div class="footer-about text-start">
-                    <img src="images/govt.png" alt="School Logo" class="footer-logo mb-3">
-                    <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
-                    <p class="text-light-50 mt-3">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
-                    <div class="social-links mt-4">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
+                <img src="images/govt.png" alt="Logo" class="footer-logo mb-3">
+                <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
+                <div class="social-links mt-3">
+                    <a href="#" style="color:white; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="color:white;"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-
-            <div class="col-lg-2 col-md-6 text-start">
-                <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
-                    <li><a href="admission-info.html"><i class="fas fa-chevron-right"></i> ভর্তি তথ্য</a></li>
-                    <li><a href="teachers.html"><i class="fas fa-chevron-right"></i> শিক্ষকবৃন্দ</a></li>
-                    <li><a href="notice.html"><i class="fas fa-chevron-right"></i> নোটিশ বোর্ড</a></li>
-                </ul>
+            <div class="col-lg-8 text-md-end align-self-center">
+                <p class="small opacity-50">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি। কারিগরি সহযোগিতায়: OptiCAPI AI</p>
             </div>
-
-            <div class="col-lg-2 col-md-6 text-start">
-                <h5 class="footer-title">অন্যান্য</h5>
-                <ul class="footer-links">
-                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> ফটো গ্যালারি</a></li>
-                    <li><a href="former-teachers.html"><i class="fas fa-chevron-right"></i> প্রাক্তন শিক্ষক</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 col-md-6 text-start">
-                <h5 class="footer-title">ঠিকানা ও যোগাযোগ</h5>
-                <div class="contact-info text-light-50">
-                    <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, পিরোজপুর।</p>
-                    <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
-                    <p><i class="fas fa-envelope me-2 text-warning"></i> info@kalaiaschool.gov.bd</p>
-                </div>
-                <a href="https://maps.google.com" target="_blank" class="btn btn-warning btn-sm rounded-pill px-4 mt-3 fw-bold">ম্যাপে দেখুন</a>
-            </div>
-        </div>
-        <hr class="mt-5 border-light opacity-10">
-        <div class="row align-items-center opacity-75 small">
-            <div class="col-md-6 text-center text-md-start">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি।</div>
-            <div class="col-md-6 text-center text-md-end">কারিগরি সহযোগিতায়: <a href="#" class="text-warning text-decoration-none">OptiCAPI AI</a></div>
         </div>
     </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+<script>
+    // ক্যাটাগরি টগল ফাংশন
+    function toggleCategory(catId) {
+        $('.year-wrapper').not('#' + catId).slideUp(400); 
+        $('#' + catId).slideToggle(500, function() {
+            if ($(this).is(':visible')) {
+                $('html, body').animate({
+                    scrollTop: $(this).offset().top - 100
+                }, 500);
+            }
+        });
+    }
+
+    // সাল ভিত্তিক টগল ফাংশন
+    function toggleYear(yearId, btn) {
+        let pool = $('#' + yearId);
+        if(!pool.is(':visible')){
+            $('.image-pool').slideUp(300);
+            $('.year-btn').removeClass('active');
+        }
+        $(btn).toggleClass('active');
+        pool.slideToggle(400);
+    }
+</script>
+
 </body>
 </html>
