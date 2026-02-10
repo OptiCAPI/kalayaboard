@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বিদায়ী ব্যাচ স্মৃতিমালা - কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #fffdf5; }
+
+        .back-btn { background: #006A4E; color: white; border-radius: 50px; padding: 8px 20px; text-decoration: none; transition: 0.3s; }
+        .back-btn:hover { background: #003d2d; color: #FFD700; }
+
+        .page-title { color: #b8860b; font-weight: 700; margin-bottom: 5px; }
+
+        /* Year Buttons */
+        .year-btn {
+            background: #fff; border: 2px solid #FFD700; color: #b8860b;
+            padding: 10px 25px; border-radius: 50px; font-weight: 700;
+            margin: 5px; cursor: pointer; transition: 0.3s; display: inline-block;
+        }
+        .year-btn:hover, .year-btn.active { background: #FFD700; color: #000; box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
+
+        /* Former Student Link */
+        .former-student-link {
+            background: #006A4E !important; color: #FFD700 !important;
+            border: 2px solid #FFD700 !important; text-decoration: none;
+        }
+
+        /* Image Grid */
+        .image-pool { display: none; margin-top: 30px; }
+        .img-item { 
+            border: 3px solid #FFD700; padding: 5px; background: #white; 
+            border-radius: 15px; overflow: hidden; height: 200px; transition: 0.4s;
+        }
+        .img-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .img-item:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="text-center mb-5 animate__animated animate__fadeInDown">
+        <a href="gallery.html" class="back-btn"><i class="fas fa-arrow-left me-2"></i> গ্যালারিতে ফিরে যান</a>
+        <h1 class="page-title mt-4">বিদায়ী ব্যাচ: স্মৃতির স্মারক</h1>
+        <div class="mx-auto" style="width: 100px; height: 4px; background: #FFD700;"></div>
+    </div>
+
+    <div class="text-center mb-4">
+        <div class="year-btn" onclick="toggleYear('batch-2025', this)"><i class="fas fa-star me-2"></i> ব্যাচ ২০২৫</div>
+        <div class="year-btn" onclick="toggleYear('batch-2024', this)"><i class="fas fa-star me-2"></i> ব্যাচ ২০২৪</div>
+        <a href="former-students.html" class="year-btn former-student-link">
+            <i class="fas fa-user-graduate me-2"></i> প্রাক্তন শিক্ষার্থী তালিকা <i class="fas fa-external-link-alt ms-1"></i>
+        </a>
+    </div>
+
+    <div id="batch-2025" class="image-pool animate__animated animate__fadeIn">
+        <h4 class="text-center mb-4" style="color: #006A4E;">ব্যাচ ২০২৫ এর স্মৃতিসমূহ</h4>
+        <div class="row g-3">
+            <div class="col-md-3 col-6">
+                <a href="images/farewell1.jpg" data-lightbox="f25"><div class="img-item"><img src="images/farewell1.jpg"></div></a>
+            </div>
+            </div>
+    </div>
+
+    <div id="batch-2024" class="image-pool animate__animated animate__fadeIn">
+        <h4 class="text-center mb-4" style="color: #006A4E;">ব্যাচ ২০২৪ এর স্মৃতিসমূহ</h4>
+        <div class="row g-3">
+            <div class="col-md-3 col-6">
+                <a href="images/farewell2.jpg" data-lightbox="f24"><div class="img-item"><img src="images/farewell
