@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শ্রেণিভিত্তিক স্মৃতিমালা - কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        html { scroll-behavior: smooth; }
+        
+        /* --- Premium Moving Mesh Gradient --- */
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: premiumGradient 15s ease infinite;
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        @keyframes premiumGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Glassmorphism Header --- */
+        .header-nav {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .back-btn { 
+            background: #ffffff; color: #e73c7e; border-radius: 50px; 
+            padding: 8px 25px; text-decoration: none; transition: 0.4s; 
+            font-weight: 700; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .back-btn:hover { background: #2c3e50; color: #fff; transform: scale(1.05); }
+
+        .page-title { color: #fff; font-weight: 800; text-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
+
+        /* --- Section Styling --- */
+        section { scroll-margin-top: 100px; padding: 50px 0; }
+
+        .class-card-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px; padding: 40px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: 0.3s; border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .class-label {
+            display: inline-block; padding: 10px 40px; border-radius: 50px;
+            font-weight: 800; font-size: 1.8rem; margin-bottom: 30px;
+            background: linear-gradient(90deg, #2c3e50, #006A4E);
+            color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- Image Grid --- */
+        .img-wrapper { 
+            position: relative; border-radius: 20px; overflow: hidden; 
+            height: 250px; transition: 0.5s; cursor: pointer;
+            border: 5px solid #fff;
+        }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        
+        .img-wrapper:hover { transform: translateY(-10px) rotate(2deg); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .img-wrapper:hover img { transform: scale(1.1); filter: brightness(1.1); }
+
+        footer { background: rgba(0,0,0,0.2); color: white; padding: 20px; margin-top: 50px; backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body>
+
+<div class="header-nav animate__animated animate__fadeInDown">
+    <div class="container d-flex justify-content-between align-items-center">
+        <button onclick="history.back()" class="back-btn">
+            <i class="fas fa-arrow-left me-2"></i> ফিরে যান
+        </button>
+        <h2 class="page-title m-0 d-none d-md-block">শ্রেণিভিত্তিক ফটো অ্যালবাম</h2>
+        <div style="width: 50px;"></div>
+    </div>
+</div>
+
+<div class="container py-4">
+    
+    <script>
+        const classes = [
+            { id: 'class-0', name: 'শিশু শ্রেণি' },
+            { id: 'class-1', name: 'প্রথম শ্রেণি' },
+            { id: 'class-2', name: 'দ্বিতীয় শ্রেণি' },
+            { id: 'class-3', name: 'তৃতীয় শ্রেণি' },
+            { id: 'class-4', name: 'চতুর্থ শ্রেণি' },
+            { id: 'class-5', name: 'পঞ্চম শ্রেণি' }
+        ];
+
+        classes.forEach((cls, index) => {
+            document.write(`
+                <section id="${cls.id}">
+                    <div class="class-card-box text-center animate__animated animate__fadeInUp">
+                        <h2 class="class-label">${cls.name}</h2>
+                        <div class="row g-4">
+                            ${[1, 2, 3, 4, 5, 6].map(num => `
+                                <div class="col-lg-4 col-md-6 col-12">
+                                    <a href="gallery/classes/${cls.id}/${num}.jpg" data-lightbox="${cls.id}">
+                                        <div class="img-wrapper">
+                                            <img src="gallery/classes/${cls.id}/${num}.jpg" 
+                                                 onerror="this.src='https://via.placeholder.com/500x350?text=${cls.name}+Image+${num}'" 
+                                                 alt="${cls.name}">
+                                        </div>
+                                    </a>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+            `);
+        });
+    </script>
+
+</div>
+
+<footer class="text-center">
+    <p>© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | সকল স্বত্ব সংরক্ষিত</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
