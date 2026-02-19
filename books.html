@@ -279,6 +279,15 @@
             colors: ['#ff4757', '#2ecc71', '#f1c40f', '#3498db']
         });
     }
+        // কনফেত্তি অ্যানিমেশন (মজার জন্য)
+    function celebrate() {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#2ecc71', '#f1c40f', '#ff4757', '#3498db']
+        });
+    }
 
     document.querySelectorAll('#filters .nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
