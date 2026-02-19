@@ -3,112 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শিক্ষার্থী তথ্য যাচাই - কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>জাদুর বক্স - শিক্ষার্থী তথ্য যাচাই</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background: #f0fdf4; }
-        .navbar { background: #006A4E; }
-        .navbar-brand, .nav-link { color: white !important; }
+        @import url('https://fonts.googleapis.com/css2?family=Atma:wght@500;700&family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary-green: #006A4E;
+            --sunny-yellow: #FFD93D;
+            --kids-blue: #4CC9F0;
+            --kids-pink: #FF4D6D;
+        }
+
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: #fdfae7 url('https://www.transparenttextures.com/patterns/kids-outline.png');
+            overflow-x: hidden;
+        }
+
+        h2, h3, .btn-kids { font-family: 'Atma', cursive; }
+
+        .navbar { 
+            background: rgba(0, 106, 78, 0.95); 
+            backdrop-filter: blur(10px);
+            border-bottom: 4px solid var(--sunny-yellow);
+        }
+
+        /* হেডার ডিজাইন */
+        .header-bg {
+            background: linear-gradient(135deg, #006A4E 0%, #008f6a 100%);
+            height: 280px;
+            border-radius: 0 0 50% 50% / 0 0 20% 20%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .floating-objects i {
+            position: absolute;
+            color: rgba(255,255,255,0.2);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(20deg); }
+        }
+
+        /* সার্চ কন্টেইনার */
         .search-container {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 106, 78, 0.1);
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
+            padding: 35px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-top: -80px;
+            border: 4px solid var(--kids-blue);
+            transition: 0.3s;
         }
-        .header-bg {
-            background: linear-gradient(135deg, #006A4E 0%, #004d39 100%);
-            height: 250px;
-            border-radius: 0 0 50px 50px;
-            position: relative;
-        }
-        .student-card {
-            border-top: 5px solid #FFB800;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .st-photo {
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            object-fit: cover;
-            margin-top: -65px;
-            background: #fff;
-        }
-        
-    /* সুন্দর গৌণ বাটনের কাস্টম স্টাইল (হলুদ হোভার ইফেক্টসহ) */
-    .btn-secondary-custom {
-        background-color: #fff; /* সাধারণ অবস্থায় সাদা ব্যাকগ্রাউন্ড */
-        color: #006A4E; /* মূল থিম কালার (সবুজ) লেখা */
-        border: 2px solid #006A4E; /* সবুজ বর্ডার */
-        font-weight: 600;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-block;
-    }
 
-    .btn-secondary-custom:hover {
-        background-color: #FFB800; /* হোভার করলে ব্যাকগ্রাউন্ড আপনার পছন্দের উজ্জ্বল হলুদ হবে */
-        border-color: #FFB800; /* বর্ডারও হলুদ হয়ে যাবে */
-        color: #000; /* হলুদের ওপর কালো বা গাঢ় লেখা বেশি ফুটে ওঠে */
-        transform: translateY(-2px); /* হালকা উপরে উঠবে */
-        box-shadow: 0 5px 15px rgba(255, 184, 0, 0.3) !important;
-    }
-</style>
+        .search-container:hover { transform: scale(1.02); }
+
+        .input-group-kids {
+            background: #f0fdf4;
+            border-radius: 50px;
+            padding: 8px;
+            border: 2px dashed var(--primary-green);
+        }
+
+        .input-kids {
+            border: none !important;
+            background: transparent !important;
+            font-weight: bold;
+            color: var(--primary-green);
+            padding-left: 20px;
+        }
+
+        .btn-magic {
+            background: linear-gradient(45deg, #FFB800, #FFD93D);
+            border: none;
+            border-radius: 40px !important;
+            color: #000;
+            font-weight: 700;
+            padding: 10px 30px !important;
+            transition: 0.3s;
+        }
+
+        .btn-magic:hover { 
+            background: var(--primary-green); 
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* স্টুডেন্ট কার্ড ডিজাইন */
+        .student-card {
+            border-radius: 25px;
+            overflow: hidden;
+            border: 4px solid var(--sunny-yellow);
+            background: white;
+            transition: 0.4s;
+        }
+
+        .card-header-kids {
+            background: var(--kids-blue);
+            height: 80px;
+            position: relative;
+        }
+
+        .st-photo {
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            object-fit: cover;
+            margin-top: -70px;
+            background: #fff;
+        }
+
+        .info-label { color: #888; font-size: 0.9rem; margin-bottom: 0; }
+        .info-value { color: #333; font-weight: 700; font-size: 1.1rem; }
+        
+        .badge-id {
+            background: var(--kids-pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn-secondary-custom {
+            background: white;
+            color: var(--primary-green);
+            border: 3px solid var(--primary-green);
+            font-weight: 700;
+            border-radius: 50px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--sunny-yellow);
+            border-color: var(--sunny-yellow);
+            color: #000;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="images/govt.png" width="30" class="me-2"> কালাইয়া সপ্রাবি
+        <a class="navbar-brand fw-bold" href="index.html">
+            <img src="images/govt.png" width="35" class="me-2"> 
+            <span style="font-family: 'Atma';">কালাইয়া সপ্রাবি ম্যজিক পোর্টাল</span>
         </a>
     </div>
 </nav>
 
 <div class="header-bg d-flex align-items-center justify-content-center text-white text-center">
-    <div>
-        <h2 class="fw-bold">শিক্ষার্থী তথ্য যাচাই</h2>
-        <p class="opacity-75">আইডি নম্বর দিয়ে তথ্য অনুসন্ধান করুন</p>
+    <div class="floating-objects">
+        <i class="fas fa-pencil-alt" style="top:20%; left:10%; font-size: 40px;"></i>
+        <i class="fas fa-book" style="top:60%; right:15%; font-size: 30px;"></i>
+        <i class="fas fa-star" style="top:30%; right:20%; font-size: 25px;"></i>
+    </div>
+    <div class="animate__animated animate__fadeInDown">
+        <h2 class="fw-bold" style="font-size: 3rem;">চলো নিজেকে খুঁজি! 🔍</h2>
+        <p class="opacity-75 fs-5">তোমার জাদুর আইডি নম্বরটি নিচে লিখে ফেলো</p>
     </div>
 </div>
 
 <div class="container mb-5">
     <div class="row justify-content-center">
-        
         <div class="col-md-8 col-lg-6">
-            <div class="search-container text-center animate__animated animate__fadeInUp">
-                <div class="input-group input-group-lg mb-3">
-                    <input type="number" id="searchInput" class="form-control border-success" placeholder="আইডি লিখুন (যেমন: 202601)">
-                    <button class="btn btn-success px-4 fw-bold" onclick="findStudent()">
-                        <i class="fas fa-search"></i> খুঁজুন
+            <div class="search-container text-center animate__animated animate__zoomIn">
+                <div class="input-group input-group-kids mb-3">
+                    <input type="number" id="searchInput" class="form-control input-kids" placeholder="তোমার আইডি দাও (উদা: ২০২৬০১)">
+                    <button class="btn btn-magic" onclick="findStudent()">
+                        <i class="fas fa-magic"></i> খোঁজ করো!
                     </button>
                 </div>
-                <small class="text-muted">গোপনীয়তা রক্ষার্থে শুধুমাত্র আইডি নম্বর গ্রহণযোগ্য</small>
+                <small class="text-muted fw-bold"><i class="fas fa-lock me-1"></i> তোমার তথ্য আমাদের কাছে একদম নিরাপদ!</small>
+            </div>
+
+            <div id="errorMsg" class="alert alert-danger mt-4 rounded-pill text-center d-none animate__animated animate__shakeX">
+                <i class="fas fa-sad-tear me-2"></i> উফ! এই আইডি দিয়ে কাউকে পাওয়া যাচ্ছে না। আবার চেষ্টা করো সোনামণি!
             </div>
         </div>
     </div>
-<div class="row justify-content-center mt-3">
-    <div class="text-center mt-3">
-    <a href="results.html" class="btn-secondary-custom px-5 py-2 rounded-pill shadow-sm">
-        <i class="fas fa-poll-h me-2"></i> ফলাফল অনুসন্ধান করুন
-    </a>
-</div>
+
+    <div id="resultSection" class="row justify-content-center mt-5 d-none">
+        <div class="col-md-8 col-lg-5">
+            <div class="student-card animate__animated animate__bounceInUp">
+                <div class="card-header-kids text-center">
+                    <div class="badge-id mt-2">ID: <span id="stID"></span></div>
+                </div>
+                <div class="text-center">
+                    <img id="stImg" src="images/student_placeholder.png" class="st-photo">
+                    <h3 class="mt-3 text-success fw-bold" id="stName"></h3>
+                    <p class="text-muted fw-bold">🌟 সুপার স্টার শিক্ষার্থী 🌟</p>
+                </div>
+                
+                <div class="p-4 pt-2">
+                    <div class="row text-center g-3">
+                        <div class="col-6">
+                            <div class="p-2 border rounded-4 bg-light">
+                                <p class="info-label">🏫 শ্রেণি</p>
+                                <span class="info-value" id="stClass"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-2 border rounded-4 bg-light">
+                                <p class="info-label">🔢 রোল</p>
+                                <span class="info-value" id="stRoll"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="p-3 border rounded-4 bg-light text-start">
+                                <p class="mb-1"><strong><i class="fas fa-birthday-cake text-danger me-2"></i> জন্ম তারিখ:</strong> <span id="stDOB"></span></p>
+                                <p class="mb-1"><strong><i class="fas fa-user-tie text-primary me-2"></i> বাবার নাম:</strong> <span id="stFather"></span></p>
+                                <p class="mb-0"><strong><i class="fas fa-heart text-pink me-2"></i> মায়ের নাম:</strong> <span id="stMother"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i> এটি প্রিন্ট করো! 🖨️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="results.html" class="btn-secondary-custom px-5 py-3 shadow-sm d-inline-block animate__animated animate__pulse animate__infinite">
+            <i class="fas fa-poll-h me-2"></i> তোমার রেজাল্ট দেখো 🏆
+        </a>
     </div>
 </div>
 
-
-
-<footer class="bg-dark text-white text-center py-3 mt-5">
-    <small>© ২০২৬ কালাইয়া বোর্ড সপ্রাবি</small>
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি | আনন্দের সাথে শিখি ❤️</p>
+    </div>
 </footer>
 
 <script>
@@ -122,9 +261,16 @@
         resultSec.classList.add('d-none');
         errorMsg.classList.add('d-none');
 
-        if(!input) { alert("দয়া করে আইডি লিখুন"); return; }
+        if(!input) { 
+            alert("সোনামণি, তোমার আইডি নম্বরটি তো দিলে না!"); 
+            return; 
+        }
 
         try {
+            // বাটন লোডিং ইফেক্ট (ঐচ্ছিক)
+            const btn = document.querySelector('.btn-magic');
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> খুঁজছি...';
+
             const res = await fetch(SHEET_CSV_URL);
             const text = await res.text();
             const rows = text.split('\n').slice(1); 
@@ -136,19 +282,25 @@
                     found = true;
                     document.getElementById('stID').innerText = col[0];
                     document.getElementById('stName').innerText = col[1];
-                    document.getElementById('stClass').innerText = col[2];
+                    document.getElementById('stClass').innerText = col[2] + "ম";
                     document.getElementById('stRoll').innerText = col[3];
                     document.getElementById('stDOB').innerText = col[4];
                     document.getElementById('stFather').innerText = col[5];
                     document.getElementById('stMother').innerText = col[6];
+                    
                     let photo = col[7] && col[7].trim() !== "" ? col[7] : "images/student_placeholder.png";
                     document.getElementById('stImg').src = photo;
+                    
                     resultSec.classList.remove('d-none');
                 }
             });
+
+            btn.innerHTML = '<i class="fas fa-magic"></i> খোঁজ করো!';
             if(!found) errorMsg.classList.remove('d-none');
+            
         } catch (error) {
-            alert("ডাটাবেস লোড করা যাচ্ছে না।");
+            alert("দুঃখিত! ডাটাবেস লোড করা যাচ্ছে না। ইন্টার্নেট চেক করো।");
+            btn.innerHTML = '<i class="fas fa-magic"></i> খোঁজ করো!';
         }
     }
 </script>
