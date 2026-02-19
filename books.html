@@ -38,6 +38,15 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             position: relative;
         }
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
 
         /* Moving Cartoon Character */
         .cartoon-char {
