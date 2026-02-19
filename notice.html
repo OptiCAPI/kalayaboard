@@ -66,6 +66,29 @@
             display: inline-flex; align-items: center; transition: 0.3s;
         }
         .feedback-btn:hover { background: #007a3b; color: #fff; }
+    
+        .print-btn {
+        background: #6c757d; /* ধূসর রঙ */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        transition: 0.3s;
+        border: none;
+    }
+    .print-btn:hover { 
+        background: #495057; 
+        color: #fff; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    }
+    
+    /* মোবাইল ডিভাইসে বাটনের ফন্ট ছোট করা */
+    @media (max-width: 576px) {
+        .print-btn, .feedback-btn { padding: 8px 15px; font-size: 13px; }
+    }
     </style>
 </head>
 <body>
@@ -133,11 +156,14 @@
                             <a href="javascript:void(0)" onclick="copyNoticeLink()" class="share-btn copy"><i class="fas fa-link"></i></a>
                         </div>
                         
-                        <div class="ms-auto">
+                        <div class="ms-auto d-flex gap-2">
+                            <a href="javascript:void(0)" onclick="printNotice()" class="print-btn">
+                                প্রিন্ট করুন <i class="fas fa-print ms-2"></i>
+                            </a>
+                            
                             <a href="contact.html" class="feedback-btn">
                                 আপনার মতামত প্রদান করুন <i class="far fa-comment-dots ms-2"></i>
                             </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -222,6 +248,14 @@
     });
 
     fetchNotices();
+    function printNotice() {
+    if (currentNoticeLink) {
+        // প্রিন্ট করার জন্য নতুন ট্যাবে ওপেন হবে
+        window.open(currentNoticeLink, '_blank');
+    } else {
+        alert("দুঃখিত, প্রিন্ট করার জন্য কোনো লিঙ্ক পাওয়া যায়নি।");
+    }
+}
 </script>
 
 </body>
