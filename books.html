@@ -162,7 +162,58 @@
             box-shadow: none;
         }
         .confetti-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999; }
-
+            
+        /* শিরোনামের জন্য বিশেষ ফ্লোটিং গ্লো */
+        .library-hero h1 {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
+            animation: floatingText 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatingText {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
+        /* সাব-টাইটেল বা মেসেজের জন্য */
+        .library-hero p {
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
+            /* বইয়ের গ্রিড লেআউট */
+        #bookGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+        
+        /* মোবাইল ডিভাইসের জন্য স্পেশাল এডজাস্টমেন্ট */
+        @media (max-width: 576px) {
+            #bookGrid {
+                grid-template-columns: repeat(2, 1fr); /* মোবাইলে এক সারিতে ২টি বই */
+                gap: 15px;
+            }
+            .book-thumb img {
+                height: 160px; /* মোবাইলে ছবির উচ্চতা কিছুটা কমানো */
+            }
+        }
+        .book-card {
+            /* আগের স্টাইল ঠিক থাকবে, শুধু এই অ্যানিমেশনটি যোগ হবে */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        /* জাভাস্ক্রিপ্ট রেন্ডার হওয়ার সময় এই ক্লাসটি ব্যবহার হবে */
+        .animate-pop-in {
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
