@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডিজিটাল লাইব্রেরি | কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+
+        :root { --primary-green: #006A4E; --accent-gold: #FFB800; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8f9fa; }
+
+        /* Header Section */
+        .library-header {
+            background: linear-gradient(rgba(0,106,78,0.9), rgba(0,106,78,0.9)), url('https://www.transparenttextures.com/patterns/book-shelf.png');
+            color: white; padding: 60px 0; text-align: center; clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        /* Tabs Styling */
+        .nav-pills .nav-link {
+            color: var(--primary-green); font-weight: 600; border: 2px solid var(--primary-green);
+            margin: 5px; border-radius: 50px; transition: 0.3s;
+        }
+        .nav-pills .nav-link.active { background-color: var(--primary-green); color: white; border-color: var(--primary-green); }
+
+        /* Book Card Styling */
+        .book-card {
+            background: white; border: none; border-radius: 15px; overflow: hidden;
+            transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%;
+        }
+        .book-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        
+        .book-img-container { position: relative; padding: 20px; background: #f1f1f1; text-align: center; }
+        .book-img { height: 200px; width: auto; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); border-radius: 5px; }
+
+        .book-title { font-size: 1.1rem; font-weight: 700; color: #333; padding: 15px 10px 5px; text-align: center; }
+        .book-class { font-size: 0.9rem; color: #666; text-align: center; margin-bottom: 15px; }
+
+        .btn-read { background: var(--primary-green); color: white; border-radius: 0 0 0 0; width: 50%; border: none; padding: 10px; font-weight: 600; transition: 0.3s; }
+        .btn-download { background: var(--accent-gold); color: #000; border-radius: 0 0 0 0; width: 50%; border: none; padding: 10px; font-weight: 600; transition: 0.3s; }
+        .btn-read:hover { background: #004d38; color: white; }
+        .btn-download:hover { background: #e5a600; }
+
+        .footer-logo { width: 40px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="library-header">
+    <div class="container">
+        <h1 class="fw-bold"><i class="fas fa-book-open me-2"></i> ডিজিটাল পাঠ্যপুস্তক কর্ণার</h1>
+        <p class="lead">প্রাথমিক স্তরের সকল পাঠ্যবই এখন এক জায়গায়</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <ul class="nav nav-pills justify-content-center mb-5" id="pills-tab" role="tablist">
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#class-1">প্রথম শ্রেণি</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class-2">দ্বিতীয় শ্রেণি</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class-3">তৃতীয় শ্রেণি</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class-4">চতুর্থ শ্রেণি</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class-5">পঞ্চম শ্রেণি</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#story-books">গল্পের বই</button></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="class-1">
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://nctb.portal.gov.bd/sites/default/files/files/nctb.portal.gov.bd/page/87f969ad_830b_455e_874b_5d6666324b91/Amar-Bangla-Boi-Class-1.jpg" class="book-img" alt="বাংলা বই">
+                        </div>
+                        <div class="book-title">আমার বাংলা বই</div>
+                        <div class="book-class">প্রথম শ্রেণি</div>
+                        <div class="d-flex">
+                            <a href="PDF_URL_HERE" target="_blank" class="btn-read text-center text-decoration-none">পড়ুন</a>
+                            <a href="DOWNLOAD_URL_HERE" download class="btn-download text-center text-decoration-none">ডাউনলোড</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="tab-pane fade" id="class-5">
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://nctb.portal.gov.bd/sites/default/files/files/nctb.portal.gov.bd/page/87f969ad_830b_455e_874b_5d6666324b91/Elementary-Mathematics-Class-5.jpg" class="book-img" alt="গণিত বই">
+                        </div>
+                        <div class="book-title">প্রাথমিক গণিত</div>
+                        <div class="book-class">পঞ্চম শ্রেণি</div>
+                        <div class="d-flex">
+                            <a href="#" class="btn-read text-center text-decoration-none">পড়ুন</a>
+                            <a href="#" class="btn-download text-center text-decoration-none">ডাউনলোড</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="class-1">
+              <div class="row g-4">
+                  <div class="col-6 col-md-4 col-lg-3">
+                      <div class="book-card">
+                          <div class="book-img-container">
+                              <img src="https://nctb.portal.gov.bd/sites/default/files/files/nctb.portal.gov.bd/page/87f969ad_830b_455e_874b_5d6666324b91/Amar-Bangla-Boi-Class-1.jpg" class="book-img" alt="বাংলা বই">
+                          </div>
+                          <div class="book-title">বিশ্বের শ্রেষ্ঠ ভূতের গল্প</div>
+                          <div class="book-class">বড়দের বই</div>
+                          <div class="d-flex">
+                              <a href="PDF_URL_HERE" target="_blank" class="btn-read text-center text-decoration-none">পড়ুন</a>
+                              <a href="DOWNLOAD_URL_HERE" download class="btn-download text-center text-decoration-none">ডাউনলোড</a>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+          </div>
+
+        </div>
+</div>
+
+<footer class="bg-white py-4 border-top text-center mt-5">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" class="footer-logo">
+    <p class="mb-0 text-muted small">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
