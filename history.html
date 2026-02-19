@@ -3,99 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আমাদের ইতিহাস | কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>আমাদের স্কুলের গল্প | কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Atma:wght@500;700&display=swap');
         
         :root {
             --primary-green: #006A4E;
             --accent-gold: #FFB800;
-            --soft-bg: #f4f7f6;
+            --soft-blue: #e0f7fa;
+            --kids-pink: #ff4757;
         }
 
         body { 
             font-family: 'Hind Siliguri', sans-serif; 
-            background-color: var(--soft-bg);
+            background: #fff9e6 url('https://www.transparenttextures.com/patterns/kids-outline.png');
             color: #333;
         }
 
-        .navbar { background: var(--primary-green); }
+        h1, h2, h3, .back-btn { font-family: 'Atma', cursive; }
 
-        /* Gorgeous Hero Section */
+        .navbar { background: var(--primary-green); border-bottom: 5px solid var(--accent-gold); }
+
+        /* Hero Section */
         .history-hero {
-            background: linear-gradient(rgba(0, 106, 78, 0.8), rgba(0, 106, 78, 0.9)), 
-                        url('https://images.unsplash.com/photo-1523050853064-90f6797b8339?auto=format&fit=crop&q=80'); /* এখানে স্কুলের ছবি দিবেন */
+            background: linear-gradient(rgba(0, 106, 78, 0.7), rgba(0, 106, 78, 0.8)), 
+                        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-            margin-bottom: 50px;
+            border-radius: 0 0 50% 50% / 0px 0px 50px 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        .hero-content h1 { font-size: 3rem; text-shadow: 3px 3px 0px rgba(0,0,0,0.2); }
+
+        /* Back Button */
+        .back-btn {
+            background: var(--kids-pink);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 25px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: 0.3s;
+            box-shadow: 0 5px 0 #cf3543;
+            margin-bottom: 20px;
         }
+        .back-btn:hover { color: white; transform: scale(1.05); background: #ff6b81; }
+        .back-btn:active { transform: translateY(4px); box-shadow: none; }
 
         /* Content Cards */
         .info-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 25px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--primary-green);
+            box-shadow: 0 10px 0px #eee;
+            border: 2px solid #ddd;
             margin-bottom: 30px;
-            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .info-card:hover { transform: translateY(-5px); }
+        .info-card::before {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+        }
 
-        /* Interactive Timeline Style */
+        /* Timeline Style */
         .timeline {
             position: relative;
-            padding-left: 30px;
-            border-left: 3px dashed var(--primary-green);
-            margin-left: 20px;
+            padding-left: 35px;
+            border-left: 4px dashed var(--primary-green);
+            margin-left: 15px;
         }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-        }
+        .timeline-item { position: relative; margin-bottom: 35px; }
         .timeline-item::before {
-            content: '';
+            content: '⭐';
             position: absolute;
-            left: -39px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            background: var(--accent-gold);
-            border: 3px solid var(--primary-green);
+            left: -48px;
+            top: 0;
+            font-size: 1.2rem;
+            background: white;
             border-radius: 50%;
         }
         .timeline-year {
+            font-family: 'Atma', cursive;
+            background: var(--accent-gold);
+            padding: 2px 15px;
+            border-radius: 20px;
             font-weight: 700;
-            color: var(--primary-green);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            color: #333;
+            display: inline-block;
+            margin-bottom: 8px;
         }
 
-        /* Image Decorative frame */
         .img-frame {
-            border: 10px solid white;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border-radius: 10px;
+            border: 12px solid white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            transform: rotate(-2deg);
+            transition: 0.3s;
         }
+        .img-frame:hover { transform: rotate(0deg) scale(1.02); }
 
-        footer { background: #222; color: #ccc; padding: 40px 0; }
+        footer { background: #333; color: white; padding: 30px 0; border-top: 5px solid var(--kids-pink); }
     </style>
 </head>
 <body>
@@ -109,64 +134,63 @@
     </div>
 </nav>
 
-<header class="history-hero">
+<header class="history-hero animate__animated animate__fadeIn">
     <div class="hero-content">
-        <h1>আমাদের গৌরবোজ্জ্বল ইতিহাস</h1>
-        <p class="fs-4 fw-light">জ্ঞানের আলোয় উদ্ভাসিত একটি উজ্জ্বল পথচলা</p>
+        <h1 class="animate__animated animate__bounceIn">আমাদের স্কুলের মজার গল্প 📖</h1>
+        <p class="fs-5">এসো জানি, আমাদের প্রিয় স্কুলটি কীভাবে শুরু হয়েছিল!</p>
     </div>
 </header>
 
 <div class="container mb-5">
-    <div class="row g-5">
+    <a href="index.html" class="back-btn mb-4">
+        <i class="fas fa-arrow-left me-2"></i> মেইন পেজে ফিরে যাও
+    </a>
+
+    <div class="row g-4">
         <div class="col-lg-7">
-            <div class="info-card">
-                <h2 class="text-success fw-bold mb-4">প্রতিষ্ঠা ও প্রেক্ষাপট</h2>
-                <p class="lead text-muted">
-                    কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় এই অঞ্চলের শিক্ষার প্রসারে এক অনন্য নাম। ১৯৫০-এর দশকে স্থানীয় দানশীল ব্যক্তিবর্গের হাত ধরে এই প্রতিষ্ঠানের যাত্রা শুরু হয়। 
+            <div class="info-card animate__animated animate__fadeInLeft">
+                <h2 class="text-success fw-bold mb-3">🏫 আমাদের শুরুর কথা</h2>
+                <p class="lead">
+                    আজ থেকে অনেক অনেক বছর আগে, যখন তোমাদের দাদু-দিদারাও ছোট ছিলেন, তখন আমাদের এই এলাকায় শিক্ষার আলো ছড়াতে এগিয়ে আসেন এক মহৎ মানুষ। তার নাম **রাধাবল্লভ সাহা**। 
                 </p>
                 <p>
-                    তদানীন্তন সময়ে এই এলাকায় শিক্ষার আলো পৌঁছে দেওয়ার লক্ষ্যে একটি বোর্ড স্কুল হিসেবে এটি প্রতিষ্ঠিত হয়। বর্তমানে এটি একটি আধুনিক সুযোগ-সুবিধা সম্বলিত সরকারি প্রাথমিক বিদ্যালয় হিসেবে মাথা উঁচু করে দাঁড়িয়ে আছে।
+                    তার অক্লান্ত পরিশ্রমে **১৯৩০ সালে** আমাদের এই "কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়" প্রতিষ্ঠিত হয়। তখন থেকেই স্কুলটি আমাদের এলাকার সোনামণিদের জ্ঞানের আলো বিলিয়ে আসছে।
                 </p>
             </div>
 
-            <div class="info-card">
-                <h2 class="text-success fw-bold mb-4">লক্ষ্য ও উদ্দেশ্য</h2>
+            <div class="info-card animate__animated animate__fadeInLeft" style="animation-delay: 0.2s">
+                <h2 class="text-danger fw-bold mb-3">🌟 আমাদের স্বপ্ন</h2>
                 <ul class="list-unstyled">
-                    <li class="mb-3"><i class="fas fa-check-circle text-warning me-2"></i> মানসম্মত প্রাথমিক শিক্ষা নিশ্চিত করা।</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-warning me-2"></i> শিক্ষার্থীদের সৃজনশীল মেধার বিকাশ।</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-warning me-2"></i> নৈতিকতা ও দেশপ্রেম সম্পন্ন সুনাগরিক গড়ে তোলা।</li>
+                    <li class="mb-3"><i class="fas fa-star text-warning me-2"></i> তোমাদেরকে ভালো মানুষ হিসেবে গড়ে তোলা।</li>
+                    <li class="mb-3"><i class="fas fa-star text-warning me-2"></i> খেলার ছলে নতুন নতুন অনেক কিছু শেখানো।</li>
+                    <li class="mb-3"><i class="fas fa-star text-warning me-2"></i> দেশ ও মানুষকে ভালোবাসতে শেখানো।</li>
                 </ul>
             </div>
         </div>
 
         <div class="col-lg-5">
-            <h3 class="fw-bold mb-4"><i class="fas fa-history me-2"></i> গুরুত্বপূর্ণ মাইলফলক</h3>
+            <h3 class="fw-bold mb-4 text-primary"><i class="fas fa-flag me-2"></i> ইতিহাসের পাতায় আমরা</h3>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-year">১৯৫২</div>
-                    <div class="fw-bold">বিদ্যালয়টি প্রতিষ্ঠিত হয়।</div>
-                    <p class="small text-muted">স্থানীয় দানশীল ব্যক্তিদের উদ্যোগে যাত্রা শুরু।</p>
+                    <div class="timeline-year">১৯৩০</div>
+                    <div class="fw-bold">স্কুলের যাত্রা শুরু! 🎈</div>
+                    <p class="small text-muted">দানশীল রাধাবল্লভ সাহা স্কুলটি প্রতিষ্ঠা করেন।</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">১৯৭৩</div>
-                    <div class="fw-bold">সরকারীকরণ (Nationalization)</div>
-                    <p class="small text-muted">বঙ্গবন্ধু শেখ মুজিবুর রহমানের নির্দেশে এটি সরকারি মর্যাদা পায়।</p>
+                    <div class="fw-bold">সরকারি মর্যাদা লাভ 🇧🇩</div>
+                    <p class="small text-muted">জাতির পিতা বঙ্গবন্ধু শেখ মুজিবুর রহমান স্কুলটিকে সরকারি করেন।</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">২০১০</div>
-                    <div class="fw-bold">নতুন ভবন নির্মাণ</div>
-                    <p class="small text-muted">আধুনিক ৩ তলা বিশিষ্ট একাডেমিক ভবন উদ্বোধন।</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">২০২৪</div>
-                    <div class="fw-bold">ডিজিটাল ক্যাম্পাস</div>
-                    <p class="small text-muted">অনলাইন নোটিশ বোর্ড ও স্মার্ট ক্লাসরুম প্রবর্তন।</p>
+                    <div class="timeline-year">২০২৪-২৬</div>
+                    <div class="fw-bold">আধুনিক স্কুল 💻</div>
+                    <p class="small text-muted">তোমাদের জন্য ডিজিটাল নোটিশ বোর্ড ও মজার সব ক্লাসরুম তৈরি করা হয়েছে!</p>
                 </div>
             </div>
 
-            <div class="mt-5">
-                <img src="https://via.placeholder.com/500x350" alt="School Campus" class="img-fluid img-frame">
-                <p class="text-center mt-3 text-muted"><i>আমাদের বিদ্যালয়ের মূল ভবন</i></p>
+            <div class="mt-5 text-center">
+                <img src="https://via.placeholder.com/500x350?text=আমাদের+স্কুল" alt="School Campus" class="img-fluid img-frame">
+                <p class="mt-3 text-muted"><i>আমাদের চিরচেনা প্রিয় স্কুল প্রাঙ্গণ</i></p>
             </div>
         </div>
     </div>
@@ -174,11 +198,7 @@
 
 <footer class="text-center">
     <div class="container">
-        <p>&copy; ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | সর্বস্বত্ব সংরক্ষিত</p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-white"><i class="fas fa-envelope"></i></a>
-        </div>
+        <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | আমরা শিখি আনন্দের সাথে!</p>
     </div>
 </footer>
 
