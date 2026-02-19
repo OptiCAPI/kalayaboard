@@ -2,25 +2,33 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>একাডেমিক ট্রান্সক্রিপ্ট | ১২নং কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* ফন্ট ইমপোর্ট */
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Atma:wght@500;700&display=swap');
         
         :root { 
             --primary-green: #006A4E; 
+            --kids-orange: #FF8C42;
+            --kids-blue: #48CAE4;
         }
     
         body { 
-            background-color: #f0f2f5; 
+            background: #f0f9ff url('https://www.transparenttextures.com/patterns/cubes.png');
             font-family: 'Hind Siliguri', sans-serif; 
         }
-    
-        /* --- WK12 Style Premium Floating Menu --- */
+
+        /* --- শিশুদের জন্য বিশেষ UI (শুধুমাত্র পোর্টাল অংশে) --- */
+        .kids-title {
+            font-family: 'Atma', cursive;
+            color: var(--primary-green);
+            text-shadow: 1px 1px 0px #fff;
+        }
+
         .sticky-sub-wrapper {
             position: fixed;
             top: 15px;
@@ -30,51 +38,43 @@
         }
 
         .floating-bar {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 100px;
-            padding: 5px 12px;
+            padding: 8px 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border: 1.5px solid var(--primary-green);
+            border: 3px solid var(--kids-blue);
             margin: 0 auto;
-            max-width: 500px;
+            max-width: 450px;
             display: flex;
             justify-content: center;
         }
 
-        .sub-menu-list { list-style: none; display: flex; gap: 10px; margin: 0; padding: 0; }
-
+        .sub-menu-list { list-style: none; display: flex; gap: 12px; margin: 0; padding: 0; }
         .sub-menu-list a {
-            text-decoration: none; color: #333; font-weight: 600; font-size: 13px;
-            padding: 6px 12px; border-radius: 50px; display: flex; align-items: center; gap: 5px;
+            text-decoration: none; color: #333; font-weight: 700; font-size: 14px;
+            padding: 8px 16px; border-radius: 50px; display: flex; align-items: center; gap: 6px;
+            transition: 0.3s;
+        }
+        .sub-menu-list a:hover { background: var(--kids-blue); color: #fff; }
+
+        .search-form-card {
+            background: white;
+            border-radius: 30px !important;
+            border: 5px solid var(--kids-orange) !important;
+            box-shadow: 0 10px 0px var(--kids-orange);
         }
 
-        .sub-menu-list a:hover { background: var(--primary-green); color: #fff !important; }
+        /* --- মার্কশিট কার্ড (সম্পূর্ণ অপরিবর্তিত রাখা হয়েছে) --- */
+        .premium-title { font-family: 'Kalpana', 'Constantia', serif; font-weight: bold; }
+        .student-name { font-family: 'Kalpana', 'Constantia', serif; font-style: italic; font-size: 24px; color: #000; }
+        .table-font { font-family: 'Hind Siliguri', sans-serif; font-size: 15px; }
 
-        /* প্রিমিয়াম ফন্ট স্টাইল */
-        .premium-title { 
-            font-family: 'Kalpana', 'Constantia', serif; 
-            font-weight: bold; 
-        }
-        
-        .student-name { 
-            font-family: 'Kalpana', 'Constantia', serif; 
-            font-style: italic; 
-            font-size: 24px; 
-            color: #000; 
-        }
-        
-        .table-font { 
-            font-family: 'Hind Siliguri', sans-serif; 
-            font-size: 15px; 
-        }
-
-        /* A4 Page Container (Unchanged) */
         #resultArea {
             width: 210mm; 
             height: 297mm; 
             background: white;
-            margin: 15px auto; 
+            margin: 30px auto; 
             padding: 10mm; 
             box-sizing: border-box;
             border: 12px double var(--primary-green); 
@@ -86,52 +86,22 @@
         }
 
         .watermark-img {
-            position: absolute; 
-            top: 52%; 
-            left: 50%; 
-            transform: translate(-50%, -50%);
-            width: 460px; 
-            opacity: 0.05; 
-            z-index: 999; 
-            pointer-events: none;
+            position: absolute; top: 52%; left: 50%; transform: translate(-50%, -50%);
+            width: 460px; opacity: 0.05; z-index: 999; pointer-events: none;
         }
 
         #printTimestamp {
-            display: none;
-            position: absolute;
-            bottom: 3mm;
-            right: 80mm;
-            font-size: 10px;
-            color: #555;
-            z-index: 1000;
+            display: none; position: absolute; bottom: 3mm; right: 80mm;
+            font-size: 10px; color: #555; z-index: 1000;
         }
     
-        .main-content { 
-            position: relative; 
-            z-index: 10; 
-            flex-grow: 1; 
-        }
-        
-        .table-main { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 10px; 
-        }
-        
-        .table-main th, .table-main td { 
-            border: 1.5px solid #000 !important; 
-            vertical-align: middle; 
-            padding: 6px !important; 
-        }
+        .main-content { position: relative; z-index: 10; flex-grow: 1; }
+        .table-main { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .table-main th, .table-main td { border: 1.5px solid #000 !important; vertical-align: middle; padding: 6px !important; }
 
         .footer-signatures {
-            position: absolute;
-            bottom: 20mm;
-            left: 15mm;
-            right: 15mm;
-            display: flex;
-            justify-content: space-between;
-            z-index: 1000;
+            position: absolute; bottom: 20mm; left: 15mm; right: 15mm;
+            display: flex; justify-content: space-between; z-index: 1000;
         }
 
         @media print {
@@ -139,49 +109,19 @@
             .no-print, .navbar, .search-form-card, .premium-archive-section, .sticky-sub-wrapper { display: none !important; }
             #printTimestamp { display: block; }
             #resultArea { 
-                margin: 0 !important; 
-                width: 210mm !important; 
-                height: 297mm !important; 
-                border: 12px double var(--primary-green) !important;
-                box-shadow: none;
-                page-break-after: always;
+                margin: 0 !important; border: 12px double var(--primary-green) !important;
+                box-shadow: none; page-break-after: always;
             }
             @page { size: A4; margin: 0; }
         }
 
-        /* আর্কাইভ বাটন ও এনিমেশন */
-        @keyframes pulse-animation {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
         .premium-archive-btn {
             background: linear-gradient(45deg, #006A4E, #00a379);
-            color: white; 
-            border: none; 
-            padding: 12px 30px;
-            border-radius: 50px; 
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,106,78,0.3);
-            transition: 0.3s;
+            color: white; border: none; padding: 12px 30px;
+            border-radius: 50px; font-weight: bold; transition: 0.3s;
             animation: pulse-animation 2s infinite;
         }
-
-        .premium-archive-btn:hover {
-            animation: none;
-            transform: scale(1.05);
-        }
-
-        /* সাল হাইলাইটার স্টাইল */
-        .year-badge {
-            background: #ffc107;
-            color: #000;
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-size: 14px;
-            margin-left: 5px;
-        }
+        @keyframes pulse-animation { 0% {transform:scale(1)} 50% {transform:scale(1.05)} 100% {transform:scale(1)} }
     </style>
 </head>
 <body>
@@ -198,55 +138,49 @@
     </div>
 </div>
 
-<nav class="navbar navbar-dark bg-success shadow-sm mb-4 no-print" style="margin-top: 70px;">
-    <div class="container d-flex justify-content-between">
-        <a href="index.html" class="btn btn-light btn-sm rounded-pill">হোম</a>
-        <span class="navbar-brand fw-bold">ফলাফল পোর্টাল</span>
-        <div style="width: 45px;"></div> 
-    </div>
-</nav>
-
-<div class="container no-print">
-    <div class="card p-4 shadow-sm mx-auto search-form-card mb-3" style="max-width: 550px; border-radius: 15px;">
-        <h5 class="text-center fw-bold text-success mb-3" id="searchTitle">
-            ফলাফল অনুসন্ধান
-        </h5>
-        <div class="row g-2">
+<div class="container no-print" style="margin-top: 100px;">
+    <div class="card p-4 shadow search-form-card mx-auto mb-4" style="max-width: 550px;">
+        <h2 class="text-center fw-bold kids-title mb-4" id="searchTitle">
+            ✨ চলো রেজাল্ট দেখি!
+        </h2>
+        <div class="row g-3">
             <div class="col-6">
-                <label class="small fw-bold">শ্রেণি</label>
-                <select class="form-select rounded-pill" id="classSelect">
+                <label class="small fw-bold">🎒 তোমার শ্রেণি</label>
+                <select class="form-select rounded-pill border-2" id="classSelect">
                     <option value="5">৫ম শ্রেণি</option>
                     <option value="4">৪র্থ শ্রেণি</option>
                     <option value="3">৩য় শ্রেণি</option>
                 </select>
             </div>
             <div class="col-6">
-                <label class="small fw-bold">মূল্যায়ন</label>
-                <select class="form-select rounded-pill" id="termSelect">
+                <label class="small fw-bold">📝 কোন পরীক্ষা?</label>
+                <select class="form-select rounded-pill border-2" id="termSelect">
                     <option value="term1">১ম প্রান্তিক</option>
                     <option value="term2" selected>২য় প্রান্তিক</option>
                     <option value="term3">৩য় প্রান্তিক</option>
                 </select>
             </div>
             <div class="col-12 mt-2">
-                <input type="number" id="rollInput" class="form-control rounded-pill text-center" placeholder="রোল নম্বর">
+                <input type="number" id="rollInput" class="form-control rounded-pill text-center border-2 fs-5" placeholder="এখানে রোল নম্বর লিখো">
             </div>
         </div>
-        <button class="btn btn-success w-100 rounded-pill fw-bold py-2 mt-3" onclick="generateResult()">ফলাফল দেখুন</button>
+        <button class="btn btn-success w-100 rounded-pill fw-bold py-2 mt-4 shadow" onclick="generateResult()">
+            🚀 রেজাল্ট দেখাও
+        </button>
     </div>
 
-    <div class="text-center premium-archive-section mb-4">
+    <div class="text-center premium-archive-section mb-5">
         <button type="button" class="premium-archive-btn" data-bs-toggle="modal" data-bs-target="#archiveModal">
-            <i class="fas fa-gem me-2" style="color: #FFD700;"></i> আর্কাইভ ও শিক্ষাবর্ষ পরিবর্তন
+            📅 পুরোনো বছরের রেজাল্ট
         </button>
     </div>
 </div>
 
 <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="border-radius:20px;">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title fw-bold">শিক্ষাবর্ষ নির্বাচন করুন</h5>
+        <div class="modal-content" style="border-radius:25px;">
+            <div class="modal-header bg-success text-white border-0">
+                <h5 class="modal-title fw-bold">শিক্ষাবর্ষ বেছে নাও</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-4 text-center">
@@ -275,7 +209,7 @@
 
     window.onload = function() {
         const titleElement = document.getElementById('searchTitle');
-        titleElement.innerHTML = `ফলাফল অনুসন্ধান - <span class="year-badge">${toBanglaNum(selectedYear)}</span>`;
+        titleElement.innerHTML = `🌈 রেজাল্ট বক্স - ${toBanglaNum(selectedYear)}`;
     };
 
     function generateResult() {
@@ -297,8 +231,9 @@
 
             if(student) {
                 renderSheet(student, cls, term);
+                window.scrollTo({ top: document.getElementById('resultArea').offsetTop, behavior: 'smooth' });
             } else {
-                alert("তথ্য পাওয়া যায়নি!");
+                alert("তথ্য পাওয়া যায়নি!");
             }
         };
         document.head.appendChild(script);
@@ -330,8 +265,7 @@
         const now = new Date();
         const timestamp = now.toLocaleDateString('bn-BD') + " " + now.toLocaleTimeString('bn-BD');
 
-        
-                     document.getElementById('resultArea').innerHTML = `
+        document.getElementById('resultArea').innerHTML = `
             <img src="images/dpe.png" class="watermark-img">
             <div id="printTimestamp">প্রিন্ট কপি: ${timestamp}</div>
             <div class="main-content">
@@ -342,7 +276,6 @@
                     <p class="mb-0 fw-bold" style="font-size: 21px;">স্থাপিত: ১৯৩০</p>
                     <h4 class="mt-4 border-bottom d-inline-block pb-1 fw-bold">একাডেমিক ট্রান্সক্রিপ্ট - ${toBanglaNum(selectedYear)}</h4>
                 </div>
-
                 <div class="row mt-4 mb-2 px-2" style="font-size:18px;">
                     <div class="col-7">
                         <p class="mb-1"><strong>নাম:</strong> <span class="student-name">${s.name}</span></p>
@@ -353,7 +286,6 @@
                         <p class="mb-1"><strong>মূল্যায়ন:</strong> ${is2026 ? 'প্রান্তিক' : 'সমন্বিত'}</p>
                     </div>
                 </div>
-
                 <table class="table-main table-bordered text-center table-font border-dark">
                     <thead class="table-light">
                         ${is2026 ? 
@@ -369,12 +301,10 @@
                     </tfoot>
                 </table>
             </div>
-
             <div class="footer-signatures">
                 <div class="text-center">.........................<br>শ্রেণি শিক্ষক</div>
                 <div class="text-center">.........................<br>প্রধান শিক্ষক</div>
             </div>
-
             <div class="mt-4 text-center no-print" style="position:relative; z-index:1001;">
                 <button class="btn btn-dark rounded-pill px-5 shadow-lg" onclick="window.print()">
                     <i class="fas fa-print me-2"></i> রেজাল্ট শিট প্রিন্ট করুন
