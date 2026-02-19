@@ -16,68 +16,56 @@
         .notice-header { background: #fff; padding: 30px 0; border-bottom: 3px solid #006A4E; margin-bottom: 30px; }
         .header-title { color: #006A4E; font-weight: 700; border-left: 5px solid #FFB800; padding-left: 15px; }
 
-        /* Table Design */
+        /* Table Design & Hover */
         .table-container { background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; }
-        .table thead { background: #f1f3f5; color: #333; }
-        .table th { font-weight: 700; padding: 15px; border-bottom: 2px solid #dee2e6; }
-        .table td { padding: 12px 15px; vertical-align: middle; border-bottom: 1px solid #eee; }
+        .table thead { background: #f1f3f5; }
+        .table th { font-weight: 700; padding: 15px; }
+        
+        .table-hover tbody tr { transition: all 0.2s ease; cursor: pointer; }
+        .table-hover tbody tr:hover { 
+            background-color: rgba(0, 106, 78, 0.05) !important; 
+            transform: scale(1.002);
+        }
 
-        .notice-title-link { color: #333; text-decoration: none; font-weight: 500; transition: 0.3s; }
-        .notice-title-link:hover { color: #006A4E; }
-
+        .notice-title-link { color: #333; text-decoration: none; font-weight: 500; }
         .pdf-icon { color: #d32f2f; font-size: 1.5rem; transition: 0.3s; }
         .pdf-icon:hover { transform: scale(1.2); }
 
-        .btn-action { color: #006A4E; font-weight: 600; text-decoration: none; border: 1px solid #006A4E; padding: 4px 12px; border-radius: 4px; transition: 0.3s; font-size: 14px; }
+        .btn-action { 
+            color: #006A4E; font-weight: 600; text-decoration: none; 
+            border: 1px solid #006A4E; padding: 4px 12px; border-radius: 4px; transition: 0.3s; 
+        }
         .btn-action:hover { background: #006A4E; color: #fff; }
 
-        .urgent-tag { background: #ff5252; color: white; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-left: 5px; }
-
-        /* Preview Modal */
+        /* Preview Modal Interactive Style */
         .modal-xl { max-width: 90%; }
-        .modal-content { border-radius: 15px; border: none; }
-        .modal-header { background: #006A4E; color: white; border-radius: 15px 15px 0 0; }
-        #pdf-iframe { width: 100%; height: 80vh; border: none; }
+        .modal-content { border-radius: 15px; border: none; overflow: hidden; }
+        .modal-header { background: #006A4E; color: white; border-radius: 0; }
+        #pdf-iframe { width: 100%; height: 75vh; border: none; background: #eee; }
 
-        /* শেয়ার বাটন স্টাইল */
+        /* Share Section */
+        .share-container { background: #fff; }
         .share-btn {
-            width: 40px; height: 40px;
-            border-radius: 50%;
+            width: 38px; height: 38px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: white; text-decoration: none;
-            font-size: 18px; transition: 0.3s;
+            color: white; text-decoration: none; transition: 0.3s;
         }
-        .share-btn:hover { transform: translateY(-3px); color: white; opacity: 0.9; }
+        .share-btn:hover { transform: translateY(-3px); color: #fff; filter: brightness(1.1); }
         
-        /* আইকন কালার কোড */
         .fb { background: #3b5998; }
-        .x-twitter { background: #000000; }
+        .x-twitter { background: #000; }
         .wa { background: #25d366; }
         .li { background: #0077b5; }
         .viber { background: #7360f2; }
         .copy { background: #42a5f5; }
         .msg { background: #0084ff; }
-        
-        /* মতামত বাটন (আপনার স্ক্রিনশটের মতো) */
+
         .feedback-btn {
-            background: #00a651;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            transition: 0.3s;
-            border: none;
+            background: #00a651; color: white; padding: 10px 20px;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            display: inline-flex; align-items: center; transition: 0.3s;
         }
-        .feedback-btn:hover { background: #007a3b; color: white; box-shadow: 0 5px 15px rgba(0,166,81,0.3); }
-        
-        .share-container h6 { font-size: 1.1rem; }
-        
-        @media (max-width: 768px) {
-            .feedback-btn { width: 100%; justify-content: center; margin-top: 15px; }
-        }
+        .feedback-btn:hover { background: #007a3b; color: #fff; }
     </style>
 </head>
 <body>
@@ -98,16 +86,16 @@
 </div>
 
 <div class="container mb-5">
-    <div class="table-container animate__animated animate__fadeIn">
+    <div class="table-container">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
                 <thead>
                     <tr>
                         <th width="5%">নং</th>
-                        <th width="50%">শিরোনাম</th>
+                        <th width="55%">শিরোনাম</th>
                         <th width="10%" class="text-center">ফাইল সমূহ</th>
                         <th width="15%">প্রকাশের তারিখ</th>
-                        <th width="10%" class="text-center">কার্যকলাপ</th>
+                        <th width="15%" class="text-center">কার্যকলাপ</th>
                     </tr>
                 </thead>
                 <tbody id="notice-table-body">
@@ -132,20 +120,10 @@
             </div>
             <div class="modal-body p-0">
                 <iframe id="pdf-iframe" src=""></iframe>
-            </div>
-            <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="modalTitle">নোটিশ প্রিভিউ</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-0">
-                <iframe id="pdf-iframe" src=""></iframe>
                 
                 <div class="share-container p-4 border-top">
                     <h6 class="text-danger fw-bold mb-3">এই কনটেন্টটি শেয়ার করতে ক্লিক করুন</h6>
-                    <div class="d-flex flex-wrap align-items: center; gap-3">
+                    <div class="d-flex flex-wrap align-items-center gap-3">
                         <div class="share-icons d-flex gap-2">
                             <a href="#" id="share-fb" target="_blank" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" id="share-x" target="_blank" class="share-btn x-twitter"><i class="fab fa-x-twitter"></i></a>
@@ -153,7 +131,6 @@
                             <a href="#" id="share-in" target="_blank" class="share-btn li"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#" id="share-viber" target="_blank" class="share-btn viber"><i class="fab fa-viber"></i></a>
                             <a href="javascript:void(0)" onclick="copyNoticeLink()" class="share-btn copy"><i class="fas fa-link"></i></a>
-                            <a href="#" id="share-msg" target="_blank" class="share-btn msg"><i class="fab fa-facebook-messenger"></i></a>
                         </div>
                         
                         <div class="ms-auto">
@@ -171,7 +148,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // আপনার Google Sheets CSV লিঙ্ক
     const csv_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?gid=0&single=true&output=csv";
 
     async function fetchNotices() {
@@ -182,81 +158,65 @@
             let tableHtml = '';
 
             rows.forEach((row, index) => {
-                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // Comma separation logic for titles with commas
+                const col = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 if (col.length >= 3) {
                     const date = col[0].trim();
                     const title = col[1].replace(/"/g, "").trim();
                     const driveLink = col[2].trim();
-                    const isUrgent = col[3] && col[3].toLowerCase().includes('yes');
-
-                    // Google Drive Link Processing
+                    
                     let fileID = driveLink.match(/[-\w]{25,}/);
-                    let previewLink = driveLink;
-                    let downloadLink = driveLink;
-
-                    if(fileID) {
-                        previewLink = `https://drive.google.com/file/d/${fileID[0]}/preview`;
-                        downloadLink = `https://drive.google.com/uc?export=download&id=${fileID[0]}`;
-                    }
+                    let previewLink = fileID ? `https://drive.google.com/file/d/${fileID[0]}/preview` : driveLink;
+                    let downloadLink = fileID ? `https://drive.google.com/uc?export=download&id=${fileID[0]}` : driveLink;
 
                     tableHtml += `
                     <tr>
                         <td>${index + 1}</td>
-                        <td>
-                            <a href="javascript:void(0)" onclick="viewNotice('${title}', '${previewLink}')" class="notice-title-link">
-                                ${title}
-                            </a>
-                            ${isUrgent ? '<span class="urgent-tag">জরুরি</span>' : ''}
+                        <td onclick="viewNotice('${title}', '${previewLink}')">
+                            <span class="notice-title-link">${title}</span>
                         </td>
                         <td class="text-center">
-                            <a href="${downloadLink}" target="_blank" title="ডাউনলোড করুন">
-                                <i class="fas fa-file-pdf pdf-icon"></i>
-                            </a>
+                            <a href="${downloadLink}" target="_blank"><i class="fas fa-file-pdf pdf-icon"></i></a>
                         </td>
                         <td>${date}</td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" onclick="viewNotice('${title}', '${previewLink}')" class="btn-action">দেখুন</a>
+                            <button onclick="viewNotice('${title}', '${previewLink}')" class="btn-action">দেখুন</button>
                         </td>
                     </tr>`;
                 }
             });
-
-            document.getElementById('notice-table-body').innerHTML = tableHtml || "<tr><td colspan='5' class='text-center'>কোনো নোটিশ পাওয়া যায়নি।</td></tr>";
-        } catch (error) {
-            document.getElementById('notice-table-body').innerHTML = "<tr><td colspan='5' class='text-center text-danger'>ডেটা লোড করতে সমস্যা হয়েছে।</td></tr>";
+            document.getElementById('notice-table-body').innerHTML = tableHtml;
+        } catch (e) {
+            document.getElementById('notice-table-body').innerHTML = "<tr><td colspan='5'>লোড হতে সমস্যা হয়েছে।</td></tr>";
         }
     }
 
-let currentNoticeLink = "";
+    let currentNoticeLink = "";
 
-function viewNotice(title, link) {
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('pdf-iframe').src = link;
-    currentNoticeLink = link; // গ্লোবাল ভেরিয়েবলে লিঙ্ক রাখা
+    function viewNotice(title, link) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('pdf-iframe').src = link;
+        currentNoticeLink = link;
 
-    // শেয়ার লিঙ্ক জেনারেট করা
-    const encodedTitle = encodeURIComponent(title);
-    const encodedURL = encodeURIComponent(window.location.href); // মেইন পেজের লিঙ্ক অথবা নোটিশ লিঙ্ক
+        const encodedTitle = encodeURIComponent(title);
+        const encodedURL = encodeURIComponent(link); 
 
-    document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`;
-    document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedURL}`;
-    document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodedTitle} ${encodedURL}`;
-    document.getElementById('share-in').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedURL}`;
-    document.getElementById('share-viber').href = `viber://forward?text=${encodedTitle} ${encodedURL}`;
-    document.getElementById('share-msg').href = `fb-messenger://share/?link=${encodedURL}`;
+        // শেয়ারিং লিঙ্ক আপডেট (এখন সরাসরি পিডিএফ লিঙ্ক শেয়ার হবে)
+        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`;
+        document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedURL}`;
+        document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodedTitle}: ${encodedURL}`;
+        document.getElementById('share-in').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedURL}`;
+        document.getElementById('share-viber').href = `viber://forward?text=${encodedTitle} ${encodedURL}`;
 
-    var myModal = new Bootstrap.Modal(document.getElementById('previewModal'));
-    myModal.show();
-}
+        var myModal = new Bootstrap.Modal(document.getElementById('previewModal'));
+        myModal.show();
+    }
 
-// লিঙ্ক কপি করার ফাংশন
-function copyNoticeLink() {
-    navigator.clipboard.writeText(currentNoticeLink).then(() => {
-        alert("লিঙ্কটি কপি করা হয়েছে!");
-    });
-}
+    function copyNoticeLink() {
+        navigator.clipboard.writeText(currentNoticeLink).then(() => {
+            alert("লিঙ্কটি কপি করা হয়েছে!");
+        });
+    }
 
-    // Modal বন্ধ হলে iframe খালি করা (যাতে সাউন্ড বা লোডিং বন্ধ থাকে)
     document.getElementById('previewModal').addEventListener('hidden.bs.modal', function () {
         document.getElementById('pdf-iframe').src = "";
     });
