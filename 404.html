@@ -7,18 +7,19 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Atma:wght@600&display=swap');
 
         :root {
             --primary-green: #006A4E;
             --accent-red: #ff4757;
-            --soft-gray: #f1f2f6;
+            --sunny-yellow: #FFB800;
         }
 
         body { 
-            background: radial-gradient(circle at center, #ffffff 0%, #dfe4ea 100%);
+            background: #f0f9ff url('https://www.transparenttextures.com/patterns/cloud-grid.png');
             height: 100vh; 
             display: flex; 
             align-items: center; 
@@ -28,61 +29,59 @@
             margin: 0;
         }
 
-        /* Floating Animation for the whole container */
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .error-card {
+            max-width: 600px;
+            width: 95%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 8px solid var(--primary-green);
+            position: relative;
         }
 
-        .error-card {
-            max-width: 550px;
-            width: 90%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 50px 40px;
-            border-radius: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-            text-align: center;
+        /* Cartoon Character Style */
+        .cartoon-box {
             position: relative;
-            border: 1px solid rgba(255,255,255,0.5);
-            animation: floating 4s ease-in-out infinite;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .cartoon-img {
+            width: 120px;
+            animation: bounceIn 1s infinite alternate;
+        }
+
+        @keyframes bounceIn {
+            from { transform: translateY(0) scale(1); }
+            to { transform: translateY(-10px) scale(1.05); }
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background: var(--sunny-yellow);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: 'Atma', cursive;
+            font-weight: bold;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
         }
 
         .error-code {
-            font-size: 120px;
+            font-size: 100px;
+            font-family: 'Atma', cursive;
             font-weight: 900;
-            background: linear-gradient(45deg, var(--primary-green), #2ed573);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent-red);
             line-height: 1;
             margin-bottom: 10px;
-            letter-spacing: -5px;
+            text-shadow: 4px 4px 0px #eee;
         }
 
-        .error-icon {
-            font-size: 60px;
-            color: var(--accent-red);
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        h2 { font-weight: 700; color: #2f3542; margin-bottom: 15px; }
-        p { color: #57606f; font-size: 1.1rem; line-height: 1.6; margin-bottom: 35px; }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        h2 { font-family: 'Atma', cursive; color: #2f3542; }
 
         .btn-custom {
             padding: 12px 25px;
@@ -93,76 +92,61 @@
             display: inline-flex;
             align-items: center;
             border: none;
+            margin: 5px;
         }
 
-        .btn-back {
-            background-color: #ffffff;
-            color: #2f3542;
-            border: 2px solid #dfe4ea;
-        }
+        .btn-home { background-color: var(--primary-green); color: white !important; box-shadow: 0 6px 0 #004d38; }
+        .btn-home:active { transform: translateY(4px); box-shadow: none; }
 
-        .btn-back:hover {
-            background-color: #f1f2f6;
-            transform: translateX(-5px);
-        }
-
-        .btn-home {
-            background-color: var(--primary-green);
-            color: white !important;
-            box-shadow: 0 10px 20px rgba(0, 106, 78, 0.2);
-        }
-
-        .btn-home:hover {
-            background-color: #004d38;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(0, 106, 78, 0.3);
-        }
-
-        /* Decorative Background Circles */
-        .circle {
-            position: absolute;
-            z-index: -1;
-            border-radius: 50%;
-            background: var(--primary-green);
-            opacity: 0.05;
-        }
+        .btn-back { background: #dfe4ea; color: #2f3542; box-shadow: 0 6px 0 #a4b0be; }
+        .btn-back:active { transform: translateY(4px); box-shadow: none; }
     </style>
 </head>
-<body>
+<body onload="speakError()">
 
-    <div class="circle" style="width: 300px; height: 300px; top: -100px; left: -100px;"></div>
-    <div class="circle" style="width: 200px; height: 200px; bottom: -50px; right: -50px;"></div>
-
-    <div class="error-card">
-        <div class="error-icon">
-            <i class="fas fa-exclamation-triangle"></i>
-        </div>
-        <div class="error-code">৪০৪</div>
-        <h2>দুঃখিত, সংযোগ বিচ্ছিন্ন!</h2>
-        <p>
-            আপনি যে পাতাটি খুঁজছেন সেটি হয়তো পরিবর্তন করা হয়েছে অথবা বর্তমানে এই ঠিকানায় নেই। 
-        </p>
+    <div class="error-card animate__animated animate__zoomIn">
         
-        <div class="button-group">
+        <div class="cartoon-box">
+            <div class="speech-bubble animate__animated animate__fadeInRight animate__delay-1s">
+                ওহ! তুমি কি পথ হারিয়েছো?
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/2271/2271062.png" class="cartoon-img" alt="Lost Boy">
+        </div>
+
+        <div class="error-code">৪০৪</div>
+        <h2>দুঃখিত বন্ধু! এই পাতাটি নেই।</h2>
+        <p>ভয় পেয়ো না, চলো আমরা আবার স্কুলের মেইন পাতায় ফিরে যাই।</p>
+        
+        <div class="button-group mt-4">
             <button onclick="window.history.back()" class="btn-custom btn-back">
-                <i class="fas fa-arrow-left me-2"></i> পেছনে ফিরে যান
+                <i class="fas fa-undo me-2"></i> পেছনে যাও
             </button>
 
             <a href="index.html" class="btn-custom btn-home">
-                <i class="fas fa-home me-2"></i> হোম পেজে যান
-            </a>
-
-            <a href="complain.html" class="btn-custom btn-opinion" style="background: #FFB800; color: #000 !important;">
-                <i class="fas fa-paper-plane me-2"></i> সমস্যা হলে আমাদের জানান
+                <i class="fas fa-home me-2"></i> হোম পেজে চলো
             </a>
         </div>
 
-        <div class="mt-5 pt-4 border-top">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" width="25" class="mb-2">
+        <div class="mt-5 pt-3 border-top">
             <div class="small fw-bold text-muted">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</div>
-            <div class="small text-muted mt-1">ইন্দুরকানী, পিরোজপুর</div>
         </div>
     </div>
+
+    <script>
+        function speakError() {
+            // ব্রাউজারের টেক্সট-টু-স্পিচ ইঞ্জিন ব্যবহার করা হয়েছে
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = "ওহ! তুমি কি পথ হারিয়েছো? চলো আমরা ঠিক পথে ফিরে যাই!";
+            msg.lang = 'bn-BD'; // বাংলা ভাষা সেট করা হয়েছে
+            msg.rate = 0.9;     // কথা বলার গতি (বাচ্চাদের মতো ধীরস্থির)
+            msg.pitch = 1.2;    // কন্ঠস্বর একটু মিষ্টি/উঁচু করার জন্য
+            
+            // ছোট একটি ডিলে যাতে পেজ লোড হওয়ার পর শব্দ হয়
+            setTimeout(() => {
+                window.speechSynthesis.speak(msg);
+            }, 800);
+        }
+    </script>
 
 </body>
 </html>
