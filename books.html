@@ -37,10 +37,20 @@
             border-radius: 0 0 50% 50% / 0px 0px 80px 80px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             position: relative;
-            /* Floating Animation */
-            .floating {
-            /* Moving Cartoon Character */
-            .cartoon-char {
+            
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+                
+        /* Moving Cartoon Character */
+         .cartoon-char {
                 position: absolute;
                 bottom: -40px;
                 right: 10%;
