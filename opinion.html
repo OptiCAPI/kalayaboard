@@ -120,7 +120,17 @@
 </div>
 
 <script>
-    // ফাইল সিলেক্ট করলে নাম দেখানোর জন্য
+    // ১. ইউজার যখন প্রথমবার এই পেজে আসবে, তার আগের অরিজিনাল পেজটি সেভ করে রাখা
+    window.onload = function() {
+        if (!sessionStorage.getItem('originalReferrer')) {
+            // যদি ইউজার সরাসরি না এসে অন্য পেজ থেকে আসে
+            if (document.referrer && !document.referrer.includes('opinion.html')) {
+                sessionStorage.setItem('originalReferrer', document.referrer);
+            }
+        }
+    }
+
+    // ফাইল সিলেক্ট ভ্যালিডেশন
     document.getElementById('fileInput').onchange = function() {
         if(this.files[0]) {
             const size = (this.files[0].size / 1024 / 1024).toFixed(2);
@@ -134,11 +144,21 @@
         }
     };
 
-    // ফর্ম সাবমিট হ্যান্ডলার (অ্যাডমিনকে পাঠানোর লজিক এখানে যুক্ত করা যাবে)
+    // ২. ফর্ম সাবমিট করার পর আগের পেজে ফিরে যাওয়া
     document.getElementById('opinionForm').onsubmit = function(e) {
         e.preventDefault();
+        
         alert("ধন্যবাদ! আপনার মতামত সফলভাবে গ্রহণ করা হয়েছে।");
-        window.location.href = "index.html"; // জমা দেওয়ার পর হোমে নিয়ে যাবে
+
+        // সেভ করে রাখা আগের পেজের লিঙ্কটি নেওয়া
+        const backToPage = sessionStorage.getItem('originalReferrer');
+
+        if (backToPage) {
+            sessionStorage.removeItem('originalReferrer'); // ক্লিন আপ
+            window.location.href = backToPage; // আগের সেই অরিজিনাল পেজে ফেরত যাবে
+        } else {
+            window.location.href = "index.html"; // যদি কোনো হিস্টোরি না থাকে তবে হোম পেজে যাবে
+        }
     };
 </script>
 
