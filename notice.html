@@ -38,6 +38,46 @@
         .modal-content { border-radius: 15px; border: none; }
         .modal-header { background: #006A4E; color: white; border-radius: 15px 15px 0 0; }
         #pdf-iframe { width: 100%; height: 80vh; border: none; }
+
+        /* শেয়ার বাটন স্টাইল */
+        .share-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none;
+            font-size: 18px; transition: 0.3s;
+        }
+        .share-btn:hover { transform: translateY(-3px); color: white; opacity: 0.9; }
+        
+        /* আইকন কালার কোড */
+        .fb { background: #3b5998; }
+        .x-twitter { background: #000000; }
+        .wa { background: #25d366; }
+        .li { background: #0077b5; }
+        .viber { background: #7360f2; }
+        .copy { background: #42a5f5; }
+        .msg { background: #0084ff; }
+        
+        /* মতামত বাটন (আপনার স্ক্রিনশটের মতো) */
+        .feedback-btn {
+            background: #00a651;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: 0.3s;
+            border: none;
+        }
+        .feedback-btn:hover { background: #007a3b; color: white; box-shadow: 0 5px 15px rgba(0,166,81,0.3); }
+        
+        .share-container h6 { font-size: 1.1rem; }
+        
+        @media (max-width: 768px) {
+            .feedback-btn { width: 100%; justify-content: center; margin-top: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -92,6 +132,37 @@
             </div>
             <div class="modal-body p-0">
                 <iframe id="pdf-iframe" src=""></iframe>
+            </div>
+            <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="modalTitle">নোটিশ প্রিভিউ</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <iframe id="pdf-iframe" src=""></iframe>
+                
+                <div class="share-container p-4 border-top">
+                    <h6 class="text-danger fw-bold mb-3">এই কনটেন্টটি শেয়ার করতে ক্লিক করুন</h6>
+                    <div class="d-flex flex-wrap align-items: center; gap-3">
+                        <div class="share-icons d-flex gap-2">
+                            <a href="#" id="share-fb" target="_blank" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" id="share-x" target="_blank" class="share-btn x-twitter"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" id="share-wa" target="_blank" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" id="share-in" target="_blank" class="share-btn li"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" id="share-viber" target="_blank" class="share-btn viber"><i class="fab fa-viber"></i></a>
+                            <a href="javascript:void(0)" onclick="copyNoticeLink()" class="share-btn copy"><i class="fas fa-link"></i></a>
+                            <a href="#" id="share-msg" target="_blank" class="share-btn msg"><i class="fab fa-facebook-messenger"></i></a>
+                        </div>
+                        
+                        <div class="ms-auto">
+                            <a href="contact.html" class="feedback-btn">
+                                আপনার মতামত প্রদান করুন <i class="far fa-comment-dots ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -156,12 +227,34 @@
         }
     }
 
-    function viewNotice(title, link) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('pdf-iframe').src = link;
-        var myModal = new Bootstrap.Modal(document.getElementById('previewModal'));
-        myModal.show();
-    }
+let currentNoticeLink = "";
+
+function viewNotice(title, link) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('pdf-iframe').src = link;
+    currentNoticeLink = link; // গ্লোবাল ভেরিয়েবলে লিঙ্ক রাখা
+
+    // শেয়ার লিঙ্ক জেনারেট করা
+    const encodedTitle = encodeURIComponent(title);
+    const encodedURL = encodeURIComponent(window.location.href); // মেইন পেজের লিঙ্ক অথবা নোটিশ লিঙ্ক
+
+    document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`;
+    document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedURL}`;
+    document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodedTitle} ${encodedURL}`;
+    document.getElementById('share-in').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedURL}`;
+    document.getElementById('share-viber').href = `viber://forward?text=${encodedTitle} ${encodedURL}`;
+    document.getElementById('share-msg').href = `fb-messenger://share/?link=${encodedURL}`;
+
+    var myModal = new Bootstrap.Modal(document.getElementById('previewModal'));
+    myModal.show();
+}
+
+// লিঙ্ক কপি করার ফাংশন
+function copyNoticeLink() {
+    navigator.clipboard.writeText(currentNoticeLink).then(() => {
+        alert("লিঙ্কটি কপি করা হয়েছে!");
+    });
+}
 
     // Modal বন্ধ হলে iframe খালি করা (যাতে সাউন্ড বা লোডিং বন্ধ থাকে)
     document.getElementById('previewModal').addEventListener('hidden.bs.modal', function () {
