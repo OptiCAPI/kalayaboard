@@ -19,76 +19,50 @@
         /* Table Design & Hover */
         .table-container { background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; }
         .table thead { background: #f1f3f5; }
-        .table th { font-weight: 700; padding: 15px; }
+        .table th { font-weight: 700; padding: 15px; text-align: center; }
         
         .table-hover tbody tr { transition: all 0.2s ease; cursor: pointer; }
         .table-hover tbody tr:hover { 
             background-color: rgba(0, 106, 78, 0.05) !important; 
-            transform: scale(1.002);
         }
 
-        .notice-title-link { color: #333; text-decoration: none; font-weight: 500; }
+        .notice-title-link { color: #333; text-decoration: none; font-weight: 600; display: block; }
         .pdf-icon { color: #d32f2f; font-size: 1.5rem; transition: 0.3s; }
         .pdf-icon:hover { transform: scale(1.2); }
 
         .btn-action { 
             color: #006A4E; font-weight: 600; text-decoration: none; 
-            border: 1px solid #006A4E; padding: 4px 12px; border-radius: 4px; transition: 0.3s; 
+            border: 1px solid #006A4E; padding: 5px 15px; border-radius: 4px; transition: 0.3s; font-size: 14px;
+            background: transparent;
         }
         .btn-action:hover { background: #006A4E; color: #fff; }
 
-        /* Preview Modal Interactive Style */
-        .modal-xl { max-width: 90%; }
+        /* Preview Modal */
+        .modal-xl { max-width: 95%; }
         .modal-content { border-radius: 15px; border: none; overflow: hidden; }
         .modal-header { background: #006A4E; color: white; border-radius: 0; }
-        #pdf-iframe { width: 100%; height: 75vh; border: none; background: #eee; }
+        #pdf-iframe { width: 100%; height: 70vh; border: none; background: #f0f0f0; }
 
-        /* Share Section */
-        .share-container { background: #fff; }
+        /* Share & Buttons */
         .share-btn {
-            width: 38px; height: 38px; border-radius: 50%;
+            width: 35px; height: 35px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: white; text-decoration: none; transition: 0.3s;
+            color: white; text-decoration: none; transition: 0.3s; font-size: 16px;
         }
         .share-btn:hover { transform: translateY(-3px); color: #fff; filter: brightness(1.1); }
         
         .fb { background: #3b5998; }
         .x-twitter { background: #000; }
         .wa { background: #25d366; }
-        .li { background: #0077b5; }
-        .viber { background: #7360f2; }
         .copy { background: #42a5f5; }
-        .msg { background: #0084ff; }
 
-        .feedback-btn {
-            background: #00a651; color: white; padding: 10px 20px;
-            border-radius: 50px; text-decoration: none; font-weight: 600;
-            display: inline-flex; align-items: center; transition: 0.3s;
+        .feedback-btn, .print-btn {
+            padding: 8px 18px; border-radius: 50px; text-decoration: none; 
+            font-weight: 600; display: inline-flex; align-items: center; transition: 0.3s; font-size: 14px;
         }
-        .feedback-btn:hover { background: #007a3b; color: #fff; }
-    
-        .print-btn {
-        background: #6c757d; /* ধূসর রঙ */
-        color: white;
-        padding: 10px 20px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        transition: 0.3s;
-        border: none;
-    }
-    .print-btn:hover { 
-        background: #495057; 
-        color: #fff; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-    }
-    
-    /* মোবাইল ডিভাইসে বাটনের ফন্ট ছোট করা */
-    @media (max-width: 576px) {
-        .print-btn, .feedback-btn { padding: 8px 15px; font-size: 13px; }
-    }
+        .print-btn { background: #6c757d; color: white; }
+        .feedback-btn { background: #00a651; color: white; }
+        .print-btn:hover, .feedback-btn:hover { color: white; opacity: 0.9; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -104,7 +78,7 @@
 
 <div class="notice-header">
     <div class="container">
-        <h2 class="header-title">নোটিশ বোর্ড</h2>
+        <h2 class="header-title">অনলাইন নোটিশ বোর্ড</h2>
     </div>
 </div>
 
@@ -115,10 +89,10 @@
                 <thead>
                     <tr>
                         <th width="5%">নং</th>
-                        <th width="55%">শিরোনাম</th>
-                        <th width="10%" class="text-center">ফাইল সমূহ</th>
-                        <th width="15%">প্রকাশের তারিখ</th>
-                        <th width="15%" class="text-center">কার্যকলাপ</th>
+                        <th width="45%">শিরোনাম</th>
+                        <th width="15%">কার্যকলাপ</th>
+                        <th width="15%">ডাউনলোড</th>
+                        <th width="20%">প্রকাশের তারিখ</th>
                     </tr>
                 </thead>
                 <tbody id="notice-table-body">
@@ -144,26 +118,24 @@
             <div class="modal-body p-0">
                 <iframe id="pdf-iframe" src=""></iframe>
                 
-                <div class="share-container p-4 border-top">
-                    <h6 class="text-danger fw-bold mb-3">এই কনটেন্টটি শেয়ার করতে ক্লিক করুন</h6>
-                    <div class="d-flex flex-wrap align-items-center gap-3">
-                        <div class="share-icons d-flex gap-2">
+                <div class="share-container p-3 border-top bg-light">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="small fw-bold text-muted me-2">শেয়ার করুন:</span>
                             <a href="#" id="share-fb" target="_blank" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" id="share-x" target="_blank" class="share-btn x-twitter"><i class="fab fa-x-twitter"></i></a>
                             <a href="#" id="share-wa" target="_blank" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" id="share-in" target="_blank" class="share-btn li"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" id="share-viber" target="_blank" class="share-btn viber"><i class="fab fa-viber"></i></a>
+                            <a href="#" id="share-x" target="_blank" class="share-btn x-twitter"><i class="fab fa-x-twitter"></i></a>
                             <a href="javascript:void(0)" onclick="copyNoticeLink()" class="share-btn copy"><i class="fas fa-link"></i></a>
                         </div>
                         
-                        <div class="ms-auto d-flex gap-2">
+                        <div class="d-flex gap-2">
                             <a href="javascript:void(0)" onclick="printNotice()" class="print-btn">
-                                প্রিন্ট করুন <i class="fas fa-print ms-2"></i>
+                                <i class="fas fa-print me-2"></i> প্রিন্ট
                             </a>
-                            
                             <a href="contact.html" class="feedback-btn">
-                                আপনার মতামত প্রদান করুন <i class="far fa-comment-dots ms-2"></i>
+                                <i class="far fa-comment-dots me-2"></i> মতামত
                             </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,12 +147,14 @@
 
 <script>
     const csv_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWc0HbimA9ddlA7yP3KG4ahQosskjgdihVtL3EJIebhKdiF0_N10dkOEp_9Q66T7cX1JqHZXiwbwbN/pub?gid=0&single=true&output=csv";
+    let currentNoticeLink = "";
 
     async function fetchNotices() {
         try {
             const response = await fetch(csv_url);
             const data = await response.text();
-            const rows = data.split('\n').slice(1);
+            // প্রথম লাইন বাদ দিয়ে বাকিগুলো নিয়ে উল্টে দেওয়া (Reverse)
+            const rows = data.split('\n').slice(1).reverse(); 
             let tableHtml = '';
 
             rows.forEach((row, index) => {
@@ -196,66 +170,60 @@
 
                     tableHtml += `
                     <tr>
-                        <td>${index + 1}</td>
-                        <td onclick="viewNotice('${title}', '${previewLink}')">
-                            <span class="notice-title-link">${title}</span>
+                        <td class="text-center fw-bold">${index + 1}</td>
+                        <td><span class="notice-title-link">${title}</span></td>
+                        <td class="text-center">
+                            <button onclick="viewNotice('${title}', '${previewLink}')" class="btn-action">দেখুন</button>
                         </td>
                         <td class="text-center">
                             <a href="${downloadLink}" target="_blank"><i class="fas fa-file-pdf pdf-icon"></i></a>
                         </td>
-                        <td>${date}</td>
-                        <td class="text-center">
-                            <button onclick="viewNotice('${title}', '${previewLink}')" class="btn-action">দেখুন</button>
-                        </td>
+                        <td class="text-center text-muted">${date}</td>
                     </tr>`;
                 }
             });
-            document.getElementById('notice-table-body').innerHTML = tableHtml;
+            document.getElementById('notice-table-body').innerHTML = tableHtml || "<tr><td colspan='5' class='text-center'>কোনো নোটিশ পাওয়া যায়নি।</td></tr>";
         } catch (e) {
-            document.getElementById('notice-table-body').innerHTML = "<tr><td colspan='5'>লোড হতে সমস্যা হয়েছে।</td></tr>";
+            document.getElementById('notice-table-body').innerHTML = "<tr><td colspan='5' class='text-center text-danger'>ডেটা লোড করতে ব্যর্থ হয়েছে।</td></tr>";
         }
     }
 
-    let currentNoticeLink = "";
-
     function viewNotice(title, link) {
+        currentNoticeLink = link;
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('pdf-iframe').src = link;
-        currentNoticeLink = link;
 
-        const encodedTitle = encodeURIComponent(title);
-        const encodedURL = encodeURIComponent(link); 
-
-        // শেয়ারিং লিঙ্ক আপডেট (এখন সরাসরি পিডিএফ লিঙ্ক শেয়ার হবে)
+        // ডাইনামিক শেয়ার লিঙ্ক
+        const encodedURL = encodeURIComponent(link);
+        const encodedText = encodeURIComponent(title);
+        
         document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`;
-        document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedURL}`;
-        document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodedTitle}: ${encodedURL}`;
-        document.getElementById('share-in').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedURL}`;
-        document.getElementById('share-viber').href = `viber://forward?text=${encodedTitle} ${encodedURL}`;
+        document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodedText}%20${encodedURL}`;
+        document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${encodedURL}&text=${encodedText}`;
 
-        var myModal = new Bootstrap.Modal(document.getElementById('previewModal'));
-        myModal.show();
+        const modalElement = document.getElementById('previewModal');
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    }
+
+    function printNotice() {
+        if (currentNoticeLink) window.open(currentNoticeLink, '_blank');
     }
 
     function copyNoticeLink() {
-        navigator.clipboard.writeText(currentNoticeLink).then(() => {
-            alert("লিঙ্কটি কপি করা হয়েছে!");
-        });
+        if (currentNoticeLink) {
+            navigator.clipboard.writeText(currentNoticeLink);
+            alert("লিঙ্কটি কপি করা হয়েছে!");
+        }
     }
 
+    // মডাল বন্ধ হলে আইফ্রেম পরিষ্কার করা
     document.getElementById('previewModal').addEventListener('hidden.bs.modal', function () {
         document.getElementById('pdf-iframe').src = "";
     });
 
-    fetchNotices();
-    function printNotice() {
-    if (currentNoticeLink) {
-        // প্রিন্ট করার জন্য নতুন ট্যাবে ওপেন হবে
-        window.open(currentNoticeLink, '_blank');
-    } else {
-        alert("দুঃখিত, প্রিন্ট করার জন্য কোনো লিঙ্ক পাওয়া যায়নি।");
-    }
-}
+    // পেজ লোড হলে ফাংশন কল
+    window.onload = fetchNotices;
 </script>
 
 </body>
