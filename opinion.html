@@ -120,44 +120,96 @@
 </div>
 
 <script>
-    // ১. ইউজার যখন প্রথমবার এই পেজে আসবে, তার আগের অরিজিনাল পেজটি সেভ করে রাখা
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTUTLHoLvV2d5sN0PCXsFMHp0DakiDVMSyQUky4Zf3mgRzbdHwIZlIsHW8h9qe7VSOhQ/exec"; // আপনার Google Web App URL এখানে বসান
+
+    // ১. আগের পেজের লিঙ্ক সেভ করে রাখা
     window.onload = function() {
         if (!sessionStorage.getItem('originalReferrer')) {
-            // যদি ইউজার সরাসরি না এসে অন্য পেজ থেকে আসে
             if (document.referrer && !document.referrer.includes('opinion.html')) {
                 sessionStorage.setItem('originalReferrer', document.referrer);
             }
         }
     }
 
-    // ফাইল সিলেক্ট ভ্যালিডেশন
+    // ফাইল সাইজ এবং নাম চেক করা
     document.getElementById('fileInput').onchange = function() {
         if(this.files[0]) {
             const size = (this.files[0].size / 1024 / 1024).toFixed(2);
             if(size > 2) {
-                alert("ফাইল সাইজ ২ মেগাবাইটের বেশি হওয়া যাবে না!");
+                alert("ফাইল সাইজ ২ মেগাবাইটের বেশি হওয়া যাবে না!");
                 this.value = "";
                 document.getElementById('fileName').innerHTML = "";
             } else {
-                document.getElementById('fileName').innerHTML = "Selected: " + this.files[0].name;
+                document.getElementById('fileName').innerHTML = "ফাইল সিলেক্ট করা হয়েছে: " + this.files[0].name;
             }
         }
     };
 
-    // ২. ফর্ম সাবমিট করার পর আগের পেজে ফিরে যাওয়া
-    document.getElementById('opinionForm').onsubmit = function(e) {
+    // ২. গুগল শিটে ডাটা পাঠানো এবং আগের পেজে ফিরে যাওয়া
+    document.getElementById('opinionForm').onsubmit = async function(e) {
         e.preventDefault();
-        
-        alert("ধন্যবাদ! আপনার মতামত সফলভাবে গ্রহণ করা হয়েছে।");
 
-        // সেভ করে রাখা আগের পেজের লিঙ্কটি নেওয়া
-        const backToPage = sessionStorage.getItem('originalReferrer');
+        // সাবমিট বাটন লোডিং স্টেট
+        const submitBtn = document.querySelector('.btn-submit');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> জমা হচ্ছে...';
+        submitBtn.disabled = true;
 
-        if (backToPage) {
-            sessionStorage.removeItem('originalReferrer'); // ক্লিন আপ
-            window.location.href = backToPage; // আগের সেই অরিজিনাল পেজে ফেরত যাবে
-        } else {
-            window.location.href = "index.html"; // যদি কোনো হিস্টোরি না থাকে তবে হোম পেজে যাবে
+        // ফাইল প্রসেসিং (Base64 conversion)
+        const fileInput = document.getElementById('fileInput');
+        let fileData = null;
+        let fileName = "";
+        let mimeType = "";
+
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            fileName = file.name;
+            mimeType = file.type;
+            fileData = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result.split(',')[1]);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // ফর্ম ডাটা অবজেক্ট তৈরি (আপনার HTML-এর ইনপুট অর্ডারের সাথে মিল রেখে)
+        const formData = {
+            name: document.querySelector('input[placeholder="নাম লিখুন"]').value,
+            phone: document.querySelector('input[placeholder="০১৭XXXXXXXX"]').value,
+            address: document.querySelector('input[placeholder="গ্রাম, ডাকঘর, উপজেলা"]').value,
+            opinion: document.querySelector('textarea').value,
+            fileData: fileData,
+            fileName: fileName,
+            mimeType: mimeType
+        };
+
+        // গুগল স্ক্রিপ্টে ডাটা পাঠানো
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (result.result === "success") {
+                alert("ধন্যবাদ! আপনার মতামত সফলভাবে জমা হয়েছে।");
+                
+                // আগের পেজে ফিরে যাওয়ার লজিক
+                const backToPage = sessionStorage.getItem('originalReferrer');
+                if (backToPage) {
+                    sessionStorage.removeItem('originalReferrer');
+                    window.location.href = backToPage;
+                } else {
+                    window.location.href = "index.html";
+                }
+            } else {
+                throw new Error("Server Error");
+            }
+        } catch (error) {
+            alert("দুঃখিত, ডাটা পাঠাতে সমস্যা হয়েছে। ইন্টারনেট চেক করে আবার চেষ্টা করুন।");
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
         }
     };
 </script>
