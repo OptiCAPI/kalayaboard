@@ -54,15 +54,17 @@
         .fb { background: #3b5998; }
         .x-twitter { background: #000; }
         .wa { background: #25d366; }
+        .gm { background: #EA4335; }
         .copy { background: #42a5f5; }
 
-        .feedback-btn, .print-btn {
+        .feedback-btn, .download-btn, .print-btn {
             padding: 8px 18px; border-radius: 50px; text-decoration: none; 
             font-weight: 600; display: inline-flex; align-items: center; transition: 0.3s; font-size: 14px;
         }
         .print-btn { background: #6c757d; color: white; }
+        .download-btn { background: #0d6efd; } /* নীল */
         .feedback-btn { background: #00a651; color: white; }
-        .print-btn:hover, .feedback-btn:hover { color: white; opacity: 0.9; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .print-btn:hover, .download-btn:hover, .feedback-btn:hover { color: white; opacity: 0.9; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -203,6 +205,7 @@
         
         document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`;
         document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodedText}%20${encodedURL}`;
+        document.getElementById('share-gm').href = `https://mail.google.com{encodeURIComponent('Subject Here')}&body=${encodedText}%20${encodedURL}`;
         document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${encodedURL}&text=${encodedText}`;
 
         const modalElement = document.getElementById('previewModal');
