@@ -27,39 +27,41 @@
         }
 
         h1, .nav-link, .book-title, .bubble-text { font-family: 'Atma', cursive; }
-        
-        /* সাব-টাইটেল বা মেসেজের জন্য দোলানো ইফেক্ট */
-        .library-hero p {
-            background: rgba(255, 255, 255, 0.2);
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(5px);
-            /* নতুন অ্যানিমেশন */
-            animation: swingText 3s ease-in-out infinite; 
-        }
-        
-        @keyframes swingText {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
-        }
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+
+        /* Animated Header */
+        .library-hero {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 60px 0 100px;
+            text-align: center;
+            border-radius: 0 0 50% 50% / 0px 0px 80px 80px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            position: relative;
         }
 
-                
+        /* দোলানো অ্যানিমেশন (Custom Swing) */
+        @keyframes customSwing {
+            0% { transform: rotate(-2deg) translateY(0); }
+            50% { transform: rotate(2deg) translateY(-10px); }
+            100% { transform: rotate(-2deg) translateY(0); }
+        }
+
+        /* শিরোনামের ফ্লোটিং টেক্সট */
+        .floating-text {
+            display: inline-block;
+            animation: customSwing 3s ease-in-out infinite;
+        }
+
         /* Moving Cartoon Character */
-         .cartoon-char {
-                position: absolute;
-                bottom: -40px;
-                right: 10%;
-                width: 150px;
-                z-index: 1000;
-                cursor: pointer;
-                animation: floatChar 4s ease-in-out infinite;
-            }
+        .cartoon-char {
+            position: absolute;
+            bottom: -40px;
+            right: 10%;
+            width: 150px;
+            z-index: 1000;
+            cursor: pointer;
+            animation: floatChar 4s ease-in-out infinite;
+        }
 
         @keyframes floatChar {
             0%, 100% { transform: translateY(0) rotate(5deg); }
@@ -93,6 +95,7 @@
             font-size: 1.2rem;
             box-shadow: 0 8px 15px rgba(0,0,0,0.1);
             transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
         }
 
         .nav-pills .nav-link.active {
@@ -102,7 +105,7 @@
             color: black;
         }
 
-        /* বইয়ের কার্ডের জন্য দোলানো ইফেক্ট */
+        /* দুলতে থাকা বইয়ের কার্ড */
         .book-card {
             background: white;
             border-radius: 25px;
@@ -113,22 +116,16 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            /* কার্ডগুলো অনবরত দুলতে থাকবে */
-            animation: swingCard 4s ease-in-out infinite;
+            animation: customSwing 4s ease-in-out infinite; /* কার্ড দুলতে থাকবে */
         }
-        
-        @keyframes swingCard {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-12px) rotate(2deg); }
-        }
-        
-        /* হোভার করলে দোলানো থেমে যাবে এবং একটু বড় হবে */
+
         .book-card:hover {
-            transform: scale(1.05) translateY(-5px) !important;
+            transform: scale(1.08) !important;
             box-shadow: 0 20px 30px rgba(0,0,0,0.15);
             background: #fffdf0;
-            animation-play-state: paused; 
+            animation-play-state: paused; /* মাউস রাখলে দোলা থেমে যাবে */
         }
+
         .book-thumb img {
             width: 100%;
             height: 200px;
@@ -164,59 +161,7 @@
             transform: translateY(6px);
             box-shadow: none;
         }
-        .confetti-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999; }
-            
-        /* শিরোনামের জন্য বিশেষ ফ্লোটিং গ্লো */
-        .library-hero h1 {
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
-            animation: floatingText 3s ease-in-out infinite;
-        }
-        
-        @keyframes floatingText {
-            0%, 100% { transform: translateY(0) rotate(-1deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-        }
-        
-        /* সাব-টাইটেল বা মেসেজের জন্য */
-        .library-hero p {
-            background: rgba(255, 255, 255, 0.2);
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(5px);
-        }
-            /* বইয়ের গ্রিড লেআউট */
-        #bookGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 25px;
-            padding: 20px 0;
-        }
-        
-        /* মোবাইল ডিভাইসের জন্য স্পেশাল এডজাস্টমেন্ট */
-        @media (max-width: 576px) {
-            #bookGrid {
-                grid-template-columns: repeat(2, 1fr); /* মোবাইলে এক সারিতে ২টি বই */
-                gap: 15px;
-            }
-            .book-thumb img {
-                height: 160px; /* মোবাইলে ছবির উচ্চতা কিছুটা কমানো */
-            }
-        }
-        .book-card {
-            /* আগের স্টাইল ঠিক থাকবে, শুধু এই অ্যানিমেশনটি যোগ হবে */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        /* জাভাস্ক্রিপ্ট রেন্ডার হওয়ার সময় এই ক্লাসটি ব্যবহার হবে */
-        .animate-pop-in {
-            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.5); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+
     </style>
 </head>
 <body>
@@ -226,11 +171,11 @@
 <header class="library-hero">
     <div class="container">
         <h1 class="display-4 fw-bold animate__animated animate__bounce">📚 সোনামণিদের মজার লাইব্রেরি 🎨</h1>
-        <p class="lead">চলো বন্ধু, আজ মজার কিছু পড়ি!</p>
+        <p class="lead floating-text">চলো বন্ধু, আজ মজার কিছু পড়ি!</p>
     </div>
 
     <div class="cartoon-char">
-        <div class="speech-bubble">বন্ধু, কোন বইটা পড়বো আজ? 😍</div>
+        <div class="speech-bubble">বন্ধু, কোন বইটা পড়বো আজ? 😍</div>
         <img src="https://cdn-icons-png.flaticon.com/512/3532/3532156.png" class="img-fluid" alt="Cartoon">
     </div>
 </header>
@@ -239,8 +184,8 @@
     <ul class="nav nav-pills justify-content-center mb-5" id="filters">
         <li class="nav-item"><a class="nav-link active" data-filter="all">সব বই</a></li>
         <li class="nav-item"><a class="nav-link" data-filter="class1">১ম</a></li>
-        <li class="nav-item"><a class="nav-link" data-filter="class2">২য়</a></li>
-        <li class="nav-item"><a class="nav-link" data-filter="class3">৩য়</a></li>
+        <li class="nav-item"><a class="nav-link" data-filter="class2">২য়</a></li>
+        <li class="nav-item"><a class="nav-link" data-filter="class3">৩য়</a></li>
         <li class="nav-item"><a class="nav-link" data-filter="class4">৪র্থ</a></li>
         <li class="nav-item"><a class="nav-link" data-filter="class5">৫ম</a></li>
         <li class="nav-item"><a class="nav-link" data-filter="story">গল্প</a></li>
@@ -256,48 +201,22 @@
     const nctb = "https://nctb.portal.gov.bd/sites/default/files/files/nctb.portal.gov.bd/page/87f969ad_830b_455e_874b_5d6666324b91/";
 
     const books = [
-        // ১ম শ্রেণি
         { id: 'class1', title: 'আমার বাংলা বই', img: nctb+'Amar-Bangla-Boi-Class-1.jpg', url: nctb+'Amar-Bangla-Boi-Class-1.pdf' },
         { id: 'class1', title: 'English for Today', img: nctb+'English-for-Today-Class-1.jpg', url: nctb+'English-for-Today-Class-1.pdf' },
         { id: 'class1', title: 'প্রাথমিক গণিত', img: nctb+'Math-Class-1-Bangla.jpg', url: nctb+'Math-Class-1-Bangla.pdf' },
-        
-        // ২য় শ্রেণি
         { id: 'class2', title: 'আমার বাংলা বই', img: nctb+'Amar-Bangla-Boi-Class-2.jpg', url: nctb+'Amar-Bangla-Boi-Class-2.pdf' },
         { id: 'class2', title: 'English for Today', img: nctb+'English-for-Today-Class-2.jpg', url: nctb+'English-for-Today-Class-2.pdf' },
         { id: 'class2', title: 'প্রাথমিক গণিত', img: nctb+'Math-Class-2-Bangla.jpg', url: nctb+'Math-Class-2-Bangla.pdf' },
-
-        // ৩য় শ্রেণি
         { id: 'class3', title: 'আমার বাংলা বই', img: nctb+'Amar-Bangla-Boi-Class-3.jpg', url: nctb+'Amar-Bangla-Boi-Class-3.pdf' },
         { id: 'class3', title: 'English for Today', img: nctb+'English-for-Today-Class-3.jpg', url: nctb+'English-for-Today-Class-3.pdf' },
         { id: 'class3', title: 'প্রাথমিক গণিত', img: nctb+'Math-Class-3-Bangla.jpg', url: nctb+'Math-Class-3-Bangla.pdf' },
-        { id: 'class3', title: 'প্রাথমিক বিজ্ঞান', img: nctb+'Elementary-Science-Class-3-Bangla.jpg', url: nctb+'Elementary-Science-Class-3-Bangla.pdf' },
-        { id: 'class3', title: 'বাংলাদেশ ও বিশ্বপরিচয়', img: nctb+'BGS-Class-3-Bangla.jpg', url: nctb+'BGS-Class-3-Bangla.pdf' },
-        { id: 'class3', title: 'ইসলাম শিক্ষা', img: nctb+'Islam-Class-3.jpg', url: nctb+'Islam-Class-3.pdf' },
-        { id: 'class3', title: 'হিন্দুধর্ম', img: nctb+'Hindu-Class-3.jpg', url: nctb+'Hindu-Class-3.pdf' },
-
-        // ৪র্থ শ্রেণি
         { id: 'class4', title: 'আমার বাংলা বই', img: nctb+'Amar-Bangla-Boi-Class-4.jpg', url: nctb+'Amar-Bangla-Boi-Class-4.pdf' },
         { id: 'class4', title: 'English for Today', img: nctb+'English-for-Today-Class-4.jpg', url: nctb+'English-for-Today-Class-4.pdf' },
         { id: 'class4', title: 'প্রাথমিক গণিত', img: nctb+'Math-Class-4-Bangla.jpg', url: nctb+'Math-Class-4-Bangla.pdf' },
-        { id: 'class4', title: 'প্রাথমিক বিজ্ঞান', img: nctb+'Elementary-Science-Class-4-Bangla.jpg', url: nctb+'Elementary-Science-Class-4-Bangla.pdf' },
-        { id: 'class4', title: 'বাংলাদেশ ও বিশ্বপরিচয়', img: nctb+'BGS-Class-4-Bangla.jpg', url: nctb+'BGS-Class-4-Bangla.pdf' },
-        { id: 'class4', title: 'ইসলাম শিক্ষা', img: nctb+'Islam-Class-4.jpg', url: nctb+'Islam-Class-4.pdf' },
-        { id: 'class4', title: 'হিন্দুধর্ম', img: nctb+'Hindu-Class-4.jpg', url: nctb+'Hindu-Class-4.pdf' },
-
-        // ৫ম শ্রেণি
         { id: 'class5', title: 'আমার বাংলা বই', img: nctb+'Amar-Bangla-Boi-Class-5.jpg', url: nctb+'Amar-Bangla-Boi-Class-5.pdf' },
         { id: 'class5', title: 'English for Today', img: nctb+'English-for-Today-Class-5.jpg', url: nctb+'English-for-Today-Class-5.pdf' },
         { id: 'class5', title: 'প্রাথমিক গণিত', img: nctb+'Elementary-Mathematics-Class-5.jpg', url: nctb+'Elementary-Mathematics-Class-5.pdf' },
-        { id: 'class5', title: 'প্রাথমিক বিজ্ঞান', img: nctb+'Elementary-Science-Class-5-Bangla.jpg', url: nctb+'Elementary-Science-Class-5-Bangla.pdf' },
-        { id: 'class5', title: 'বাংলাদেশ ও বিশ্বপরিচয়', img: nctb+'BGS-Class-5-Bangla.jpg', url: nctb+'BGS-Class-5-Bangla.pdf' },
-        { id: 'class5', title: 'ইসলাম শিক্ষা', img: nctb+'Islam-Class-5.jpg', url: nctb+'Islam-Class-5.pdf' },
-        { id: 'class5', title: 'হিন্দুধর্ম', img: nctb+'Hindu-Class-5.jpg', url: nctb+'Hindu-Class-5.pdf' },
-        { id: 'class5', title: 'খ্রিস্টধর্ম', img: nctb+'Christian-Class-5.jpg', url: nctb+'Christian-Class-5.pdf' },
-        { id: 'class5', title: 'বৌদ্ধধর্ম', img: nctb+'Buddha-Class-5.jpg', url: nctb+'Buddha-Class-5.pdf' },
-
-        // গল্পের বই
         { id: 'story', title: 'ঠাকুরমার ঝুলি', img: 'https://m.media-amazon.com/images/I/91eKzR408EL._AC_UF1000,1000_QL80_.jpg', url: '#' },
-        { id: 'story', title: 'ভূতের গল্প', img: 'https://m.media-amazon.com/images/I/81xU5O+6G2L._AC_UF1000,1000_QL80_.jpg', url: '#' },
         { id: 'story', title: 'ঈশপের গল্প', img: 'https://m.media-amazon.com/images/I/717Vq+08C6L.jpg', url: '#' }
     ];
 
@@ -308,14 +227,14 @@
         books.forEach((book, index) => {
             if (filter === 'all' || book.id === filter) {
                 grid.innerHTML += `
-                    <div class="col-6 col-md-4 col-lg-3 animate__animated animate__zoomIn" style="animation-delay: ${index * 0.05}s">
+                    <div class="col-6 col-md-4 col-lg-3 animate__animated animate__zoomIn" style="animation-delay: ${index * 0.03}s">
                         <div class="book-card text-center">
                             <div class="book-thumb">
                                 <img src="${book.img}" alt="${book.title}" onerror="this.src='https://placehold.co/150x200?text=বই'">
                             </div>
                             <div class="book-title">${book.title}</div>
                             <a href="${book.url}" target="_blank" class="btn-play" onclick="magicAction(event)">
-                                <i class="fas fa-rocket"></i> পড়ি
+                                <i class="fas fa-rocket"></i> পড়ি
                             </a>
                         </div>
                     </div>
@@ -325,21 +244,11 @@
     }
 
     function magicAction(e) {
-        document.getElementById('magicSound').play();
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#ff4757', '#2ecc71', '#f1c40f', '#3498db']
-        });
-    }
-        // কনফেত্তি অ্যানিমেশন (মজার জন্য)
-    function celebrate() {
+        document.getElementById('magicSound').play().catch(() => {});
         confetti({
             particleCount: 100,
             spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#2ecc71', '#f1c40f', '#ff4757', '#3498db']
+            origin: { y: 0.6 }
         });
     }
 
