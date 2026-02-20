@@ -19,60 +19,34 @@
             --light-bg: #F8EDEB;
         }
 
-        /* --- 1. Background Alpana Fix --- */
         body { 
             font-family: 'Hind Siliguri', sans-serif; 
             background-color: var(--light-bg); 
-            background-image: url('images/alpana_bg.jpg'); /* Ensure this path is correct */
+            background-image: url('images/alpana_bg.jpg'); 
             background-size: 400px;
             background-repeat: repeat;
             background-attachment: fixed;
             background-blend-mode: overlay;
         }
 
-        /* Tints the background so text is readable */
         body::before {
             content: '';
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(248, 237, 235, 0.92); 
+            background: rgba(248, 237, 235, 0.94); 
             z-index: -1;
         }
 
-        /* --- 2. Premium Header --- */
         .album-header {
             background: linear-gradient(135deg, #1d3557 0%, #457b9d 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
             border-radius: 0 0 50px 50px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             margin-bottom: 40px;
         }
 
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            background: white;
-            color: var(--dark-blue);
-            text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .back-btn:hover { background: var(--primary-red); color: white; }
-
-        /* Premium Background with subtle pattern */
-        .album-container {
-            background: #f8f9fa;
-            padding: 50px 0;
-            min-height: 100vh;
-        }
-    
-        /* Batch Section Wrapper */
         .batch-section {
             background: #ffffff;
             border-radius: 30px;
@@ -80,208 +54,6 @@
             margin-bottom: 50px;
             box-shadow: 0 15px 45px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.03);
-        }
-    
-        /* 2026 Special Styling */
-        .batch-2026 {
-            border: 2px solid #ffd700; /* Gold Border for current year */
-            background: linear-gradient(to bottom, #fffdf0, #ffffff);
-        }
-    
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-    
-        .section-header h3 {
-            font-family: 'Baloo Da 2', cursive;
-            font-weight: 700;
-            color: #1d3557;
-            margin: 0;
-        }
-    
-        /* PP Photo Grid - 6 photos per row on desktop, 3 on mobile */
-        .pp-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 20px;
-        }
-    
-        /* Individual PP Card */
-        .pp-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 8px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #f0f0f0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-    
-        .pp-card:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: #e63946;
-            z-index: 5;
-        }
-    
-        .pp-img-wrapper {
-            width: 100%;
-            aspect-ratio: 3/4; /* Standard PP Size Ratio */
-            overflow: hidden;
-            border-radius: 8px;
-            background: #fdfdfd;
-            margin-bottom: 8px;
-        }
-    
-        .pp-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: 0.4s;
-        }
-    
-        .pp-card:hover img {
-            filter: grayscale(0%);
-        }
-    
-        .student-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #2b2d42;
-            margin: 5px 0 0;
-            font-family: 'Hind Siliguri', sans-serif;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    
-        /* Responsive Adjustments */
-        @media (max-width: 576px) {
-            .pp-grid {
-                grid-template-columns: repeat(3, 1fr); /* 3 photos per row on mobile */
-                gap: 10px;
-            }
-            .student-name { font-size: 0.75rem; }
-        }
-
-        /* --- 3. Batch Section & PP Grid --- */
-        .batch-section {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 30px;
-            margin-bottom: 50px;
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        /* Premium Background with subtle pattern */
-        .album-container {
-            background: #f8f9fa;
-            padding: 50px 0;
-            min-height: 100vh;
-        }
-    
-        /* Batch Section Wrapper */
-        .batch-section {
-            background: #ffffff;
-            border-radius: 30px;
-            padding: 30px;
-            margin-bottom: 50px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-    
-        /* 2026 Special Styling */
-        .batch-2026 {
-            border: 2px solid #ffd700; /* Gold Border for current year */
-            background: linear-gradient(to bottom, #fffdf0, #ffffff);
-        }
-    
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-    
-        .section-header h3 {
-            font-family: 'Baloo Da 2', cursive;
-            font-weight: 700;
-            color: #1d3557;
-            margin: 0;
-        }
-    
-        /* PP Photo Grid - 6 photos per row on desktop, 3 on mobile */
-        .pp-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 20px;
-        }
-    
-        /* Individual PP Card */
-        .pp-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 8px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #f0f0f0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-    
-        .pp-card:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: #e63946;
-            z-index: 5;
-        }
-    
-        .pp-img-wrapper {
-            width: 100%;
-            aspect-ratio: 3/4; /* Standard PP Size Ratio */
-            overflow: hidden;
-            border-radius: 8px;
-            background: #fdfdfd;
-            margin-bottom: 8px;
-        }
-    
-        .pp-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: 0.4s;
-        }
-    
-        .pp-card:hover img {
-            filter: grayscale(0%);
-        }
-    
-        .student-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #2b2d42;
-            margin: 5px 0 0;
-            font-family: 'Hind Siliguri', sans-serif;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    
-        /* Responsive Adjustments */
-        @media (max-width: 576px) {
-            .pp-grid {
-                grid-template-columns: repeat(3, 1fr); /* 3 photos per row on mobile */
-                gap: 10px;
-            }
-            .student-name { font-size: 0.75rem; }
         }
 
         .section-title {
@@ -295,75 +67,77 @@
 
         .pp-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 20px;
         }
 
-        /* --- 4. Individual PP Card --- */
+        /* --- Individual Card Core Style --- */
         .pp-card {
-            background: white;
+            background: #fff;
             border-radius: 12px;
-            padding: 6px;
+            padding: 8px;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #eee;
+            border: 1px solid #f0f0f0;
+            transition: all 0.4s ease;
         }
 
-        .pp-card:hover {
-            transform: scale(1.1) translateY(-5px) rotate(2deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            border-color: var(--primary-red);
-            z-index: 10;
-        }
-
-        .pp-img-box {
+        .pp-img-wrapper {
             width: 100%;
-            aspect-ratio: 3/4; /* Perfect Passport Size */
+            aspect-ratio: 3/4;
             overflow: hidden;
             border-radius: 8px;
-            background: #f8f8f8;
+            background: #fdfdfd;
             margin-bottom: 8px;
         }
 
-        .pp-img-box img {
+        .pp-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
         }
 
         .student-name {
             font-size: 0.85rem;
             font-weight: 600;
-            color: #333;
-            margin: 0;
+            color: #2b2d42;
+            margin: 5px 0 0;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* Skeleton/Shimmer Loader */
-        .shimmer {
-            background: #f6f7f8;
-            background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
-            background-repeat: no-repeat;
-            display: block;
-            line-height: 1;
-            position: relative;
-            animation: shimmer 1.5s infinite linear;
+        /* --- 2026: ZOOM HOVER --- */
+        .batch-2026 { border: 2px solid var(--gold); background: #fffdf5; }
+        .hover-zoom:hover {
+            transform: scale(1.15);
+            border-color: var(--gold);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+            z-index: 10;
         }
 
-        @keyframes shimmer {
-            0% { background-position: -468px 0; }
-            100% { background-position: 468px 0; }
+        /* --- 2025: TILT HOVER --- */
+        .hover-tilt:hover {
+            transform: translateY(-10px) rotate(3deg);
+            border-color: #457b9d;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        footer {
-            background: var(--dark-blue);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            border-radius: 50px 50px 0 0;
+        /* --- 2024: GLOW HOVER --- */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        /* --- 21-23: SIMPLE LIFT --- */
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 576px) {
+            .pp-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .student-name { font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -371,55 +145,39 @@
 
 <header class="album-header">
     <div class="container">
-        <a href="index.html" class="back-btn animate__animated animate__fadeInLeft">
-            <i class="fas fa-arrow-left me-2"></i> প্রধান পাতায় ফিরুন
-        </a>
-        <h1 class="display-5 fw-bold animate__animated animate__zoomIn">স্মৃতিময় প্রাক্তন অ্যালবাম 🎓</h1>
-        <p class="lead animate__animated animate__fadeInUp">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়ের সকল কৃতী শিক্ষার্থীদের তালিকা</p>
+        <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">স্মৃতিময় প্রাক্তন অ্যালবাম 🎓</h1>
+        <p class="lead">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
     </div>
 </header>
 
-<div class="container mb-5">
-    <div class="container">
-        
-        <div class="batch-section batch-2026 animate__animated animate__fadeIn">
-            <div class="section-header">
-                <i class="fas fa-graduation-cap me-3 text-warning fa-2x"></i>
-                <h3>ব্যাচ ২০২৬ (চলতি শিক্ষাবর্ষ)</h3>
-            </div>
-            
-            <div class="pp-grid">
-                <div class="pp-card animate__animated animate__zoomIn" style="animation-delay: 0.1s;">
-                    <div class="pp-img-wrapper">
-                        <img src="images/students/2026_1.jpg" alt="Student" onerror="this.src='https://ui-avatars.com/api/?name=S1&background=E63946&color=fff'">
-                    </div>
-                    <p class="student-name">আব্দুর রহমান</p>
-                </div>
-
-                <script>
-                    for(let i=2; i<=20; i++) {
-                        document.write(`
-                            <div class="pp-card animate__animated animate__zoomIn" style="animation-delay: ${i * 0.05}s;">
-                                <div class="pp-img-wrapper">
-                                    <img src="https://ui-avatars.com/api/?name=Student+${i}&background=random" alt="Student">
-                                </div>
-                                <p class="student-name">ছাত্র/ছাত্রী ${i}</p>
+<div class="container">
+    
+    <section class="batch-section batch-2026 animate__animated animate__backInDown">
+        <h3 class="section-title"><i class="fas fa-star text-warning me-2"></i> ব্যাচ ২০২৬ (চলতি)</h3>
+        <div class="pp-grid">
+            <script>
+                for(let i=1; i<=20; i++) {
+                    document.write(`
+                        <div class="pp-card hover-zoom animate__animated animate__zoomIn" style="animation-delay: ${i*0.05}s">
+                            <div class="pp-img-wrapper">
+                                <img src="https://ui-avatars.com/api/?name=26_${i}&background=FFD700&color=000" alt="Student">
                             </div>
-                        `);
-                    }
-                </script>
-            </div>
+                            <p class="student-name">শিক্ষার্থী ${i}</p>
+                        </div>
+                    `);
+                }
+            </script>
         </div>
     </section>
 
-    <section class="batch-section">
+    <section class="batch-section animate__animated animate__fadeInLeft">
         <h3 class="section-title"><i class="fas fa-graduation-cap me-2 text-primary"></i> ব্যাচ ২০২৫</h3>
         <div class="pp-grid">
             <script>
                 for(let i=1; i<=18; i++) {
                     document.write(`
-                        <div class="pp-card">
-                            <div class="pp-img-box">
+                        <div class="pp-card hover-tilt">
+                            <div class="pp-img-wrapper">
                                 <img src="https://ui-avatars.com/api/?name=25_${i}&background=457b9d&color=fff" alt="Student">
                             </div>
                             <p class="student-name">প্রাক্তন শিক্ষার্থী ${i}</p>
@@ -430,55 +188,62 @@
         </div>
     </section>
 
-    <section class="batch-section">
-        <h3 class="section-title"><i class="fas fa-history me-2 text-success"></i> ব্যাচ ২০২৪</h3>
+    <section class="batch-section animate__animated animate__fadeInRight">
+        <h3 class="section-title"><i class="fas fa-award me-2 text-danger"></i> ব্যাচ ২০২৪</h3>
         <div class="pp-grid">
-            <div class="pp-card">
-                <div class="pp-img-box">
-                    <img src="images/ex_student.jpg" alt="Student" onerror="this.src='https://via.placeholder.com/150x200'">
-                </div>
-                <p class="student-name">করিম উদ্দিন</p>
-            </div>
-            </div>
+            <script>
+                for(let i=1; i<=15; i++) {
+                    document.write(`
+                        <div class="pp-card hover-glow">
+                            <div class="pp-img-wrapper">
+                                <img src="https://ui-avatars.com/api/?name=24_${i}&background=E63946&color=fff" alt="Student">
+                            </div>
+                            <p class="student-name">প্রাক্তন শিক্ষার্থী ${i}</p>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
     </section>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="batch-section p-3 text-center">
-                <h4>ব্যাচ ২০২৩</h4>
-                <a href="#" class="btn btn-sm btn-outline-dark mt-2">অ্যালবাম দেখুন</a>
-            </div>
+    <section class="batch-section animate__animated animate__flipInX">
+        <h3 class="section-title text-success"><i class="fas fa-history me-2"></i> ব্যাচ ২০২৩</h3>
+        <div class="pp-grid">
+            <script>
+                for(let i=1; i<=12; i++) {
+                    document.write(`<div class="pp-card hover-lift"><div class="pp-img-wrapper"><img src="https://ui-avatars.com/api/?name=23_${i}&background=2a9d8f&color=fff"></div><p class="student-name">শিক্ষার্থী ${i}</p></div>`);
+                }
+            </script>
         </div>
-        <div class="col-md-4">
-            <div class="batch-section p-3 text-center">
-                <h4>ব্যাচ ২০২২</h4>
-                <a href="#" class="btn btn-sm btn-outline-dark mt-2">অ্যালবাম দেখুন</a>
-            </div>
+    </section>
+
+    <section class="batch-section animate__animated animate__bounceIn">
+        <h3 class="section-title text-info"><i class="fas fa-history me-2"></i> ব্যাচ ২০২২</h3>
+        <div class="pp-grid">
+            <script>
+                for(let i=1; i<=12; i++) {
+                    document.write(`<div class="pp-card hover-lift"><div class="pp-img-wrapper"><img src="https://ui-avatars.com/api/?name=22_${i}&background=00afb9&color=fff"></div><p class="student-name">শিক্ষার্থী ${i}</p></div>`);
+                }
+            </script>
         </div>
-        <div class="col-md-4">
-            <div class="batch-section p-3 text-center">
-                <h4>ব্যাচ ২০২১</h4>
-                <a href="#" class="btn btn-sm btn-outline-dark mt-2">অ্যালবাম দেখুন</a>
-            </div>
+    </section>
+
+    <section class="batch-section animate__animated animate__rollIn">
+        <h3 class="section-title text-secondary"><i class="fas fa-history me-2"></i> ব্যাচ ২০২১</h3>
+        <div class="pp-grid">
+            <script>
+                for(let i=1; i<=12; i++) {
+                    document.write(`<div class="pp-card hover-lift"><div class="pp-img-wrapper"><img src="https://ui-avatars.com/api/?name=21_${i}&background=6d6875&color=fff"></div><p class="student-name">শিক্ষার্থী ${i}</p></div>`);
+                }
+            </script>
         </div>
-    </div>
+    </section>
 
 </div>
 
-<footer>
-    <div class="container">
-        <p class="mb-1">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
-        <small>© ২০২৬ সকল স্বত্ব সংরক্ষিত</small>
-    </div>
+<footer class="mt-5 py-4 bg-dark text-white text-center">
+    <p>© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | সকল স্বত্ব সংরক্ষিত</p>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    // Smooth loading effect for images
-    $(window).on('load', function() {
-        $('.pp-card img').css('opacity', '1');
-    });
-</script>
 
 </body>
 </html>
