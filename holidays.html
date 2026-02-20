@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ছুটির ক্যালেন্ডার | কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>ছুটির তালিকা ২০২৬ | কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,165 +18,163 @@
             color: #333;
         }
 
-        h2, h4, .holiday-date { font-family: 'Atma', cursive; }
+        h2, h4, .holiday-date, .exam-title { font-family: 'Atma', cursive; }
 
         .header-box {
-            background: linear-gradient(135deg, #FF9F1C 0%, #FFBF69 100%);
+            background: linear-gradient(135deg, #006A4E 0%, #008f6a 100%);
             padding: 50px 0;
-            border-bottom: 8px solid #fff;
+            border-bottom: 8px solid #FFD93D;
             border-radius: 0 0 50px 50px;
             color: white;
             margin-bottom: 40px;
-        }
-
-        /* আপকামিং ছুটির কার্ড */
-        .holiday-card-next {
-            background: white;
-            border-radius: 30px;
-            border-left: 10px solid #2EC4B6;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-        .holiday-card-next:hover { transform: scale(1.02); }
-
-        .holiday-date {
-            background: #2EC4B6;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 0 0 20px 0;
-            display: inline-block;
-            font-size: 1.2rem;
-        }
-
-        /* আগের ছুটির কার্ড (Reverse List) */
-        .holiday-card-past {
-            background: #f1f1f1;
-            border-radius: 20px;
-            border-left: 8px solid #bdc3c7;
-            opacity: 0.7;
-            margin-bottom: 15px;
-        }
-        .holiday-card-past .holiday-date { background: #95a5a6; }
-
-        .days-left {
-            background: #FF4D6D;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: bold;
         }
 
         .section-title {
             border-bottom: 3px dashed #FF9F1C;
             display: inline-block;
             margin-bottom: 25px;
+            color: #006A4E;
         }
+
+        /* আপকামিং কার্ড */
+        .holiday-card-next {
+            background: white;
+            border-radius: 25px;
+            border-left: 10px solid #FF9F1C;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .holiday-card-next:hover { transform: translateY(-5px); }
+        .holiday-date { background: #FF9F1C; color: white; padding: 8px 15px; border-radius: 0 0 15px 0; display: inline-block; }
+
+        /* পুরনো কার্ড */
+        .holiday-card-past {
+            background: #ebebeb;
+            border-radius: 15px;
+            opacity: 0.7;
+            border-left: 5px solid #95a5a6;
+        }
+
+        /* মূল্যায়নের কার্ড */
+        .exam-card {
+            background: #e3f2fd;
+            border-radius: 20px;
+            border: 2px solid #2196f3;
+        }
+
+        .days-tag { background: #FF4D6D; color: white; padding: 2px 10px; border-radius: 50px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header class="header-box text-center animate__animated animate__fadeInDown">
     <div class="container">
-        <h2 class="display-4 fw-bold mb-2">🎈 ছুটির আনন্দ 🎈</h2>
-        <p class="fs-5 opacity-90">কবে কবে ছুটি? চলো একনজরে দেখে নিই!</p>
+        <h2 class="fw-bold mb-2">📅 শিক্ষাবর্ষ ২০২৬: ছুটির তালিকা</h2>
+        <p class="fs-5 opacity-90">প্রাথমিক ও গণশিক্ষা মন্ত্রণালয় কর্তৃক অনুমোদিত [cite: 2, 5]</p>
     </div>
 </header>
 
 <div class="container mb-5">
     
     <div class="mb-5">
-        <h4 class="section-title text-success"><i class="fas fa-calendar-star me-2"></i> সামনে আসছে যে ছুটিগুলো</h4>
-        <div id="upcomingHolidays" class="row g-4">
+        <h4 class="section-title"><i class="fas fa-star me-2"></i> সামনে আসছে যে ছুটি</h4>
+        <div id="upcomingList" class="row g-3"></div>
+    </div>
+
+    <div class="mb-5">
+        <h4 class="section-title text-primary"><i class="fas fa-edit me-2"></i> মূল্যায়নের সময়সূচি </h4>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="exam-card p-3">
+                    <h6 class="fw-bold">১ম প্রান্তিক মূল্যায়ন</h6>
+                    <small>০৫ মে - ১৭ মে </small>
+                </div>
             </div>
+            <div class="col-md-4">
+                <div class="exam-card p-3">
+                    <h6 class="fw-bold">২য় প্রান্তিক মূল্যায়ন</h6>
+                    <small>১৭ আগস্ট - ৩০ আগস্ট </small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="exam-card p-3">
+                    <h6 class="fw-bold">৩য় প্রান্তিক মূল্যায়ন</h6>
+                    <small>০১ ডিসেম্বর - ১০ ডিসেম্বর </small>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="mt-5">
-        <h4 class="section-title text-muted"><i class="fas fa-history me-2"></i> পুরনো ছুটির স্মৃতি (ফেলে আসা দিন)</h4>
-        <div id="pastHolidays" class="row">
-            </div>
+        <h4 class="section-title text-muted"><i class="fas fa-history me-2"></i> অতিক্রান্ত ছুটি</h4>
+        <div id="pastList" class="row g-2"></div>
     </div>
-
 </div>
 
 <script>
-    // ছুটির ডেটাবেস (বছর-মাস-দিন ফরমেটে)
+    // অফিসিয়াল ছুটির ডেটা 
     const holidays = [
-        { date: "2026-02-21", title: "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", type: "সরকারি" },
-        { date: "2026-03-17", title: "বঙ্গবন্ধুর জন্মদিন", type: "সরকারি" },
-        { date: "2026-03-26", title: "স্বাধীনতা দিবস", type: "সরকারি" },
-        { date: "2026-04-14", title: "পহেলা বৈশাখ", type: "সরকারি" },
-        { date: "2026-05-01", title: "মে দিবস", type: "সরকারি" },
-        { date: "2025-12-16", title: "বিজয় দিবস", type: "পুরনো" },
-        { date: "2025-12-25", title: "যিশু খ্রিস্টের জন্মদিন", type: "পুরনো" }
+        { date: "2026-01-17", title: "শব-ই-মিরাজ" },
+        { date: "2026-01-23", title: "শ্রী শ্রী সরস্বতী পূজা" },
+        { date: "2026-02-01", title: "মাঘী পূর্ণিমা" },
+        { date: "2026-02-04", title: "শব-ই-বরাত" },
+        { date: "2026-02-15", title: "শ্রী শ্রী শিবরাত্রি ব্রত" },
+        { date: "2026-02-21", title: "শহিদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস" },
+        { date: "2026-03-03", title: "শুভ দোলযাত্রা" },
+        { date: "2026-03-21", title: "পবিত্র ঈদুল ফিতর (রমজানসহ)" }, // মূল ছুটি শুরুর তারিখ ১৯ ফেব্রুয়ারি থেকে হলেও এটি হাইলাইট
+        { date: "2026-03-26", title: "স্বাধীনতা ও জাতীয় দিবস" },
+        { date: "2026-04-14", title: "বাংলা নববর্ষ" },
+        { date: "2026-05-01", title: "মে দিবস ও বুদ্ধ পূর্ণিমা" },
+        { date: "2026-05-27", title: "পবিত্র ঈদুল আযহা ও গ্রীষ্মকালীন অবকাশ" },
+        { date: "2026-06-26", title: "পবিত্র আশুরা" },
+        { date: "2026-08-05", title: "জুলাই গণঅভ্যুত্থান দিবস" },
+        { date: "2026-08-26", title: "ঈদ-ই-মিলাদুন্নবী (সা.)" },
+        { date: "2026-10-21", title: "দুর্গাপূজা (বিজয়া দশমী)" },
+        { date: "2026-12-16", title: "বিজয় দিবস" },
+        { date: "2026-12-25", title: "শীতকালীন অবকাশ ও বড়দিন" }
     ];
 
-    function renderHolidays() {
-        const upcomingContainer = document.getElementById('upcomingHolidays');
-        const pastContainer = document.getElementById('pastHolidays');
-        
+    function updatePage() {
+        const upcoming = document.getElementById('upcomingList');
+        const past = document.getElementById('pastList');
         const today = new Date();
         today.setHours(0,0,0,0);
 
-        // তারিখ অনুযায়ী সাজানো
-        const sortedHolidays = holidays.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-        // উল্টো করা পুরনো ছুটির জন্য
-        const reversedHolidays = [...sortedHolidays].reverse();
-
-        sortedHolidays.forEach(h => {
+        const sorted = holidays.sort((a,b) => new Date(a.date) - new Date(b.date));
+        
+        sorted.forEach(h => {
             const hDate = new Date(h.date);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const banglaDate = hDate.toLocaleDateString('bn-BD', options);
+            const dateStr = hDate.toLocaleDateString('bn-BD', { day:'numeric', month:'long', year:'numeric' });
 
             if (hDate >= today) {
-                // আপকামিং ছুটি
-                const diffTime = Math.abs(hDate - today);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                upcomingContainer.innerHTML += `
+                const diff = Math.ceil((hDate - today) / (1000 * 60 * 60 * 24));
+                upcoming.innerHTML += `
                     <div class="col-md-6 animate__animated animate__fadeInUp">
-                        <div class="holiday-card-next p-0 mb-3">
-                            <div class="holiday-date">${banglaDate}</div>
-                            <div class="p-4 pt-2">
-                                <h5 class="fw-bold text-dark">${h.title}</h5>
-                                <span class="days-left"><i class="fas fa-clock me-1"></i> আর মাত্র ${diffDays} দিন বাকি</span>
+                        <div class="holiday-card-next p-0">
+                            <div class="holiday-date">${dateStr}</div>
+                            <div class="p-3">
+                                <h5 class="m-0">${h.title}</h5>
+                                <span class="days-tag">${diff === 0 ? "আজ" : "আর " + diff + " দিন"}</span>
                             </div>
                         </div>
-                    </div>
-                `;
-            }
-        });
-
-        reversedHolidays.forEach(h => {
-            const hDate = new Date(h.date);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const banglaDate = hDate.toLocaleDateString('bn-BD', options);
-
-            if (hDate < today) {
-                // গত হয়ে যাওয়া ছুটি
-                pastContainer.innerHTML += `
-                    <div class="col-12 animate__animated animate__fadeIn">
-                        <div class="holiday-card-past p-3 mb-2 d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-1 fw-bold text-muted">${h.title}</h6>
-                                <small class="text-secondary">${banglaDate}</small>
-                            </div>
-                            <i class="fas fa-check-circle text-secondary"></i>
+                    </div>`;
+            } else {
+                past.insertAdjacentHTML('afterbegin', `
+                    <div class="col-12">
+                        <div class="holiday-card-past p-3 d-flex justify-content-between">
+                            <span>${h.title}</span>
+                            <small>${dateStr}</small>
                         </div>
-                    </div>
-                `;
+                    </div>`);
             }
         });
     }
-
-    window.onload = renderHolidays;
+    window.onload = updatePage;
 </script>
 
-<button onclick="window.history.back();" style="position: fixed; bottom: 30px; left: 30px; z-index: 9999; background: linear-gradient(45deg, #FF4D6D, #FF8C42); color: white; width: 65px; height: 65px; border-radius: 50%; border: 4px solid white; cursor: pointer; box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);">
-    <i class="fas fa-arrow-left" style="font-size: 25px;"></i>
+<button onclick="window.history.back();" style="position: fixed; bottom: 30px; left: 30px; z-index: 9999; background: #FF4D6D; color: white; width: 60px; height: 60px; border-radius: 50%; border: 4px solid white; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+    <i class="fas fa-arrow-left"></i>
 </button>
 
 </body>
