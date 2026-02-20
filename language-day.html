@@ -23,58 +23,93 @@
         }
 
         body { 
-            font-family: 'Hind Siliguri', sans-serif; 
-            background-color: var(--light-bg); 
-            color: var(--text-dark);
-            /* Soft Alpana Background Pattern */
-            background-image: url('images/alpana_bg.jpg');
-            background-size: 300px;
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-blend-mode: overlay;
-            position: relative;
-        }
-
-        /* Overlay to soften the background pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(248, 237, 235, 0.92); /* Matches light-bg with opacity */
-            z-index: -1;
-        }
-
-        h1, h2, h3, .caption {
-            font-family: 'Baloo Da 2', cursive;
-        }
-
-        /* Fun & Premium Header */
-        .shok-header {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #457B9D 100%);
-            color: white;
-            padding: 80px 20px 60px;
-            text-align: center;
-            border-bottom: 8px solid var(--primary-red);
-            border-radius: 0 0 50px 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-
-        /* Header Decorative Elements */
-        .shok-header::after {
-            content: '\f02d'; /* Book icon */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 10%;
-            bottom: -20px;
-            font-size: 150px;
-            color: rgba(255,255,255,0.05);
-            transform: rotate(-15deg);
-        }
-
+                font-family: 'Hind Siliguri', sans-serif; 
+                background-color: var(--light-bg); 
+                color: var(--text-dark);
+                /* Body Background: আল্পনা এখানে থাকবে */
+                background-image: url('images/alpana_bg.jpg'); 
+                background-size: 300px;
+                background-repeat: repeat;
+                background-attachment: fixed;
+                background-blend-mode: overlay;
+                position: relative;
+            }
+        
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(248, 237, 235, 0.94); /* বডির আল্পনাকে হালকা দেখানোর জন্য */
+                z-index: -1;
+            }
+        
+            /*--- Updated Header Section ---*/
+            .shok-header {
+                position: relative;
+                background: linear-gradient(135deg, #2B2D42 0%, #1D3557 100%); /* শোকের আবহ বজায় রাখতে ডার্ক গ্রেডিয়েন্ট */
+                color: white;
+                padding: 80px 20px;
+                text-align: center;
+                overflow: hidden;
+                border-radius: 0 0 50px 50px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        
+            /* বাম পাশের ছবি (Left Image) */
+            .shok-header::before {
+                content: "";
+                position: absolute;
+                left: 30px; /* বাম থেকে দূরত্ব */
+                top: 50%;
+                transform: translateY(-50%);
+                width: 150px; /* আপনার প্রয়োজন অনুযায়ী সাইজ পরিবর্তন করুন */
+                height: 150px;
+                background: url('images/left_image.png') no-repeat center center;
+                background-size: contain;
+                z-index: 1;
+            }
+        
+            /* ডান পাশের ছবি (Right Image) */
+            .shok-header::after {
+                content: "";
+                position: absolute;
+                right: 30px; /* ডান থেকে দূরত্ব */
+                top: 50%;
+                transform: translateY(-50%);
+                width: 150px;
+                height: 150px;
+                background: url('images/right_image.png') no-repeat center center;
+                background-size: contain;
+                z-index: 1;
+            }
+        
+            /* হেডারের শিরোনামের জন্য স্টাইল */
+            .shok-header h1 {
+                font-family: 'Baloo Da 2', cursive;
+                font-size: 2.8rem;
+                margin: 0;
+                z-index: 2;
+                position: relative;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+        
+            /* মোবাইল ডিভাইসের জন্য ছোট এডজাস্টমেন্ট */
+            @media (max-width: 768px) {
+                .shok-header {
+                    padding: 40px 10px;
+                }
+                .shok-header::before, .shok-header::after {
+                    width: 80px; /* মোবাইলে ছবি ছোট দেখাবে */
+                    height: 80px;
+                    opacity: 0.6; /* টেক্সট পড়ার সুবিধার জন্য হালকা স্বচ্ছতা */
+                }
+                .shok-header h1 {
+                    font-size: 1.8rem;
+                }
+            }
         .back-btn {
             display: inline-flex;
             align-items: center;
