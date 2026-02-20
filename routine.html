@@ -7,184 +7,189 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Atma:wght@500;700&family=Hind+Siliguri:wght@400;600;700&display=swap');
         
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8fafc; color: #334155; }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f0f9ff; color: #334155; }
+        h1, h2, h3, h4, .btn-kids, .modal-title { font-family: 'Atma', cursive; }
         
         /* Navbar */
         .navbar { background: #006A4E; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .nav-link { color: #fff !important; font-weight: 600; transition: 0.3s; }
-        .nav-link:hover { color: #FFB800 !important; }
+        .nav-link { color: #fff !important; font-weight: 600; }
 
         /* Header Section */
         .routine-header {
-            background: linear-gradient(135deg, #006A4E 0%, #004d39 100%);
+            background: linear-gradient(135deg, #006A4E 0%, #008f6a 100%);
             color: white; padding: 60px 0; text-align: center;
-            border-radius: 0 0 50px 50px; margin-bottom: 40px;
+            border-radius: 0 0 50px 50px; border-bottom: 8px solid #FFD93D;
         }
 
-        /* Table Design */
+        /* Shift Styling */
+        .shift-title {
+            padding: 12px 25px; border-radius: 50px; display: inline-block;
+            margin-bottom: 20px; color: white; font-weight: bold; font-size: 1.2rem;
+        }
+        .shift-1 { background: #FF9F1C; }
+        .shift-2 { background: #4CC9F0; }
+
+        /* Table Container */
         .table-container {
-            background: white; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: none;
+            background: white; border-radius: 30px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 5px solid #fff;
+            margin-bottom: 40px;
         }
-        .table thead { background: #006A4E; color: white; border: none; }
-        .table th { padding: 15px; font-weight: 600; border: none; }
-        .table td { padding: 12px; border-bottom: 1px solid #f1f5f9; }
-        .table tr:hover { background-color: #f8fafc; }
+        .table thead { background: #006A4E; color: white; }
+        .table th, .table td { padding: 15px; vertical-align: middle; border-bottom: 1px solid #f1f5f9; }
 
-        /* Syllabus Card */
-        .syllabus-card {
-            background: white; border-radius: 20px; padding: 25px;
-            display: flex; align-items: center; justify-content: space-between;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-left: 5px solid #ef4444; transition: 0.3s;
+        /* Evaluation Cards */
+        .eval-card {
+            background: white; border-radius: 25px; padding: 20px;
+            border-left: 10px solid #FF4D6D; transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05); height: 100%;
         }
-        .syllabus-card:hover { transform: translateY(-5px); }
+        
+        /* Modal Customization */
+        .modal-content { border-radius: 35px; border: 6px solid #006A4E; }
+        .btn-class { 
+            border-radius: 50px; padding: 12px; font-weight: bold; 
+            font-size: 1.1rem; transition: 0.3s; color: white !important;
+            text-decoration: none; display: block; margin-bottom: 10px;
+        }
+        .btn-class:hover { transform: scale(1.05); opacity: 0.9; }
 
-        /* Footer Styles */
-        .main-footer { background: linear-gradient(135deg, #003d2d 0%, #001a13 100%); color: #ffffff; padding: 60px 0 30px; margin-top: 80px; }
-        .footer-logo { width: 60px; height: auto; }
-        .footer-title { color: #FFB800; font-weight: 700; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
-        .footer-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: #FFB800; }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: #FFB800; padding-left: 8px; }
-        .social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 10px; text-decoration: none; }
-        .text-light-50 { color: rgba(255,255,255,0.6) !important; }
+        .btn-back-floating {
+            position: fixed; bottom: 30px; left: 30px; z-index: 9999; 
+            background: #FF4D6D; color: white; width: 60px; height: 60px; 
+            border-radius: 50%; border: 4px solid white; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <header class="routine-header animate__animated animate__fadeIn">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="images/govt.png" alt="Logo" width="35" class="me-2">
-                <span class="text-white fw-bold">কালাইয়া বোর্ড সপ্রাবি</span>
-            </a>
-            <div class="ms-auto d-flex align-items-center">
-                <a href="index.html" class="nav-link px-3"><i class="fas fa-home"></i></a>
-                <a href="admission.html" class="nav-link px-3" style="color: #FFB800 !important;">অনলাইন ভর্তি</a>
-                <img src="images/dpe.png" alt="DPE" width="35" class="ms-3 d-none d-md-block">
-            </div>
-        </div>
-    </nav>
-
-    <header class="routine-header">
-        <div class="container">
-            <h2 class="fw-bold mb-2">রুটিন ও সিলেবাস - ২০২৬</h2>
-            <p class="lead opacity-75">নতুন শিক্ষাক্রম অনুযায়ী শ্রেণি পাঠদান ও মূল্যায়ন পরিকল্পনা</p>
+            <h1 class="display-5 fw-bold">🎒 রুটিন ও সিলেবাস ২০২৬</h1>
+            <p class="lead">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
         </div>
     </header>
 
-    <div class="container">
-        <div class="mb-5">
-            <h4 class="fw-bold mb-4 d-flex align-items-center">
-                <span class="bg-primary text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-calendar-alt"></i>
-                </span>
-                সাপ্তাহিক শ্রেণি রুটিন
-            </h4>
-            
+    <div class="container my-5">
+        
+        <div class="text-center animate__animated animate__fadeInUp">
+            <div class="shift-title shift-1"><i class="fas fa-sun me-2"></i> ১ম শিফট (প্রাক - ২য় শ্রেণি)</div>
             <div class="table-container table-responsive">
-                <table class="table text-center align-middle mb-0">
+                <table class="table mb-0">
                     <thead>
                         <tr>
-                            <th>বার (Day)</th>
-                            <th>১ম পিরিয়ড</th>
-                            <th>২য় পিরিয়ড</th>
-                            <th>৩য় পিরিয়ড</th>
-                            <th>৪র্থ পিরিয়ড</th>
+                            <th>বার</th>
+                            <th>১ম (৯:১৫)</th>
+                            <th>২য় (১০:০০)</th>
+                            <th>৩য় (১০:৪৫)</th>
+                            <th>৪র্থ (১১:৩০)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="fw-bold text-success">রবিবার</td>
-                            <td>বাংলা</td>
-                            <td>গণিত</td>
-                            <td>ইংরেজি</td>
-                            <td>শিল্প ও সংস্কৃতি</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-success">সোমবার</td>
-                            <td>ইংরেজি</td>
-                            <td>পরিবেশ</td>
-                            <td>বাংলা</td>
-                            <td>শারীরিক শিক্ষা</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-success">মঙ্গলবার</td>
-                            <td>গণিত</td>
-                            <td>বাংলা</td>
-                            <td>ইংরেজি</td>
-                            <td>ধর্ম</td>
-                        </tr>
-                        </tbody>
+                        <tr><td class="fw-bold">রবিবার</td><td>বাংলা</td><td>গণিত</td><td>ইংরেজি</td><td>শিল্প ও সংস্কৃতি</td></tr>
+                        <tr><td class="fw-bold">সোমবার</td><td>ইংরেজি</td><td>পরিবেশ</td><td>বাংলা</td><td>শারীরিক শিক্ষা</td></tr>
+                        <tr><td class="fw-bold">মঙ্গলবার</td><td>গণিত</td><td>বাংলা</td><td>ইংরেজি</td><td>ধর্ম</td></tr>
+                    </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="mb-5">
-            <h4 class="fw-bold mb-4 d-flex align-items-center">
-                <span class="bg-danger text-white rounded-circle p-2 me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-book"></i>
-                </span>
-                মূল্যায়ন ও সিলেবাস
-            </h4>
+        <div class="text-center animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+            <div class="shift-title shift-2"><i class="fas fa-cloud-sun me-2"></i> ২য় শিফট (৩য় - ৫ম শ্রেণি)</div>
+            <div class="table-container table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>বার</th>
+                            <th>১ম (১২:১৫)</th>
+                            <th>২য় (১:০০)</th>
+                            <th>৩য় (১:৪৫)</th>
+                            <th>৪র্থ (২:৪৫)</th>
+                            <th>৫ম (৩:৩০)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="fw-bold">রবিবার</td><td>ইংরেজি</td><td>গণিত</td><td>বাংলা</td><td>বিজ্ঞান</td><td>ইতিহাস</td></tr>
+                        <tr><td class="fw-bold">সোমবার</td><td>বাংলা</td><td>ইংরেজি</td><td>গণিত</td><td>ধর্ম</td><td>শিল্প</td></tr>
+                        <tr><td class="fw-bold">মঙ্গলবার</td><td>গণিত</td><td>বিজ্ঞান</td><td>বাংলা</td><td>ইংরেজি</td><td>পিই</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-            <div class="syllabus-card">
-                <div>
-                    <h5 class="fw-bold mb-1">১ম প্রান্তিক মূল্যায়ন সিলেবাস ২০২৬</h5>
-                    <p class="text-muted mb-0 small">ফাইল টাইপ: PDF | সাইজ: ২.৪ এমবি</p>
+    <div class="row g-4 mt-2">
+        <div class="col-md-4">
+            <div class="eval-card">
+                <h5 class="fw-bold text-danger">১ম প্রান্তিক মূল্যায়ন</h5>
+                <p class="small mb-2">তারিখ: ৫ মে - ১৭ মে, ২০২৬</p>
+                <button class="btn btn-danger btn-sm rounded-pill w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#classModal">
+                    <i class="fas fa-download me-1"></i> সিলেবাস দেখুন
+                </button>
+            </div>
+        </div>
+        </div>
+</div>
+
+    <div class="modal fade" id="classModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title text-success mx-auto mt-2">তোমার শ্রেণি বেছে নাও</h4>
+                    <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <a href="doc/syllabus_2026.pdf" class="btn btn-danger rounded-pill px-4 shadow-sm" download>
-                    <i class="fas fa-download me-2"></i> ডাউনলোড
-                </a>
+                <div class="modal-body p-4 pt-2">
+                    <a href="syllabus.html#class1" class="btn-class shadow-sm" style="background: #FF4D6D;">প্রথম শ্রেণি</a>
+                    <a href="syllabus.html#class2" class="btn-class shadow-sm" style="background: #FF9F1C;">দ্বিতীয় শ্রেণি</a>
+                    <a href="syllabus.html#class3" class="btn-class shadow-sm" style="background: #4CC9F0;">তৃতীয় শ্রেণি</a>
+                    <a href="syllabus.html#class4" class="btn-class shadow-sm" style="background: #7209B7;">চতুর্থ শ্রেণি</a>
+                    <a href="syllabus.html#class5" class="btn-class shadow-sm" style="background: #006A4E;">পঞ্চম শ্রেণি</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <img src="images/govt.png" alt="Logo" class="footer-logo mb-3">
-                    <h5 class="text-white fw-bold">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h5>
-                    <p class="text-light-50 mt-3">জ্ঞানের আলোয় প্রতিটি শিশুকে স্মার্ট নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
-                    <div class="social-links mt-4">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 text-md-center">
-                    <h5 class="footer-title">গুরুত্বপূর্ণ লিঙ্ক</h5>
-                    <ul class="footer-links d-inline-block text-start">
-                        <li><a href="index.html">হোম</a></li>
-                        <li><a href="admission-info.html">ভর্তি তথ্য</a></li>
-                        <li><a href="notice.html">নোটিশ বোর্ড</a></li>
-                        <li><a href="gallery.html">ফটো গ্যালারি</a></li>
-                        <li><a href="digital-class.html">ডিজিটাল ক্লাস</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <h5 class="footer-title">ঠিকানা</h5>
-                    <div class="contact-info text-light-50">
-                        <p><i class="fas fa-map-marker-alt me-2 text-warning"></i> কালাইয়া, ইন্দুরকানী, পিরোজপুর।</p>
-                        <p><i class="fas fa-phone-alt me-2 text-warning"></i> +৮৮০ ১৯XXXXXXXX</p>
-                        <a href="#" target="_blank" class="btn btn-warning btn-sm rounded-pill mt-2 fw-bold">গুগল ম্যাপে দেখুন</a>
-                    </div>
-                </div>
-            </div>
-            <hr class="mt-5 mb-4 border-light opacity-10">
-            <p class="text-center text-light-50 small mb-0">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি। সর্বস্বত্ব সংরক্ষিত।</p>
+<div class="row g-4 mt-2">
+    <div class="col-md-4">
+        <div class="eval-card" style="border-left-color: #4CC9F0;">
+            <h5 class="fw-bold" style="color: #0369a1;">২য় প্রান্তিক মূল্যায়ন</h5>
+            <p class="small mb-2 text-muted">তারিখ: ১৭ আগস্ট - ৩০ আগস্ট, ২০২৬</p>
+            <button class="btn btn-info btn-sm rounded-pill w-100 fw-bold text-white" data-bs-toggle="modal" data-bs-target="#classModal">
+                <i class="fas fa-eye me-1"></i> সিলেবাস দেখুন
+            </button>
         </div>
-    </footer>
+    </div>
 
+    <div class="col-md-4">
+        <div class="eval-card" style="border-left-color: #006A4E;">
+            <h5 class="fw-bold" style="color: #006A4E;">৩য় প্রান্তিক মূল্যায়ন</h5>
+            <p class="small mb-2 text-muted">তারিখ: ০১ ডিসেম্বর - ১০ ডিসেম্বর, ২০২৬</p>
+            <button class="btn btn-success btn-sm rounded-pill w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#classModal">
+                <i class="fas fa-book-open me-1"></i> সিলেবাস দেখুন
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="p-3 rounded-4 border-0 text-center animate__animated animate__pulse animate__infinite" style="background: #fff4e6; border: 2px dashed #ff9f1c !important;">
+            <p class="mb-0 fw-bold text-dark">
+                <i class="fas fa-trophy text-warning me-2"></i> 
+                বার্ষিক পরীক্ষার ফলাফল প্রকাশ: ৩১ ডিসেম্বর, ২০২৬
+            </p>
+        </div>
+    </div>
+</div>
+    <button onclick="window.history.back();" class="btn-back-floating">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
