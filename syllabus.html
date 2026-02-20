@@ -427,5 +427,33 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if there is a hash in the URL (e.g., #class5.2)
+    var hash = window.location.hash;
+    if (hash) {
+        // Find the element with that ID
+        var targetElement = document.querySelector(hash);
+        if (targetElement) {
+            // Find the parent tab-pane this element belongs to
+            var tabPane = targetElement.closest('.tab-pane');
+            if (tabPane) {
+                var tabId = tabPane.getAttribute('id');
+                // Trigger the Bootstrap tab show event
+                var tabTrigger = document.querySelector('[data-bs-target="#' + tabId + '"]');
+                if (tabTrigger) {
+                    var tab = new bootstrap.Tab(tabTrigger);
+                    tab.show();
+                    
+                    // Scroll to the specific class after a short delay for animation
+                    setTimeout(function() {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                }
+            }
+        }
+    }
+});
+</script>
 </body>
 </html>
