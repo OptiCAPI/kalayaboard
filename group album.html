@@ -1,0 +1,153 @@
+<style>
+    /* Premium Background for the Album Section */
+    .album-section {
+        background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        border-radius: 30px;
+        padding: 40px 20px;
+        box-shadow: inset 0 0 50px rgba(0,0,0,0.02);
+    }
+
+    /* PP Size Card Styling */
+    .pp-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        position: relative;
+    }
+
+    .pp-card:hover {
+        transform: translateY(-10px) rotate(2deg);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        z-index: 10;
+    }
+
+    /* Adjusting to PP size aspect ratio (approx 3:4) */
+    .pp-img-box {
+        height: 200px; /* PP Size Height */
+        width: 100%;
+        overflow: hidden;
+        border-bottom: 3px solid var(--primary-red);
+    }
+
+    .pp-img-box img {
+        transition: transform 0.6s ease;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .pp-card:hover .pp-img-box img {
+        transform: scale(1.1);
+    }
+
+    /* Batch Badge */
+    .batch-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--primary-red);
+        color: white;
+        font-size: 0.7rem;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+    }
+
+    .batch-title {
+        font-family: 'Baloo Da 2', cursive;
+        color: #1d3557;
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="text-center mb-5 animate__animated animate__fadeInDown">
+        <h2 class="fw-bold text-dark">প্রাক্তন শিক্ষার্থী অ্যালবাম 🎓</h2>
+        <p class="text-muted">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়ের সোনালী স্মৃতি</p>
+        <div class="mx-auto bg-danger" style="height: 3px; width: 80px; border-radius: 2px;"></div>
+    </div>
+
+    <div class="album-section">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4">
+            
+            <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                <div class="pp-card">
+                    <span class="batch-badge">২১</span>
+                    <div class="pp-img-box">
+                        <img src="images/batch21.jpg" alt="Batch 21" onerror="this.src='https://via.placeholder.com/150x200?text=Batch+21'">
+                    </div>
+                    <div class="p-2 text-center">
+                        <h6 class="batch-title mb-0">ব্যাচ ২০২১</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="pp-card">
+                    <span class="batch-badge">২২</span>
+                    <div class="pp-img-box">
+                        <img src="images/batch22.jpg" alt="Batch 22" onerror="this.src='https://via.placeholder.com/150x200?text=Batch+22'">
+                    </div>
+                    <div class="p-2 text-center">
+                        <h6 class="batch-title mb-0">ব্যাচ ২০২২</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                <div class="pp-card">
+                    <span class="batch-badge">২৩</span>
+                    <div class="pp-img-box">
+                        <img src="images/batch23.jpg" alt="Batch 23" onerror="this.src='https://via.placeholder.com/150x200?text=Batch+23'">
+                    </div>
+                    <div class="p-2 text-center">
+                        <h6 class="batch-title mb-0">ব্যাচ ২০২৩</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <div class="pp-card">
+                    <span class="batch-badge">২৪</span>
+                    <div class="pp-img-box">
+                        <img src="images/batch24.jpg" alt="Batch 24" onerror="this.src='https://via.placeholder.com/150x200?text=Batch+24'">
+                    </div>
+                    <div class="p-2 text-center">
+                        <h6 class="batch-title mb-0">ব্যাচ ২০২৪</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
+                <div class="pp-card">
+                    <span class="batch-badge">২৫</span>
+                    <div class="pp-img-box">
+                        <img src="images/batch25.jpg" alt="Batch 25" onerror="this.src='https://via.placeholder.com/150x200?text=Batch+25'">
+                    </div>
+                    <div class="p-2 text-center">
+                        <h6 class="batch-title mb-0">ব্যাচ ২০২৫</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                <div class="pp-card shadow-sm" style="border: 2px dashed #E63946;">
+                    <span class="batch-badge bg-dark">New</span>
+                    <div class="pp-img-box">
+                        <img src="images/batch26.jpg" alt="Batch 26" onerror="this.src='https://via.placeholder.com/150x200?text=Batch+2026'">
+                    </div>
+                    <div class="p-2 text-center">
+                        <h6 class="batch-title mb-0 fw-bold text-danger">ব্যাচ ২০২৬</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
