@@ -296,11 +296,12 @@
         box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
         border: 4px solid white;
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: bounceInUp 1s, heartbeat 2s infinite;
+        animation: bounceInUp 1.5s, heartbeat 2s infinite;
+        cursor: pointer;
     }
 
     .kids-back-btn:hover {
-        transform: scale(1.1) rotate(-10deg);
+        transform: scale(1.1) rotate(-15deg);
         background: #006A4E;
         color: white;
         box-shadow: 0 10px 25px rgba(0, 106, 78, 0.5);
@@ -312,13 +313,13 @@
 
     @keyframes heartbeat {
         0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
+        50% { transform: scale(1.08); }
         100% { transform: scale(1); }
     }
 </style>
 
-<a href="index.html" class="kids-back-btn" title="পিছনে যাও">
+<button onclick="window.history.back();" class="kids-back-btn" title="আগের পেজে ফিরে যাও">
     <i class="fas fa-arrow-left"></i>
-</a>
+</button>
 </body>
 </html>
