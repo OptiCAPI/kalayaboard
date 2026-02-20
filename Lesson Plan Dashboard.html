@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Annual Lesson Plan Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- PREMIUM BACKGROUND & GLOBAL SETTINGS --- */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --accent-gold: #ffd700;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Blobs for "Fun & Premiumness" */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.3), rgba(37, 117, 252, 0.3));
+            filter: blur(80px);
+            border-radius: 50%;
+            animation: float 20s infinite alternate;
+        }
+
+        .blob-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+        .blob-2 { width: 300px; height: 300px; bottom: -50px; right: -50px; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        /* --- ENTRANCE ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- CLASS SECTIONS (GRID) --- */
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .class-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .class-card h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .subject-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .subject-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .subject-list li i {
+            margin-right: 15px;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .subject-list li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .subject-list li:hover a {
+            color: #fff;
+        }
+
+        /* Floating Animation for icons */
+        .floating-icon {
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header class="animate-in" style="animation-delay: 0.1s;">
+            <h1><i class="fas fa-graduation-cap"></i> 2026 Academic Portal</h1>
+            <p>Annual Lesson Plans & Resources</p>
+        </header>
+
+        <div class="class-grid">
+            
+            <div class="class-card animate-in" style="animation-delay: 0.2s;">
+                <h2>Class 01</h2>
+                <ul class="subject-list">
+                    <li><i class="fas fa-book floating-icon"></i><a href="#">Bangla Lesson Plan</a></li>
+                    <li><i class="fas fa-language floating-icon"></i><a href="#">English Lesson Plan</a></li>
+                    <li><i class="fas fa-calculator floating-icon"></i><a href="#">Mathematics Plan</a></li>
+                    <li><i class="fas fa-flask floating-icon"></i><a href="#">Science & BGS (Integrated)</a></li>
+                    <li><i class="fas fa-heart floating-icon"></i><a href="#">Physical Education</a></li>
+                </ul>
+            </div>
+
+            <div class="class-card animate-in" style="animation-delay: 0.3s;">
+                <h2>Class 02</h2>
+                <ul class="subject-list">
+                    <li><i class="fas fa-book floating-icon"></i><a href="#">Bangla Lesson Plan</a></li>
+                    <li><i class="fas fa-language floating-icon"></i><a href="#">English Lesson Plan</a></li>
+                    <li><i class="fas fa-calculator floating-icon"></i><a href="#">Mathematics Plan</a></li>
+                    <li><i class="fas fa-globe floating-icon"></i><a href="#">BGS & Science (Integrated)</a></li>
+                </ul>
+            </div>
+
+            <div class="class-card animate-in" style="animation-delay: 0.4s;">
+                <h2>Class 03</h2>
+                <ul class="subject-list">
+                    <li><i class="fas fa-book floating-icon"></i><a href="#">Bangla Lesson Plan</a></li>
+                    <li><i class="fas fa-language floating-icon"></i><a href="#">English Lesson Plan</a></li>
+                    <li><i class="fas fa-calculator floating-icon"></i><a href="#">Mathematics Plan</a></li>
+                    <li><i class="fas fa-atom floating-icon"></i><a href="#">Science Resources</a></li>
+                </ul>
+            </div>
+
+            <div class="class-card animate-in" style="animation-delay: 0.5s;">
+                <h2>Class 04</h2>
+                <ul class="subject-list">
+                    <li><i class="fas fa-book floating-icon"></i><a href="#">Bangla Lesson Plan</a></li>
+                    <li><i class="fas fa-language floating-icon"></i><a href="#">English Lesson Plan</a></li>
+                    <li><i class="fas fa-calculator floating-icon"></i><a href="#">Mathematics Plan</a></li>
+                    <li><i class="fas fa-microscope floating-icon"></i><a href="#">Primary Science</a></li>
+                    <li><i class="fas fa-mosque floating-icon"></i><a href="#">Islam/Hindu Religion</a></li>
+                </ul>
+            </div>
+
+            <div class="class-card animate-in" style="animation-delay: 0.6s;">
+                <h2>Class 05</h2>
+                <ul class="subject-list">
+                    <li><i class="fas fa-book floating-icon"></i><a href="#">Bangla Lesson Plan</a></li>
+                    <li><i class="fas fa-language floating-icon"></i><a href="#">English Lesson Plan</a></li>
+                    <li><i class="fas fa-calculator floating-icon"></i><a href="#">Mathematics Plan</a></li>
+                    <li><i class="fas fa-vial floating-icon"></i><a href="#">Primary Science</a></li>
+                    <li><i class="fas fa-users floating-icon"></i><a href="#">Bangladesh & Global Studies</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="animate-in" style="margin-top: 50px; text-align: center; animation-delay: 0.8s;">
+            <a href="#" style="color: var(--accent-gold); text-decoration: none; border: 1px solid var(--accent-gold); padding: 10px 25px; border-radius: 30px; backdrop-filter: blur(10px);">
+                <i class="fas fa-calendar-alt"></i> View 2026 Holiday List (Chutir List)
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
