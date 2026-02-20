@@ -3,65 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ডিজিটাল ক্লাস | কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>জাদুর ক্লাসরুম | কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f1f5f9; }
+        @import url('https://fonts.googleapis.com/css2?family=Atma:wght@500;700&family=Hind+Siliguri:wght@400;600;700&display=swap');
         
-        .header-box { background: #006A4E; color: white; padding: 40px 0; border-radius: 0 0 40px 40px; margin-bottom: 30px; border-bottom: 5px solid #FFB800; }
-        
+        :root {
+            --primary-green: #006A4E;
+            --sunny-yellow: #FFD93D;
+            --kids-blue: #4CC9F0;
+            --kids-purple: #9B5DE5;
+            --kids-orange: #FF9F1C;
+        }
+
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: #f0faff url('https://www.transparenttextures.com/patterns/pencils.png');
+            color: #333;
+        }
+
+        h2, h4, h5, .nav-link { font-family: 'Atma', cursive; }
+
+        /* হেডার ডিজাইন */
+        .header-box { 
+            background: linear-gradient(135deg, var(--primary-green) 0%, #008f6a 100%); 
+            color: white; 
+            padding: 50px 0; 
+            border-radius: 0 0 60px 60px; 
+            margin-bottom: 40px; 
+            border-bottom: 8px solid var(--sunny-yellow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-box::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23FFD93D" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128V320H1392C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320H0Z"></path></svg>');
+            background-size: cover;
+        }
+
+        /* ক্লাসের বাটন (Bubbles) */
+        .nav-pills { gap: 15px; }
         .nav-pills .nav-link {
-            background: white; color: #006A4E; border: 1px solid #006A4E;
-            margin: 5px; border-radius: 15px; font-weight: 600; transition: 0.3s;
+            background: white; 
+            color: var(--primary-green); 
+            border: 3px solid var(--kids-blue);
+            padding: 12px 25px;
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 1.2rem;
+            transition: 0.4s;
+            box-shadow: 0 5px 0px var(--kids-blue);
         }
-        .nav-pills .nav-link.active { background: #006A4E !important; color: #FFB800 !important; border-color: #FFB800; }
-        
+        .nav-pills .nav-link.active { 
+            background: var(--kids-blue) !important; 
+            color: white !important; 
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+        .nav-link:hover { transform: scale(1.1); }
+
+        /* ভিডিও কার্ড */
+        .video-card {
+            background: white;
+            border-radius: 30px;
+            border: 4px solid var(--kids-purple);
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+        .video-card:hover { transform: translateY(-10px) rotate(1deg); }
+
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            background: #000;
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .teacher-tag {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* রিসোর্স কার্ড (Candy Style) */
         .resource-card {
-            background: white; border-radius: 20px; padding: 15px 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 15px;
-            display: flex; align-items: center; justify-content: space-between;
-            border: 1px solid transparent; transition: 0.3s;
+            background: white; 
+            border-radius: 25px; 
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            margin-bottom: 20px;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            border-left: 10px solid var(--kids-orange);
+            transition: 0.3s;
         }
-        .resource-card:hover { border-color: #006A4E; transform: translateY(-5px); }
+        .resource-card:hover { background: #fff9f0; transform: translateX(10px); }
         
         .icon-box {
-            width: 50px; height: 50px; border-radius: 12px;
+            width: 60px; height: 60px; border-radius: 20px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px; margin-right: 15px;
+            font-size: 24px; margin-right: 20px;
+            animation: pulse 2s infinite;
         }
+        @keyframes pulse { 0% {transform:scale(1)} 50% {transform:scale(1.1)} 100% {transform:scale(1)} }
+
         .bg-vid { background: #ffebee; color: #d32f2f; }
         .bg-ppt { background: #e3f2fd; color: #1976d2; }
         
-        /* Video Container */
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .btn-download {
+            background: var(--kids-orange);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 0px #cc7a00;
+        }
+        .btn-download:hover { background: #e68a00; color: white; transform: translateY(2px); box-shadow: none; }
 
-        footer { margin-top: 50px; text-align: center; padding: 20px; color: #666; }
+        footer { 
+            background: #333; 
+            color: white; 
+            padding: 40px 0; 
+            margin-top: 60px; 
+            border-radius: 50px 50px 0 0; 
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
     </style>
 </head>
 <body>
 
-    <header class="header-box shadow">
-        <div class="container text-center">
-            <h2 class="fw-bold mb-2">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
-            <h4 class="m-0"><i class="fas fa-laptop-code me-2"></i> ডিজিটাল অনলাইন ক্লাস</h4>
-            <a href="index.html" class="btn btn-sm btn-outline-light mt-3 rounded-pill">
-                <i class="fas fa-arrow-left me-1"></i> হোমপেজে ফিরুন
-            </a>
+    <header class="header-box shadow animate__animated animate__fadeIn">
+        <i class="fas fa-graduation-cap floating-icon" style="top:20%; left:10%; font-size: 80px;"></i>
+        <i class="fas fa-rocket floating-icon" style="bottom:20%; right:10%; font-size: 70px;"></i>
+        
+        <div class="container text-center position-relative">
+            <h2 class="fw-bold mb-2 animate__animated animate__bounceIn" style="font-size: 2.5rem;">🚀 আমাদের ডিজিটাল ক্লাসরুম</h2>
+            <h4 class="m-0 opacity-90">চলো মজার ছলে নতুন কিছু শিখি!</h4>
+            <div class="mt-4">
+                <a href="index.html" class="btn btn-light rounded-pill px-4 fw-bold text-success shadow-sm">
+                    <i class="fas fa-home me-2"></i> বাড়ি ফিরে যাই
+                </a>
+            </div>
         </div>
     </header>
 
     <div class="container">
-        <ul class="nav nav-pills justify-content-center mb-5" id="pills-tab" role="tablist">
-            <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#class1">Class 1</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class2">Class 2</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class3">Class 3</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class4">Class 4</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class5">Class 5</button></li>
+        <ul class="nav nav-pills justify-content-center mb-5 animate__animated animate__fadeInUp" id="pills-tab" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#class1">১ম শ্রেণি 🍎</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class2">২য় শ্রেণি 🐬</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class3">৩য় শ্রেণি 🐝</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class4">৪র্থ শ্রেণি 🐯</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#class5">৫ম শ্রেণি 🐘</button></li>
         </ul>
 
         <div class="tab-content" id="pills-tabContent">
@@ -69,51 +191,67 @@
             <div class="tab-pane fade show active" id="class1">
                 <div class="row">
                     <div class="col-md-6 mb-4">
-                        <div class="card border-0 shadow-sm p-3" style="border-radius: 20px;">
-                            <div class="video-wrapper mb-3">
+                        <div class="video-card shadow-sm p-3">
+                            <div class="video-wrapper mb-3 rounded-4">
                                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
                             </div>
-                            <h6 class="fw-bold mb-1">বাংলা: স্বরবর্ণের সঠিক উচ্চারণ</h6>
-                            <p class="text-muted small mb-0">শিক্ষক: মোঃ আবদুর রহমান</p>
+                            <h5 class="fw-bold text-success mb-2">🎨 বাংলা: স্বরবর্ণের জাদু</h5>
+                            <div class="teacher-tag">
+                                <i class="fas fa-user-circle me-1"></i> শিক্ষক: মোঃ আবদুর রহমান
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
-                        <div class="card border-0 shadow-sm p-3" style="border-radius: 20px;">
-                            <div class="video-wrapper mb-3">
+                        <div class="video-card shadow-sm p-3" style="border-color: var(--kids-blue);">
+                            <div class="video-wrapper mb-3 rounded-4">
                                 <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allowfullscreen></iframe>
                             </div>
-                            <h6 class="fw-bold mb-1">গণিত: মজার ছলে ১-১০ পর্যন্ত গণনা</h6>
-                            <p class="text-muted small mb-0">শিক্ষক: মোসাঃ নুসরাত জাহান</p>
+                            <h5 class="fw-bold text-primary mb-2">🔢 গণিত: সংখ্যা নিয়ে খেলা</h5>
+                            <div class="teacher-tag">
+                                <i class="fas fa-user-circle me-1"></i> শিক্ষক: মোসাঃ নুসরাত জাহান
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <h5 class="fw-bold mt-4 mb-3"><i class="fas fa-file-download me-2"></i> পড়াশোনার সামগ্রী (Class 1)</h5>
-                <div class="resource-card">
-                    <div class="d-flex align-items-center">
-                        <div class="icon-box bg-ppt"><i class="fas fa-file-powerpoint"></i></div>
-                        <div>
-                            <h6 class="mb-0 fw-bold">আজকের পাঠের পাওয়ারপয়েন্ট ফাইল</h6>
-                            <small class="text-muted">Size: 2.5 MB</small>
+                <div class="mt-5">
+                    <h4 class="fw-bold mb-4 text-center">🎒 পড়া সংগ্রহ করো (Class 1)</h4>
+                    <div class="resource-card">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box bg-ppt"><i class="fas fa-file-powerpoint"></i></div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">আজকের পাঠের রঙিন ফাইল</h6>
+                                <small class="text-muted">সাইজ: ২.৫ মেগাবাইট</small>
+                            </div>
                         </div>
+                        <a href="#" class="btn btn-download">নামিয়ে নাও <i class="fas fa-cloud-download-alt ms-1"></i></a>
                     </div>
-                    <a href="#" class="btn btn-primary btn-sm rounded-pill px-4">ডাউনলোড</a>
                 </div>
             </div>
 
             <div class="tab-pane fade" id="class2">
-                <div class="text-center py-5">
-                    <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
-                    <p class="text-muted">এই শ্রেণির ভিডিও শীঘ্রই আপলোড করা হবে।</p>
+                <div class="text-center py-5 animate__animated animate__pulse animate__infinite">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4080/4080273.png" width="120" class="mb-4">
+                    <h3 class="fw-bold text-muted">এই শ্রেণির ক্লাস আসছে...</h3>
+                    <p class="text-muted">আমরা তোমাদের জন্য মজার ভিডিও বানাচ্ছি!</p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <footer>
-        <p>© ২০২৬ ডিজিটাল শিক্ষা কার্যক্রম - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+    <footer class="text-center">
+        <div class="container">
+            <h3 class="mb-3">🌟 কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় 🌟</h3>
+            <p class="opacity-75">শিখবো আনন্দ নিয়ে, গড়বো নতুন পৃথিবী।</p>
+            <div class="mt-4">
+                <i class="fab fa-facebook fa-2x mx-2"></i>
+                <i class="fab fa-youtube fa-2x mx-2"></i>
+            </div>
+            <hr class="my-4 opacity-25">
+            <p class="small m-0">© ২০২৬ ডিজিটাল শিক্ষা কার্যক্রম - সকল অধিকার সংরক্ষিত</p>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
