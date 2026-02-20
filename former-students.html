@@ -284,14 +284,22 @@
     
             <div class="pp-grid">
                 <script>
-                    // Showing 15-30 slots for 2026
-                    for(let i=1; i<=24; i++) {
+                    // এখানে ছাত্র-ছাত্রীদের নামগুলো সিরিয়াল অনুযায়ী লিখুন
+                    const students2026 = [
+                        "আব্দুর রহমান", "সাদিয়া আক্তার", "নিলয় হাসান", "মালিহা ইসলাম", 
+                        "রাকিব হোসেন", "সুমাইয়া জান্নাত", "তামিম ইকবাল", "ফাতেমা তুজ জোহরা"
+                        // এভাবে ৩০ জনের নাম লিখতে পারবেন...
+                    ];
+                
+                    // লুপটি এখন অটোমেটিক ছবি এবং নাম নিয়ে নেবে
+                    for(let i = 0; i < students2026.length; i++) {
                         document.write(`
                             <div class="pp-card pp-card-2026">
                                 <div class="pp-img-box">
-                                    <img src="https://ui-avatars.com/api/?name=S${i}&background=ffd700&color=333" alt="Student">
+                                    <img src="gallery/2026/${i+1}.jpg" alt="Student" 
+                                         onerror="this.src='https://ui-avatars.com/api/?name=S&background=random'">
                                 </div>
-                                <p class="pp-name">শিক্ষার্থী ${i}</p>
+                                <p class="pp-name">${students2026[i]}</p>
                             </div>
                         `);
                     }
@@ -305,6 +313,12 @@
         <h3 class="section-title"><i class="fas fa-graduation-cap me-2 text-primary"></i> ব্যাচ ২০২৫</h3>
         <div class="pp-grid">
             <script>
+                // এখানে ছাত্র-ছাত্রীদের নামগুলো সিরিয়াল অনুযায়ী লিখুন
+                const students2025 = [
+                    "আব্দুর রহমান", "সাদিয়া আক্তার", "নিলয় হাসান", "মালিহা ইসলাম", 
+                    "রাকিব হোসেন", "সুমাইয়া জান্নাত", "তামিম ইকবাল", "ফাতেমা তুজ জোহরা"
+                    // এভাবে ৩০ জনের নাম লিখতে পারবেন...
+                ];
                 for(let i=1; i<=18; i++) {
                     document.write(`
                         <div class="pp-card hover-tilt">
@@ -323,6 +337,12 @@
         <h3 class="section-title"><i class="fas fa-award me-2 text-danger"></i> ব্যাচ ২০২৪</h3>
         <div class="pp-grid">
             <script>
+                // এখানে ২০২৪ ব্যাচের ছাত্র-ছাত্রীদের নাম লিখুন
+                const students2024 = [
+                    "করিম উদ্দিন", "মো: হাসিব", "জান্নাতুল ফেরদৌস", "আরিফ বিল্লাহ",
+                    "তানজিলা আক্তার", "সাকিব আল হাসান", "মারুফ হোসেন" 
+                    // আরও নাম এখানে কমা দিয়ে যোগ করুন...
+                ];   
                 for(let i=1; i<=15; i++) {
                     document.write(`
                         <div class="pp-card hover-glow">
@@ -341,6 +361,11 @@
         <h3 class="section-title text-success"><i class="fas fa-history me-2"></i> ব্যাচ ২০২৩</h3>
         <div class="pp-grid">
             <script>
+                  // এখানে ২০২৩ ব্যাচের নামগুলো লিখুন
+                const students2023 = [
+                    "রহিম মিয়া", "নাজমুল হুদা", "তামান্না ইসলাম", "রিফাত হোসেন",
+                    "সাদিয়া সুমি", "কামরুল হাসান"
+                ];
                 for(let i=1; i<=12; i++) {
                     document.write(`<div class="pp-card hover-lift"><div class="pp-img-wrapper"><img src="https://ui-avatars.com/api/?name=23_${i}&background=2a9d8f&color=fff"></div><p class="student-name">শিক্ষার্থী ${i}</p></div>`);
                 }
@@ -375,6 +400,26 @@
 <footer class="mt-5 py-4 bg-dark text-white text-center">
     <p>© ২০২৬ কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয় | সকল স্বত্ব সংরক্ষিত</p>
 </footer>
+<script>
+    // এখানে ছাত্র-ছাত্রীদের নামগুলো সিরিয়াল অনুযায়ী লিখুন
+    const students2026 = [
+        "আব্দুর রহমান", "সাদিয়া আক্তার", "নিলয় হাসান", "মালিহা ইসলাম", 
+        "রাকিব হোসেন", "সুমাইয়া জান্নাত", "তামিম ইকবাল", "ফাতেমা তুজ জোহরা"
+        // এভাবে ৩০ জনের নাম লিখতে পারবেন...
+    ];
 
+    // লুপটি এখন অটোমেটিক ছবি এবং নাম নিয়ে নেবে
+    for(let i = 0; i < students2026.length; i++) {
+        document.write(`
+            <div class="pp-card pp-card-2026">
+                <div class="pp-img-box">
+                    <img src="gallery/2026/${i+1}.jpg" alt="Student" 
+                         onerror="this.src='https://ui-avatars.com/api/?name=S&background=random'">
+                </div>
+                <p class="pp-name">${students2026[i]}</p>
+            </div>
+        `);
+    }
+</script>
 </body>
 </html>
