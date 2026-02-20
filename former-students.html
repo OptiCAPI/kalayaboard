@@ -139,18 +139,168 @@
             .pp-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
             .student-name { font-size: 0.7rem; }
         }
+            
+        /* --- Main Container Styling --- */
+        #top-showcase {
+            padding: 40px 0;
+            background: transparent; /* Allows your Alpana background to show */
+        }
+    
+        .batch-card-main {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 35px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+    
+        /* --- 2027 FUN STYLE (Neon & Pulse) --- */
+        .style-2027 {
+            border: 3px solid #00f2ff;
+            background: linear-gradient(135deg, #ffffff 0%, #e0fbfc 100%);
+        }
+        
+        .future-badge {
+            background: #E63946;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    
+        /* --- 2026 PREMIUM STYLE (Gold & Elegant) --- */
+        .style-2026 {
+            border: 3px solid #ffd700;
+            background: linear-gradient(to bottom, #fffef2, #ffffff);
+        }
+    
+        /* --- The Grid (15-30 Photos) --- */
+        .pp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
+        }
+    
+        .pp-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 6px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #eee;
+        }
+    
+        /* Unique Hover for 2027 */
+        .pp-card-2027:hover {
+            transform: scale(1.15) rotate(3deg);
+            border-color: #00f2ff;
+            box-shadow: 0 10px 20px rgba(0, 242, 255, 0.3);
+        }
+    
+        /* Unique Hover for 2026 */
+        .pp-card-2026:hover {
+            transform: scale(1.1) translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+    
+        .pp-img-box {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #f8f9fa;
+            margin-bottom: 5px;
+        }
+    
+        .pp-img-box img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+    
+        .pp-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #1d3557;
+            margin: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+    
+        @media (max-width: 576px) {
+            .pp-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .pp-name { font-size: 0.65rem; }
+        }
     </style>
+        
 </head>
 <body>
 
 <header class="album-header">
+        <div class="container">
+            <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">স্মৃতিময় প্রাক্তন অ্যালবাম 🎓</h1>
+            <p class="lead">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
+        </div>
+    </header>
+    
     <div class="container">
-        <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">স্মৃতিময় প্রাক্তন অ্যালবাম 🎓</h1>
-        <p class="lead">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
-    </div>
-</header>
-
-<div class="container">
+        <section id="top-showcase" class="container">
+        
+        <div class="batch-card-main style-2027 animate__animated animate__bounceInDown">
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                <div>
+                    <h4 class="mb-0" style="color: #0077b6; font-weight: 800;">
+                        <i class="fas fa-rocket me-2 animate__animated animate__infinite animate__pulse"></i> 
+                        ভবিষ্যৎ ব্যাচ ২০২৭
+                    </h4>
+                </div>
+                <span class="future-badge">Coming Soon</span>
+            </div>
+    
+            <div class="pp-grid">
+                <script>
+                    // Showing 15-30 slots for 2027
+                    for(let i=1; i<=18; i++) {
+                        document.write(`
+                            <div class="pp-card pp-card-2027">
+                                <div class="pp-img-box" style="border: 2px dashed #00f2ff;">
+                                    <img src="https://ui-avatars.com/api/?name=Future+${i}&background=00f2ff&color=fff" alt="Star">
+                                </div>
+                                <p class="pp-name">ভবিষ্যৎ তারকা</p>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+    
+        <div class="batch-card-main style-2026 animate__animated animate__fadeInUp">
+            <div class="d-flex align-items-center mb-4 border-bottom pb-2">
+                <i class="fas fa-crown me-3 text-warning fa-2x"></i>
+                <h4 class="mb-0" style="color: #1d3557; font-weight: 800;">চলতি ব্যাচ ২০২৬ (আমাদের গর্ব)</h4>
+            </div>
+    
+            <div class="pp-grid">
+                <script>
+                    // Showing 15-30 slots for 2026
+                    for(let i=1; i<=24; i++) {
+                        document.write(`
+                            <div class="pp-card pp-card-2026">
+                                <div class="pp-img-box">
+                                    <img src="https://ui-avatars.com/api/?name=S${i}&background=ffd700&color=333" alt="Student">
+                                </div>
+                                <p class="pp-name">শিক্ষার্থী ${i}</p>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+    
+    </section>
     
     <section class="batch-section batch-2026 animate__animated animate__backInDown">
         <h3 class="section-title"><i class="fas fa-star text-warning me-2"></i> ব্যাচ ২০২৬ (চলতি)</h3>
