@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ভিডিও থিয়েটার | কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Atma:wght@500;700&family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        :root {
+            --bg-color: #f0f7ff;
+            --primary-green: #006A4E;
+            --kids-pink: #FF4D6D;
+            --kids-yellow: #FFD93D;
+            --kids-blue: #4CC9F0;
+        }
+
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: var(--bg-color) url('https://www.transparenttextures.com/patterns/white-diamond.png');
+            overflow-x: hidden;
+        }
+
+        h2, h4, .btn-filter { font-family: 'Atma', cursive; }
+
+        /* হেডার ডিজাইন */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #004d39 100%);
+            padding: 60px 0;
+            color: white;
+            border-bottom: 8px solid var(--kids-yellow);
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 50px;
+        }
+
+        /* ফিল্টার বাটন */
+        .filter-container { margin-bottom: 40px; }
+        .btn-filter {
+            border: 3px solid var(--kids-blue);
+            background: white;
+            color: var(--primary-green);
+            padding: 10px 25px;
+            border-radius: 50px;
+            margin: 5px;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 5px 0 var(--kids-blue);
+        }
+        .btn-filter.active, .btn-filter:hover {
+            background: var(--kids-blue);
+            color: white;
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        /* ভিডিও কার্ড */
+        .video-item { transition: 0.4s; }
+        
+        .video-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .thumbnail-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        /* প্লে বাটন এনিমেশন */
+        .play-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 106, 78, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .play-overlay i {
+            font-size: 50px;
+            color: var(--kids-yellow);
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .video-card:hover .play-overlay { opacity: 1; }
+        .video-card:hover img { transform: scale(1.1) rotate(2deg); }
+        .video-card:hover .play-overlay i { animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .video-info { padding: 15px; text-align: center; }
+        .video-title { font-weight: 700; color: #333; margin: 0; font-size: 1.1rem; }
+
+        /* ভিডিও মডাল */
+        .modal-content {
+            background: transparent;
+            border: none;
+        }
+        .modal-header { border: none; }
+        .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border: 8px solid white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        footer { padding: 40px 0; background: #222; color: white; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header class="header-section text-center animate__animated animate__fadeIn">
+    <div class="container">
+        <h2 class="display-4 fw-bold mb-3">🎬 জাদুর ভিডিও গ্যালারি</h2>
+        <p class="fs-5 opacity-75">গান আর মজার ভিডিও দেখে নতুন কিছু শিখি!</p>
+        <a href="index.html" class="btn btn-outline-light rounded-pill px-4 mt-3">
+            <i class="fas fa-arrow-left me-2"></i> বাড়ি ফিরে যাই
+        </a>
+    </div>
+</header>
+
+<div class="container mb-5">
+    <div class="filter-container text-center animate__animated animate__fadeInUp">
+        <button class="btn-filter active" onclick="filterVideos('all')">সব ভিডিও</button>
+        <button class="btn-filter" onclick="filterVideos('bangla')">বাংলা গান 🇧🇩</button>
+        <button class="btn-filter" onclick="filterVideos('english')">English Song 🇬🇧</button>
+        <button class="btn-filter" onclick="filterVideos('others')">অন্যান্য 🌟</button>
+    </div>
+
+    <div class="row g-4" id="videoGrid">
+        <div class="col-md-6 col-lg-4 video-item bangla animate__animated animate__zoomIn">
+            <div class="video-card" onclick="playVideo('dQw4w9WgXcQ', 'আমাদের ছোট নদী')">
+                <div class="thumbnail-container">
+                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Video">
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h6 class="video-title">আমাদের ছোট নদী - কবিতা আবৃত্তি</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 video-item english animate__animated animate__zoomIn">
+            <div class="video-card" onclick="playVideo('jNQXAC9IVRw', 'ABC Phonics Song')">
+                <div class="thumbnail-container">
+                    <img src="https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="Video">
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h6 class="video-title">ABC Phonics - Learn ABC</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 video-item others animate__animated animate__zoomIn">
+            <div class="video-card" onclick="playVideo('7G8u9A5I-Lg', 'মজার বিজ্ঞান')">
+                <div class="thumbnail-container">
+                    <img src="https://img.youtube.com/vi/7G8u9A5I-Lg/hqdefault.jpg" alt="Video">
+                    <div class="play-overlay">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h6 class="video-title">মজার বিজ্ঞান - বেলুন ম্যাজিক</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white fw-bold" id="modalTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="stopVideo()"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="video-container">
+                    <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center">
+    <div class="container">
+        <p class="mb-0">© ২০২৬ কালাইয়া বোর্ড সপ্রাবি | আনন্দের সাথে শেখার জয়গান ❤️</p>
+    </div>
+</footer>
+
+<script>
+    // ভিডিও ফিল্টারিং লজিক
+    function filterVideos(category) {
+        // বাটন এক্টিভ স্টেট পরিবর্তন
+        const buttons = document.querySelectorAll('.btn-filter');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const items = document.querySelectorAll('.video-item');
+        
+        items.forEach(item => {
+            // এক্সিট এনিমেশন যোগ করা (ঐচ্ছিক কিন্তু সুন্দর)
+            item.classList.remove('animate__zoomIn');
+            
+            if (category === 'all' || item.classList.contains(category)) {
+                item.style.display = "block";
+                item.classList.add('animate__zoomIn');
+            } else {
+                item.style.display = "none";
+            }
+        });
+    }
+
+    // ভিডিও প্লে করার লজিক
+    const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+    const frame = document.getElementById('videoFrame');
+    const title = document.getElementById('modalTitle');
+
+    function playVideo(id, videoTitle) {
+        frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+        title.innerText = videoTitle;
+        modal.show();
+    }
+
+    function stopVideo() {
+        frame.src = ""; // ভিডিও বন্ধ করার জন্য সোর্স মুছে ফেলা
+    }
+
+    // মডাল বাইরে ক্লিক করে বন্ধ করলে ভিডিও বন্ধ হবে
+    document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+        stopVideo();
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
