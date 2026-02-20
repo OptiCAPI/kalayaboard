@@ -333,8 +333,11 @@
         </div>
     </section>
 
-    <section class="batch-section animate__animated animate__fadeInRight">
-        <h3 class="section-title"><i class="fas fa-award me-2 text-danger"></i> ব্যাচ ২০২৪</h3>
+    <section class="batch-section animate__animated animate__fadeInLeft">
+        <div class="section-header">
+            <i class="fas fa-award me-3 text-primary fa-2x"></i>
+            <h3>ব্যাচ ২০২৪</h3>
+        </div>
         <div class="pp-grid">
             <script>
                 // এখানে ২০২৪ ব্যাচের ছাত্র-ছাত্রীদের নাম লিখুন
@@ -342,32 +345,46 @@
                     "করিম উদ্দিন", "মো: হাসিব", "জান্নাতুল ফেরদৌস", "আরিফ বিল্লাহ",
                     "তানজিলা আক্তার", "সাকিব আল হাসান", "মারুফ হোসেন" 
                     // আরও নাম এখানে কমা দিয়ে যোগ করুন...
-                ];   
-                for(let i=1; i<=15; i++) {
+                ];
+    
+                for(let i = 0; i < students2024.length; i++) {
                     document.write(`
-                        <div class="pp-card hover-glow">
-                            <div class="pp-img-wrapper">
-                                <img src="https://ui-avatars.com/api/?name=24_${i}&background=E63946&color=fff" alt="Student">
+                        <div class="pp-card hover-lift">
+                            <div class="pp-img-box">
+                                <img src="gallery/2024/${i+1}.jpg" alt="${students2024[i]}" 
+                                     onerror="this.src='https://ui-avatars.com/api/?name=${students2024[i]}&background=457b9d&color=fff'">
                             </div>
-                            <p class="student-name">প্রাক্তন শিক্ষার্থী ${i}</p>
+                            <p class="pp-name">${students2024[i]}</p>
                         </div>
                     `);
                 }
             </script>
         </div>
-    </section>
-
-    <section class="batch-section animate__animated animate__flipInX">
-        <h3 class="section-title text-success"><i class="fas fa-history me-2"></i> ব্যাচ ২০২৩</h3>
+    </div>
+    
+    <div class="batch-section animate__animated animate__fadeInRight">
+        <div class="section-header">
+            <i class="fas fa-history me-3 text-success fa-2x"></i>
+            <h3>ব্যাচ ২০২৩</h3>
+        </div>
         <div class="pp-grid">
             <script>
-                  // এখানে ২০২৩ ব্যাচের নামগুলো লিখুন
+                // এখানে ২০২৩ ব্যাচের নামগুলো লিখুন
                 const students2023 = [
                     "রহিম মিয়া", "নাজমুল হুদা", "তামান্না ইসলাম", "রিফাত হোসেন",
                     "সাদিয়া সুমি", "কামরুল হাসান"
                 ];
-                for(let i=1; i<=12; i++) {
-                    document.write(`<div class="pp-card hover-lift"><div class="pp-img-wrapper"><img src="https://ui-avatars.com/api/?name=23_${i}&background=2a9d8f&color=fff"></div><p class="student-name">শিক্ষার্থী ${i}</p></div>`);
+    
+                for(let i = 0; i < students2023.length; i++) {
+                    document.write(`
+                        <div class="pp-card hover-lift">
+                            <div class="pp-img-box">
+                                <img src="gallery/2023/${i+1}.jpg" alt="${students2023[i]}" 
+                                     onerror="this.src='https://ui-avatars.com/api/?name=${students2023[i]}&background=2a9d8f&color=fff'">
+                            </div>
+                            <p class="pp-name">${students2023[i]}</p>
+                        </div>
+                    `);
                 }
             </script>
         </div>
