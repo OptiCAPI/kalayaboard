@@ -109,11 +109,21 @@
             background: rgba(255,255,255,0.1); color: white;
             font-weight: bold; transition: 0.4s;
             backdrop-filter: blur(5px);
+            transition: all 0.3s ease; /* অ্যানিমেশনটি স্মুথ হবে */
         }
         .tab-btn.active {
             background: white; color: var(--bg-violet);
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
         }
+        /* ইনঅ্যাক্টিভ ট্যাবে হোভার করলে যা হবে */
+        .tab-btn:not(.active):hover {
+            background: rgba(255, 255, 255, 0.25); /* হালকা সাদা ব্যাকগ্রাউন্ড */
+            transform: translateY(-3px); /* সামান্য ওপরে উঠবে */
+            color: white; /* লেখার রং সাদা থাকবে */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* নিচে হালকা ছায়া */
+            cursor: pointer;
+        }
+        
         .play-btn:hover { transform: scale(1.1); }
         
         /* --- 2 Column Grid Style for Songs --- */
