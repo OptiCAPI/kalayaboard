@@ -282,34 +282,50 @@
     const audio = document.getElementById('mainAudio');
     const songListDiv = document.getElementById('songList');
 
-    const allSongs = [
-        // ছড়া ও কবিতা
-        { title: "ঐ দেখা যায় তালগাছ ১", file: "https://www.dropbox.com/scl/fi/by2m5onjvvq788z3cu8vf/version-1.mp3.mp3?rlkey=dvnn3p434g7lnz3aettddse99&raw=1", cat: "Rhymes", icon: "fa-tree" },
-        { title: "আতা গাছে তোতা পাখি ১", file: "https://www.dropbox.com/scl/fi/88migeohmqr4adsukztyd/2.mp3?rlkey=6ze2v2zv3sb590jfx90ux6zvo&st=8tx4j0jq&dl=0", cat: "Rhymes", icon: "fa-crow" },
-        { title: "সকালে উঠিয়া আমি ১", file: "https://www.dropbox.com/scl/fi/ujwwml2hw933fq9p6ph8p/3.mp3?rlkey=r0s8ieeqo1286bw6n5j9vodij&st=xfpgyjnq&dl=0", cat: "Rhymes", icon: "fa-tree" },
-        { title: "ঐ দেখা যায় তালগাছে ২", file: "https://www.dropbox.com/scl/fi/eeb7g8rxda1kz5kaxrjtm/0i-dekha-jay-khokon-khokon.mp3?rlkey=o9r9tkfox2z0s056g8axhopst&st=j3jszarb&dl=0", cat: "Rhymes", icon: "fa-tree" },
-        { title: "আতা গাছে তোতা পাখি ২", file: 'https://www.dropbox.com/scl/fi/c82dqtlc6fkurl1cbszbq/.mp3?rlkey=bxy01uuio9rhwv7jd6tn6cjbm&st=qnkl990f&dl=0', cat: "Rhymes", icon: "fa-crow" },
-        { title: "সকালে উঠিয়া আমি ২", file: "https://www.dropbox.com/scl/fi/cbh6isqapepui5mh4dcs0/.mp3?rlkey=5zhwz6tn0yohh7652hakaptcx&st=1uyh118k&dl=0", cat: "Rhymes", icon: "fa-tree" },
-        { title: "সকালে উঠিয়া আমি ৩", file: "https://www.dropbox.com/scl/fi/2xtcqw0ldhjdls555dqr6/1.mp3?rlkey=ccregs94poybv0911esuslvcx&st=fh4pou4w&dl=0", cat: "Rhymes", icon: "fa-tree" },
-        { title: " খোকন খোকন ডাক পাড়ি ২", file: "https://www.dropbox.com/scl/fi/5zvwsu6l0dl5thczq9f36/New-Project.mp3?rlkey=4rvqplzstksorkkyiog4l1h6h&raw=1", cat: "Rhymes", icon: "fa-tree" },
-        
-        // দেশাত্মবোধক
-        { title: "আমার সোনার বাংলা (জাতীয় সংগীত)", file: "https://www.dropbox.com/scl/fi/vawpwe9xs70cs37ow2356/Amar-sonar-bangla.mp3?rlkey=q3gszt18eahjti5jom1p6ivl3&st=zoqf17ig&dl=0", cat: "দেশাত্মবোধক", icon: "fa-flag-bd" },
-        { title: "আমি বাংলার গান গাই", file: "https://www.dropbox.com/scl/fi/s4eg9uy4rfptot5uuhd43/Ami-Banglar-Gan-Gai.mp3?rlkey=ft572jhkr43eoip2qqw5hq6i8&st=9ftnq9i9&dl=0", cat: "দেশাত্মবোধক", icon: "fa-heart" },
-        { title: "ও আমার বাংলা মা তোর", file: "https://www.dropbox.com/scl/fi/ozhssfk012ok5tk056gy3/Utpal-M-O-Amar-Bangla-Ma-Tor.mp3?rlkey=1dbf87ug6a8i48e0bl51szm11&st=g88jch3s&dl=0", cat: "দেশাত্মবোধক", icon: "fa-heart" },
-        { title: "জাতীয় সংগীত (মিউজিক)", file: "https://www.dropbox.com/scl/fi/4o8hw8kkkkwzuusqs1dzt/Amar-Shonar-Bangla-instu-mntal.mp3?rlkey=aqgwwmy4899wzwibkegujfu2t&st=oa84c7df&dl=0", cat: "দেশাত্মবোধক", icon: "fa-heart" },
-        { title: "আ", file: "https:", cat: "দেশাত্মবোধক", icon: "fa-heart" },
-        
-        // ২১শে ফেব্রুয়ারি
-        { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "https://www.dropbox.com/scl/fi/5mlg0gisrbzkpuq7fjgdk/Amar-Vaier-Rokte-Rangano.mp3?rlkey=zlwpkqq5icyspfrhv54arqovq&raw=1", cat: "২১শে ফেব্রুয়ারি", icon: "fa-flower-tulip" },
-        { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "https://www.dropbox.com/scl/fi/vg6jd4to2tx8ysl9oycv8/Amar-Vaiyer-Rokte-Rangano-Ekushe-February-Noble.mp3?rlkey=68uhgmswulqt5urs2dlhfy7o5&raw=1", icon: "fa-flower-tulip" },
-        { title: "মোদের গরব মোদের আশা", file: "https://www.dropbox.com/scl/fi/cfz8bs0xpj19oqy45doqm/Moder-Gorob-Moder-Asha-female.mp3?rlkey=vd5nwbqqwzfpvddcbulye6ekk&raw=1", cat: "২১শে ফেব্রুয়ারি", icon: "fa-alphabet-bangla" },
-        
-        // বিজয় দিবস
-        
-        { title: "বিজয় নিশান উড়ছে ওই", file: "bijoy.mp3", cat: "বিজয় দিবস", icon: "fa-flag" }
-    ];
-
+   // ১. আপনার নতুন সাজানো ক্যাটাগরি গ্রুপ (এখানে বারবার cat লিখতে হবে না)
+	const songCategories = {
+	    "Rhymes": [
+	        { title: "ঐ দেখা যায় তালগাছ ১", file: "https://www.dropbox.com/scl/fi/by2m5onjvvq788z3cu8vf/version-1.mp3.mp3?rlkey=dvnn3p434g7lnz3aettddse99&raw=1", icon: "fa-tree" },
+	        { title: "আতা গাছে তোতা পাখি ১", file: "https://www.dropbox.com/scl/fi/88migeohmqr4adsukztyd/2.mp3?rlkey=6ze2v2zv3sb590jfx90ux6zvo&raw=1", icon: "fa-crow" },
+	        { title: "সকালে উঠিয়া আমি ১", file: "https://www.dropbox.com/scl/fi/ujwwml2hw933fq9p6ph8p/3.mp3?rlkey=r0s8ieeqo1286bw6n5j9vodij&raw=1", icon: "fa-tree" },
+	        { title: "ঐ দেখা যায় তালগাছে ২", file: "https://www.dropbox.com/scl/fi/eeb7g8rxda1kz5kaxrjtm/0i-dekha-jay-khokon-khokon.mp3?rlkey=o9r9tkfox2z0s056g8axhopst&raw=1", icon: "fa-tree" },
+	        { title: "আতা গাছে তোতা পাখি ২", file: 'https://www.dropbox.com/scl/fi/c82dqtlc6fkurl1cbszbq/.mp3?rlkey=bxy01uuio9rhwv7jd6tn6cjbm&raw=1', icon: "fa-crow" },
+	        { title: "সকালে উঠিয়া আমি ২", file: "https://www.dropbox.com/scl/fi/cbh6isqapepui5mh4dcs0/.mp3?rlkey=5zhwz6tn0yohh7652hakaptcx&raw=1", icon: "fa-tree" },
+	        { title: "সকালে উঠিয়া আমি ৩", file: "https://www.dropbox.com/scl/fi/2xtcqw0ldhjdls555dqr6/1.mp3?rlkey=ccregs94poybv0911esuslvcx&raw=1", icon: "fa-tree" },
+	        { title: "খোকন খোকন ডাক পাড়ি ২", file: "https://www.dropbox.com/scl/fi/5zvwsu6l0dl5thczq9f36/New-Project.mp3?rlkey=4rvqplzstksorkkyiog4l1h6h&raw=1", icon: "fa-tree" }
+	    ],
+	    
+	    "দেশাত্মবোধক": [
+	        { title: "আমার সোনার বাংলা (জাতীয় সংগীত)", file: "https://www.dropbox.com/scl/fi/vawpwe9xs70cs37ow2356/Amar-sonar-bangla.mp3?rlkey=q3gszt18eahjti5jom1p6ivl3&raw=1", icon: "fa-flag-bd" },
+	        { title: "আমি বাংলার গান গাই", file: "https://www.dropbox.com/scl/fi/s4eg9uy4rfptot5uuhd43/Ami-Banglar-Gan-Gai.mp3?rlkey=ft572jhkr43eoip2qqw5hq6i8&raw=1", icon: "fa-heart" },
+	        { title: "ও আমার বাংলা মা তোর", file: "https://www.dropbox.com/scl/fi/ozhssfk012ok5tk056gy3/Utpal-M-O-Amar-Bangla-Ma-Tor.mp3?rlkey=1dbf87ug6a8i48e0bl51szm11&raw=1", icon: "fa-heart" },
+	        { title: "জাতীয় সংগীত (মিউজিক)", file: "https://www.dropbox.com/scl/fi/4o8hw8kkkkwzuusqs1dzt/Amar-Shonar-Bangla-instu-mntal.mp3?rlkey=aqgwwmy4899wzwibkegujfu2t&raw=1", icon: "fa-heart" }
+	    ],
+	    
+	    "২১শে ফেব্রুয়ারি": [
+	        { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "https://www.dropbox.com/scl/fi/5mlg0gisrbzkpuq7fjgdk/Amar-Vaier-Rokte-Rangano.mp3?rlkey=zlwpkqq5icyspfrhv54arqovq&raw=1", icon: "fa-flower-tulip" },
+	        { title: "আমার ভাইয়ের রক্তে রাঙানো (Noble)", file: "https://www.dropbox.com/scl/fi/vg6jd4to2tx8ysl9oycv8/Amar-Vaiyer-Rokte-Rangano-Ekushe-February-Noble.mp3?rlkey=68uhgmswulqt5urs2dlhfy7o5&raw=1", icon: "fa-flower-tulip" },
+	        { title: "মোদের গরব মোদের আশা", file: "https://www.dropbox.com/scl/fi/cfz8bs0xpj19oqy45doqm/Moder-Gorob-Moder-Asha-female.mp3?rlkey=vd5nwbqqwzfpvddcbulye6ekk&raw=1", icon: "fa-alphabet-bangla" }
+	    ],
+	    
+	    "বিজয় দিবস": [
+	        { title: "বিজয় নিশান উড়ছে ওই", file: "bijoy.mp3", icon: "fa-flag" },
+			{ title: "বিজয় নিশান উড়ছে ওই", file: "bijoy.mp3", icon: "fa-flag" }
+	    ]
+	};
+	
+	// ২. স্বয়ংক্রিয়ভাবে আপনার সাজানো গ্রুপগুলো থেকে allSongs অ্যারে তৈরি করার ম্যাজিক লজিক
+	let allSongs = [];
+	for (const category in songCategories) {
+	    songCategories[category].forEach(song => {
+	        allSongs.push({
+	            title: song.title,
+	            file: song.file,
+	            icon: song.icon,
+	            cat: category // এখানে গ্রুপ থেকে ক্যাটাগরির নাম নিজে নিজেই যুক্ত হয়ে যাবে!
+	        });
+	    });
+	}
     let currentIdx = -1;
     let activeTab = 'Rhymes';
 
