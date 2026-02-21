@@ -199,7 +199,9 @@
             50% { box-shadow: 0 0 20px #fff, 0 0 30px #3333ff; border-color: #00dbde; }
             100% { box-shadow: 0 0 5px #fff, 0 0 10px #ff00cc; border-color: #fff; }
         }
-        
+        nowPlayingCat {
+		    transition: color 0.5s ease; /* এটি রং বদলানোর সময় ০.৫ সেকেন্ড সময় নেবে */
+		}
         .song-card.active {
             animation: activeGlow 2s infinite ease-in-out;
             background: linear-gradient(90deg, #ff00cc, #3333ff) !important;
@@ -392,13 +394,13 @@
         const song = allSongs[idx];
         audio.src = getDirectLink(song.file);
         audio.play().then(() => updateUI(true)).catch(e => console.log("Audio Error"));
-	    
         document.getElementById('masterPlay').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        
-        document.getElementById('nowPlayingTitle').innerText = song.title;
-        document.getElementById('nowPlayingCat').innerText = song.cat === 'Others' ? song.sub : 'ছড়া ও কবিতা';
+        // ১. টাইটেল আপডেট
+	    document.getElementById('nowPlayingTitle').innerText = song.title;
+	    // ২. ক্যাটাগরি টেক্সট আপডেট
+	    const catElement = document.getElementById('nowPlayingCat');
+	    catElement.innerText = song.cat;
         renderSongs();
-        currentIdx = idx;
     }
 
     function togglePlay() {
