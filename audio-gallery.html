@@ -192,6 +192,39 @@
             70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
+
+        /* ১. অ্যাক্টিভ গানের গ্লো অ্যানিমেশন */
+        @keyframes activeGlow {
+            0% { box-shadow: 0 0 5px #fff, 0 0 10px #ff00cc; border-color: #fff; }
+            50% { box-shadow: 0 0 20px #fff, 0 0 30px #3333ff; border-color: #00dbde; }
+            100% { box-shadow: 0 0 5px #fff, 0 0 10px #ff00cc; border-color: #fff; }
+        }
+        
+        .song-card.active {
+            animation: activeGlow 2s infinite ease-in-out;
+            background: linear-gradient(90deg, #ff00cc, #3333ff) !important;
+            transform: scale(1.02);
+            z-index: 2;
+        }
+        
+        /* ২. ইনঅ্যাক্টিভ গানগুলোর হালকা দুলুনি (Wiggle) */
+        @keyframes slowWiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            75% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .song-card:not(.active) {
+            animation: slowWiggle 4s infinite ease-in-out;
+            /* গানগুলোর দুলুনি যেন একেকটার একেক সময় হয় সেজন্য নিচের লাইনটি */
+            animation-delay: calc(var(--i, 1) * 0.2s); 
+        }
+        
+        /* হোভার করলে দুলুনি বন্ধ হয়ে যাবে */
+        .song-card:hover {
+            animation-play-state: paused;
+        }
         
     </style>
 </head>
