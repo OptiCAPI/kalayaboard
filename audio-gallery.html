@@ -55,7 +55,7 @@
             100% { transform: translateY(-1200px) rotate(360deg) scale(1.5); opacity: 0; }
         }
 
-        /* --- প্লেয়ার ইন্টারফেস --- */
+        /* --- প্লেয়ার ইন্টারফেস --- */
         .player-card {
             background: rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(20px);
@@ -102,10 +102,10 @@
             padding: 5px;
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* এখানে ২ কলাম ফিক্সড করা হলো */
-            gap: 15px; /* কলামের মাঝখানের ফাঁকা জায়গা */
+            gap: 15px; /* কলামের মাঝখানের ফাঁকা জায়গা */
         }
         
-        /* মোবাইলে স্ক্রিন ছোট হলে ১ কলাম হয়ে যাবে */
+        /* মোবাইলে স্ক্রিন ছোট হলে ১ কলাম হয়ে যাবে */
         @media (max-width: 768px) {
             .song-list-scroll {
                 grid-template-columns: 1fr;
@@ -161,7 +161,7 @@
         <div class="col-lg-6 col-md-10">
             <div class="player-card">
                 <i class="fas fa-compact-disc fa-spin fs-1 mb-3" style="color: #00dbde"></i>
-                <h2 class="kids-font highlight-text" id="nowPlayingTitle">একটি ছড়া বেছে নাও</h2>
+                <h2 class="kids-font highlight-text" id="nowPlayingTitle">একটি ছড়া বেছে নাও</h2>
                 <p id="nowPlayingCat" class="text-info fw-bold fs-5">স্বাগতম, ছোট বন্ধুরা!</p>
 
                 <div class="progress-custom" onclick="seek(event)">
@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div class="premium-tabs">
-                <button class="tab-btn active" onclick="changeTab('Rhymes', this)">🎬 ছড়া ও কবিতা</button>
+                <button class="tab-btn active" onclick="changeTab('Rhymes', this)">🎬 ছড়া ও কবিতা</button>
                 <button class="tab-btn" onclick="changeTab('দেশাত্মবোধক', this)">🇧🇩 দেশাত্মবোধক</button>
                 <button class="tab-btn" onclick="changeTab('২১শে ফেব্রুয়ারি', this)">🌸 ২১শে ফেব্রুয়ারি</button>
                 <button class="tab-btn" onclick="changeTab('বিজয় দিবস', this)">✌️ বিজয় দিবস</button>
@@ -237,25 +237,26 @@
         }
     }
 
-    //৫. গান ও ক্যাটাগরি ম্যানেজমেন্ট
+    // ৫. গান ও ক্যাটাগরি ম্যানেজমেন্ট
     function getDirectLink(url) {
         if (url.includes('dropbox.com')) return url.replace('dl=0', 'raw=1');
         return url.startsWith('http') ? url : 'audio/' + url;
     }
 
-    //৬. ট্যাব চেঞ্জ করার আপডেটেড ফাংশন
+    // ৬. ট্যাব চেঞ্জ করার আপডেটেড ফাংশন
     function changeTab(tabName, btnElement) {
         activeTab = tabName;
         
         //৭. সব ট্যাব থেকে active ক্লাস মুছে ফেলো
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         
-        //৮. যেটিতে ক্লিক করা হয়েছে সেটিতে active ক্লাস যোগ করো
+        //৮. যেটিতে ক্লিক করা হয়েছে সেটিতে active ক্লাস যোগ করো
         btnElement.classList.add('active');
         
         //৯. গানগুলো রেন্ডার করো
         renderSongs();
     }
+    
     function renderSongs() {
         songListDiv.innerHTML = '';
         const filtered = allSongs.filter(s => s.cat === activeTab);
@@ -268,7 +269,7 @@
                 <div class="fs-3 me-3"><i class="fas ${song.icon}"></i></div>
                 <div class="flex-grow-1">
                     <div class="fw-bold fs-5 highlight-text">${song.title}</div>
-                    <small class="opacity-75">${song.cat === 'Others' ? song.sub : 'ছোটদের ছড়া ও কবিতা'}</small>
+                    <small class="opacity-75">${song.cat === 'Others' ? song.sub : 'ছোটদের ছড়া ও কবিতা'}</small>
                 </div>
                 <i class="fas fa-play-circle fs-4 opacity-50"></i>
             `;
@@ -283,7 +284,7 @@
         audio.play().then(() => updateUI(true)).catch(e => console.log("Audio Error"));
         
         document.getElementById('nowPlayingTitle').innerText = song.title;
-        document.getElementById('nowPlayingCat').innerText = song.cat === 'Others' ? song.sub : 'ছড়া ও কবিতা';
+        document.getElementById('nowPlayingCat').innerText = song.cat === 'Others' ? song.sub : 'ছড়া ও কবিতা';
         renderSongs();
     }
 
@@ -310,7 +311,7 @@
     function nextSong() { playSong((currentIdx + 1) % allSongs.length); }
     function prevSong() { playSong((currentIdx - 1 + allSongs.length) % allSongs.length); }
 
-    // লোড হওয়া মাত্র বাবল এবং গান দেখাও
+    // লোড হওয়া মাত্র বাবল এবং গান দেখাও
     createBubbles();
     renderSongs();
 </script>
