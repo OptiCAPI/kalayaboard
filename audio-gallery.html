@@ -333,23 +333,27 @@
     function renderSongs() {
         songListDiv.innerHTML = '';
         const filtered = allSongs.filter(s => s.cat === activeTab);
-        filtered.forEach(song => {
+        
+        filtered.forEach((song, index) => { // এখানে index যোগ করা হয়েছে
             const idx = allSongs.indexOf(song);
             const card = document.createElement('div');
             card.className = `song-card ${currentIdx === idx ? 'active' : ''}`;
+            
+            // প্রতিটি কার্ডের জন্য আলাদা ডিলে সেট করা (দুলুনির জন্য)
+            card.style.setProperty('--i', index); 
+            
             card.onclick = () => playSong(idx);
             card.innerHTML = `
                 <div class="fs-3 me-3"><i class="fas ${song.icon}"></i></div>
-                <div class="flex-grow-1">
-                    <div class="fw-bold fs-5 highlight-text">${song.title}</div>
-                    <small class="opacity-75">${song.cat === 'Others' ? song.sub : 'ছোটদের ছড়া ও কবিতা'}</small>
+                <div class="flex-grow-1 text-start">
+                    <div class="fw-bold highlight-text">${song.title}</div>
+                    <small class="opacity-75">${song.cat}</small>
                 </div>
-                <i class="fas fa-play-circle fs-4 opacity-50"></i>
+                <i class="fas ${currentIdx === idx ? 'fa-volume-up' : 'fa-play-circle'} fs-4 opacity-50"></i>
             `;
             songListDiv.appendChild(card);
         });
     }
-
     function playSong(idx) {
         currentIdx = idx;
         const song = allSongs[idx];
