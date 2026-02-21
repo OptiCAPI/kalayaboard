@@ -389,14 +389,6 @@
     }
     function playSong(idx) {
         currentIdx = idx;
-        const song = allSongs[idx];
-        audio.src = getDirectLink(song.file);
-        audio.play().then(() => updateUI(true)).catch(e => console.log("Audio Error"));
-        
-        document.getElementById('nowPlayingTitle').innerText = song.title;
-        document.getElementById('nowPlayingCat').innerText = song.cat === 'Others' ? song.sub : 'ছড়া ও কবিতা';
-        renderSongs();
-    }
 
     function togglePlay() {
         if(currentIdx === -1) { playSong(0); return; }
@@ -406,6 +398,15 @@
 
     function updateUI(playing) {
         document.getElementById('masterPlay').innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    }
+    // ক্যাটাগরি অনুযায়ী টেক্সট কালার পরিবর্তন (ঐচ্ছিক)
+    const catElement = document.getElementById('nowPlayingCat');
+    if(song.cat === '২১শে ফেব্রুয়ারি') {
+        catElement.style.color = '#ff4d4d'; // লালচে রং
+    } else if(song.cat === 'দেশাত্মবোধক') {
+        catElement.style.color = '#2ecc71'; // সবুজ রং
+    } else {
+        catElement.style.color = '#00dbde'; // ডিফল্ট আকাশী রং
     }
 
     function updateProgress() {
