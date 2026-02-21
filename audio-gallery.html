@@ -121,7 +121,7 @@
         } 
         .song-card:hover { 
             background: rgba(255, 255, 255, 0.15); 
-            transform: translateY(-5px); /* ওপরের দিকে একটু উঠবে */
+            transform: translateY(-8px); /* ওপরের দিকে একটু উঠবে */
         }
         .song-card.active {
             background: linear-gradient(90deg, #ff00cc, #3333ff);
@@ -195,16 +195,23 @@
 
     const allSongs = [
         // ছড়া ও কবিতা
-        { title: "আতা গাছে তোতা পাখি", file: "rhyme1.mp3", cat: "Rhymes", icon: "fa-crow" },
-        { title: "তালগাছ এক পায়ে দাঁড়িয়ে", file: "talgach2.mp3", cat: "Rhymes", icon: "fa-tree" },
+        { title: "ঐ দেখা যায় তালগাছ", file: "audio/rhyme1.mp3", cat: "Rhymes", icon: "fa-tree" },
+        { title: "আতা গাছে তোতা পাখি", 'file: audio/rhyme2.mp3', cat: "Rhymes", icon: "fa-crow" },
+        { title: "ঐ দেখা যায় তালগাছে ২", file: "audio/talgach2.mp3", cat: "Rhymes", icon: "fa-tree" },
         
         // দেশাত্মবোধক
-        { title: "আমি বাংলার গান গাই", file: "https://www.dropbox.com/...", cat: "দেশাত্মবোধক", icon: "fa-heart" },
+        { title: "আমার সোনার বাংলা (জাতীয় সংগীত)", file: "https://www.dropbox.com/scl/fi/vawpwe9xs70cs37ow2356/Amar-sonar-bangla.mp3?rlkey=q3gszt18eahjti5jom1p6ivl3&st=zoqf17ig&dl=0", cat: "দেশাত্মবোধক", icon: "fa-flag-bd" },
+        { title: "আমি বাংলার গান গাই", file: "https://www.dropbox.com/scl/fi/s4eg9uy4rfptot5uuhd43/Ami-Banglar-Gan-Gai.mp3?rlkey=ft572jhkr43eoip2qqw5hq6i8&st=9ftnq9i9&dl=0", cat: "দেশাত্মবোধক", icon: "fa-heart" },
+        { title: "ও আমার বাংলা মা তোর", file: "https://www.dropbox.com/scl/fi/ozhssfk012ok5tk056gy3/Utpal-M-O-Amar-Bangla-Ma-Tor.mp3?rlkey=1dbf87ug6a8i48e0bl51szm11&st=g88jch3s&dl=0", cat: "দেশাত্মবোধক", icon: "fa-heart" },
+        { title: "জাতীয় সংগীত (মিউজিক)", file: "https://www.dropbox.com/scl/fi/4o8hw8kkkkwzuusqs1dzt/Amar-Shonar-Bangla-instu-mntal.mp3?rlkey=aqgwwmy4899wzwibkegujfu2t&st=oa84c7df&dl=0", cat: "দেশাত্মবোধক", icon: "fa-heart" },
+        { title: "আ", file: "https:", cat: "দেশাত্মবোধক", icon: "fa-heart" },
         
         // ২১শে ফেব্রুয়ারি
-        { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "21feb.mp3", cat: "২১শে ফেব্রুয়ারি", icon: "fa-flower-tulip" },
+        { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "https://drive.google.com/file/d/19NpUB-zm-ddMcfRFQmt75_OIcrBokWXn/view?usp=sharing", cat: "২১শে ফেব্রুয়ারি", icon: "fa-flower-tulip" },
+        { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "audio/21 February - Noble.mp3", cat: "২১শে ফেব্রুয়ারি", icon: "fa-flower-tulip" },
+        { title: "মোদের গরব মোদের আশা", file: "https://www.dropbox.com/scl/fi/cfz8bs0xpj19oqy45doqm/Moder-Gorob-Moder-Asha-female.mp3?rlkey=vd5nwbqqwzfpvddcbulye6ekk&st=5jvak7cr&dl=0
+        // বিজয় দিবস", cat: "২১শে ফেব্রুয়ারি", icon: "fa-flower-tulip" },
         
-        // বিজয় দিবস
         { title: "বিজয় নিশান উড়ছে ওই", file: "bijoy.mp3", cat: "বিজয় দিবস", icon: "fa-flag" }
     ];
 
