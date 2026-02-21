@@ -72,52 +72,53 @@
             font-weight: 700;
         }
 
+        /* --- 4+ Tabs Scrolling Style --- */
         .premium-tabs {
-            display: flex; justify-content: center; gap: 15px; margin: 25px 0;
+            display: flex; 
+            overflow-x: auto; /* বেশি ট্যাব থাকলে স্ক্রল করা যাবে */
+            gap: 12px; 
+            margin: 25px 0;
+            padding-bottom: 10px;
+            scrollbar-width: none; /* ফায়ারফক্সের জন্য স্ক্রলবার হাইড */
         }
-
+        .premium-tabs::-webkit-scrollbar { display: none; /* ক্রোমের জন্য স্ক্রলবার হাইড */ }
+        
         .tab-btn {
-            padding: 12px 25px; border-radius: 50px; border: none;
+            white-space: nowrap; /* টেক্সট ভেঙে নিচে নামবে না */
+            padding: 10px 25px; border-radius: 50px; border: none;
             background: rgba(255,255,255,0.1); color: white;
             font-weight: bold; transition: 0.4s;
             backdrop-filter: blur(5px);
         }
-
         .tab-btn.active {
             background: white; color: var(--bg-violet);
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
         }
-
-    /* গান লিস্টকে ২ কলামে করার জন্য নতুন স্টাইল */
+        
+        /* --- 2 Column Grid Style for Songs --- */
         .song-list-scroll {
-            max-height: 450px; 
+            max-height: 400px; 
             overflow-y: auto; 
-            padding: 15px;
-            /* গ্রিড লেআউট যোগ করা হলো */
+            padding: 5px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            grid-template-columns: repeat(2, 1fr); /* এখানে ২ কলাম ফিক্সড করা হলো */
             gap: 15px; /* কলামের মাঝখানের ফাঁকা জায়গা */
         }
-    
-        /* মোবাইল স্ক্রিনের জন্য গানগুলো ১ কলামে দেখাবে */
-        @media (max-width: 600px) {
+        
+        /* মোবাইলে স্ক্রিন ছোট হলে ১ কলাম হয়ে যাবে */
+        @media (max-width: 768px) {
             .song-list-scroll {
                 grid-template-columns: 1fr;
             }
         }
-    
+        
         .song-card {
             background: rgba(255, 255, 255, 0.07);
-            border-radius: 20px; 
-            padding: 15px; 
-            display: flex; 
-            align-items: center; 
-            cursor: pointer;
-            transition: 0.3s; 
-            border: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 0; /* গ্রিড ব্যবহারের ফলে মার্জিন দরকার নেই */
-        }
-        
+            border-radius: 20px; padding: 15px; 
+            display: flex; align-items: center; cursor: pointer;
+            transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 0 !important; /* গ্রিডের কারণে মার্জিন রিমুভ */
+        } 
         .song-card:hover { 
             background: rgba(255, 255, 255, 0.15); 
             transform: translateY(-5px); /* ওপরের দিকে একটু উঠবে */
@@ -173,23 +174,16 @@
                     <button class="btn btn-outline-light rounded-circle p-3" onclick="nextSong()"><i class="fas fa-step-forward"></i></button>
                 </div>
             </div>
-
             <div class="premium-tabs">
-                <button class="tab-btn active" id="btnRhymes" onclick="changeTab('Rhymes')">🎬 ছোটদের ছড়া</button>
-                <button class="tab-btn" id="btnOthers" onclick="changeTab('Others')">🎡 অন্যান্য গান</button>
+                <button class="tab-btn active" onclick="changeTab('Rhymes', this)">🎬 ছড়া ও কবিতা</button>
+                <button class="tab-btn" onclick="changeTab('দেশাত্মবোধক', this)">🇧🇩 দেশাত্মবোধক</button>
+                <button class="tab-btn" onclick="changeTab('২১শে ফেব্রুয়ারি', this)">🌸 ২১শে ফেব্রুয়ারি</button>
+                <button class="tab-btn" onclick="changeTab('বিজয় দিবস', this)">✌️ বিজয় দিবস</button>
             </div>
-
-            <div class="song<div class="container py-4">
-                <div class="premium-tabs">
-                    <button class="tab-btn active" id="btnRhymes" onclick="changeTab('Rhymes')">🎬 ছোটদের ছড়া</button>
-                    <button class="tab-btn" id="btnOthers" onclick="changeTab('Others')">🎡 অন্যান্য গান</button>
-                </div>
             
-                <div class="song-list-scroll" id="songList">
-                    </div>
-            </div>-list-scroll" id="songList"></div>
+            <div class="song-list-scroll" id="songList">
+            </div>
         </div>
-        
     </div>
 </div>
 
@@ -223,12 +217,12 @@
         const container = document.getElementById('bubbleContainer');
         const emojis = ['🎶', '⭐', '✨', '🎈', '🎸', '🌈', '🔔'];
         
-        // বাবলের সংখ্যা ৩০টি করা হলো
+        //৩. বাবলের সংখ্যা ৩০টি করা হলো
         for(let i=0; i<30; i++) {
             let b = document.createElement('div');
             b.className = 'bubble';
             
-            // র্যান্ডম সাইজ এবং ইমোজি
+            //৪. র্যান্ডম সাইজ এবং ইমোজি
             let size = Math.random() * 60 + 25 + 'px';
             let randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
             
@@ -243,19 +237,25 @@
         }
     }
 
-    // ৩. গান ও ক্যাটাগরি ম্যানেজমেন্ট
+    //৫. গান ও ক্যাটাগরি ম্যানেজমেন্ট
     function getDirectLink(url) {
         if (url.includes('dropbox.com')) return url.replace('dl=0', 'raw=1');
         return url.startsWith('http') ? url : 'audio/' + url;
     }
 
-    function changeTab(tab) {
-        activeTab = tab;
+    //৬. ট্যাব চেঞ্জ করার আপডেটেড ফাংশন
+    function changeTab(tabName, btnElement) {
+        activeTab = tabName;
+        
+        //৭. সব ট্যাব থেকে active ক্লাস মুছে ফেলো
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tab === 'Rhymes' ? 'btnRhymes' : 'btnOthers').classList.add('active');
+        
+        //৮. যেটিতে ক্লিক করা হয়েছে সেটিতে active ক্লাস যোগ করো
+        btnElement.classList.add('active');
+        
+        //৯. গানগুলো রেন্ডার করো
         renderSongs();
     }
-
     function renderSongs() {
         songListDiv.innerHTML = '';
         const filtered = allSongs.filter(s => s.cat === activeTab);
