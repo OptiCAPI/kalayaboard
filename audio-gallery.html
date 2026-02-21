@@ -410,6 +410,7 @@
 	    if (currentIdx === idx && audio.src !== "") {
 	        togglePlay(); 
 	        return;
+		}
         currentIdx = idx;
         const song = allSongs[idx];
         audio.src = getDirectLink(song.file);
