@@ -114,6 +114,7 @@
             background: white; color: var(--bg-violet);
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
         }
+        .play-btn:hover { transform: scale(1.1); }
         
         /* --- 2 Column Grid Style for Songs --- */
         .song-list-scroll {
@@ -154,7 +155,11 @@
             border-radius: 50%; border: none; font-size: 2.5rem;
             box-shadow: 0 0 35px rgba(255,255,255,0.4);
             transition: 0.3s;
+            animation: waveCall 2s infinite ease-in-out, buttonPulse 2s infinite;
+            cursor: pointer;
+            z-index: 10;
         }
+        
         .play-btn-main:hover { transform: scale(1.1); }
 
         .progress-custom {
@@ -164,7 +169,20 @@
         .progress-fill {
             height: 100%; background: linear-gradient(90deg, #00dbde, #fc00ff);
             width: 0%; border-radius: 10px; transition: 0.1s;
+        }/* বাটনটি ঢেউয়ের মতো দুলবে এবং ডাকবে */
+        @keyframes waveCall {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); } /* একটু ওপরে উঠবে এবং বড় হবে */
+            100% { transform: translateY(0) scale(1); }
         }
+        
+        /* চারপাশ দিয়ে গ্লো (Glow) ছড়াবে */
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        
     </style>
 </head>
 <body>
