@@ -325,6 +325,21 @@
     // ইনিশিয়াল লোড
     renderSongs(songs);
     audio.onended = nextSong;
+
+    // বাবল তৈরি (পুরানো কোড)
+    function createBubbles() {
+         const container = document.getElementById('bubbleContainer');
+         for(let i=0; i<15; i++) {
+             let b = document.createElement('div');
+              b.className = 'bubble';
+             let size = Math.random() * 60 + 20 + 'px';
+             b.style.width = size; b.style.height = size;
+             b.style.left = Math.random() * 100 + '%';
+              b.style.animationDelay = Math.random() * 5 + 's';
+              container.appendChild(b);
+         }
+    }
+     createBubbles();
 </script>
 
 </body>
