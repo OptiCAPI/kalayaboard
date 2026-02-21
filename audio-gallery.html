@@ -285,18 +285,23 @@
    // ১. আপনার নতুন সাজানো ক্যাটাগরি গ্রুপ (এখানে বারবার cat লিখতে হবে না)
 	const songCategories = {
 	    "ছড়া ও কবিতা": [
+			{ title: "হাট্টিমা টিম টিম ১", file: "https://res.cloudinary.com/dyrshitkf/video/upload/v1771690175/Hattima_tim_tim_1_ivloel.mp3", icon: "fa-bird" },
+			{ title: "আতা গাছে তোতা পাখি ১", file: "https://www.dropbox.com/scl/fi/88migeohmqr4adsukztyd/2.mp3?rlkey=6ze2v2zv3sb590jfx90ux6zvo&raw=1", icon: "fa-crow" },
+			{ title: "হাট্টিমা টিম টিম ২", file: "https://res.cloudinary.com/dyrshitkf/video/upload/v1771690151/hattima_tim_tim_2_zgjsd7.mp3", icon: "fa-bird" },
 	        { title: "ঐ দেখা যায় তালগাছ ১", file: "https://res.cloudinary.com/dyrshitkf/video/upload/v1771685201/%E0%A6%90_%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%BE_%E0%A6%AF%E0%A6%BE%E0%A7%9F_%E0%A6%A4%E0%A6%BE%E0%A6%B2_%E0%A6%97%E0%A6%BE%E0%A6%9B_version_1.mp3_gg5fyc.mp3", icon: "fa-tree" },
-	        { title: "আতা গাছে তোতা পাখি ১", file: "https://www.dropbox.com/scl/fi/88migeohmqr4adsukztyd/2.mp3?rlkey=6ze2v2zv3sb590jfx90ux6zvo&raw=1", icon: "fa-crow" },
 	        { title: "সকালে উঠিয়া আমি ১", file: "https://www.dropbox.com/scl/fi/ujwwml2hw933fq9p6ph8p/3.mp3?rlkey=r0s8ieeqo1286bw6n5j9vodij&raw=1", icon: "fa-tree" },
 	        { title: "ঐ দেখা যায় তালগাছে ২", file: "https://www.dropbox.com/scl/fi/eeb7g8rxda1kz5kaxrjtm/0i-dekha-jay-khokon-khokon.mp3?rlkey=o9r9tkfox2z0s056g8axhopst&raw=1", icon: "fa-tree" },
 	        { title: "আতা গাছে তোতা পাখি ২", file: 'https://www.dropbox.com/scl/fi/c82dqtlc6fkurl1cbszbq/.mp3?rlkey=bxy01uuio9rhwv7jd6tn6cjbm&raw=1', icon: "fa-crow" },
 	        { title: "সকালে উঠিয়া আমি ২", file: "https://www.dropbox.com/scl/fi/cbh6isqapepui5mh4dcs0/.mp3?rlkey=5zhwz6tn0yohh7652hakaptcx&raw=1", icon: "fa-tree" },
 	        { title: "সকালে উঠিয়া আমি ৩", file: "https://www.dropbox.com/scl/fi/2xtcqw0ldhjdls555dqr6/1.mp3?rlkey=ccregs94poybv0911esuslvcx&raw=1", icon: "fa-tree" },
-	        { title: "খোকন খোকন ডাক পাড়ি ২", file: "https://www.dropbox.com/scl/fi/5zvwsu6l0dl5thczq9f36/New-Project.mp3?rlkey=4rvqplzstksorkkyiog4l1h6h&raw=1", icon: "fa-tree" }
+			{ title: "খোকন খোকন ডাক পাড়ি ১", file: "https://res.cloudinary.com/dyrshitkf/video/upload/v1771693813/%E0%A6%96%E0%A7%8B%E0%A6%95%E0%A6%A8_%E0%A6%96%E0%A7%8B%E0%A6%95%E0%A6%A8_%E0%A6%A1%E0%A6%BE%E0%A6%95_%E0%A6%AA%E0%A6%BE%E0%A6%A1%E0%A6%BC%E0%A6%BF_%E0%A6%96%E0%A7%8B%E0%A6%95%E0%A6%A8_%E0%A6%AE%E0%A7%8B%E0%A6%A6%E0%A7%87%E0%A6%B0_%E0%A6%95%E0%A6%BE%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%A1%E0%A6%BC%E0%A6%BF_3_en27fc.mp3", icon: "fa-baby" },
+	        { title: "খোকন খোকন ডাক পাড়ি ২", file: "https://www.dropbox.com/scl/fi/5zvwsu6l0dl5thczq9f36/New-Project.mp3?rlkey=4rvqplzstksorkkyiog4l1h6h&raw=1", icon: "fa-baby" },
+			{ title: "দাদুর মাথায় টাক ছিল ১", file: "https://res.cloudinary.com/dyrshitkf/video/upload/v1771687066/Dadu_s_Bald_Head_Buzz_saqpxl.mp3", icon: "fa-man" },
+			{ title: "দাদুর মাথায় টাক ছিল ২", file: "https://res.cloudinary.com/dyrshitkf/video/upload/v1771687067/%E0%A6%A6%E0%A6%BE%E0%A6%A6%E0%A7%81%E0%A6%B0_%E0%A6%AE%E0%A6%BE%E0%A6%A5%E0%A6%BE%E0%A6%AF%E0%A6%BC_%E0%A6%9F%E0%A6%BE%E0%A6%95_%E0%A6%9B%E0%A6%BF%E0%A6%B2_%E0%A6%9F%E0%A6%BE%E0%A6%95_%E0%A6%9B%E0%A6%BF%E0%A6%B2_woe5bs.mp3", icon: "fa-man" }
 	    ],
 	    
 	    "দেশাত্মবোধক": [
-	        { title: "আমার সোনার বাংলা (জাতীয় সংগীত)", file: "https://www.dropbox.com/scl/fi/vawpwe9xs70cs37ow2356/Amar-sonar-bangla.mp3?rlkey=q3gszt18eahjti5jom1p6ivl3&raw=1", icon: "fa-flag-bd" },
+	        { title: "আমার সোনার বাংলা (জাতীয় সংগীত)", file: "https://www.dropbox.com/scl/fi/vawpwe9xs70cs37ow2356/Amar-sonar-bangla.mp3?rlkey=q3gszt18eahjti5jom1p6ivl3&raw=1", icon: "fa-flag" },
 	        { title: "আমি বাংলার গান গাই", file: "https://www.dropbox.com/scl/fi/s4eg9uy4rfptot5uuhd43/Ami-Banglar-Gan-Gai.mp3?rlkey=ft572jhkr43eoip2qqw5hq6i8&raw=1", icon: "fa-heart" },
 	        { title: "ও আমার বাংলা মা তোর", file: "https://www.dropbox.com/scl/fi/ozhssfk012ok5tk056gy3/Utpal-M-O-Amar-Bangla-Ma-Tor.mp3?rlkey=1dbf87ug6a8i48e0bl51szm11&raw=1", icon: "fa-heart" },
 	        { title: "জাতীয় সংগীত (মিউজিক)", file: "https://www.dropbox.com/scl/fi/4o8hw8kkkkwzuusqs1dzt/Amar-Shonar-Bangla-instu-mntal.mp3?rlkey=aqgwwmy4899wzwibkegujfu2t&raw=1", icon: "fa-heart" }
