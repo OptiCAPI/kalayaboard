@@ -17,7 +17,6 @@
             background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
             font-family: 'Hind Siliguri', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
             transition: 0.5s;
         }
 
@@ -37,53 +36,61 @@
             border: 8px solid #fff;
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             padding: 30px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 30px;
         }
 
-        .playing .visualizer { display: flex !important; }
-        .visualizer {
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 5px;
-            height: 50px;
+        /* ক্যাটাগরি ট্যাব স্টাইল */
+        .category-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 0;
             margin-bottom: 20px;
+            scrollbar-width: none;
         }
-        .bar { width: 8px; background: var(--current-theme); border-radius: 4px; animation: bounce 0.5s infinite alternate; }
-        @keyframes bounce { from { height: 10px; } to { height: 45px; } }
+        .category-scroll::-webkit-scrollbar { display: none; }
 
-        .btn-play {
-            width: 75px; height: 75px;
-            background: var(--current-theme);
-            border-radius: 50%;
-            border: none; color: white;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .cat-btn {
+            white-space: nowrap;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255,255,255,0.5);
+            color: #444;
+            font-weight: bold;
             transition: 0.3s;
         }
-        .btn-play:hover { transform: scale(1.1); }
-        .playing .btn-play { animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,71,87,0.5); } 70% { box-shadow: 0 0 0 20px rgba(255,71,87,0); } }
+        .cat-btn.active {
+            background: var(--current-theme);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
         .song-btn {
             background: #fff; border: none; border-radius: 20px;
-            padding: 15px; margin-bottom: 15px; width: 100%;
+            padding: 15px; margin-bottom: 12px; width: 100%;
             display: flex; align-items: center;
             transition: 0.3s; border-left: 8px solid #ddd;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
         }
-        .song-btn:hover { transform: translateX(10px); background: #fdfdfd; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .song-btn:hover { transform: translateX(10px); }
         .song-btn.active { border-left-color: var(--current-theme); background: #fff0f1; }
 
-        .progress-container { height: 12px; background: #eee; border-radius: 10px; margin: 20px 0; cursor: pointer; }
-        .progress-bar { height: 100%; background: var(--current-theme); width: 0%; border-radius: 10px; transition: 0.1s; }
-        
-        .list-title {
-            background: var(--current-theme); color: white;
-            padding: 10px 25px; border-radius: 50px;
-            display: inline-block; margin-bottom: 20px;
+        .visualizer {
+            display: none; align-items: flex-end; justify-content: center;
+            gap: 5px; height: 40px; margin-bottom: 15px;
         }
+        .playing .visualizer { display: flex; }
+        .bar { width: 6px; background: var(--current-theme); border-radius: 3px; animation: bounce 0.5s infinite alternate; }
+        @keyframes bounce { from { height: 5px; } to { height: 35px; } }
+
+        .progress-container { height: 10px; background: #eee; border-radius: 10px; margin: 20px 0; cursor: pointer; }
+        .progress-bar { height: 100%; background: var(--current-theme); width: 0%; border-radius: 10px; }
+
+        .btn-play { width: 65px; height: 65px; background: var(--current-theme); border-radius: 50%; border: none; color: white; font-size: 1.5rem; transition: 0.3s; }
     </style>
 </head>
 <body>
@@ -91,14 +98,13 @@
     <div class="bubbles" id="bubbleContainer"></div>
 
     <nav class="navbar navbar-dark py-3">
-        <div class="container d-flex justify-content-between">
-            <span class="navbar-brand fw-bold kids-font fs-2">🎶 গানের মেলা</span>
-            <div style="width: 45px;"></div>
+        <div class="container text-center">
+            <span class="navbar-brand fw-bold kids-font fs-2 mx-auto">🎶 গানের মেলা (জুকবক্স)</span>
         </div>
     </nav>
 
-    <div class="container mt-2">
-        <div class="row justify-content-center mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
             <div class="col-md-8 text-center">
                 <div class="player-card" id="playerArea">
                     <div class="visualizer">
@@ -109,54 +115,32 @@
                         <div class="bar" style="animation-delay: 0.1s"></div>
                     </div>
 
-                    <h2 id="display-title" class="kids-font fw-bold text-dark">একটি গান বেছে নাও!</h2>
-                    <p class="text-muted mb-4">১২নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</p>
-
+                    <h3 id="display-title" class="kids-font fw-bold">একটি গান বেছে নাও!</h3>
+                    
                     <div class="progress-container" onclick="seek(event)">
                         <div class="progress-bar" id="progressBar"></div>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-center gap-4 flex-wrap">
-                        <button class="btn btn-outline-secondary rounded-circle" onclick="stopAudio()"><i class="fas fa-stop"></i></button>
+                    <div class="d-flex align-items-center justify-content-center gap-3">
+                        <button class="btn btn-light rounded-circle" onclick="stopAudio()"><i class="fas fa-stop"></i></button>
                         <button class="btn-play shadow-lg" id="playBtn" onclick="togglePlay()"><i class="fas fa-play"></i></button>
-                        <button class="btn btn-outline-secondary rounded-circle" onclick="restart()"><i class="fas fa-redo"></i></button>
-                        
-                        <div class="d-flex align-items-center bg-light px-3 py-2 rounded-pill">
-                            <i class="fas fa-volume-up me-2 text-muted"></i>
-                            <input type="range" style="width:80px" min="0" max="1" step="0.1" value="1" oninput="changeVolume(this.value)">
-                        </div>
+                        <button class="btn btn-light rounded-circle" onclick="restart()"><i class="fas fa-redo"></i></button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h4 class="list-title kids-font"><i class="fas fa-music"></i> বাংলা গান ও ছড়া</h4>
-                <div id="bangla-list">
-                    <button class="song-btn" onclick="playSong('rhyme1.mp3', 'আতা গাছে তোতা পাখি (১)', this, '#2ecc71')">
-                        <i class="fas fa-play-circle text-success fs-3 me-3"></i> <b>আতা গাছে তোতা পাখি (১)</b>
-                    </button>
-                    <button class="song-btn" onclick="playSong('rhyme2.mp3', 'আতা গাছে তোতা পাখি (২)', this, '#2ecc71')">
-                        <i class="fas fa-play-circle text-success fs-3 me-3"></i> <b>আতা গাছে তোতা পাখি (২)</b>
-                    </button>
-                    <button class="song-btn" onclick="playSong('talgach1.mp3', 'তালগাছ (ভার্সন ১)', this, '#1abc9c')">
-                        <i class="fas fa-play-circle text-info fs-3 me-3"></i> <b>তালগাছ এক পায়ে দাঁড়িয়ে (১)</b>
-                    </button>
-                </div>
-            </div>
+        <div class="category-scroll" id="catTabs">
+            <button class="cat-btn active" onclick="filterSongs('all', this)">সব গান</button>
+            <button class="cat-btn" onclick="filterSongs('দেশাত্মবোধক', this)">দেশাত্মবোধক</button>
+            <button class="cat-btn" onclick="filterSongs('২১শে ফেব্রুয়ারি', this)">২১শে ফেব্রুয়ারি</button>
+            <button class="cat-btn" onclick="filterSongs('বিজয় দিবস', this)">বিজয় দিবস</button>
+            <button class="cat-btn" onclick="filterSongs('ছড়া ও অন্যান্য', this)">ছড়া ও অন্যান্য</button>
+        </div>
 
-            <div class="col-md-6">
-                <h4 class="list-title kids-font" style="background: #3498db;"><i class="fas fa-star"></i> English Rhymes</h4>
-                <div id="english-list">
-                    <button class="song-btn" onclick="playSong('twinkle-english1.mp3', 'Twinkle Twinkle', this, '#3498db')">
-                        <i class="fas fa-star text-primary fs-3 me-3"></i> <b>Twinkle Twinkle Little Star</b>
-                    </button>
-                    <button class="song-btn" onclick="playSong('head-soulder.mp3', 'Head & Shoulders', this, '#9b59b6')">
-                        <i class="fas fa-child fs-3 me-3" style="color:#9b59b6;"></i> <b>Head, Shoulders, Knees & Toes</b>
-                    </button>
+        <div class="row">
+            <div class="col-12" id="song-list-container">
                 </div>
-            </div>
         </div>
     </div>
 
@@ -164,15 +148,128 @@
 
     <script>
         const audio = document.getElementById('audioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const progBar = document.getElementById('progressBar');
-        const titleDisp = document.getElementById('display-title');
-        const playerArea = document.getElementById('playerArea');
-        const githubBase = "https://raw.githubusercontent.com/OptiCAPI/kalayaboard/main/audio/";
-        
+        const songContainer = document.getElementById('song-list-container');
+        const githubBase = "audio/"; // আপনার লোকাল অডিও ফোল্ডার
+
+        // গানের ডাটাবেস (Internal এবং Google Drive মিশ্রিত)
+        const allSongs = [
+            // ২১শে ফেব্রুয়ারি
+            { title: "আমার ভাইয়ের রক্তে রাঙানো", file: "21 February - Noble.mp3", cat: "২১শে ফেব্রুয়ারি", color: "#2c3e50" },
+            { title: "একুশে ফেব্রুয়ারি (ইন্সট্রুমেন্টাল)", file: "21 february (Instrumental).mp3", cat: "২১শে ফেব্রুয়ারি", color: "#2c3e50" },
+            { title: "পলাশ ডাকে কোকিল ডাকে", file: "Polash Dake Kokoil Dake (music.com.bd).mp3", cat: "২১শে ফেব্রুয়ারি", color: "#c0392b" },
+            { title: "ওরা আমার মুখের ভাষা", file: "https://drive.google.com/file/d/1vS8XG0_M6R8XG...", cat: "২১শে ফেব্রুয়ারি", color: "#2c3e50" },
+
+            // দেশাত্মবোধক
+            { title: "আমি বাংলার গান গাই", file: "Ami Banglar Gaan Gai (music.com.bd).mp3", cat: "দেশাত্মবোধক", color: "#27ae60" },
+            { title: "সালাম সালাম হাজার সালাম", file: "Salam Salam Hajar Salam.mp3", cat: "দেশাত্মবোধক", color: "#27ae60" },
+            { title: "ধনধান্য পুষ্প ভরা", file: "https://drive.google.com/file/d/19NpUB-zm-ddMcfRFQmt75_OIcrBokWXn/view", cat: "দেশাত্মবোধক", color: "#27ae60" },
+            { title: "জন্ম আমার ধন্য হলো মাগো", file: "https://drive.google.com/file/d/1...", cat: "দেশাত্মবোধক", color: "#27ae60" },
+
+            // বিজয় দিবস
+            { title: "বিজয় নিশান উড়ছে ওই", file: "https://drive.google.com/file/d/1...", cat: "বিজয় দিবস", color: "#d35400" },
+            { title: "সব কটা জানালা খুলে দাও না", file: "https://drive.google.com/file/d/1...", cat: "বিজয় দিবস", color: "#d35400" },
+            { title: "এক সাগর রক্তের বিনিময়ে", file: "https://drive.google.com/file/d/1...", cat: "বিজয় দিবস", color: "#d35400" },
+            { title: "মাগো ভাবনা কেন", file: "https://drive.google.com/file/d/1...", cat: "বিজয় দিবস", color: "#d35400" },
+
+            // ছড়া ও অন্যান্য
+            { title: "আতা গাছে তোতা পাখি (১)", file: "rhyme1.mp3", cat: "ছড়া ও অন্যান্য", color: "#8e44ad" },
+            { title: "আতা গাছে তোতা পাখি (২)", file: "rhyme2.mp3", cat: "ছড়া ও অন্যান্য", color: "#8e44ad" },
+            { title: "তালগাছ এক পায়ে দাঁড়িয়ে", file: "talgach2.mp3", cat: "ছড়া ও অন্যান্য", color: "#16a085" },
+            { title: "ঘুমপাড়ানি মাসি পিসি", file: "luluby.mp3", cat: "ছড়া ও অন্যান্য", color: "#2980b9" }
+        ];
+
         let currentBtn = null;
 
-        // বাবল তৈরি করা
+        // ড্রাইভ লিঙ্ককে ডিরেক্ট লিঙ্কে রূপান্তর করার ফাংশন
+        function getDirectLink(url) {
+            if (url.includes('drive.google.com')) {
+                let fileId = url.split('/d/')[1].split('/')[0];
+                return `https://drive.google.com/uc?export=download&id=${fileId}`;
+            }
+            return url.includes('http') ? url : githubBase + url;
+        }
+
+        // গান প্রদর্শন করার ফাংশন
+        function renderSongs(songs) {
+            songContainer.innerHTML = '';
+            songs.forEach(song => {
+                const btn = document.createElement('button');
+                btn.className = 'song-btn';
+                btn.onclick = () => playSong(song.file, song.title, btn, song.color);
+                btn.innerHTML = `
+                    <i class="fas fa-play-circle fs-3 me-3" style="color: ${song.color}"></i>
+                    <div class="text-start">
+                        <b class="d-block">${song.title}</b>
+                        <small class="text-muted">${song.cat}</small>
+                    </div>
+                `;
+                songContainer.appendChild(btn);
+            });
+        }
+
+        // ক্যাটাগরি ফিল্টার
+        function filterSongs(category, btn) {
+            // বাটন স্টাইল পরিবর্তন
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // গান ফিল্টার
+            if(category === 'all') {
+                renderSongs(allSongs);
+            } else {
+                const filtered = allSongs.filter(s => s.cat === category);
+                renderSongs(filtered);
+            }
+        }
+
+        function playSong(file, title, btn, color) {
+            const finalUrl = getDirectLink(file);
+            
+            if (audio.src === finalUrl) {
+                togglePlay();
+            } else {
+                audio.src = finalUrl;
+                audio.play();
+                document.getElementById('display-title').innerText = title;
+                document.documentElement.style.setProperty('--current-theme', color);
+                
+                if(currentBtn) currentBtn.classList.remove('active');
+                btn.classList.add('active');
+                currentBtn = btn;
+                updateUI(true);
+            }
+        }
+
+        // ইনিশিয়াল লোড
+        renderSongs(allSongs);
+
+        // বাকী ফাংশনগুলো আগের মতোই থাকবে (togglePlay, updateProgress, ইত্যাদি)
+        function togglePlay() {
+            if (!audio.src) return;
+            audio.paused ? audio.play() : audio.pause();
+            updateUI(!audio.paused);
+        }
+
+        function updateUI(playing) {
+            const playBtn = document.getElementById('playBtn');
+            playBtn.innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            playing ? playerArea.classList.add('playing') : playerArea.classList.remove('playing');
+        }
+
+        function updateProgress() {
+            if(audio.duration) {
+                document.getElementById('progressBar').style.width = (audio.currentTime / audio.duration) * 100 + '%';
+            }
+        }
+
+        function stopAudio() { audio.pause(); audio.currentTime = 0; updateUI(false); }
+        function restart() { audio.currentTime = 0; audio.play(); updateUI(true); }
+        function seek(e) {
+            let w = document.querySelector('.progress-container').clientWidth;
+            audio.currentTime = (e.offsetX / w) * audio.duration;
+        }
+
+        // বাবল তৈরি (পুরানো কোড)
         function createBubbles() {
             const container = document.getElementById('bubbleContainer');
             for(let i=0; i<15; i++) {
@@ -186,97 +283,6 @@
             }
         }
         createBubbles();
-
-        function playSong(file, title, btn, color) {
-            if (audio.src.includes(file)) {
-                togglePlay();
-            } else {
-                audio.src = githubBase + file;
-                audio.play();
-                titleDisp.innerText = title;
-                document.documentElement.style.setProperty('--current-theme', color);
-                
-                if(currentBtn) currentBtn.classList.remove('active');
-                btn.classList.add('active');
-                currentBtn = btn;
-                updateUI(true);
-            }
-        }
-
-        function togglePlay() {
-            if (!audio.src) return;
-            audio.paused ? audio.play() : audio.pause();
-            updateUI(!audio.paused);
-        }
-
-        function updateUI(playing) {
-            playBtn.innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-            playing ? playerArea.classList.add('playing') : playerArea.classList.remove('playing');
-        }
-
-        function updateProgress() {
-            if(audio.duration) {
-                progBar.style.width = (audio.currentTime / audio.duration) * 100 + '%';
-            }
-        }
-
-        function nextSong() {
-            let btns = Array.from(document.querySelectorAll('.song-btn'));
-            let idx = btns.indexOf(currentBtn);
-            if(idx < btns.length - 1) btns[idx+1].click();
-        }
-
-        function changeVolume(v) { audio.volume = v; }
-        function restart() { audio.currentTime = 0; audio.play(); updateUI(true); }
-        function stopAudio() { audio.pause(); audio.currentTime = 0; updateUI(false); }
-        function seek(e) {
-            let w = document.querySelector('.progress-container').clientWidth;
-            audio.currentTime = (e.offsetX / w) * audio.duration;
-        }
     </script>
-
-<style>
-    .kids-back-btn {
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        z-index: 9999;
-        background: linear-gradient(45deg, #FF4D6D, #FF8C42);
-        color: white;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
-        border: 4px solid white;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: bounceInUp 1.5s, heartbeat 2s infinite;
-        cursor: pointer;
-    }
-
-    .kids-back-btn:hover {
-        transform: scale(1.1) rotate(-15deg);
-        background: #006A4E;
-        color: white;
-        box-shadow: 0 10px 25px rgba(0, 106, 78, 0.5);
-    }
-
-    .kids-back-btn i {
-        font-size: 30px;
-    }
-
-    @keyframes heartbeat {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-        100% { transform: scale(1); }
-    }
-</style>
-
-<button onclick="window.history.back();" class="kids-back-btn" title="আগের পেজে ফিরে যাও">
-    <i class="fas fa-arrow-left"></i>
-</button>
 </body>
 </html>
