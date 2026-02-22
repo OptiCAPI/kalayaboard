@@ -142,7 +142,7 @@
                 grid-template-columns: 1fr;
             }
         }
-        
+        /* ১. সাধারণ অবস্থায় টাইটেল (Gradient Text) */
         .song-card {
             background: rgba(255, 255, 255, 0.07);
             border-radius: 20px; padding: 15px; 
@@ -154,12 +154,18 @@
             background: rgba(255, 255, 255, 0.15); 
             transform: translateY(-8px); /* ওপরের দিকে একটু উঠবে */
         }
+		/* ২. যখন গানটি বাজবে (Active State) */
         .song-card.active {
             background: linear-gradient(90deg, #ff00cc, #3333ff);
             border: 2px solid white;
             box-shadow: 0 0 20px rgba(255, 0, 204, 0.4);
         }
-
+		/* কার্ডের ভেতরে আইকনের রঙ */
+		.song-card .fs-3 i {
+		    background: linear-gradient(135deg, #fff 0%, #00dbde 100%);
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
         .play-btn-main {
             width: 85px; height: 85px; background: white; color: var(--bg-violet);
             border-radius: 50%; border: none; font-size: 2.5rem;
@@ -179,13 +185,13 @@
         .progress-fill {
             height: 100%; background: linear-gradient(90deg, #00dbde, #fc00ff);
             width: 0%; border-radius: 10px; transition: 0.1s;
-        }/* বাটনটি ঢেউয়ের মতো দুলবে এবং ডাকবে */
+        }
+		/* বাটনটি ঢেউয়ের মতো দুলবে এবং ডাকবে */
         @keyframes waveCall {
             0% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-10px) scale(1.05); } /* একটু ওপরে উঠবে এবং বড় হবে */
             100% { transform: translateY(0) scale(1); }
         }
-        
         /* চারপাশ দিয়ে গ্লো (Glow) ছড়াবে */
         @keyframes buttonPulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
