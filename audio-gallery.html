@@ -27,7 +27,32 @@
         }
 
         .kids-font { font-family: 'Atma', cursive; }
-
+        
+        /* প্রতিটি অক্ষরের বেসিক স্টাইল */
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s ease-out;
+            font-weight: bold;
+        }
+        /* যখন অ্যানিমেশন হয়ে অক্ষরটি দেখাবে */
+        .letter.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ৩টি আলাদা উজ্জ্বল রঙের প্যালেট */
+        .letter:nth-child(4n+1) { color: #FFD700; } /* সোনালী */
+        .letter:nth-child(4n+2) { color: #00FFCC; } /* ফিরোজা */
+        .letter:nth-child(4n+3) { color: #FF69B4; } /* গোলাপি */
+        .letter:nth-child(4n+4) { color: #00DBDE; } /* নীল */
+        
+        /* আগের গ্লো অ্যানিমেশনটি সরিয়ে শুধু সাধারণ রাখা হয়েছে */
+        .animated-letter {
+            display: inline-block;
+            /* এখানে আর কোনো filter বা drop-shadow নেই */
+        }
         /* --- জাদুকরী ইমোজি বাবল স্টাইল --- */
         .bubbles-container {
             position: fixed;
@@ -242,7 +267,7 @@
 
 <div class="container py-4">
     <div class="text-center mb-4">
-        <h1 class="kids-font highlight-text display-4">✨ জাদুকরী গানের মেলা</h1>
+        <h1 class="kids-font highlight-text display-4" id="animatedTitle">✨ জাদুকরী গানের মেলা</h1>
         <p class="opacity-75 fs-5">১২নং কালাইয়া বোর্ড সপ্রাবি</p>
         
         <div class="mt-3">
@@ -285,6 +310,34 @@
 <audio id="mainAudio" ontimeupdate="updateProgress()" onended="nextSong()"></audio>
 
 <script>
+    window.onload = function() {
+      const title = document.getElementById('animatedTitle');
+      const text = title.innerText;
+      title.innerHTML = ''; // অরিজিনাল টেক্সট মুছে ফেলা
+  
+      // Intl.Segmenter ব্যবহার করে কার চিহ্নসহ অক্ষর ভাগ করা
+      const segmenter = new Intl.Segmenter('bn', { granularity: 'grapheme' });
+      const segments = Array.from(segmenter.segment(text));
+  
+      segments.forEach((segment, index) => {
+          const char = segment.segment;
+          const span = document.createElement('span');
+          span.innerText = char === " " ? "\u00A0" : char; 
+          span.className = 'letter';
+          title.appendChild(span);
+  
+          // একটু সময় বিরতি দিয়ে একটির পর একটি অক্ষর দেখানো
+          setTimeout(() => {
+              span.classList.add('show');
+              // শুধু অক্ষরের ওপর অ্যানিমেশন হবে, স্পেস বা ইমোজিতে নয়
+              if(char.trim() !== "" && char !== "✨") span.classList.add('animated-letter');
+          }, index * 150); // স্লো নেটে সুন্দর দেখানোর জন্য ১৫০ms গ্যাপ
+      });
+      
+      // আগের বাবল এবং গান রেন্ডার ফাংশনগুলো কল করা
+      createBubbles();
+      renderSongs();
+  };
     const audio = document.getElementById('mainAudio');
     const songListDiv = document.getElementById('songList');
 
