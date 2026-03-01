@@ -488,11 +488,21 @@
         renderSongs();
     }
 
-    function togglePlay() {
-        if(currentIdx === -1) { playSong(0); return; }
-        audio.paused ? audio.play() : audio.pause();
-        updateUI(!audio.paused);
-    }
+    // ২. বর্তমান ট্যাব অনুযায়ী প্রথম গান প্লে করার লজিক
+	function togglePlay() {
+	    if (currentIdx === -1) {
+	        // বর্তমানে যে ট্যাবটি সিলেক্ট করা আছে, তার গানগুলো ফিল্টার করা
+	        const filteredSongs = allSongs.filter(s => s.cat === activeTab);
+	        if (filteredSongs.length > 0) {
+	            // ফিল্টার করা গানের প্রথম গানটির আসল ইনডেক্স খুঁজে বের করা
+	            const firstSongIdx = allSongs.indexOf(filteredSongs[0]);
+	            playSong(firstSongIdx);
+	        }
+	        return;
+	    }
+	    audio.paused ? audio.play() : audio.pause();
+	    updateUI(!audio.paused);
+	}
 
     function updateUI(playing) {
         document.getElementById('masterPlay').innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
