@@ -71,16 +71,20 @@
                     <div class="office-use">
                         <div class="fw-bold text-danger mb-3"><i class="fas fa-laptop-house me-2"></i> অফিস কর্তৃক পূরণীয় (For Office Use Only)</div>
                         <div class="row g-3">
-                            <div class="col-md-3">
-                                <label class="form-label">ভর্তি নম্বর</label>
-                                <input type="text" id="office_admission_no" class="form-control" placeholder="অফিস পূরণ করবে"disabled>
+                            <div class="col-md-4">
+                                <label class="form-label">আবেদন নম্বর</label>
+                                <input type="text" id="office_admission_no" class="form-control form-control-sm" placeholder="অটো জেনারেট হবে"readonly>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">ভর্তির তারিখ</label>
-                                <input type="date" id="office_admission_date" class="form-control"disabled>
+                                <label class="form-label">ভর্তির তারিখ (Admission Date)</label>
+                                <input type="date" id="office_admission_date" class="form-control form-control-sm"disabled>
                             </div>
+							<div class="col-md-4">
+					            <label class="form-label">ভর্তি রোল নম্বর (Admission Roll)</label>
+					            <input type="text" id="office_roll" class="form-control form-control-sm" placeholder="অফিস পূরণ করবে" disabled>
+					        </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label">ভর্তিকৃত শ্রেণি</label>
                                 <select id="office_class" class="form-select"disabled>
                                     <option value="" selected>নির্বাচন করুন</option>
@@ -94,7 +98,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label">শিক্ষাবর্ষ</label>
                                 <select id="office_year" class="form-select"disabled>
                                     <option>২০২৩</option>
@@ -104,17 +108,14 @@
                                     <option selected>২০২৭</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label">শ্রেণি রোল</label>
-                                <input type="text" id="office_roll" class="form-control" placeholder="রোল নম্বর"disabled>
-                            </div>
+
                             <div class="col-md-4">
                                 <label class="form-label">শাখা</label>
-                                <input type="text" id="office_section" class="form-control" placeholder="যেমন: ক, খ বা প্রযোজ্য নয়"disabled>
+                                <input type="text" id="office_section" class="form-control form-control-sm" placeholder="যেমন: ক, খ বা প্রযোজ্য নয়"disabled>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">দায়িত্বপ্রাপ্ত শিক্ষকের স্বাক্ষর</label>
-                                <input type="file" id="office_signature" class="form-control" accept="image/*,.pdf"disabled>
+                                <input type="file" id="office_signature" class="form-control form-control-sm" accept="image/*,.pdf"disabled>
                             </div>
                         </div>
                     </div>
@@ -993,14 +994,101 @@ if (disabilitySelect) {
 }
 
 
-// ৫. ফর্ম সাবমিশন ও পুর্ণাঙ্গ ডেটা পাঠানো হ্যান্ডলার
+// ==========================================
+// ১. পৃষ্ঠা লোড হওয়ার সময় অ্যাডমিন মোড চেক করার লজিক
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // যদি ইমেইলের লিঙ্কে mode=admin থাকে
+    if (urlParams.get('mode') === 'admin') {
+        
+        // অফিস সেকশনের ফিল্ডগুলো এনাবল (Enable) করুন
+        if(document.getElementById('office_roll')) document.getElementById('office_roll').disabled = false;
+        if(document.getElementById('office_date')) document.getElementById('office_date').disabled = false;
+        
+        // ইউআরএল (URL) থেকে শিক্ষার্থীর সব ডেটা স্বয়ংক্রিয়ভাবে ফর্মে রি-পপুলেট (Auto-fill) করুন
+        urlParams.forEach((value, key) => {
+            const element = document.getElementById(key);
+            if (element) {
+                element.value = value;
+                // ডায়নামিক শো/হাইড লজিক (যেমন রোগ বা টিকা) থাকলে তা সচল করার জন্য
+                element.dispatchEvent(new Event('change'));
+            }
+        });
+        
+        // জেন্ডার রেডিও বাটনটি ফিল করুন
+        const genderVal = urlParams.get('gender_val');
+        if (genderVal) {
+            const radio = document.querySelector(`input[name="gender"][value="${genderVal}"]`);
+            if (radio) radio.checked = true;
+        }
+        
+        // সিরিয়াল নম্বরটি অফিস সিরিয়াল ইনপুটে বসান
+        if (urlParams.get('serial') && document.getElementById('office_serial')) {
+            document.getElementById('office_serial').value = urlParams.get('serial');
+        }
+        
+        // সাবমিট বাটনের টেক্সট পরিবর্তন করে প্রিন্ট করার উপযোগী করুন
+        const btn = document.getElementById('submitBtn');
+        if (btn) {
+            btn.innerHTML = 'অফিস কপি প্রিন্ট করুন (Print Office Copy)';
+        }
+    }
+});
+
+
+// ==========================================
+// ২. ফর্ম সাবমিশন ও পুর্ণাঙ্গ ডেটা পাঠানো হ্যান্ডলার
+// ==========================================
 document.getElementById('admissionForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // [অ্যাডমিন মোড চেকিং]: যদি অলরেডি অ্যাডমিন মোডে থাকা অবস্থায় বাটনে চাপ দেওয়া হয়, তবে শুধু প্রিন্ট হবে
+    if (urlParams.get('mode') === 'admin') {
+        window.print();
+        return; 
+    }
+
+    // --- সাধারণ শিক্ষার্থীর আবেদন প্রক্রিয়া শুরু ---
     const btn = document.getElementById('submitBtn');
     btn.innerHTML = 'প্রক্রিয়াধীন... (Processing...)';
     btn.disabled = true;
 
+    // ১. ইউনিক সিরিয়াল নম্বর জেনারেট করা (যেমন: KB-2026-843921)
+    const currentYear = new Date().getFullYear();
+    const randomNumber = Math.floor(100000 + Math.random() * 900000);
+    const serialNumber = `KB-${currentYear}-${randomNumber}`;
+
+    // ২. অ্যাডমিন লিঙ্কের জন্য কুয়েরি প্যারামিটার তৈরি করা (সব ইনপুটের আইডি ও ভ্যালুসহ)
+    const queryParams = new URLSearchParams();
+    queryParams.set('mode', 'admin');
+    queryParams.set('serial', serialNumber);
+    
+    // ফর্মের সব টেক্সট/সিলেন্ট ইনপুটগুলোর আইডি ও ডেটা ইউআরএল-এ যুক্ত করা
+    const allInputs = document.querySelectorAll('#admissionForm input, #admissionForm select');
+    allInputs.forEach(input => {
+        if (input.id && input.value && input.type !== 'radio' && input.type !== 'submit' && input.type !== 'button') {
+            queryParams.set(input.id, input.value);
+        }
+    });
+    
+    // জেন্ডার রেডিও বাটন আলাদাভাবে যুক্ত করা
+    const checkedGender = document.querySelector('input[name="gender"]:checked');
+    if (checkedGender) {
+        queryParams.set('gender_val', checkedGender.value);
+    }
+    
+    // ফাইনাল ডাইনামিক অ্যাডমিন লিঙ্ক তৈরি
+    const adminLink = window.location.origin + window.location.pathname + '?' + queryParams.toString();
+
+    // ৩. EmailJS এর জন্য অবজেক্ট তৈরি করা
+    const params = {
+        serial_no: serialNumber,       // ইমেইলে সিরিয়াল দেখানোর জন্য
+        admin_link: adminLink,         // ইমেইলে ক্লিক করার লিঙ্ক হিসেবে যাবে
+		
     // এখানে আপনার সব ডেটা পুর্ণাঙ্গভাবে ইমেইলের জন্য অবজেক্ট তৈরি করছে
     const params = {
         student_name: document.getElementById('student_name_bn').value,
@@ -1078,34 +1166,37 @@ document.getElementById('admissionForm').addEventListener('submit', function(eve
 	    other_date: document.getElementById('other_v_date')?.value || 'প্রযোজ্য নয়'
 	};
 
-        // EmailJS সার্ভিস কল
-        emailjs.send("service_kalaya", "template_2ra5c35", params)
-            .then(function() {
-                Swal.fire({
-                    title: 'সফল হয়েছে! (Success!)',
-                    text: 'আবেদনটি সফলভাবে সাবমিট করা হয়েছে। প্রিন্ট করতে ওকে বাটনে চাপুন।',
-                    icon: 'success',
-                    confirmButtonColor: '#006A4E',
-                    confirmButtonText: 'ওকে, প্রিন্ট করুন (OK, Print)'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.print(); // অটোমেটিক প্রিন্ট উইন্ডো ওপেন হবে
-                    }
-                });
-                
-                btn.innerHTML = 'আবেদন সম্পন্ন করুন (Submit Application)';
-                btn.disabled = false;
-            }, function(error) {
-                console.error("EmailJS Error:", error);
-                Swal.fire({
-                    title: 'ত্রুটি ঘটেছে! (Error!)',
-                    text: 'দুঃখিত, অভ্যন্তরীণ সমস্যার কারণে আবেদনটি পাঠানো যায়নি। কন্সোল চেক করুন।',
-                    icon: 'error'
-                });
-                btn.innerHTML = 'আবেদন সম্পন্ন করুন (Submit Application)';
-                btn.disabled = false;
+// EmailJS সার্ভিস কল
+    emailjs.send("service_kalaya", "template_2ra5c35", params)
+        .then(function() {
+            // সফল হলে অভিনন্দন বার্তা, সিরিয়াল নম্বর ও প্রিন্ট অপশন দেখানো
+            Swal.fire({
+                title: 'অভিনন্দন! আপনার আবেদনটি সফল হয়েছে।',
+                html: `<div class="alert alert-success"><strong>আবেদন সিরিয়াল নম্বর: ${serialNumber}</strong></div>
+                       <p>ভবিষ্যতের জন্য সিরিয়াল নম্বরটি সংরক্ষণ করুন। ফর্মটি প্রিন্ট করতে নিচের বাটনে চাপুন।</p>`,
+                icon: 'success',
+                confirmButtonColor: '#006A4E',
+                confirmButtonText: 'ওকে, প্রিন্ট করুন (Print Form)'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.print(); // স্টুডেন্টের জন্য অটোমেটিক প্রিন্ট উইন্ডো ওপেন হবে
+                }
             });
-    });
+            
+            document.getElementById('admissionForm').reset(); // ফর্ম রিসেট
+            btn.innerHTML = 'আবেদন সম্পন্ন করুন (Submit Application)';
+            btn.disabled = false;
+        }, function(error) {
+            console.error("EmailJS Error:", error);
+            Swal.fire({
+                title: 'ত্রুটি ঘটেছে! (Error!)',
+                text: 'দুঃখিত, অভ্যন্তরীণ সমস্যার কারণে আবেদনটি পাঠানো যায়নি। কন্সোল চেক করুন।',
+                icon: 'error'
+            });
+            btn.innerHTML = 'আবেদন সম্পন্ন করুন (Submit Application)';
+            btn.disabled = false;
+        });
+});
 </script>
 
 </body>
