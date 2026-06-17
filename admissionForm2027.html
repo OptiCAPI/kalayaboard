@@ -1175,10 +1175,13 @@
             vaccine_other: document.querySelector('input[name="other_v"]:checked')?.value || 'না',
             other_date: document.getElementById('other_v_date')?.value || 'প্রযোজ্য নয়'
         };
-
-		// ফর্ম সাবমিট হ্যান্ডলার ফাংশনের ভেতরে:
-	function handleFormSubmit(event) {
-	    event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করতে
+			// 💡 গুরুত্বপূর্ণ: অটো-রিপ্লাই সচল করতে অভিভাবকের ইমেইল আইডি এখানে ম্যাপ করতে হবে।
+            // (ধরে নিচ্ছি আপনার ফর্মে ইমেইলের ইনপুট আইডি 'applicant_email', যদি অন্য কিছু হয় তবে তা বসিয়ে দিন)
+            email: document.getElementById('applicant_email')?.value || 'info@school.com' 
+        };
+			// ফর্ম সাবমিট হ্যান্ডলার ফাংশনের ভেতরে:
+		function handleFormSubmit(event) {
+		    event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করতে
 	
 	    // ১. আপনার লজিক অনুযায়ী সিরিয়াল ও অ্যাডমিন লিংক তৈরি করুন
 	    const generatedSerialNo = "KB-2027-" + Math.floor(100000 + Math.random() * 900000);
@@ -1192,15 +1195,13 @@
 	        email: document.getElementById("applicant_email_field_id").value // আবেদনকারীর ইমেইল (যার কাছে অটো-রিপ্লাই যাবে)
 	    };
 
-        // EmailJS সার্ভিস কল
-        emailjs.send("service_kalaya", "template_2ra5c35", templateParams)
+// EmailJS সার্ভিস কল
+        emailjs.send("service_kalaya", "template_2ra5c35", params)
             .then(function() {
-				console.log('SUCCESS!', response.status, response.text);
-				// সফল হলে SweetAlert2 নোটিফিকেশন
                 Swal.fire({
                     title: 'অভিনন্দন! আপনার আবেদনটি সফল হয়েছে।',
-                    html: `<div class="alert alert-success"><strong> আপনার সিরিয়াল নম্বর: ${serialNumber}</strong></div>
-                           <p>ভবিষ্যতের জন্য সিরিয়াল নম্বরটি সংরক্ষণ করুন। ফর্মটি প্রিন্ট করতে নিচের বাটনে চাপুন।</p>`,
+                    html: `<div class="alert alert-success"><strong>আপনার সিরিয়াল নম্বর: ${serialNumber}</strong></div>
+                           <p>ভবিষ্যতের জন্য সিরিয়াল নম্বরটি সংরক্ষণ করুন। ফর্মটি প্রিন্ট করতে নিচের বাটনে চাপুন。</p>`,
                     icon: 'success',
                     confirmButtonColor: '#006A4E',
                     confirmButtonText: 'ওকে, প্রিন্ট করুন (Print Form)'
@@ -1218,13 +1219,13 @@
                 Swal.fire({
                     title: 'দুঃখিত! (Error!)',
                     text: 'কারিগরি ত্রুটির কারণে ইমেইল পাঠানো যায়নি। আবার চেষ্টা করুন।',
-                    icon: 'error'
+                    icon: 'error',
+                    confirmButtonText: 'ঠিক আছে' // এখানে সঠিকভাবে অবজেক্টের ভেতরে আনা হয়েছে
                 });
-                confirmButtonText: 'ঠিক আছে'
+                btn.innerHTML = 'আবেদন সম্পন্ন করুন';
                 btn.disabled = false;
             });
     });
-
 </script>
 </body>
 </html>
