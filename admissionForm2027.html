@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ভর্তি আবেদন - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
+    <title>ভর্তি আবেদন (Admission Form) - কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -14,29 +14,22 @@
         .form-header { text-align: center; margin-bottom: 40px; position: relative; }
         .form-header h2 { color: #006A4E; font-weight: 700; }
         .section-title { background: #e8f5e9; color: #006A4E; padding: 10px 20px; border-radius: 10px; font-weight: 600; margin-top: 35px; margin-bottom: 20px; border-left: 5px solid #FFB800; }
-        .form-label { font-weight: 600; color: #444; margin-bottom: 5px; }
-        .form-control, .form-select { border-radius: 12px; padding: 12px; border: 1px solid #ddd; transition: 0.3s; }
+        .form-label { font-weight: 600; color: #444; margin-bottom: 5px; font-size: 14px; }
+        .form-control, .form-select { border-radius: 12px; padding: 12px; border: 1px solid #ddd; transition: 0.3s; font-size: 14px; }
         .form-control:focus, .form-select:focus { border-color: #006A4E; box-shadow: 0 0 0 0.25rem rgba(0, 106, 78, 0.1); }
-        
-        /* টেবিল স্টাইল */
-        .table-custom { width: 100%; border-collapse: collapse; margin-top: 10px; border-radius: 12px; overflow: hidden; }
-        .table-custom th { background-color: #006A4E; color: white; padding: 12px; border: 1px solid #006A4E; text-align: center; }
-        .table-custom td { padding: 12px; border: 1px solid #dee2e6; vertical-align: middle; text-align: center; }
         
         .photo-box { border: 2px dashed #006A4E; width: 150px; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 15px; margin: 0 auto; background: #fafafa; color: #666; font-size: 14px; text-align: center; padding: 10px; }
         .btn-submit { background: #006A4E; color: white; padding: 15px 40px; border-radius: 50px; font-weight: 700; border: none; width: 100%; font-size: 18px; transition: 0.4s; }
         .btn-submit:hover { background: #004d39; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .office-use { background-color: #fffde7; border: 2px dashed #FFB800; border-radius: 20px; padding: 25px; margin-bottom: 30px; }
 
-        /* প্রিন্ট অপটিমাইজেশন সিএসএস */
         @media print {
             body { background-color: #fff; color: #000; font-size: 14px; }
             .form-container { box-shadow: none; padding: 0; margin: 0; border: none; }
-            .btn-submit, input[type="file"], .photo-box input, .section-title .fas, .form-check-input { display: none !important; }
-            .form-control, .form-select { border: 1px solid #000 !important; background: transparent !important; color: #000 !important; border-radius: 5px !important; padding: 6px !important; }
-            .section-title { background: #f0f0f0 !important; color: #006A4E !important; border-left: 5px solid #006A4E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 5px 10px !important; margin-top: 20px !important; }
-            .office-use { background-color: #fff !important; border: 2px dashed #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 15px !important; }
-            .photo-box { border: 2px solid #000 !important; background: transparent !important; }
+            .btn-submit, input[type="file"], .photo-box input { display: none !important; }
+            .form-control, .form-select { border: 1px solid #000 !important; background: transparent !important; color: #000 !important; }
+            .section-title { background: #f0f0f0 !important; color: #006A4E !important; border-left: 5px solid #006A4E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .office-use { background-color: #fff !important; border: 2px dashed #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
@@ -53,15 +46,15 @@
                     </div>
                     <div class="col-md-8 text-center">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" width="60" alt="Govt Logo" class="mb-3">
-                        <h6>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</h6>
+                        <h6>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার (Government of the People's Republic of Bangladesh)</h6>
                         <h6>সরকারি প্রাথমিক বিদ্যালয়ের ভর্তি ফরম (অভিন্ন)</h6>
                         <h2>কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
                         <h5 class="text-muted mb-1">জিয়ানগর, পিরোজপুর | স্থাপিত: ১৯৩০ খ্রি.</h5>
-                        <p class="small text-secondary">ইএমআইএস কোড- ৯১৫০২০৩১০০১  |  বিদ্যালয় কোড: ১৪৩৩২৩</p>
+                        <p class="small text-secondary">ইএমআইএস কোড- ৯১৫০২০৩১০০১  |  विद्यालय কোড: ১৪৩৩২৩</p>
                     </div>
                     <div class="col-md-2 text-center">
                         <div class="photo-box mb-3">
-                            <div><i class="fas fa-user-plus me-1"></i> শিক্ষার্থীর ছবি</div>
+                            <div><i class="fas fa-user-plus me-1"></i> শিক্ষার্থীর ছবি<br>(Student Photo)</div>
                             <input type="file" id="student_photo" class="form-control mt-2 form-control-sm" accept="image/*" required>
                         </div>
                     </div>
@@ -70,21 +63,20 @@
                 <form id="admissionForm">
 
                     <div class="office-use">
-                        <div class="fw-bold text-danger mb-3"><i class="fas fa-laptop-house me-2"></i> ৭. অফিস কর্তৃক পূরণীয় (For Office Use Only)</div>
+                        <div class="fw-bold text-danger mb-3"><i class="fas fa-laptop-house me-2"></i> অফিস কর্তৃক পূরণীয় (For Office Use Only)</div>
                         <div class="row g-3">
                             <div class="col-md-3">
-                                <label class="form-label">ভর্তি নম্বর</label>
+                                <label class="form-label">ভর্তি নম্বর (Admission No.)</label>
                                 <input type="text" id="office_admission_no" class="form-control" placeholder="অফিস পূরণ করবে">
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">ভর্তির তারিখ</label>
+                                <label class="form-label">ভর্তির তারিখ (Admission Date)</label>
                                 <input type="date" id="office_admission_date" class="form-control">
                             </div>
-
                             <div class="col-md-3">
-                                <label class="form-label">ভর্তিকৃত শ্রেণি</label>
+                                <label class="form-label">ভর্তিকৃত শ্রেণি (Admitted Class)</label>
                                 <select id="office_class" class="form-select">
-                                    <option value="" selected>নির্বাচন করুন</option>
+                                    <option value="" selected>নির্বাচন করুন / Select</option>
                                     <option>প্রাক-প্রাথমিক ৪+</option>
                                     <option>প্রাক-প্রাথমিক ৫+</option>
                                     <option>প্রথম শ্রেণি</option>
@@ -94,44 +86,42 @@
                                     <option>পঞ্চম শ্রেণি</option>
                                 </select>
                             </div>
-
                             <div class="col-md-3">
-                                <label class="form-label">শিক্ষাবর্ষ</label>
+                                <label class="form-label">শিক্ষাবর্ষ (Academic Year)</label>
                                 <select id="office_year" class="form-select">
-                                    <option>২০২৩</option>
-                                    <option>২০২৪</option>
                                     <option>২০২৫</option>
                                     <option>২০২৬</option>
                                     <option selected>২০২৭</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">শ্রেণি রোল</label>
+                                <label class="form-label">শ্রেণি রোল (Class Roll)</label>
                                 <input type="text" id="office_roll" class="form-control" placeholder="রোল নম্বর">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">শাখা</label>
+                                <label class="form-label">শাখা (Section)</label>
                                 <input type="text" id="office_section" class="form-control" placeholder="যেমন: ক, খ বা প্রযোজ্য নয়">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">দায়িত্বপ্রাপ্ত শিক্ষকের স্বাক্ষর আপলোড</label>
+                                <label class="form-label">দায়িত্বপ্রাপ্ত শিক্ষকের স্বাক্ষর (Teacher's Signature)</label>
                                 <input type="file" id="office_signature" class="form-control" accept="image/*,.pdf">
                             </div>
                         </div>
                     </div>
 
-                    <div class="section-title"><i class="fas fa-file-alt me-2"></i> ১. যে শ্রেণিতে ভর্তি হতে ইচ্ছুক</div>
+                    <div class="section-title"><i class="fas fa-graduation-cap me-2"></i> ১. যে শ্রেণিতে ভর্তি হতে ইচ্ছুক (Desired Class for Admission)</div>
                     <div class="row g-3">
                         <div class="col-md-4">
+                            <label class="form-label">শ্রেণি নির্বাচন করুন (Select Class) <span class="text-danger">*</span></label>
                             <select id="desired_class" class="form-select" required>
-                                <option value="" selected>শ্রেণি নির্বাচন করুন</option>
-                                <option>প্রাক-প্রাথমিক ৪+</option>
-                                <option>প্রাক-প্রাথমিক ৫+</option>
-                                <option>প্রথম শ্রেণি</option>
-                                <option>দ্বিতীয় শ্রেণি</option>
-                                <option>তৃতীয় শ্রেণি</option>
-                                <option>চতুর্থ শ্রেণি</option>
-                                <option>পঞ্চম শ্রেণি</option>
+                                <option value="" selected>নির্বাচন করুন / Select</option>
+                                <option value="প্রাক-প্রাথমিক ৪+">প্রাক-প্রাথমিক ৪+</option>
+                                <option value="প্রাক-প্রাথমিক ৫+">প্রাক-প্রাথমিক ৫+</option>
+                                <option value="প্রথম শ্রেণি">প্রথম শ্রেণি</option>
+                                <option value="দ্বিতীয় শ্রেণি">দ্বিতীয় শ্রেণি</option>
+                                <option value="তৃতীয় শ্রেণি">Layout তৃতীয় শ্রেণি</option>
+                                <option value="চতুর্থ শ্রেণি">চতুর্থ শ্রেণি</option>
+                                <option value="পঞ্চম শ্রেণি">পঞ্চম শ্রেণি</option>
                             </select>
                         </div>
                     </div>
@@ -139,48 +129,48 @@
                     <div class="section-title"><i class="fas fa-id-card me-2"></i> ২. সাধারণ তথ্য (General Information)</div>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label">শিক্ষার্থীর নাম (বাংলায়)</label>
+                            <label class="form-label">शिक्षার্থীর নাম (বাংলায়) / Student's Name (In Bangla) <span class="text-danger">*</span></label>
                             <input type="text" id="student_name_bn" class="form-control" required placeholder="উদাঃ আবদুর রহমান">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">শিক্ষার্থীর নাম (ইংরেজিতে বড় অক্ষরে)</label>
+                            <label class="form-label">শিক্ষার্থীর নাম (ইংরেজিতে বড় অক্ষরে) / Student's Name (English Block Letters) <span class="text-danger">*</span></label>
                             <input type="text" id="student_name_en" class="form-control" required placeholder="Ex: ABDUR RAHMAN">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">জন্ম নিবন্ধন নম্বর</label>
+                            <label class="form-label">জন্ম নিবন্ধন নম্বর (Birth Registration No.) <span class="text-danger">*</span></label>
                             <input type="text" id="birth_reg_no" class="form-control" required placeholder="১৭ ডিজিটের নম্বর">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">জন্ম তারিখ</label>
+                            <label class="form-label">জন্ম তারিখ (Date of Birth) <span class="text-danger">*</span></label>
                             <input type="date" id="birth_date" class="form-control" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">বয়স (ভর্তিকালীন)</label>
+                            <label class="form-label">বয়স (ভর্তিকালীন) / Age (At Admission)</label>
                             <div class="input-group">
-                                <input type="number" id="age_years" class="form-control" placeholder="বছর">
-                                <input type="number" id="age_months" class="form-control" placeholder="মাস">
+                                <input type="number" id="age_years" class="form-control" placeholder="বছর (Years)">
+                                <input type="number" id="age_months" class="form-control" placeholder="মাস (Months)">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">লিঙ্গ</label>
+                            <label class="form-label">লিঙ্গ (Gender) <span class="text-danger">*</span></label>
                             <div class="d-flex gap-3 pt-2">
-                                <div class="form-check"><input class="form-check-input" type="radio" name="gender" id="g1" value="ছেলে" required><label class="form-check-label" for="g1">ছেলে</label></div>
-                                <div class="form-check"><input class="form-check-input" type="radio" name="gender" id="g2" value="মেয়ে"><label class="form-check-label" for="g2">মেয়ে</label></div>
-                                <div class="form-check"><input class="form-check-input" type="radio" name="gender" id="g3" value="অন্যান্য"><label class="form-check-label" for="g3">অন্যান্য</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="gender" id="g1" value="ছেলে" required><label class="form-check-label" for="g1">ছেলে (Male)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="gender" id="g2" value="মেয়ে"><label class="form-check-label" for="g2">মেয়ে (Female)</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="gender" id="g3" value="অন্যান্য"><label class="form-check-label" for="g3">অন্যান্য (Other)</label></div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">ধর্ম</label>
+                            <label class="form-label">ধর্ম (Religion)</label>
                             <select id="religion" class="form-select">
-                                <option>ইসলাম</option>
-                                <option>हिंदू</option>
-                                <option>খ্রিস্টান</option>
-                                <option>বৌদ্ধ</option>
-                                <option selected>অন্যান্য</option>
+                                <option>ইসলাম (Islam)</option>
+                                <option>হিন্দু (Hindu)</option>
+                                <option>খ্রিস্টান (Christian)</option>
+                                <option>বৌদ্ধ (Buddhist)</option>
+                                <option selected>অন্যান্য (Others)</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">জাতীয়তা</label>
+                            <label class="form-label">জাতীয়তা (Nationality)</label>
                             <input type="text" id="nationality" class="form-control" value="বাংলাদেশী">
                         </div>
                     </div>
@@ -189,42 +179,42 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="p-3 border rounded-3 bg-light">
-                                <h6 class="fw-bold text-success mb-3"><i class="fas fa-user-tie me-2"></i> পিতার বিবরণ</h6>
-                                <div class="mb-2"><label class="form-label">পিতার নাম (বাংলা)</label><input type="text" id="father_name_bn" class="form-control" required></div>
-                                <div class="mb-2"><label class="form-label">পিতার নাম (ইংরেজি)</label><input type="text" id="father_name_en" class="form-control"></div>
-                                <div class="mb-2"><label class="form-label">পিতার এনআইডি (NID) নম্বর</label><input type="text" id="father_nid" class="form-control" required></div>
-                                <div class="mb-2"><label class="form-label">জন্ম তারিখ</label><input type="date" id="father_dob" class="form-control"></div>
-                                <div class="mb-2"><label class="form-label">মোবাইল নম্বর</label><input type="tel" id="father_phone" class="form-control" placeholder="01XXXXXXXXX" required></div>
-                                <div><label class="form-label">পেশা</label><input type="text" id="father_job" class="form-control"></div>
+                                <h6 class="fw-bold text-success mb-3"><i class="fas fa-user-tie me-2"></i> পিতার বিবরণ (Father's Details)</h6>
+                                <div class="mb-2"><label class="form-label">পিতার নাম (বাংলা) / Father's Name (Bangla) <span class="text-danger">*</span></label><input type="text" id="father_name_bn" class="form-control" required></div>
+                                <div class="mb-2"><label class="form-label">পিতার নাম (ইংরেজি) / Father's Name (English)</label><input type="text" id="father_name_en" class="form-control"></div>
+                                <div class="mb-2"><label class="form-label">পিতার এনআইডি নম্বর / Father's NID <span class="text-danger">*</span></label><input type="text" id="father_nid" class="form-control" required></div>
+                                <div class="mb-2"><label class="form-label">জন্ম তারিখ (Date of Birth)</label><input type="date" id="father_dob" class="form-control"></div>
+                                <div class="mb-2"><label class="form-label">মোবাইল নম্বর (Mobile Number) <span class="text-danger">*</span></label><input type="tel" id="father_phone" class="form-control" placeholder="01XXXXXXXXX" required></div>
+                                <div><label class="form-label">পেশা (Occupation)</label><input type="text" id="father_job" class="form-control"></div>
                             </div>
                         </div>
                         
                         <div class="col-md-6">
                             <div class="p-3 border rounded-3 bg-light">
-                                <h6 class="fw-bold text-success mb-3"><i class="fas fa-user me-2"></i> মাতার বিবরণ</h6>
-                                <div class="mb-2"><label class="form-label">মাতার নাম (বাংলা)</label><input type="text" id="mother_name_bn" class="form-control" required></div>
-                                <div class="mb-2"><label class="form-label">মাতার নাম (ইংরেজি)</label><input type="text" id="mother_name_en" class="form-control"></div>
-                                <div class="mb-2"><label class="form-label">মাতার এনআইডি (NID) নম্বর</label><input type="text" id="mother_nid" class="form-control" required></div>
-                                <div class="mb-2"><label class="form-label">জন্ম তারিখ</label><input type="date" id="mother_dob" class="form-control"></div>
-                                <div class="mb-2"><label class="form-label">মোবাইল নম্বর</label><input type="tel" id="mother_phone" class="form-control" placeholder="01XXXXXXXXX" required></div>
-                                <div><label class="form-label">পেশা</label><input type="text" id="mother_job" class="form-control"></div>
+                                <h6 class="fw-bold text-success mb-3"><i class="fas fa-user me-2"></i> মাতার বিবরণ (Mother's Details)</h6>
+                                <div class="mb-2"><label class="form-label">মাতার নাম (বাংলা) / Mother's Name (Bangla) <span class="text-danger">*</span></label><input type="text" id="mother_name_bn" class="form-control" required></div>
+                                <div class="mb-2"><label class="form-label">মাতার নাম (ইংরেজি) / Mother's Name (English)</label><input type="text" id="mother_name_en" class="form-control"></div>
+                                <div class="mb-2"><label class="form-label">মাতার এনআইডি নম্বর / Mother's NID <span class="text-danger">*</span></label><input type="text" id="mother_nid" class="form-control" required></div>
+                                <div class="mb-2"><label class="form-label">জন্ম তারিখ (Date of Birth)</label><input type="date" id="mother_dob" class="form-control"></div>
+                                <div class="mb-2"><label class="form-label">মোবাইল নম্বর (Mobile Number) <span class="text-danger">*</span></label><input type="tel" id="mother_phone" class="form-control" placeholder="01XXXXXXXXX" required></div>
+                                <div><label class="form-label">পেশা (Occupation)</label><input type="text" id="mother_job" class="form-control"></div>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="p-3 border rounded-3 bg-light">
-                                <h6 class="fw-bold text-success mb-3"><i class="fas fa-user-shield me-2"></i> অভিভাবকের বিবরণ (পিতা-মাতার অবর্তমানে)</h6>
+                                <h6 class="fw-bold text-success mb-3"><i class="fas fa-user-shield me-2"></i> অভিভাবকের বিবরণ (পিতা-মাতার অবর্তমানে) / Guardian's Details</h6>
                                 <div class="row g-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">অভিভাবকের নাম</label>
+                                        <label class="form-label">অভিভাবকের নাম (Guardian Name)</label>
                                         <input type="text" id="guardian_name" class="form-control" placeholder="প্রযোজ্য ক্ষেত্রে">
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="form-label">অভিভাবকের এনআইডি (NID) নম্বর</label>
+                                        <label class="form-label">অভিভাবকের এনআইডি নম্বর / Guardian NID</label>
                                         <input type="text" id="guardian_nid" class="form-control" placeholder="এনআইডি নম্বর">
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="form-label">অভিভাবকের মোবাইল নম্বর</label>
+                                        <label class="form-label">অভিভাবকের মোবাইল নম্বর / Guardian Phone</label>
                                         <input type="tel" id="guardian_phone" class="form-control" placeholder="01XXXXXXXXX">
                                     </div>
                                 </div>
@@ -232,7 +222,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label class="form-label">ভাইবোনের সংখ্যা (যদি একই বিদ্যালয়ে পড়ে বিস্তারিত)</label>
+                            <label class="form-label">ভাইবোনের সংখ্যা (যদি একই বিদ্যালয়ে পড়ে বিস্তারিত) / Siblings Information</label>
                             <input type="text" id="siblings_info" class="form-control" placeholder="যেমন: ০ জন / ১ জন (৩য় শ্রেণি, রোল ৫)">
                         </div>
                     </div>
@@ -242,7 +232,7 @@
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" id="same_as_permanent">
                                 <label class="form-check-label small text-success fw-bold" for="same_as_permanent">
-                                    স্থায়ী ঠিকানা ও বর্তমান ঠিকানা একই
+                                    স্থায়ী ঠিকানা ও বর্তমান ঠিকানা একই (Permanent and Present Address are same)
                                 </label>
                             </div>
                         </div>
@@ -251,34 +241,34 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="p-3 border rounded-3 bg-light h-100">
-                                <h6 class="fw-bold mb-3 text-secondary"><i class="fas fa-map-marker-alt me-2"></i> স্থায়ী ঠিকানা</h6>
+                                <h6 class="fw-bold mb-3 text-secondary"><i class="fas fa-map-marker-alt me-2"></i> স্থায়ী ঠিকানা (Permanent Address)</h6>
                                 <div class="row g-2">
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">বিভাগ</label>
+                                        <label class="small fw-bold text-muted">বিভাগ (Division)</label>
                                         <select id="p_division" class="form-select form-select-sm" required>
-                                            <option value="">বিভাগ নির্বাচন</option>
+                                            <option value="">বিভাগ নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">জেলা</label>
+                                        <label class="small fw-bold text-muted">জেলা (District)</label>
                                         <select id="p_dist" class="form-select form-select-sm" required disabled>
-                                            <option value="">জেলা নির্বাচন</option>
+                                            <option value="">জেলা নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">উপজেলা</label>
+                                        <label class="small fw-bold text-muted">উপজেলা (Upazila)</label>
                                         <select id="p_sub" class="form-select form-select-sm" required disabled>
-                                            <option value="">উপজেলা নির্বাচন</option>
+                                            <option value="">উপজেলা নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">ইউনিয়ন/পৌরসভা</label>
+                                        <label class="small fw-bold text-muted">ইউনিয়ন/পৌরসভা (Union)</label>
                                         <select id="p_union" class="form-select form-select-sm" required disabled>
-                                            <option value="">ইউনিয়ন নির্বাচন</option>
+                                            <option value="">ইউনিয়ন নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-4">
-                                        <label class="small fw-bold text-muted">ওয়ার্ড নং</label>
+                                        <label class="small fw-bold text-muted">ওয়ার্ড নং (Ward)</label>
                                         <select id="p_ward" class="form-select form-select-sm" required>
                                             <option value="">বাছাই করুন</option>
                                             <option value="১">১ নং ওয়ার্ড</option>
@@ -293,11 +283,11 @@
                                         </select>
                                     </div>
                                     <div class="col-4">
-                                        <label class="small fw-bold text-muted">ডাকঘর (পোস্ট)</label>
+                                        <label class="small fw-bold text-muted">ডাকঘর (Post Office)</label>
                                         <input type="text" id="p_post" class="form-control form-control-sm" placeholder="উদা: কালাইয়া" required>
                                     </div>
                                     <div class="col-4">
-                                        <label class="small fw-bold text-muted">গ্রাম/পাড়া</label>
+                                        <label class="small fw-bold text-muted">গ্রাম/পাড়া (Village)</label>
                                         <input type="text" id="p_village" class="form-control form-control-sm" placeholder="উদা: কালাইয়া" required>
                                     </div>
                                     <div class="col-12">
@@ -310,34 +300,34 @@
                         
                         <div class="col-md-6">
                             <div class="p-3 border rounded-3 bg-light h-100">
-                                <h6 class="fw-bold mb-3 text-secondary"><i class="fas fa-route me-2"></i> বর্তমান ঠিকানা</h6>
+                                <h6 class="fw-bold mb-3 text-secondary"><i class="fas fa-route me-2"></i> বর্তমান ঠিকানা (Present Address)</h6>
                                 <div class="row g-2">
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">বিভাগ</label>
+                                        <label class="small fw-bold text-muted">বিভাগ (Division)</label>
                                         <select id="c_division" class="form-select form-select-sm" required>
-                                            <option value="">বিভাগ নির্বাচন</option>
+                                            <option value="">বিভাগ নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">জেলা</label>
+                                        <label class="small fw-bold text-muted">জেলা (District)</label>
                                         <select id="c_dist" class="form-select form-select-sm" required disabled>
-                                            <option value="">জেলা নির্বাচন</option>
+                                            <option value="">জেলা নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">উপজেলা</label>
+                                        <label class="small fw-bold text-muted">উপজেলা (Upazila)</label>
                                         <select id="c_sub" class="form-select form-select-sm" required disabled>
-                                            <option value="">উপজেলা নির্বাচন</option>
+                                            <option value="">উপজেলা নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <label class="small fw-bold text-muted">ইউনিয়ন/পৌরসভা</label>
+                                        <label class="small fw-bold text-muted">ইউনিয়ন/পৌরসভা (Union)</label>
                                         <select id="c_union" class="form-select form-select-sm" required disabled>
-                                            <option value="">ইউনিয়ন নির্বাচন</option>
+                                            <option value="">ইউনিয়ন নির্বাচন / Select</option>
                                         </select>
                                     </div>
                                     <div class="col-4">
-                                        <label class="small fw-bold text-muted">ওয়ার্ড নং</label>
+                                        <label class="small fw-bold text-muted">ওয়ার্ড নং (Ward)</label>
                                         <select id="c_ward" class="form-select form-select-sm" required>
                                             <option value="">বাছাই করুন</option>
                                             <option value="১">১ নং ওয়ার্ড</option>
@@ -352,11 +342,11 @@
                                         </select>
                                     </div>
                                     <div class="col-4">
-                                        <label class="small fw-bold text-muted">ডাকঘর (পোস্ট)</label>
+                                        <label class="small fw-bold text-muted">ডাকঘর (Post Office)</label>
                                         <input type="text" id="c_post" class="form-control form-control-sm" placeholder="উদা: কালাইয়া" required>
                                     </div>
                                     <div class="col-4">
-                                        <label class="small fw-bold text-muted">গ্রাম/পাড়া</label>
+                                        <label class="small fw-bold text-muted">গ্রাম/পাড়া (Village)</label>
                                         <input type="text" id="c_village" class="form-control form-control-sm" placeholder="উদা: কালাইয়া" required>
                                     </div>
                                     <div class="col-12">
@@ -371,171 +361,109 @@
                     <div class="section-title"><i class="fas fa-graduation-cap me-2"></i> ৪. শিক্ষাগত তথ্য (Educational Background)</div>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label">পূর্ববর্তী বিদ্যালয়ের নাম (যদি থাকে)</label>
+                            <label class="form-label" id="lbl_prev_school">পূর্ববর্তী বিদ্যালয়ের নাম (যদি থাকে) / Previous School Name (If any)</label>
                             <input type="text" id="prev_school" class="form-control" placeholder="বিদ্যালয়ের নাম লিখুন">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">শ্রেণি</label>
+                            <label class="form-label" id="lbl_prev_class">শ্রেণি / Class</label>
                             <input type="text" id="prev_class" class="form-control" placeholder="যেমন: প্রথম শ্রেণি">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">পূর্ববর্তী শ্রেণির ফলাফল</label>
+                            <label class="form-label" id="lbl_prev_result">পূর্ববর্তী শ্রেণির ফলাফল / Previous Class Result</label>
                             <input type="text" id="prev_result" class="form-control" placeholder="যেমন: সন্তোষজনক/উত্তীর্ণ">
                         </div>
                     </div>
 
                     <div class="section-title"><i class="fas fa-heartbeat me-2"></i> ৫. স্বাস্থ্য সংক্রান্ত তথ্য (Health Information)</div>
-                    
-                    <h6><strong>(ক) মৌলিক স্বাস্থ্য তথ্য:</strong></h6>
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="form-label">রক্তের গ্রুপ</label>
-                            <select id="blood_group" class="form-select">
-                                <option value="">নির্বাচন করুন</option>
-                                <option>A+</option><option>A-</option>
-                                <option>B+</option><option>B-</option>
-                                <option>AB+</option><option>AB-</option>
-                                <option>O+</option><option>O-</option>
-                                <option>জানা নেই</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">উচ্চতা (সে.মি.)</label>
-                            <input type="text" id="height" class="form-control" placeholder="সেমি">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">ওজন (কেজি)</label>
-                            <input type="text" id="weight" class="form-control" placeholder="কেজি">
-                        </div>
-                    </div>
-
-                    <h6><strong>(খ) দৃষ্টিশক্তি ও শারীরিক অবস্থা:</strong></h6>
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="form-label">দৃষ্টিশক্তি</label>
-                            <select class="form-select">
-                                <option>স্বাভাবিক</option>
-                                <option>দুর্বল</option>
-                                <option>চশমা ব্যবহার করে</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">শ্রবণশক্তি</label>
-                            <select class="form-select">
-                                <option>স্বাভাবিক</option>
-                                <option>সমস্যা আছে</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">শারীরিক প্রতিবন্ধকতা (যদি থাকে)</label>
-                            <select class="form-select">
-                                <option>নেই</option>
-                                <option>আছে</option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="শারীরিক প্রতিবন্ধকতা থাকলে বিস্তারিত লিখুন...">
-                        </div>
-                    </div>
-
-                    <h6><strong>(গ) টিকাদান (Vaccination Record):</strong></h6>
-                    <div class="table-responsive">
-                        <table class="table-custom mb-3">
-                            <thead>
-                                <tr>
-                                    <th>টিকার নাম</th>
-                                    <th>গ্রহণ করা হয়েছে? (টিক দিন)</th>
-                                    <th>তারিখ (যদি মনে থাকে)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>BCG/যক্ষ্মা</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="bcg" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="bcg" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>Measles/Rubella/হাম ও রুবেলা</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="mr" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="mr" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>Pentavalent/ডিপথেরিয়া, হুপিংকাশি, ধনুষ্টংকার ইত্যাদি</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="penta" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="penta" value="না"> na</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>PCV/নিউমোকক্কাল নিউমোনিয়া</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="pcv" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="pcv" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>Polio/পোলিও-মাইলাইটিস</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="polio" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="polio" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>TT/ধনুষ্টংকার বা টিটেনাস</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="tt" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="tt" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>অন্যান্য</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="other_v" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="other_v" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h6><strong>(ঘ) রোগ সংক্রান্ত তথ্য (Diseases):</strong></h6>
                     <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="form-label">থ্যালাসেমিয়া</label>
-                            <select class="form-select">
-                                <option>না</option>
-                                <option>আক্রান্ত</option>
-                                <option>বাহক</option>
+                        <div class="col-md-2">
+                            <label class="form-label">রক্তের গ্রুপ (Blood Group)</label>
+                            <select id="blood_group" class="form-select">
+                                <option value="">বাছাই করুন</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label">দুরারোগ্য রোগ (যদি থাকে)</label>
-                            <select class="form-select"><option>নেই</option><option>আছে</option></select>
+                        <div class="col-md-2">
+                            <label class="form-label">উচ্চতা (Height - cm)</label>
+                            <input type="number" id="height" class="form-control" placeholder="সেমি">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">ওজন (Weight - kg)</label>
+                            <input type="number" id="weight" class="form-control" placeholder="কেজি">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">এলার্জি (যদি থাকে)</label>
-                            <input type="text" class="form-control" placeholder="যেমন: বেগুন, চিংড়ি, ধুলাবালি, ঠান্ডা">
+                            <label class="form-label">অ্যালার্জি (যদি থাকে) / Allergy</label>
+                            <input type="text" id="allergy" class="form-control" placeholder="যেমন: ধুলাবালি, চিংড়ি, চিল্ড">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">মৃগী রোগ (যদি থাকে)</label>
-                            <select class="form-select"><option>নেই</option><option>আছে</option></select>
+                            <label class="form-label">মৃগী রোগ (যদি থাকে) / Epilepsy</label>
+                            <select id="epilepsy" class="form-select">
+                                <option value="নেই">নেই (No)</option>
+                                <option value="আছে">আছে (Yes)</option>
+                            </select>
                         </div>
                         <div class="col-12">
-                            <input type="text" class="form-control" placeholder="দুরারোগ্য রোগ থাকলে বিস্তারিত বিবরণ দিন...">
+                            <label class="form-label">দীর্ঘস্থায়ী রোগ বা বিশেষ বিবরণ (Chronic Illness Details)</label>
+                            <input type="text" id="chronic_details" class="form-control" placeholder="দীর্ঘস্থায়ী কোনো রোগ থাকলে বিস্তারিত বিবরণ দিন...">
                         </div>
                     </div>
 
                     <div class="section-title"><i class="fas fa-phone-volume me-2"></i> ৬. জরুরি যোগাযোগ (Emergency Contact)</div>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label class="form-label">জরুরি যোগাযোগের নাম</label>
-                            <input type="text" id="emergency_name" class="form-control" required placeholder="যোগাযোগের ব্যক্তির নাম">
+                            <label class="form-label">জরুরি যোগাযোগের ব্যক্তির নাম (Name) <span class="text-danger">*</span></label>
+                            <input type="text" id="emergency_name" class="form-control" required placeholder="সম্পর্কের ব্যক্তির নাম">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">সম্পর্ক</label>
-                            <input type="text" id="emergency_relation" class="form-control" required placeholder="উদাঃ পিতা, মামা">
+                            <label class="form-label">সম্পর্ক (Relationship) <span class="text-danger">*</span></label>
+                            <input type="text" id="emergency_relation" class="form-control" required placeholder="যেমন: পিতা, মাতা, মামা">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">মোবাইল নম্বর</label>
+                            <label class="form-label">মোবাইল নম্বর (Mobile No.) <span class="text-danger">*</span></label>
                             <input type="tel" id="emergency_phone" class="form-control" required placeholder="01XXXXXXXXX">
                         </div>
                     </div>
 
-                    <div class="section-title"><i class="fas fa-paperclip me-2"></i> প্রয়োজনীয় কাগজপত্র আপলোড (সংযুক্তি)</div>
+                    <div class="section-title"><i class="fas fa-paperclip me-2"></i> ৭. প্রয়োজনীয় কাগজপত্র আপলোড (Required Document Upload)</div>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label class="form-label">শিক্ষার্থীর অনলাইন জন্ম নিবন্ধন কপি</label>
+                            <label class="form-label">শিক্ষার্থীর অনলাইন জন্ম নিবন্ধন অনুলিপি <span class="text-danger">*</span></label>
                             <input type="file" id="doc_birth" class="form-control" accept="image/*,.pdf" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">পিতা ও মাতার NID/Smart Card কপি</label>
+                            <label class="form-label">পিতা ও মাতার NID/Smart Card অনুলিপি <span class="text-danger">*</span></label>
                             <input type="file" id="doc_father_nid" class="form-control mb-2" accept="image/*,.pdf" required>
                             <input type="file" id="doc_mother_nid" class="form-control" accept="image/*,.pdf" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">পূর্ববর্তী প্রতিষ্ঠানের ছাড়পত্র/টিসি</label>
+                            <label class="form-label">পূর্ববর্তী প্রতিষ্ঠানের ছাড়পত্র / TC (যদি থাকে)</label>
                             <input type="file" id="doc_tc" class="form-control" accept="image/*,.pdf">
                         </div>
                     </div>
 
-                    <div class="section-title"><i class="fas fa-file-contract me-2"></i> ৭. ঘোষণা (Declaration)</div>
+                    <div class="section-title"><i class="fas fa-file-contract me-2"></i> ৮. ঘোষণা (Declaration)</div>
                     <div class="mt-3">
                         <div class="form-check mb-4">
                             <input class="form-check-input" type="checkbox" id="confirm" required>
                             <label class="form-check-label small text-muted" for="confirm">
-                                <strong>আমি এই মর্মে ঘোষণা করছি যে, উপরে প্রদত্ত সকল তথ্য সঠিক ও সত্য।</strong> পিতা/মাতা/অভিভাবকের নিজস্ব NID দ্বারা ক্রয়কৃত মোবাইল নম্বরের তথ্য প্রদান করা হলো। কোনো ভুল তথ্য প্রমাণিত হলে আবেদন বাতিল বলে গণ্য হবে।
+                                <strong>আমি এতদ্বারা ঘোষণা করছি যে, উপরে প্রদত্ত সমস্ত তথ্য সম্পূর্ণ সঠিক ও সত্য। (I hereby declare that all information provided above is true and correct.)</strong>
                             </label>
                         </div>
                         
                         <div class="row mt-5 text-center small text-secondary border-top pt-4">
                             <div class="col-4">________________________<br>পিতা/মাতা/অভিভাবকের স্বাক্ষর ও তারিখ</div>
-                            <div class="col-4">________________________<br>শ্রেণি শিক্ষকের স্বাক্ষর ও তারিখ</div>
+                            <div class="col-4">________________________<br>কक्षा শিক্ষকের স্বাক্ষর ও তারিখ</div>
                             <div class="col-4">________________________<br>প্রধান শিক্ষকের স্বাক্ষর ও তারিখ</div>
                         </div>
 
-                        <button type="submit" id="submitBtn" class="btn btn-submit mt-5">আবেদন সম্পন্ন করুন</button>
+                        <button type="submit" id="submitBtn" class="btn btn-submit mt-5">আবেদন সম্পন্ন করুন (Submit Application)</button>
                     </div>
                 </form>
             </div>
@@ -548,64 +476,30 @@
 
 <script type="text/javascript">
     (function() {
-        emailjs.init("CeIzWuZvq5eRchl18"); // Public Key
+        emailjs.init("CeIzWuZvq5eRchl18");
     })();
 
-    // পূর্ণাঙ্গ ডাইনামিক অ্যাড্রেস ডাটাবেজ অবজেক্ট
+    // Properly mapped and translated Geodata for Barisal -> Pirojpur Region in Bangla Script
     const bdGeodata = {
         "বরিশাল": {
             "পিরোজপুর": {
-                "জিয়ানগর (ইন্দুরকানী)": ["ইন্দুরকানী সদর","পাড়েরহাট", "পত্তাশী", "বালিপাড়া", "চন্ডিপুর"],
-                "পিরোজপুর সদর": ["পিরোজপুর পৌরসভা", "কদমতলা", "কলাখালী", "শারিকতলা", "দুর্গাপুর", "টোনা", "শংকরপাশা"],
-                "মঠবাড়িয়া": ["মঠবাড়িয়া পৌরসভা", "তুষখালী", "ধানীসাফা", "মিরুখালী", "আমড়াগাছিয়া", "sapleza"],
-                "ভান্ডারিয়া": ["ভান্ডারিয়া পৌরসভা", "ভিটাবাড়িয়া", "নদমূলা-শিয়ালকাঠী", "তেলিখালী", "ধাওয়া"],
-                "নাজিরপুর": ["মাটিভাংগা", "মালিখালী", "নাজিরপুর সদর", "দীর্ঘা", "শিখারপুর"],
-                "কাউখালী": ["কাউখালী সদর", "আমড়াজুড়ী", "শিয়ালকাঠী", "চিরাপাড়া"],
-                "নেড়ারাবাদ (স্বরূপকাঠী)": ["স্বরূপকাঠী পৌরসভা", "আটঘর কুড়িয়ানা", "জলাবাড়ী", "বলদিয়া"]
-            },
-            "বরিশাল": {
-                "বরিশাল সদর": ["বরিশাল সিটি কর্পোরেশন", "কাশীপুর", "চরমোনাই", "জাগুয়া"],
-                "বাকেরগঞ্জ": ["বাকেরগঞ্জ পৌরসভা", "চরামদ্দি", "গারুড়িয়া", "ভরপাশা"]
-            },
-            "ঝালকাঠি": {
-                "ঝালকাঠি সদর": ["ঝালকাঠি পৌরসভা", "কীর্তিপাশা", "নবগ্রাম", "বাসণ্ডা"],
-                "নলছিটি": ["নলছিটি পৌরসভা", "ভৈরবপাশা", "মগড়", "কুলকাঠি"]
-            },
-            "পটুয়াখালী": {
-                "পটুয়াখালী সদর": ["পটুয়াখালী পৌরসভা", "লাউকাঠি", "লোহালিয়া"],
-                "বাউফল": ["বাউফল পৌরসভা", "কনকদিয়া", "বগা", "কালিশুরী"]
-            },
-            "বরগুনা": {
-                "বরগুনা সদর": ["বরগুনা পৌরসভা", "বদলীখালী", "আয়লা পাতাকাটা"],
-                "আমতলী": ["আমতলী পৌরসভা", "চাওড়া", "হলদিয়া"]
-            },
-            "ভোলা": {
-                "ভোলা সদর": ["ভোলা পৌরসভা", "ইলিশা", "ধния", "শিবপুর"],
-                "চরফ্যাশন": ["চরফ্যাশন পৌরসভা", "আছলামপুর", "জিন্নাগড়"]
-            }
-        },
-        "ঢাকা": {
-            "ঢাকা": {
-                "ঢাকা সদর": ["ঢাকা উত্তর সিটি", "ঢাকা দক্ষিণ সিটি"],
-                "সাভার": ["সাভার পৌরসভা", "আশুলিয়া", "ধামসোনা"]
-            }
-        },
-        "খুলনা": {
-            "খুলনা": {
-                "খুলনা সদর": ["খুলনা সিটি কর্পোরেশন", "লবণচরা", "হরিণটানা"],
-                "ডুমুরিয়া": ["ডুমুরিয়া সদর", "শোভনা", "সাহস"]
+                "জিয়ানগর (ইন্দুরকানি)": ["ইন্দুরকানি সদর", "পাড়েরহাট", "পত্তাশী", "বালিপাড়া"],
+                "পিরোজপুর সদর": ["পিরোজপুর পৌরসভা", "কদমতলা", "কোলাখালী", "শারিকতলা", "দুর্গাপুর"],
+                "মঠবাড়ীয়া": ["মঠবাড়ীয়া পৌরসভা", "তুষখালী", "ধানীসাফা", "মিরুখালী", "আমড়াগাছিয়া"],
+                "ভাণ্ডারিয়া": ["ভাণ্ডারিয়া পৌরসভা", "ভিটাবাড়ীয়া", "নদমুলা-শিয়ালকাঠী", "তেলিগাতি"],
+                "নাজিরপুর": ["মাটিভাঙ্গা", "মালিখালী", "নাজিরপুর সদর", "দীর্ঘা", "শ্রীরামকাঠি"],
+                "কাউখালী": ["কাউখালী সদর", "আমড়াজুড়ি", "শিয়ালকাঠি", "চিরাপাড়া"],
+                "নেছারাবাদ (স্বরূপকাঠি)": ["স্বরূপকাঠি পৌরসভা", "আটঘর কুড়িয়ানা", "জলাবাড়ী"]
             }
         }
     };
 
-    // ঠিকানা ড্রপডাউন ডাইনামিক করার মেইন ইঞ্জিন
     function setupCascadingDropdowns(prefix) {
         const divSel = document.getElementById(prefix + '_division');
         const distSel = document.getElementById(prefix + '_dist');
         const subSel = document.getElementById(prefix + '_sub');
         const uniSel = document.getElementById(prefix + '_union');
 
-        // ১. বিভাগ লোড করা
         for (let division in bdGeodata) {
             let opt = document.createElement('option');
             opt.value = division;
@@ -613,11 +507,10 @@
             divSel.appendChild(opt);
         }
 
-        // ২. বিভাগ পরিবর্তন হলে জেলা ফিল্টার
         divSel.addEventListener('change', function() {
-            distSel.innerHTML = '<option value="">জেলা নির্বাচন</option>';
-            subSel.innerHTML = '<option value="">উপজেলা নির্বাচন</option>';
-            uniSel.innerHTML = '<option value="">ইউনিয়ন নির্বাচন</option>';
+            distSel.innerHTML = '<option value="">জেলা নির্বাচন / Select District</option>';
+            subSel.innerHTML = '<option value="">উপজেলা নির্বাচন / Select Upazila</option>';
+            uniSel.innerHTML = '<option value="">ইউনিয়ন নির্বাচন / Select Union</option>';
             distSel.disabled = true; subSel.disabled = true; uniSel.disabled = true;
 
             if (this.value && bdGeodata[this.value]) {
@@ -631,10 +524,9 @@
             }
         });
 
-        // ৩. জেলা পরিবর্তন হলে উপজেলা ফিল্টার
         distSel.addEventListener('change', function() {
-            subSel.innerHTML = '<option value="">উপজেলা নির্বাচন</option>';
-            uniSel.innerHTML = '<option value="">ইউনিয়ন নির্বাচন</option>';
+            subSel.innerHTML = '<option value="">উপজেলা নির্বাচন / Select Upazila</option>';
+            uniSel.innerHTML = '<option value="">ইউনিয়ন নির্বাচন / Select Union</option>';
             subSel.disabled = true; uniSel.disabled = true;
 
             const divVal = divSel.value;
@@ -649,9 +541,8 @@
             }
         });
 
-        // ৪. উপজেলা পরিবর্তন হলে ইউনিয়ন ফিল্টার
         subSel.addEventListener('change', function() {
-            uniSel.innerHTML = '<option value="">ইউনিয়ন নির্বাচন</option>';
+            uniSel.innerHTML = '<option value="">ইউনিয়ন নির্বাচন / Select Union</option>';
             uniSel.disabled = true;
 
             const divVal = divSel.value;
@@ -669,35 +560,30 @@
         });
     }
 
-    // ড্রপডাউন ইঞ্জিন চালুকরণ
-    setupCascadingDropdowns('p'); // স্থায়ী ঠিকানার জন্য
-    setupCascadingDropdowns('c'); // বর্তমান ঠিকানার জন্য
+    setupCascadingDropdowns('p');
+    setupCascadingDropdowns('c');
 
-    // স্থায়ী ও বর্তমান ঠিকানা একই হলে অটো-ফিল করার হ্যান্ডলার
     document.getElementById('same_as_permanent').addEventListener('change', function() {
         if (this.checked) {
-            // বিভাগ সিঙ্ক
             document.getElementById('c_division').value = document.getElementById('p_division').value;
             document.getElementById('c_division').dispatchEvent(new Event('change'));
 
-            // জেলা সিঙ্ক
-            document.getElementById('c_dist').value = document.getElementById('p_dist').value;
-            document.getElementById('c_dist').dispatchEvent(new Event('change'));
+            setTimeout(() => {
+                document.getElementById('c_dist').value = document.getElementById('p_dist').value;
+                document.getElementById('c_dist').dispatchEvent(new Event('change'));
+                
+                setTimeout(() => {
+                    document.getElementById('c_sub').value = document.getElementById('p_sub').value;
+                    document.getElementById('c_sub').dispatchEvent(new Event('change'));
+                    document.getElementById('c_union').value = document.getElementById('p_union').value;
+                }, 300);
+            }, 300);
 
-            // উপজেলা সিঙ্ক
-            document.getElementById('c_sub').value = document.getElementById('p_sub').value;
-            document.getElementById('c_sub').dispatchEvent(new Event('change'));
-
-            // ইউনিয়ন সিঙ্ক
-            document.getElementById('c_union').value = document.getElementById('p_union').value;
-
-            // বাকি টেক্সট ফিল্ড ও ওয়ার্ড সিঙ্ক
             document.getElementById('c_ward').value = document.getElementById('p_ward').value;
             document.getElementById('c_post').value = document.getElementById('p_post').value;
             document.getElementById('c_village').value = document.getElementById('p_village').value;
             document.getElementById('c_home').value = document.getElementById('p_home').value;
         } else {
-            // টিক মার্ক তুলে নিলে বর্তমান ঠিকানা সম্পূর্ণ খালি ও লক হয়ে যাবে
             document.getElementById('c_division').value = "";
             document.getElementById('c_division').dispatchEvent(new Event('change'));
             document.getElementById('c_ward').value = "";
@@ -707,84 +593,94 @@
         }
     });
 
-// শ্রেণি নির্বাচনের ওপর ভিত্তি করে শিক্ষাগত তথ্য বাধ্যতামূলক করার লজিক
-const desiredClassSelect = document.getElementById('desired_class');
-const prevSchoolInput = document.getElementById('prev_school');
-const prevClassInput = document.getElementById('prev_class');
-const prevResultInput = document.getElementById('prev_result');
+    const desiredClassSelect = document.getElementById('desired_class');
+    const prevSchoolInput = document.getElementById('prev_school');
+    const prevClassInput = document.getElementById('prev_class');
+    const prevResultInput = document.getElementById('prev_result');
 
-desiredClassSelect.addEventListener('change', function() {
-    const selectedClass = this.value;
-    
-    // যদি প্রাক-প্রাথমিক বা খালি না হয় (অর্থাৎ ১ম থেকে ৫ম শ্রেণি হয়)
-    if (selectedClass && !selectedClass.includes("প্রাক-প্রাথমিক")) {
-        // ফিল্ডগুলোকে বাধ্যতামূলক করা
-        prevSchoolInput.required = true;
-        prevClassInput.required = true;
-        prevResultInput.required = true;
-        
-        // ভিজ্যুয়াল ফিডব্যাক: লেবেলের পাশে লাল তারকা (*) দেখানো
-        document.querySelector("label[for='prev_school']").innerHTML = 'পূর্ববর্তী বিদ্যালয়ের নাম <span class="text-danger">*</span>';
-        document.querySelector("label[for='prev_class']").innerHTML = 'শ্রেণি <span class="text-danger">*</span>';
-        document.querySelector("label[for='prev_result']").innerHTML = 'পূর্ববর্তী শ্রেণির ফলাফল <span class="text-danger">*</span>';
-    } else {
-        // প্রাক-প্রাথমিক হলে ফিল্ডগুলো অপশনাল করে দেওয়া
-        prevSchoolInput.required = false;
-        prevClassInput.required = false;
-        prevResultInput.required = false;
-        
-        // লাল তারকা (*) মুছে ফেলা
-        document.querySelector("label[for='prev_school']").innerHTML = 'পূর্ববর্তী বিদ্যালয়ের নাম (যদি থাকে)';
-        document.querySelector("label[for='prev_class']").innerHTML = 'শ্রেণি';
-        document.querySelector("label[for='prev_result']").innerHTML = 'পূর্ববর্তী শ্রেণির ফলাফল';
-    }
-});
+    desiredClassSelect.addEventListener('change', function() {
+        const selectedClass = this.value;
+        if (selectedClass && !selectedClass.includes("প্রাক-প্রাথমিক")) {
+            prevSchoolInput.required = true;
+            prevClassInput.required = true;
+            prevResultInput.required = true;
+            document.getElementById('lbl_prev_school').innerHTML = 'পূর্ববর্তী বিদ্যালয়ের নাম / Previous School Name <span class="text-danger">*</span>';
+            document.getElementById('lbl_prev_class').innerHTML = 'শ্রেণি / Class <span class="text-danger">*</span>';
+            document.getElementById('lbl_prev_result').innerHTML = 'পূর্ববর্তী শ্রেণির ফলাফল / Previous Result <span class="text-danger">*</span>';
+        } else {
+            prevSchoolInput.required = false;
+            prevClassInput.required = false;
+            prevResultInput.required = false;
+            document.getElementById('lbl_prev_school').innerHTML = 'পূর্ববর্তী বিদ্যালয়ের নাম (যদি থাকে) / Previous School Name (If any)';
+            document.getElementById('lbl_prev_class').innerHTML = 'শ্রেণি / Class';
+            document.getElementById('lbl_prev_result').innerHTML = 'পূর্ববর্তী শ্রেণির ফলাফল / Previous Class Result';
+        }
+    });
 
-    //সাবমিট//
-document.getElementById('admissionForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    document.getElementById('admissionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    const btn = document.getElementById('submitBtn');
-    btn.innerHTML = 'প্রসেস হচ্ছে...';
-    btn.disabled = true;
+        const btn = document.getElementById('submitBtn');
+        btn.innerHTML = 'প্রক্রিয়াধীন... (Processing...)';
+        btn.disabled = true;
 
-    // শুধুমাত্র টেক্সট ডেটাগুলো অবজেক্টে নেওয়া হচ্ছে (ফাইল ইনপুটগুলো বাদ দিয়ে)
-    const params = {
-        student_name: document.getElementById('student_name_bn').value,
-        student_class: document.getElementById('desired_class').value, 
-        phone: document.getElementById('father_phone').value,
-    };
+        const params = {
+            student_name: document.getElementById('student_name_bn').value,
+            student_name_en: document.getElementById('student_name_en').value,
+            student_class: document.getElementById('desired_class').value,
+            birth_reg: document.getElementById('birth_reg_no').value,
+            birth_date: document.getElementById('birth_date').value,
+            age_years: document.getElementById('age_years').value,
+            age_months: document.getElementById('age_months').value,
+            gender: document.querySelector('input[name="gender"]:checked')?.value || '',
+            religion: document.getElementById('religion').value,
+            nationality: document.getElementById('nationality').value,
+            father_name: document.getElementById('father_name_bn').value,
+            father_phone: document.getElementById('father_phone').value,
+            mother_name: document.getElementById('mother_name_bn').value,
+            mother_phone: document.getElementById('mother_phone').value,
+            p_division: document.getElementById('p_division').value,
+            p_dist: document.getElementById('p_dist').value,
+            p_sub: document.getElementById('p_sub').value,
+            p_union: document.getElementById('p_union').value,
+            c_division: document.getElementById('c_division').value,
+            c_dist: document.getElementById('c_dist').value,
+            emergency_name: document.getElementById('emergency_name').value,
+            emergency_phone: document.getElementById('emergency_phone').value,
+            blood_group: document.getElementById('blood_group').value,
+            height: document.getElementById('height').value,
+            weight: document.getElementById('weight').value,
+            allergy: document.getElementById('allergy').value
+        };
 
-    // সরাসরি অবজেক্টটি পাঠানো হচ্ছে, কোনো FormData বা ফাইল পাঠানো হচ্ছে না
-    emailjs.send("service_kalaya", "template_2ra5c35", params)
-        .then(function() {
-            Swal.fire({
-                title: 'সফল হয়েছে!',
-                text: 'আবেদনটি সফলভাবে সাবমিট করা হয়েছে। প্রিন্ট করতে ওকে বাটনে চাপুন।',
-                icon: 'success',
-                confirmButtonColor: '#006A4E',
-                confirmButtonText: 'ওকে (প্রিন্ট করুন)'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.print();
-                }
+        emailjs.send("service_kalaya", "template_2ra5c35", params)
+            .then(function() {
+                Swal.fire({
+                    title: 'সফল হয়েছে! (Success!)',
+                    text: 'আবেদনটি সফলভাবে সাবমিট করা হয়েছে। প্রিন্ট করতে ওকে বাটনে চাপুন।',
+                    icon: 'success',
+                    confirmButtonColor: '#006A4E',
+                    confirmButtonText: 'ওকে, প্রিন্ট করুন (OK, Print)'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.print();
+                    }
+                });
+                
+                btn.innerHTML = 'আবেদন সম্পন্ন করুন (Submit Application)';
+                btn.disabled = false;
+            }, function(error) {
+                console.error("EmailJS Error:", error);
+                Swal.fire({
+                    title: 'ত্রুটি ঘটেছে! (Error!)',
+                    text: 'দুঃখিত, অভ্যন্তরীণ সমস্যার কারণে আবেদনটি পাঠানো যায়নি। কন্সোল চেক করুন।',
+                    icon: 'error'
+                });
+                btn.innerHTML = 'আবেদন সম্পন্ন করুন (Submit Application)';
+                btn.disabled = false;
             });
-            
-            btn.innerHTML = 'আবেদন সম্পন্ন করুন';
-            btn.disabled = false;
-        }, function(error) {
-            // ব্রাউজার কনসোলে আসল এররটি দেখার জন্য
-            console.error("EmailJS Error:", error);
-            
-            Swal.fire({
-                title: 'ভুল হয়েছে!',
-                text: 'দুঃখিত, কোনো একটি ইন্টারনাল সমস্যার কারণে পাঠানো যায়নি। (কনসোল চেক করুন)',
-                icon: 'error'
-            });
-            btn.innerHTML = 'আবেদন সম্পন্ন করুন';
-            btn.disabled = false;
-        });
-});
+    });
 </script>
+
 </body>
 </html>
