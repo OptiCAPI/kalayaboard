@@ -707,6 +707,40 @@
         }
     });
 
+// শ্রেণি নির্বাচনের ওপর ভিত্তি করে শিক্ষাগত তথ্য বাধ্যতামূলক করার লজিক
+const desiredClassSelect = document.getElementById('desired_class');
+const prevSchoolInput = document.getElementById('prev_school');
+const prevClassInput = document.getElementById('prev_class');
+const prevResultInput = document.getElementById('prev_result');
+
+desiredClassSelect.addEventListener('change', function() {
+    const selectedClass = this.value;
+    
+    // যদি প্রাক-প্রাথমিক বা খালি না হয় (অর্থাৎ ১ম থেকে ৫ম শ্রেণি হয়)
+    if (selectedClass && !selectedClass.includes("প্রাক-প্রাথমিক")) {
+        // ফিল্ডগুলোকে বাধ্যতামূলক করা
+        prevSchoolInput.required = true;
+        prevClassInput.required = true;
+        prevResultInput.required = true;
+        
+        // ভিজ্যুয়াল ফিডব্যাক: লেবেলের পাশে লাল তারকা (*) দেখানো
+        document.querySelector("label[for='prev_school']").innerHTML = 'পূর্ববর্তী বিদ্যালয়ের নাম <span class="text-danger">*</span>';
+        document.querySelector("label[for='prev_class']").innerHTML = 'শ্রেণি <span class="text-danger">*</span>';
+        document.querySelector("label[for='prev_result']").innerHTML = 'পূর্ববর্তী শ্রেণির ফলাফল <span class="text-danger">*</span>';
+    } else {
+        // প্রাক-প্রাথমিক হলে ফিল্ডগুলো অপশনাল করে দেওয়া
+        prevSchoolInput.required = false;
+        prevClassInput.required = false;
+        prevResultInput.required = false;
+        
+        // লাল তারকা (*) মুছে ফেলা
+        document.querySelector("label[for='prev_school']").innerHTML = 'পূর্ববর্তী বিদ্যালয়ের নাম (যদি থাকে)';
+        document.querySelector("label[for='prev_class']").innerHTML = 'শ্রেণি';
+        document.querySelector("label[for='prev_result']").innerHTML = 'পূর্ববর্তী শ্রেণির ফলাফল';
+    }
+});
+
+    //সাবমিট//
 document.getElementById('admissionForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
