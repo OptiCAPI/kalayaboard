@@ -441,28 +441,90 @@
                         </div>
                     </div>
 
-                    <h6><strong>(গ) টিকাদান (Vaccination Record):</strong></h6>
-                    <div class="table-responsive">
-                        <table class="table-custom mb-3">
-                            <thead>
-                                <tr>
-                                    <th>টিকার নাম</th>
-                                    <th>গ্রহণ করা হয়েছে? (টিক দিন)</th>
-                                    <th>তারিখ (যদি মনে থাকে)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>BCG/যক্ষ্মা</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="bcg" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="bcg" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>Measles/Rubella/হাম ও রুবেলা</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="mr" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="mr" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>Pentavalent/ডিপথেরিয়া, হুপিংকাশি, ধনুষ্টংকার ইত্যাদি</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="penta" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="penta" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>PCV/নিউমোকক্কাল নিউমোনিয়া</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="pcv" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="pcv" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>Polio/পোলিও-মাইলাইটিস</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="polio" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="polio" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>TT/ধনুষ্টংকার বা টিটেনাস</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="tt" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="tt" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                                <tr><td>অন্যান্য</td><td><div class="d-flex justify-content-center gap-3"><label><input type="radio" name="other_v" value="হ্যাঁ"> হ্যাঁ</label><label><input type="radio" name="other_v" value="না"> না</label></div></td><td><input type="date" class="form-control py-1"></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+					<h6><strong>(গ) টিকাদান (Vaccination Record):</strong></h6>
+					<div class="table-responsive">
+					    <table class="table-custom mb-3">
+					        <thead>
+					            <tr>
+					                <th>টিকার নাম</th>
+					                <th>গ্রহণ করা হয়েছে? (টিক দিন)</th>
+					                <th>তারিখ (যদি মনে থাকে)</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr>
+					                <td>BCG/যক্ষ্মা</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="bcg" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="bcg" value="না" checked> না</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="bcg_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					            <tr>
+					                <td>Measles/Rubella/হাম ও রুবেলা</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="mr" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="mr" value="না" checked> না</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="mr_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					            <tr>
+					                <td>Pentavalent/ডিপথেরিয়া, হুপিংকাশি, ধনুষ্টংকার ইত্যাদি</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="penta" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="penta" value="না" checked> না</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="penta_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					            <tr>
+					                <td>PCV/নিউমোকক্কাল নিউমোনিয়া</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="pcv" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="pcv" value="না" checked> না</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="pcv_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					            <tr>
+					                <td>Polio/পোলিও-মাইলাইটিস</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="polio" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="polio" value="না" checked> na</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="polio_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					            <tr>
+					                <td>TT/ধনুষ্টংকার বা টিটেনাস</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="tt" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="tt" value="না" checked> না</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="tt_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					            <tr>
+					                <td>অন্যান্য</td>
+					                <td>
+					                    <div class="d-flex justify-content-center gap-3">
+					                        <label><input type="radio" name="other_v" value="হ্যাঁ"> হ্যাঁ</label>
+					                        <label><input type="radio" name="other_v" value="না" checked> না</label>
+					                    </div>
+					                </td>
+					                <td><input type="date" id="other_v_date" class="form-control py-1" style="display: none;"></td>
+					            </tr>
+					        </tbody>
+					    </table>
+					</div>
                     <h6><strong>(ঘ) রোগ সংক্রান্ত তথ্য (Diseases):</strong></h6>
                     <div class="row g-3">
                         <div class="col-md-3">
@@ -869,6 +931,28 @@
         }
     });
 
+// --- টেবিলের টিকা সংক্রান্ত ডায়নামিক শো/হাইড ও ম্যান্ডেটরি লজিক ---
+const vaccineFields = ['bcg', 'mr', 'penta', 'pcv', 'polio', 'tt', 'other_v'];
+
+vaccineFields.forEach(vaccine => {
+    const radios = document.querySelectorAll(`input[name="${vaccine}"]`);
+    const dateInput = document.getElementById(`${vaccine}_date`);
+
+    if (radios.length > 0 && dateInput) {
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'হ্যাঁ') {
+                    dateInput.style.display = 'block';
+                    dateInput.required = true; // "হ্যাঁ" হলে তারিখ দেওয়া বাধ্যতামূলক
+                } else {
+                    dateInput.style.display = 'none';
+                    dateInput.required = false; // "না" হলে বাধ্যতামূলক নয়
+                    dateInput.value = ''; // পূর্বে দেওয়া তারিখ মুছে যাবে
+                }
+            });
+        });
+    }
+});
 // --- রোগ সংক্রান্ত ও শারীরিক প্রতিবন্ধকতা ডায়নামিক শো/হাইড লজিক (ইভেন্ট লিসেনারগুলো বাইরে থাকবে) ---
 const chronicDiseaseSelect = document.getElementById('chronic_disease');
 const chronicDetailsWrapper = document.getElementById('chronic_details_wrapper');
@@ -961,15 +1045,36 @@ document.getElementById('admissionForm').addEventListener('submit', function(eve
         height: document.getElementById('height').value,
         weight: document.getElementById('weight').value,
         allergy: document.getElementById('allergy')?.value || 'নেই',
-        
-        // রোগ সংক্রান্ত ও শারীরিক প্রতিবন্ধকতা তথ্য (সঠিকভাবে অবজেক্টে যোগ করা হয়েছে)
-        thalassemia: document.getElementById('thalassemia').value,
-        chronic_disease: document.getElementById('chronic_disease').value,
-        epilepsy: document.getElementById('epilepsy').value,
-        chronic_details: document.getElementById('chronic_details').value || 'প্রযোজ্য নয়',
-        disability_status: document.getElementById('disability_status').value,
-        disability_details: document.getElementById('disability_details').value || 'প্রযোজ্য নয়'
-    };
+	
+	    // রোগ সংক্রান্ত ও শারীরিক প্রতিবন্ধকতা তথ্য
+	    thalassemia: document.getElementById('thalassemia')?.value || 'না',
+	    chronic_disease: document.getElementById('chronic_disease')?.value || 'নেই',
+	    chronic_details: document.getElementById('chronic_details')?.value || 'প্রযোজ্য নয়',
+	    disability_status: document.getElementById('disability_status')?.value || 'নেই',
+	    disability_details: document.getElementById('disability_details')?.value || 'প্রযোজ্য নয়',
+	
+	    // আপডেট করা টিকার বিবরণ ও তারিখসমূহ
+	    vaccine_bcg: document.querySelector('input[name="bcg"]:checked')?.value || 'না',
+	    bcg_date: document.getElementById('bcg_date')?.value || 'প্রযোজ্য নয়',
+	
+	    vaccine_mr: document.querySelector('input[name="mr"]:checked')?.value || 'না',
+	    mr_date: document.getElementById('mr_date')?.value || 'প্রযোজ্য নয়',
+	
+	    vaccine_penta: document.querySelector('input[name="penta"]:checked')?.value || 'না',
+	    penta_date: document.getElementById('penta_date')?.value || 'প্রযোজ্য নয়',
+	
+	    vaccine_pcv: document.querySelector('input[name="pcv"]:checked')?.value || 'না',
+	    pcv_date: document.getElementById('pcv_date')?.value || 'প্রযোজ্য নয়',
+	
+	    vaccine_polio: document.querySelector('input[name="polio"]:checked')?.value || 'না',
+	    polio_date: document.getElementById('polio_date')?.value || 'প্রযোজ্য নয়',
+	
+	    vaccine_tt: document.querySelector('input[name="tt"]:checked')?.value || 'না',
+	    tt_date: document.getElementById('tt_date')?.value || 'প্রযোজ্য নয়',
+	
+	    vaccine_other: document.querySelector('input[name="other_v"]:checked')?.value || 'না',
+	    other_date: document.getElementById('other_v_date')?.value || 'প্রযোজ্য নয়'
+	};
 
         // EmailJS সার্ভিস কল
         emailjs.send("service_kalaya", "template_2ra5c35", params)
