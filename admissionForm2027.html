@@ -615,7 +615,15 @@
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+</script>
+<!-- EmailJS SDK Link -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</script>
+<script type="text/javascript">
+   (function(){
+      // আপনার আসল Public Key টি এখানে বসান
+      emailjs.init("CeIzWuZvq5eRchl18"); 
+   })();
 <script type="text/javascript">
     (function() {
         emailjs.init("CeIzWuZvq5eRchl18"); // Public Key
@@ -953,7 +961,7 @@
         }
     });
 
-    // --- रोग সংক্রান্ত ও শারীরিক প্রতিবন্ধকতা ডায়নামিক শো/হাইড লজিক ---
+    // --- রোগ সংক্রান্ত ও শারীরিক প্রতিবন্ধকতা ডায়নামিক শো/হাইড লজিক ---
     const chronicDiseaseSelect = document.getElementById('chronic_disease');
     const chronicDetailsWrapper = document.getElementById('chronic_details_wrapper');
     const chronicDetailsInput = document.getElementById('chronic_details');
@@ -1216,15 +1224,7 @@
                 btn.disabled = false;
             });
     });
-</script>
-<!-- EmailJS SDK Link -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script type="text/javascript">
-   (function(){
-      // আপনার আসল Public Key টি এখানে বসান
-      emailjs.init("CeIzWuZvq5eRchl18"); 
-   })();
 </script>
 </body>
 </html>
