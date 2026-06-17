@@ -707,45 +707,50 @@
         }
     });
 
-    document.getElementById('admissionForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+document.getElementById('admissionForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        const btn = document.getElementById('submitBtn');
-        btn.innerHTML = 'প্রসেস হচ্ছে...';
-        btn.disabled = true;
+    const btn = document.getElementById('submitBtn');
+    btn.innerHTML = 'প্রসেস হচ্ছে...';
+    btn.disabled = true;
 
-        const params = {
-            student_name: document.getElementById('student_name_bn').value,
-            student_class: document.getElementById('desired_class').value, // সংশোধিত ID
-            phone: document.getElementById('father_phone').value,
-        };
+    // শুধুমাত্র টেক্সট ডেটাগুলো অবজেক্টে নেওয়া হচ্ছে (ফাইল ইনপুটগুলো বাদ দিয়ে)
+    const params = {
+        student_name: document.getElementById('student_name_bn').value,
+        student_class: document.getElementById('desired_class').value, 
+        phone: document.getElementById('father_phone').value,
+    };
 
-        emailjs.send("service_kalaya", "template_2ra5c35", params)
-            .then(function() {
-                Swal.fire({
-                    title: 'সফল হয়েছে!',
-                    text: 'আবেদনটি সফলভাবে সাবমিট করা হয়েছে। প্রিন্ট করতে ওকে বাটনে চাপুন।',
-                    icon: 'success',
-                    confirmButtonColor: '#006A4E',
-                    confirmButtonText: 'ওকে (প্রিন্ট করুন)'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.print();
-                    }
-                });
-                
-                btn.innerHTML = 'আবেদন সম্পন্ন করুন';
-                btn.disabled = false;
-            }, function(error) {
-                Swal.fire({
-                    title: 'ভুল হয়েছে!',
-                    text: 'দুঃখিত, কোনো একটি ইন্টারনাল সমস্যার কারণে পাঠানো যায়নি।',
-                    icon: 'error'
-                });
-                btn.innerHTML = 'আবেদন সম্পন্ন করুন';
-                btn.disabled = false;
+    // সরাসরি অবজেক্টটি পাঠানো হচ্ছে, কোনো FormData বা ফাইল পাঠানো হচ্ছে না
+    emailjs.send("service_kalaya", "template_2ra5c35", params)
+        .then(function() {
+            Swal.fire({
+                title: 'সফল হয়েছে!',
+                text: 'আবেদনটি সফলভাবে সাবমিট করা হয়েছে। প্রিন্ট করতে ওকে বাটনে চাপুন।',
+                icon: 'success',
+                confirmButtonColor: '#006A4E',
+                confirmButtonText: 'ওকে (প্রিন্ট করুন)'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.print();
+                }
             });
-    });
+            
+            btn.innerHTML = 'আবেদন সম্পন্ন করুন';
+            btn.disabled = false;
+        }, function(error) {
+            // ব্রাউজার কনসোলে আসল এররটি দেখার জন্য
+            console.error("EmailJS Error:", error);
+            
+            Swal.fire({
+                title: 'ভুল হয়েছে!',
+                text: 'দুঃখিত, কোনো একটি ইন্টারনাল সমস্যার কারণে পাঠানো যায়নি। (কনসোল চেক করুন)',
+                icon: 'error'
+            });
+            btn.innerHTML = 'আবেদন সম্পন্ন করুন';
+            btn.disabled = false;
+        });
+});
 </script>
 
 </body>
