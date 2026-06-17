@@ -1168,12 +1168,30 @@
             other_date: document.getElementById('other_v_date')?.value || 'প্রযোজ্য নয়'
         };
 
+		// ফর্ম সাবমিট হ্যান্ডলার ফাংশনের ভেতরে:
+	function handleFormSubmit(event) {
+	    event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করতে
+	
+	    // ১. আপনার লজিক অনুযায়ী সিরিয়াল ও অ্যাডমিন লিংক তৈরি করুন
+	    const generatedSerialNo = "KB-2027-" + Math.floor(100000 + Math.random() * 900000);
+	    const generatedAdminLink = `https://yourdomain.com/admissionForm2027.html?mode=admin&serial=${generatedSerialNo}`;
+	
+	    // ২. স্ক্রিনশটের টেমপ্লেট ভেরিয়েবল অনুযায়ী ডাটা অবজেক্ট তৈরি
+	    const templateParams = {
+	        student_name: document.getElementById("student_name_field_id").value, // ফর্মের শিক্ষার্থীর নাম ফিল্ডের ID
+	        serial_no: generatedSerialNo,
+	        admin_link: generatedAdminLink,
+	        email: document.getElementById("applicant_email_field_id").value // আবেদনকারীর ইমেইল (যার কাছে অটো-রিপ্লাই যাবে)
+	    };
+
         // EmailJS সার্ভিস কল
-        emailjs.send("service_kalaya", "template_2ra5c35", params)
+        emailjs.send("service_kalaya", "template_2ra5c35", templateParams)
             .then(function() {
+				console.log('SUCCESS!', response.status, response.text);
+				// সফল হলে SweetAlert2 নোটিফিকেশন
                 Swal.fire({
                     title: 'অভিনন্দন! আপনার আবেদনটি সফল হয়েছে।',
-                    html: `<div class="alert alert-success"><strong>আবেদন সিরিয়াল নম্বর: ${serialNumber}</strong></div>
+                    html: `<div class="alert alert-success"><strong> আপনার সিরিয়াল নম্বর: ${serialNumber}</strong></div>
                            <p>ভবিষ্যতের জন্য সিরিয়াল নম্বরটি সংরক্ষণ করুন। ফর্মটি প্রিন্ট করতে নিচের বাটনে চাপুন।</p>`,
                     icon: 'success',
                     confirmButtonColor: '#006A4E',
@@ -1188,17 +1206,25 @@
                 btn.innerHTML = 'আবেদন সম্পন্ন করুন';
                 btn.disabled = false;
             }, function(error) {
-                console.error("EmailJS Error:", error);
+                console.error('FAILED...', error);
                 Swal.fire({
-                    title: 'ত্রুটি ঘটেছে! (Error!)',
-                    text: 'দুঃখিত, অভ্যন্তরীণ সমস্যার কারণে আবেদনটি পাঠানো যায়নি। কন্সোল চেক করুন।',
+                    title: 'দুঃখিত! (Error!)',
+                    text: 'কারিগরি ত্রুটির কারণে ইমেইল পাঠানো যায়নি। আবার চেষ্টা করুন।',
                     icon: 'error'
                 });
-                btn.innerHTML = 'আবেদন সম্পন্ন করুন';
+                confirmButtonText: 'ঠিক আছে'
                 btn.disabled = false;
             });
     });
 </script>
+<!-- EmailJS SDK Link -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<script type="text/javascript">
+   (function(){
+      // আপনার আসল Public Key টি এখানে বসান
+      emailjs.init("CeIzWuZvq5eRchl18"); 
+   })();
+</script>
 </body>
 </html>
