@@ -792,6 +792,42 @@
         }
     });
 
+	// 🎂 জন্ম তারিখ সিলেক্ট করলে স্বয়ংক্রিয়ভাবে বয়স (বছর ও মাস) হিসাব করার লজিক
+	document.getElementById('birth_date').addEventListener('change', function() {
+	    const birthDateStr = this.value;
+	    if (!birthDateStr) return; // যদি কোনো তারিখ সিলেক্ট করা না থাকে
+	
+	    const birthDate = new Date(birthDateStr);
+	    
+	    // ২০২৭ শিক্ষাবর্ষের জন্য ১লা জানুয়ারি ২০২৭ তারিখকে টার্গেট ধরা হয়েছে
+	    // আপনি চাইলে এখানে 'new Date()' ব্যবহার করে বর্তমান দিনের সাপেক্ষেও বয়স বের করতে পারেন।
+	    const targetDate = new Date('2027-01-01'); 
+	
+	    let years = targetDate.getFullYear() - birthDate.getFullYear();
+	    let months = targetDate.getMonth() - birthDate.getMonth();
+	    let days = targetDate.getDate() - birthDate.getDate();
+	
+	    // দিনের পার্থক্য নেতিবাচক হলে মাস এক কমিয়ে দিন
+	    if (days < 0) {
+	        months--;
+	    }
+	
+	    // মাসের পার্থক্য নেতিবাচক হলে বছর এক কমিয়ে মাস ১২ যোগ করুন
+	    if (months < 0) {
+	        years--;
+	        months += 12;
+	    }
+	
+	    // বয়স যদি নেতিবাচক (ভুল ইনপুট) হয় তবে ০ বসবে, অন্যথায় সঠিক হিসাব বসবে
+	    if (years < 0) {
+	        document.getElementById('age_years').value = 0;
+	        document.getElementById('age_months').value = 0;
+	    } else {
+	        document.getElementById('age_years').value = years;
+	        document.getElementById('age_months').value = months;
+	    }
+	});
+
     // কন্ডিশনাল রিকোয়ার্ড লজিক (প্রাক-প্রাথমিক বাদে অন্য ক্লাসের জন্য পূর্ববর্তী স্কুল বাধ্যতামূলক)
     const desiredClassSelect = document.getElementById('desired_class');
     const prevSchoolInput = document.getElementById('prev_school');
