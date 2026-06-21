@@ -1,7 +1,8 @@
 // 🎬 কালাইয়া বোর্ড সপ্রাবি - সেন্ট্রাল ভিডিও ডাটাবেজ
 const videoData = [
     // ==== ১. ছড়া গান (bangla) ====
-    { id: "https://youtu.be/0jO0DCz-xW4?si=pDBElmSXEkgB_fDC", type: "youtube", title: "ঝক ঝকাঝক ট্রেন চলেছে ১", cat: "bangla" },
+    { id: "WZP-U2gxiqQ", type: "youtube", title: "ঝক ঝকাঝক ট্রেন চলেছে ১", cat: "bangla" },
+    { id: "0jO0DCz-xW4", type: "youtube", title: "ঝক ঝকাঝক ট্রেন চলেছে ২", cat: "bangla" },
     { id: "M05t3mQp25w", type: "youtube", title: "বাংলা বর্ণমালা গান", cat: "bangla" },
     { id: "mU_fI3fI4rM", type: "youtube", title: "ঐ দেখা যায় তাল গাছ", cat: "bangla" },
     
