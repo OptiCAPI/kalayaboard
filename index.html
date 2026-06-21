@@ -14,6 +14,71 @@
         :root { --primary-green: #006A4E; --accent-yellow: #FFB800; }
         body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; overflow-x: hidden; }
 
+        /* ৩-বার (Hamburger) বাটন স্টাইল */
+        .hamburger-menu-btn {
+            background: transparent;
+            border: none;
+            color: #333;
+            font-size: 22px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* বাটনে মাউস নিলে বা টাচ করলে ইফেক্ট */
+        .hamburger-menu-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #0d6efd; /* Bootstrap Primary Color */
+            transform: scale(1.05);
+        }
+        
+        /* পপ-আপ সাইডবার উইডথ */
+        .premium-sidebar {
+            width: 290px !important;
+            border-right: 3px solid #0d6efd;
+        }
+        
+        /* পপ-আপ মেনু হেডার প্যাডিং */
+        .premium-sidebar .offcanvas-header {
+            padding: 18px 20px;
+        }
+        
+        /* মেনু লিংকগুলোর স্টাইল */
+        .sidebar-links-group .list-group-item {
+            background: transparent;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #444;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease-in-out;
+        }
+        
+        /* টাচ বা হোভার করলে ডানে সরে যাওয়ার স্মুথ অ্যানিমেশন */
+        .sidebar-links-group .list-group-item:hover {
+            background-color: rgba(13, 110, 253, 0.06);
+            color: #0d6efd;
+            padding-left: 33px; /* একটু ডানে স্লাইড হবে */
+        }
+        
+        /* বর্তমানে যে পেজে ইউজার আছেন (Active Page) */
+        .sidebar-links-group .active-page {
+            background-color: #0d6efd !important;
+            color: #fff !important;
+        }
+        .sidebar-links-group .active-page i {
+            color: #fff !important;
+        }
+        
+        /* ক্লোজ বাটনের চারপাশের ডিফল্ট আউটলাইন রিমুভ */
+        .btn-close:focus {
+            box-shadow: none;
+        }
+
         /* ০০. নোটিশ বার স্টাইল */
         .notice-marquee {
             background: #FFB800; /* হালকা সোনালী/হলুদ */
@@ -566,14 +631,56 @@
     </div>
 </nav>
 
-<div class="d-flex align-items-center shadow-sm border-bottom">
+<div class="d-flex align-items-center shadow-sm border-bottom bg-white">
+    
+    <button class="hamburger-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#schoolSidebar" aria-controls="schoolSidebar">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <div class="bg-primary text-white px-3 py-2 fw-bold text-nowrap">
         <i class="fas fa-bullhorn me-2"></i>নোটিশ:
     </div>
+    
     <div class="marquee-container flex-grow-1 bg-white text-dark py-2">
         <marquee id="marquee-notices" class="fw-bold" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="6">
             লোড হচ্ছে...
         </marquee>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start premium-sidebar" tabindex="-1" id="schoolSidebar" aria-labelledby="schoolSidebarLabel">
+    <div class="offcanvas-header text-white bg-primary">
+        <h5 class="offcanvas-title fw-bold" id="schoolSidebarLabel">
+            <i class="fas fa-university me-2"></i> প্রধান মেনু
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    
+    <div class="offcanvas-body p-0 bg-light">
+        <div class="list-group list-group-flush sidebar-links-group">
+            <a href="index.html" class="list-group-item list-group-item-action active-page">
+                <i class="fas fa-home me-3 text-primary"></i>হোমপেজ (Home)
+            </a>
+            <a href="admissionForm2027.html" class="list-group-item list-group-item-action">
+                <i class="fas fa-file-signature me-3 text-primary"></i>ভর্তি ফরম (Admission Form)
+            </a>
+            <a href="result.html" class="list-group-item list-group-item-action">
+                <i class="fas fa-poll-h me-3 text-primary"></i>ফলাফল (Student Result)
+            </a>
+            <a href="teachers.html" class="list-group-item list-group-item-action">
+                <i class="fas fa-user-tie me-3 text-primary"></i>শিক্ষক তালিকা (Teachers)
+            </a>
+            <a href="quiz.html" class="list-group-item list-group-item-action">
+                <i class="fas fa-brain me-3 text-primary"></i>অনলাইন কুইজ (Quiz)
+            </a>
+            <a href="bmi.html" class="list-group-item list-group-item-action">
+                <i class="fas fa-heartbeat me-3 text-primary"></i>বিএমআই ক্যালকুলেটর
+            </a>
+        </div>
+        
+        <div class="sidebar-footer text-center py-4 text-muted border-top bg-white position-absolute bottom-0 start-0 w-100">
+            <small class="fw-bold">© কালাইয়া বোর্ড সপ্রাবি</small>
+        </div>
     </div>
 </div>
 
