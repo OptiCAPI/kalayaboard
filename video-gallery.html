@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ভিডিও থিয়েটার - কালাইয়া বোর্ড সপ্রাবি</title>
+    <title>ভিডিও থিয়েটার - কালাইয়া বোর্ড সপ্রাবি</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -31,9 +31,9 @@
         /* হেডার */
         .header-box {
             background: linear-gradient(135deg, var(--primary) 0%, #004d39 100%);
-            padding: 50px 0;
+            padding: 40px 0;
             border-bottom: 8px solid var(--kids-yellow);
-            border-radius: 0 0 50px 50px;
+            border-radius: 0 0 40px 40px;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -41,7 +41,7 @@
         /* ক্যাটাগরি বাটন */
         .btn-cat {
             border: 3px solid white;
-            padding: 10px 25px;
+            padding: 10px 22px;
             border-radius: 50px;
             margin: 5px;
             font-weight: 700;
@@ -55,17 +55,71 @@
         
         .btn-cat:hover { transform: scale(1.1); color: white; }
 
-        /* ভিডিও কার্ড */
+        /* 📱 স্টিকি প্লেয়ার প্যানেল স্টাইল (মোবাইলের জন্য স্পেশাল) */
+        .sticky-theater-panel {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: #111;
+            border-radius: 0 0 25px 25px;
+            border-bottom: 6px solid var(--kids-blue);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none; /* শুরুতে হাইড থাকবে */
+            overflow: hidden;
+        }
+
+        .player-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background: #000;
+        }
+        .player-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* প্লেয়ার কন্ট্রোল বার */
+        .theater-controls {
+            background: #222;
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .th-btn {
+            width: 48px; height: 48px;
+            border-radius: 50%; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: white; transition: 0.2s;
+        }
+        .th-btn:active { transform: scale(0.9); }
+        .th-prev { background: var(--kids-orange); }
+        .th-play { background: var(--primary); width: 55px; height: 55px; font-size: 22px; border: 3px solid white; }
+        .th-next { background: var(--kids-orange); }
+        .th-close { background: var(--kids-red); }
+
+        .theater-title {
+            color: #fff; background: #000; padding: 8px;
+            text-align: center; margin: 0; font-size: 16px; font-weight: bold;
+        }
+
+        /* ভিডিও কার্ড গ্রিড */
         .video-card {
             background: white;
-            border-radius: 30px;
+            border-radius: 25px;
             overflow: hidden;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
             cursor: pointer;
-            transition: 0.4s;
+            transition: 0.3s;
         }
-        .video-card:hover { transform: translateY(-10px); border-color: var(--kids-blue); }
+        .video-card:hover, .video-card.playing-now { 
+            transform: translateY(-5px); 
+            border-color: var(--kids-blue); 
+            background: #e0f2fe;
+        }
         
         .thumb-box { position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; }
         .thumb-box img { width: 100%; height: 100%; object-fit: cover; }
@@ -73,126 +127,98 @@
         .play-btn-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.2); opacity: 0; transition: 0.3s;
+            background: rgba(0,0,0,0.3); opacity: 0; transition: 0.3s;
         }
-        .video-card:hover .play-btn-overlay { opacity: 1; }
-        .play-btn-overlay i { font-size: 60px; color: var(--kids-yellow); }
+        .video-card:hover .play-btn-overlay, .video-card.playing-now .play-btn-overlay { opacity: 1; }
+        .play-btn-overlay i { font-size: 50px; color: var(--kids-yellow); }
 
-        /* কাস্টম ইন্টারনাল প্লেয়ার মডাল */
-        .modal-full { max-width: 950px; }
-        .modal-content { background: #1a1a1a; border-radius: 40px; border: 8px solid var(--kids-blue); overflow: hidden; }
-        
-        .player-container { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
-        .player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-
-        /* কাস্টম কন্ট্রোল বার */
-        .kids-controls {
-            background: #222;
-            padding: 20px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-top: 4px solid #333;
+        /* ব্যাক বাটন */
+        .kids-back-btn {
+            position: fixed; bottom: 25px; left: 25px; z-index: 9999;
+            background: linear-gradient(45deg, #FF4D6D, #FF8C42);
+            color: white; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; box-shadow: 0 6px 15px rgba(255, 77, 109, 0.4);
+            border: 3px solid white; cursor: pointer; transition: 0.3s;
         }
-
-        .control-btn {
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            transition: 0.2s;
-            color: white;
-        }
-        .control-btn:active { transform: scale(0.9); }
-
-        .btn-prev { background: var(--kids-orange); }
-        .btn-play { background: var(--primary); width: 80px; height: 80px; font-size: 35px; border: 4px solid white; }
-        .btn-next { background: var(--kids-orange); }
-        .btn-vol { background: var(--kids-blue); }
-        .btn-close-kids { background: var(--kids-red); }
-
-        .video-title-player { color: white; padding: 15px; text-align: center; background: #000; font-family: 'Atma'; margin: 0; }
-
-        @media (max-width: 600px) {
-            .control-btn { width: 45px; height: 45px; font-size: 18px; }
-            .btn-play { width: 60px; height: 60px; font-size: 25px; }
-        }
+        .kids-back-btn:hover { transform: scale(1.1) rotate(-15deg); background: #006A4E; }
+        .kids-back-btn i { font-size: 24px; }
     </style>
 </head>
 <body>
 
-<header class="header-box text-center animate__animated animate__fadeInDown">
+<header class="header-box text-center animate__animated animate__fadeInDown" id="mainHeader">
     <div class="container">
-        <h2 class="display-4 fw-bold mb-2">🎬 সোনামণিদের থিয়েটার</h2>
-        <p class="fs-5 opacity-75">গান আর ভিডিও দেখে হবে দারুণ মজা!</p>
+        <h2 class="display-5 fw-bold mb-1">🎬 সোনামণিদের থিয়েটার</h2>
+        <p class="fs-6 opacity-75">গান আর ভিডিও দেখে হবে দারুণ মজা!</p>
         
-        <div class="mt-4">
+        <div class="mt-3">
             <button class="btn btn-cat btn-all" onclick="filterGallery('all')">সব ভিডিও</button>
-            <button class="btn btn-cat btn-bn" onclick="filterGallery('bangla')">বাংলা গান 🇧🇩</button>
-            <button class="btn btn-cat btn-en" onclick="filterGallery('english')">English Song 🇬🇧</button>
-            <button class="btn btn-cat btn-other" onclick="filterGallery('others')">অন্যান্য 🌟</button>
+            <button class="btn btn-cat btn-bn" onclick="startPlaylistMode('bangla')">ছড়া গান 🎶</button>
+            <button class="btn btn-cat btn-en" onclick="startPlaylistMode('english')">English Song 🇬🇧</button>
+            <button class="btn btn-cat btn-other" onclick="startPlaylistMode('others')">অন্যান্য 🌟</button>
         </div>
     </div>
 </header>
 
-<div class="container my-5">
-    <div class="row g-4" id="videoGrid">
-        </div>
+<div id="stickyTheater" class="sticky-theater-panel">
+    <h5 id="theaterTitle" class="theater-title">ভিডিও লোড হচ্ছে...</h5>
+    <div class="player-wrapper">
+        <div id="mainIframeContainer" style="width:100%; height:100%; position:absolute;"></div>
+    </div>
+    <div class="theater-controls">
+        <button class="th-btn th-prev" onclick="navigatePlaylist(-1)"><i class="fas fa-backward"></i></button>
+        <button class="th-btn th-play" onclick="togglePlayback()" id="thPlayBtn"><i class="fas fa-pause"></i></button>
+        <button class="th-btn th-next" onclick="navigatePlaylist(1)"><i class="fas fa-forward"></i></button>
+        <button class="th-btn th-close" onclick="exitTheaterMode()"><i class="fas fa-times"></i></button>
+    </div>
 </div>
 
-<div class="modal fade" id="playerModal" tabindex="-1" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered modal-full">
-        <div class="modal-content animate__animated animate__zoomIn">
-            <h5 class="video-title-player" id="vTitle">ভিডিওর নাম</h5>
-            <div class="player-container">
-                <div id="youtubePlayer"></div> </div>
-            
-            <div class="kids-controls">
-                <button class="control-btn btn-vol" onclick="toggleMute()" id="muteBtn"><i class="fas fa-volume-up"></i></button>
-                <button class="control-btn btn-prev" onclick="changeVideo(-1)"><i class="fas fa-backward"></i></button>
-                <button class="control-btn btn-play" onclick="togglePlay()" id="playBtn"><i class="fas fa-pause"></i></button>
-                <button class="control-btn btn-next" onclick="changeVideo(1)"><i class="fas fa-forward"></i></button>
-                <button class="control-btn btn-close-kids" data-bs-dismiss="modal" onclick="closePlayer()"><i class="fas fa-times"></i></button>
-            </div>
+<div class="container my-4">
+    <div class="row g-3" id="videoGrid">
         </div>
-    </div>
 </div>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-    // ডেমো ভিডিও ডেটাবেস
+    // ভিডিওর নিখুঁত ডাটাবেস (ইউটিউব আইডি এবং ক্লাউডিনারি ইউআরএল সহ)
     const videoData = [
-        { id: url: "https://player.cloudinary.com/embed/?cloud_name=dyrshitkf&public_id=2026_02_23_13_59_13_wq7atf", title: "কাগজ দিয়ে খাম বানানো", cat: "others" },
-        { id: "M05t3mQp25w", title: "বাংলা বর্ণমালা গান", cat: "bangla" },
-        { id: "mU_fI3fI4rM", title: "ঐ দেখা যায় তাল গাছ", cat: "bangla" },
-        { id: "jNQXAC9IVRw", title: "Phonics Song for Kids", cat: "english" },
-        { id: "v2Wz7971Ym0", title: "Learning Numbers 1-10", cat: "english" },
-        { id: "7G8u9A5I-Lg", title: "মজার বিজ্ঞান পরীক্ষা", cat: "others" },
-        { id: "M7lc1UVf-VE", title: "ছোটদের কার্টুন", cat: "others" }
+        { id: "M05t3mQp25w", type: "youtube", title: "বাংলা বর্ণমালা গান", cat: "bangla" },
+        { id: "mU_fI3fI4rM", type: "youtube", title: "ঐ দেখা যায় তাল গাছ", cat: "bangla" },
+        { id: "jNQXAC9IVRw", type: "youtube", title: "Phonics Song for Kids", cat: "english" },
+        { id: "v2Wz7971Ym0", type: "youtube", title: "Learning Numbers 1-10", cat: "english" },
+        { id: "cloudinary_video_1", type: "cloudinary", url: "https://player.cloudinary.com/embed/?cloud_name=dyrshitkf&public_id=2026_02_23_13_59_13_wq7atf", title: "কাগজ দিয়ে খাম বানানো", cat: "others" },
+        { id: "7G8u9A5I-Lg", type: "youtube", title: "মজার বিজ্ঞান পরীক্ষা", cat: "others" },
+        { id: "M7lc1UVf-VE", type: "youtube", title: "ছোটদের কার্টুন", cat: "others" }
     ];
 
     let currentPlaylist = [...videoData];
     let currentIndex = 0;
-    let player;
+    let ytPlayer = null;
+    let isTheaterActive = false;
 
-    // ভিডিও গ্রিড তৈরি
+    // ১. ভিডিও গ্রিড রেন্ডার ফাংশন
     function renderGallery(list) {
         const grid = document.getElementById('videoGrid');
         grid.innerHTML = '';
         list.forEach((v, index) => {
+            // থাম্বনেইল লজিক (ইউটিউব বা ক্লাউডিনারি কাস্টম ইমেজ)
+            const thumbUrl = v.type === 'youtube' 
+                ? `https://img.youtube.com/vi/${v.id}/mqdefault.jpg` 
+                : `https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400`; // ডামি আর্ট থাম্বনেইল
+            
+            const isPlayingClass = (isTheaterActive && index === currentIndex) ? 'playing-now' : '';
+
             grid.innerHTML += `
                 <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
-                    <div class="video-card" onclick="openPlayer(${index})">
+                    <div class="video-card ${isPlayingClass}" onclick="selectVideo(${index})">
                         <div class="thumb-box">
-                            <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg">
+                            <img src="${thumbUrl}" alt="${v.title}">
                             <div class="play-btn-overlay"><i class="fas fa-play-circle animate__animated animate__pulse animate__infinite"></i></div>
                         </div>
                         <div class="p-3 text-center">
-                            <h5 class="m-0 text-dark">${v.title}</h5>
+                            <h5 class="m-0 text-dark fs-6">${v.title}</h5>
                         </div>
                     </div>
                 </div>
@@ -200,127 +226,119 @@
         });
     }
 
-    // ফিল্টার লজিক
+    // ২. সিম্পল ফিল্টার (শুধু গ্রিড পরিবর্তন করবে)
     function filterGallery(category) {
+        exitTheaterMode();
         if(category === 'all') currentPlaylist = [...videoData];
         else currentPlaylist = videoData.filter(v => v.cat === category);
         renderGallery(currentPlaylist);
     }
 
-    // প্লেয়ার লজিক
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtubePlayer', {
-            height: '100%',
-            width: '100%',
-            playerVars: { 'autoplay': 0, 'controls': 0, 'rel': 0, 'showinfo': 0, 'modestbranding': 1 },
-            events: { 'onStateChange': onPlayerStateChange }
-        });
+    // ৩. 🚀 প্লেলিস্ট অটো-প্লে মোড (ছড়া গান বা যেকোনো ক্যাটাগরিতে টাচ করলে চালু হবে)
+    function startPlaylistMode(category) {
+        currentPlaylist = videoData.filter(v => v.cat === category);
+        if(currentPlaylist.length === 0) return;
+        
+        isTheaterActive = true;
+        document.getElementById('stickyTheater').style.display = 'block'; // প্লেয়ার ওপেন
+        
+        // মোবাইল ভিউতে স্ক্রিন সুন্দর রাখতে হেডারকে ছোট বা হাইড করা যেতে পারে (ঐচ্ছিক)
+        document.getElementById('mainHeader').style.padding = "20px 0"; 
+
+        selectVideo(0); // প্রথম ভিডিও থেকে শুরু হবে
     }
 
-    function openPlayer(index) {
+    // ৪. নির্দিষ্ট ইনডেক্সের ভিডিও প্লে করার ইঞ্জিন
+    function selectVideo(index) {
+        if (!isTheaterActive) {
+            // যদি আগে প্লেলিস্ট মোড অন না থাকে, তবে বর্তমান লিস্টের সাপেক্ষেই থিয়েটার অন হবে
+            isTheaterActive = true;
+            document.getElementById('stickyTheater').style.display = 'block';
+        }
+        
         currentIndex = index;
         const video = currentPlaylist[currentIndex];
-        document.getElementById('vTitle').innerText = video.title;
-        player.loadVideoById(video.id);
-        const modal = new bootstrap.Modal(document.getElementById('playerModal'));
-        modal.show();
+        document.getElementById('theaterTitle').innerText = video.title;
+        
+        const container = document.getElementById('mainIframeContainer');
+        container.innerHTML = ''; // আগের প্লেয়ার রিমুভ
+
+        if (video.type === 'youtube') {
+            // ইউটিউবের জন্য ডাইনামিক YT Player তৈরি
+            container.innerHTML = '<div id="ytActualPlayer"></div>';
+            ytPlayer = new YT.Player('ytActualPlayer', {
+                height: '100%',
+                width: '100%',
+                videoId: video.id,
+                playerVars: { 'autoplay': 1, 'controls': 1, 'rel': 0, 'modestbranding': 1 },
+                events: { 'onStateChange': onPlayerStateChange }
+            });
+        } else if (video.type === 'cloudinary') {
+            // ক্লাউডিনারি বা অন্যান্য সাধারণ এমবেড কোডের জন্য আইফ্রেম প্লেয়ার
+            container.innerHTML = `<iframe src="${video.url}&autoplay=true" width="100%" height="100%" allow="autoplay; fullscreen" frameborder="0"></iframe>`;
+            ytPlayer = null; // ইউটিউব প্লেয়ার খালি করুন
+        }
+
+        document.getElementById('thPlayBtn').innerHTML = '<i class="fas fa-pause"></i>';
+        renderGallery(currentPlaylist); // অ্যাক্টিভ ক্লাস আপডেট করতে রি-রেন্ডার
     }
 
-    function togglePlay() {
-        const state = player.getPlayerState();
-        const playBtn = document.getElementById('playBtn');
+    // ৫. পরবর্তী বা পূর্ববর্তী ভিডিও নেভিগেশন
+    function navigatePlaylist(direction) {
+        currentIndex += direction;
+        if (currentIndex >= currentPlaylist.length) currentIndex = 0; // ঘুরপাক খেয়ে প্রথমে আসবে
+        if (currentIndex < 0) currentIndex = currentPlaylist.length - 1;
+        selectVideo(currentIndex);
+    }
+
+    // ৬. ভিডিও শেষ হলে স্বয়ংক্রিয়ভাবে পরের ভিডিও চালু (Autoplay Next)
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+            navigatePlaylist(1); // ১ ঘর সামনে যাবে
+        }
+    }
+
+    // ৭. প্লে ও পজ টগল (শুধু ইউটিউবের জন্য কার্যকরী)
+    function togglePlayback() {
+        if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+        const state = ytPlayer.getPlayerState();
+        const playBtn = document.getElementById('thPlayBtn');
         if (state === 1) {
-            player.pauseVideo();
+            ytPlayer.pauseVideo();
             playBtn.innerHTML = '<i class="fas fa-play"></i>';
         } else {
-            player.playVideo();
+            ytPlayer.playVideo();
             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
         }
     }
 
-    function toggleMute() {
-        const muteBtn = document.getElementById('muteBtn');
-        if (player.isMuted()) {
-            player.unMute();
-            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            muteBtn.style.background = "var(--kids-blue)";
-        } else {
-            player.mute();
-            muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            muteBtn.style.background = "var(--kids-red)";
+    // ৮. প্লেয়ার মোড বন্ধ করা
+    function exitTheaterMode() {
+        isTheaterActive = false;
+        document.getElementById('stickyTheater').style.display = 'none';
+        document.getElementById('mainIframeContainer').innerHTML = '';
+        document.getElementById('mainHeader').style.padding = "40px 0";
+        if (ytPlayer) {
+            ytPlayer.stopVideo();
+            ytPlayer = null;
         }
+        renderGallery(currentPlaylist);
     }
 
-    function changeVideo(direction) {
-        currentIndex += direction;
-        if (currentIndex >= currentPlaylist.length) currentIndex = 0;
-        if (currentIndex < 0) currentIndex = currentPlaylist.length - 1;
-        
-        const video = currentPlaylist[currentIndex];
-        document.getElementById('vTitle').innerText = video.title;
-        player.loadVideoById(video.id);
-        document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
-    }
-
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.ENDED) {
-            changeVideo(1); // ভিডিও শেষ হলে অটোমেটিক পরের ভিডিও
-        }
-    }
-
-    function closePlayer() {
-        player.stopVideo();
+    // ইউটিউব এপিআই রেডি মেথড
+    function onYouTubeIframeAPIReady() {
+        // এপিআই লোড নিশ্চিত করার জন্য রাখা হলো
     }
 
     // শুরুতে সব ভিডিও দেখাও
     window.onload = () => renderGallery(videoData);
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-    .kids-back-btn {
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        z-index: 9999;
-        background: linear-gradient(45deg, #FF4D6D, #FF8C42);
-        color: white;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
-        border: 4px solid white;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation: bounceInUp 1.5s, heartbeat 2s infinite;
-        cursor: pointer;
-    }
-
-    .kids-back-btn:hover {
-        transform: scale(1.1) rotate(-15deg);
-        background: #006A4E;
-        color: white;
-        box-shadow: 0 10px 25px rgba(0, 106, 78, 0.5);
-    }
-
-    .kids-back-btn i {
-        font-size: 30px;
-    }
-
-    @keyframes heartbeat {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-        100% { transform: scale(1); }
-    }
-</style>
-
 <button onclick="window.history.back();" class="kids-back-btn" title="আগের পেজে ফিরে যাও">
     <i class="fas fa-arrow-left"></i>
 </button>
+
 </body>
 </html>
