@@ -55,7 +55,7 @@
         
         .btn-cat:hover { transform: scale(1.1); color: white; }
 
-        /* 📱 স্টিকি প্লেয়ার প্যানেল স্টাইল (মোবাইলের জন্য স্পেশাল) */
+        /* 📱 স্টিকি প্লেয়ার প্যানেল স্টাইল */
         .sticky-theater-panel {
             position: sticky;
             top: 0;
@@ -64,13 +64,13 @@
             border-radius: 0 0 25px 25px;
             border-bottom: 6px solid var(--kids-blue);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none; /* শুরুতে হাইড থাকবে */
+            display: none; 
             overflow: hidden;
         }
 
         .player-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; 
             height: 0;
             background: #000;
         }
@@ -147,6 +147,7 @@
 </head>
 <body>
 
+<!-- হেডার সেকশন -->
 <header class="header-box text-center animate__animated animate__fadeInDown" id="mainHeader">
     <div class="container">
         <h2 class="display-5 fw-bold mb-1">🎬 সোনামণিদের থিয়েটার</h2>
@@ -161,6 +162,7 @@
     </div>
 </header>
 
+<!-- 📺 টপ স্টিকি প্লেয়ার প্যানেল -->
 <div id="stickyTheater" class="sticky-theater-panel">
     <h5 id="theaterTitle" class="theater-title">ভিডিও লোড হচ্ছে...</h5>
     <div class="player-wrapper">
@@ -174,25 +176,26 @@
     </div>
 </div>
 
+<!-- ভিডিও লিস্ট গ্রিড -->
 <div class="container my-4">
     <div class="row g-3" id="videoGrid">
-        </div>
+        <!-- জাভাস্ক্রিপ্ট কার্ডগুলো এখানে লোড হবে -->
+    </div>
 </div>
 
+<!-- ========================================== -->
+<!-- 📜 স্ক্রিপ্ট লোড করার সঠিক এবং নির্ভুল ক্রমানুসার -->
+<!-- ========================================== -->
+
+<!-- ১. সবার আগে এক্সটার্নাল ভিডিও ডাটাবেজ ফাইলটি লোড হবে -->
+<script src="video-database.js"></script>
+
+<!-- ২. ইউটিউব আইফ্রেম এপিআই স্ক্রিপ্ট -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
+<!-- ৩. অ্যাপ্লিকেশনের মূল লজিক স্ক্রিপ্ট -->
 <script>
-    // ভিডিওর নিখুঁত ডাটাবেস (ইউটিউব আইডি এবং ক্লাউডিনারি ইউআরএল সহ)
-    const videoData = [
-        { id: "M05t3mQp25w", type: "youtube", title: "বাংলা বর্ণমালা গান", cat: "bangla" },
-        { id: "mU_fI3fI4rM", type: "youtube", title: "ঐ দেখা যায় তাল গাছ", cat: "bangla" },
-        { id: "jNQXAC9IVRw", type: "youtube", title: "Phonics Song for Kids", cat: "english" },
-        { id: "v2Wz7971Ym0", type: "youtube", title: "Learning Numbers 1-10", cat: "english" },
-        { id: "cloudinary_video_1", type: "cloudinary", url: "https://player.cloudinary.com/embed/?cloud_name=dyrshitkf&public_id=2026_02_23_13_59_13_wq7atf", title: "কাগজ দিয়ে খাম বানানো", cat: "others" },
-        { id: "7G8u9A5I-Lg", type: "youtube", title: "মজার বিজ্ঞান পরীক্ষা", cat: "others" },
-        { id: "M7lc1UVf-VE", type: "youtube", title: "ছোটদের কার্টুন", cat: "others" }
-    ];
-
+    // গ্লোবাল ভেরিয়েবলসমূহ (যা ভিডিও ডাটাবেজ থেকে ডাটা রিড করবে)
     let currentPlaylist = [...videoData];
     let currentIndex = 0;
     let ytPlayer = null;
@@ -203,10 +206,9 @@
         const grid = document.getElementById('videoGrid');
         grid.innerHTML = '';
         list.forEach((v, index) => {
-            // থাম্বনেইল লজিক (ইউটিউব বা ক্লাউডিনারি কাস্টম ইমেজ)
             const thumbUrl = v.type === 'youtube' 
                 ? `https://img.youtube.com/vi/${v.id}/mqdefault.jpg` 
-                : `https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400`; // ডামি আর্ট থাম্বনেইল
+                : `https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400`; 
             
             const isPlayingClass = (isTheaterActive && index === currentIndex) ? 'playing-now' : '';
 
@@ -226,7 +228,7 @@
         });
     }
 
-    // ২. সিম্পল ফিল্টার (শুধু গ্রিড পরিবর্তন করবে)
+    // ২. ফিল্টার ফাংশন
     function filterGallery(category) {
         exitTheaterMode();
         if(category === 'all') currentPlaylist = [...videoData];
@@ -234,24 +236,21 @@
         renderGallery(currentPlaylist);
     }
 
-    // ৩. 🚀 প্লেলিস্ট অটো-প্লে মোড (ছড়া গান বা যেকোনো ক্যাটাগরিতে টাচ করলে চালু হবে)
+    // ৩. প্লেলিস্ট অটো-প্লে মোড অ্যাক্টিভেশন
     function startPlaylistMode(category) {
         currentPlaylist = videoData.filter(v => v.cat === category);
         if(currentPlaylist.length === 0) return;
         
         isTheaterActive = true;
-        document.getElementById('stickyTheater').style.display = 'block'; // প্লেয়ার ওপেন
-        
-        // মোবাইল ভিউতে স্ক্রিন সুন্দর রাখতে হেডারকে ছোট বা হাইড করা যেতে পারে (ঐচ্ছিক)
+        document.getElementById('stickyTheater').style.display = 'block'; 
         document.getElementById('mainHeader').style.padding = "20px 0"; 
 
-        selectVideo(0); // প্রথম ভিডিও থেকে শুরু হবে
+        selectVideo(0); 
     }
 
-    // ৪. নির্দিষ্ট ইনডেক্সের ভিডিও প্লে করার ইঞ্জিন
+    // ৪. ভিডিও সিলেকশন ও প্লেয়ার ইঞ্জিন
     function selectVideo(index) {
         if (!isTheaterActive) {
-            // যদি আগে প্লেলিস্ট মোড অন না থাকে, তবে বর্তমান লিস্টের সাপেক্ষেই থিয়েটার অন হবে
             isTheaterActive = true;
             document.getElementById('stickyTheater').style.display = 'block';
         }
@@ -261,10 +260,9 @@
         document.getElementById('theaterTitle').innerText = video.title;
         
         const container = document.getElementById('mainIframeContainer');
-        container.innerHTML = ''; // আগের প্লেয়ার রিমুভ
+        container.innerHTML = ''; 
 
         if (video.type === 'youtube') {
-            // ইউটিউবের জন্য ডাইনামিক YT Player তৈরি
             container.innerHTML = '<div id="ytActualPlayer"></div>';
             ytPlayer = new YT.Player('ytActualPlayer', {
                 height: '100%',
@@ -274,31 +272,30 @@
                 events: { 'onStateChange': onPlayerStateChange }
             });
         } else if (video.type === 'cloudinary') {
-            // ক্লাউডিনারি বা অন্যান্য সাধারণ এমবেড কোডের জন্য আইফ্রেম প্লেয়ার
             container.innerHTML = `<iframe src="${video.url}&autoplay=true" width="100%" height="100%" allow="autoplay; fullscreen" frameborder="0"></iframe>`;
-            ytPlayer = null; // ইউটিউব প্লেয়ার খালি করুন
+            ytPlayer = null; 
         }
 
         document.getElementById('thPlayBtn').innerHTML = '<i class="fas fa-pause"></i>';
-        renderGallery(currentPlaylist); // অ্যাক্টিভ ক্লাস আপডেট করতে রি-রেন্ডার
+        renderGallery(currentPlaylist); 
     }
 
-    // ৫. পরবর্তী বা পূর্ববর্তী ভিডিও নেভিগেশন
+    // ৫. প্লেলিস্ট নেভিগেশন (Next/Prev)
     function navigatePlaylist(direction) {
         currentIndex += direction;
-        if (currentIndex >= currentPlaylist.length) currentIndex = 0; // ঘুরপাক খেয়ে প্রথমে আসবে
+        if (currentIndex >= currentPlaylist.length) currentIndex = 0; 
         if (currentIndex < 0) currentIndex = currentPlaylist.length - 1;
         selectVideo(currentIndex);
     }
 
-    // ৬. ভিডিও শেষ হলে স্বয়ংক্রিয়ভাবে পরের ভিডিও চালু (Autoplay Next)
+    // ৬. অটো-প্লে নেক্সট ইভেন্ট হ্যান্ডলার
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.ENDED) {
-            navigatePlaylist(1); // ১ ঘর সামনে যাবে
+            navigatePlaylist(1); 
         }
     }
 
-    // ৭. প্লে ও পজ টগল (শুধু ইউটিউবের জন্য কার্যকরী)
+    // ৭. প্লে/পজ কন্ট্রোল
     function togglePlayback() {
         if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
         const state = ytPlayer.getPlayerState();
@@ -312,7 +309,7 @@
         }
     }
 
-    // ৮. প্লেয়ার মোড বন্ধ করা
+    // ৮. থিয়েটার মোড ক্লোজ ফাংশন
     function exitTheaterMode() {
         isTheaterActive = false;
         document.getElementById('stickyTheater').style.display = 'none';
@@ -327,15 +324,17 @@
 
     // ইউটিউব এপিআই রেডি মেথড
     function onYouTubeIframeAPIReady() {
-        // এপিআই লোড নিশ্চিত করার জন্য রাখা হলো
+        // API লোডের জন্য ট্র্যাকিং ট্রিপার
     }
 
-    // শুরুতে সব ভিডিও দেখাও
+    // পেজ লোড হওয়ার সাথে সাথে গ্যালারি চালু হবে
     window.onload = () => renderGallery(videoData);
 </script>
 
+<!-- ৪. বুটস্ট্রাপ স্ক্রিপ্ট ফাইল -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- ব্যাক বাটন -->
 <button onclick="window.history.back();" class="kids-back-btn" title="আগের পেজে ফিরে যাও">
     <i class="fas fa-arrow-left"></i>
 </button>
