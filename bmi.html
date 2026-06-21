@@ -337,4 +337,18 @@
             document.getElementById('slipRoll').innerText = roll;
             document.getElementById('slipDate').innerText = dateString;
             
-            document.getElementById('slipWeight').innerText = document.getElementById('weight').v
+            document.getElementById('slipWeight').innerText = document.getElementById('weight').value + " কেজি";
+            document.getElementById('slipHeight').innerText = document.getElementById('heightFeet').value + " ফিট " + (document.getElementById('heightInches').value || "০") + " ইঞ্চি";
+            document.getElementById('slipBmiValue').innerText = calculatedBMI;
+            document.getElementById('slipStatus').innerText = healthStatus;
+            document.getElementById('slipAdvice').innerText = adviceText;
+
+            closePrintModal();
+
+            setTimeout(() => {
+                window.print();
+            }, 300);
+        }
+    </script>
+</body>
+</html>
