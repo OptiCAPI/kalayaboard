@@ -25,6 +25,11 @@
         
         /* 🖨️ প্রিন্ট করার জন্য বিশেষ সিএসএস (Media Print) */
         @media print {
+            /* প্রিন্ট কালার গ্রাফিক্স ফোর্স অ্যাক্টিভ করা */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
             /* স্ক্রিনের মেইন অ্যাপ এবং পপ-আপ লুকিয়ে ফেলবে */
             #mainApp, #printModal {
                 display: none !important;
@@ -34,11 +39,12 @@
                 display: block !important;
                 background: white !important;
                 color: black !important;
-                padding: 20px !important;
+                padding: 0px !important;
+                border: none !important;
             }
-            /* প্রিন্ট পেজে ব্যাকগ্রাউন্ড কালার ও শ্যাডো রিমুভ */
             body {
                 background: white !important;
+                margin: 0;
             }
         }
     </style>
@@ -51,7 +57,7 @@
             <div class="absolute top-3 left-4 opacity-10 text-6xl">
                 <i class="fa-solid fa-heart-pulse"></i>
             </div>
-            <h2 class="text-sm font-medium tracking-wide uppercase opacity-90">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
+            <h2 class="text-sm font-medium tracking-wide uppercase opacity-90">১২ নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h2>
             <h1 class="text-2xl md:text-3xl font-bold mt-1 flex items-center justify-center gap-2">
                 <i class="fa-solid fa-weight-scale text-yellow-300"></i> ডিজিটাল বিএমআই ক্যালকুলেটর
             </h1>
@@ -97,7 +103,7 @@
                         <h3 id="bmiValue" class="text-4xl font-extrabold text-gray-800 mt-1">0.0</h3>
                     </div>
                     <div id="statusBadge" class="px-5 py-2.5 rounded-full text-white font-bold text-center text-lg shadow-sm">
-                        লোড হচ্ছে...
+                        로드 হচ্ছে...
                     </div>
                 </div>
 
@@ -132,7 +138,7 @@
                 </button>
             </div>
             
-            <p class="text-xs text-gray-500">রিপোর্ট কার্ডে নাম ও রোল নম্বর প্রিন্ট করার জন্য নিচের তথ্যগুলো পূরণ করুন (এটি ঐচ্ছিক, না চাইলে সরাসরি প্রিন্ট করতে পারেন)।</p>
+            <p class="text-xs text-gray-500">রিপোর্ট কার্ডে নাম ও রোল নম্বর প্রিন্ট করার জন্য নিচের তথ্যগুলো পূরণ করুন।</p>
             
             <div class="space-y-4">
                 <div>
@@ -171,57 +177,81 @@
     </div>
 
 
-    <div id="printSlip" class="hidden w-full max-w-2xl mx-auto border-4 border-double border-gray-800 p-8 my-4 bg-white text-black">
-        <div class="text-center border-b-2 border-gray-800 pb-4 mb-6">
-            <h1 class="text-2xl font-bold uppercase tracking-wide">কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h1>
-            <p class="text-sm font-medium mt-1">বাৎসরিক স্বাস্থ্য ও পুষ্টি পরীক্ষা রিপোর্ট</p>
-            <p class="text-xs text-gray-600 mt-0.5">স্থাপিত: ১৯২০ ইং | বাউফল, পটুয়াখালী</p>
+    <div id="printSlip" class="hidden w-full max-w-[210mm] mx-auto p-6 bg-white text-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+        
+        <div class="relative flex items-center justify-between border-b-4 border-emerald-700 pb-5 mb-6">
+            
+            <div class="w-20 h-20 flex items-center justify-start z-10">
+                <img src="school-logo.png" alt="School Logo" onerror="this.src='https://placehold.co/100?text=School+Logo'" class="max-h-full max-w-full object-contain">
+            </div>
+            
+            <div class="text-center flex-1 px-2">
+                <img src="gov-logo.png" alt="Gov Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg'" class="h-14 mx-auto mb-2 object-contain">
+                
+                <h2 class="text-base font-bold text-gray-900 tracking-wide leading-tight">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</h2>
+                <h3 class="text-sm font-semibold text-gray-800 leading-tight">প্রাথমিক ও গণশিক্ষা মন্ত্রণালয়</h3>
+                <h3 class="text-xs font-semibold text-gray-700 leading-tight">প্রাথমিক শিক্ষা অধিদপ্তর</h3>
+                <h1 class="text-xl font-extrabold text-emerald-800 mt-1.5 tracking-tight">১২ নং কালাইয়া বোর্ড সরকারি প্রাথমিক বিদ্যালয়</h1>
+                <p class="text-xs font-bold text-gray-600 mt-0.5">স্থাপিত: ১৯৩০ ইং | বাউফল, পটুয়াখালী</p>
+            </div>
+            
+            <div class="w-20 h-20 flex items-center justify-end z-10">
+                <img src="dpe-logo.png" alt="DPE Logo" onerror="this.src='https://placehold.co/100?text=DPE+Logo'" class="max-h-full max-w-full object-contain">
+            </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 text-sm mb-6 bg-gray-50 p-4 border border-gray-300 rounded-lg">
-            <div><strong>শিক্ষার্থীর নাম:</strong> <span id="slipName" class="border-b border-dashed border-gray-600 px-1">---</span></div>
-            <div><strong>তারিখ:</strong> <span id="slipDate">---</span></div>
-            <div><strong>শ্রেণি:</strong> <span id="slipClass" class="border-b border-dashed border-gray-600 px-1">---</span></div>
-            <div><strong>রোল নম্বর:</strong> <span id="slipRoll" class="border-b border-dashed border-gray-600 px-1">---</span></div>
+        <div class="text-center mb-6">
+            <span class="bg-emerald-50 text-emerald-900 border-2 border-emerald-600 font-bold px-6 py-1.5 rounded-full text-base shadow-xs tracking-wide uppercase inline-block">
+                শিক্ষার্থীর বাৎসরিক স্বাস্থ্য ও বিএমআই (BMI) রিপোর্ট
+            </span>
         </div>
 
-        <table class="w-full text-left border-collapse border border-gray-400 text-sm mb-6">
+        <div class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm mb-6 bg-gradient-to-r from-gray-50 to-stone-50 p-4 border border-emerald-200 rounded-xl shadow-xs">
+            <div class="flex items-center"><strong class="w-28 text-gray-700">শিক্ষার্থীর নাম:</strong> <span id="slipName" class="font-bold text-gray-900 border-b-2 border-gray-300 flex-1 pb-0.5">---</span></div>
+            <div class="flex items-center"><strong class="w-20 text-gray-700">তারিখ:</strong> <span id="slipDate" class="font-medium text-gray-900 border-b-2 border-gray-300 flex-1 pb-0.5">---</span></div>
+            <div class="flex items-center"><strong class="w-28 text-gray-700">শ্রেণি:</strong> <span id="slipClass" class="font-bold text-gray-900 border-b-2 border-gray-300 flex-1 pb-0.5">---</span></div>
+            <div class="flex items-center"><strong class="w-20 text-gray-700">রোল নম্বর:</strong> <span id="slipRoll" class="font-bold text-gray-900 border-b-2 border-gray-300 flex-1 pb-0.5">---</span></div>
+        </div>
+
+        <table class="w-full text-left border-collapse border-2 border-emerald-800 text-sm mb-6 shadow-xs">
             <thead>
-                <tr class="bg-gray-100">
-                    <th class="border border-gray-400 p-3">পরীক্ষার বিবরণ</th>
-                    <th class="border border-gray-400 p-3 text-center">পরিমাপ / ফলাফল</th>
+                <tr class="bg-gradient-to-r from-emerald-800 to-green-700 text-white">
+                    <th class="border border-emerald-800 p-3.5 font-bold text-base w-2/3">স্বাস্থ্য পরীক্ষার বিবরণ</th>
+                    <th class="border border-emerald-800 p-3.5 font-bold text-base text-center w-1/3">পরিমাপ / ফলাফল</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="border border-gray-400 p-3">শিক্ষার্থীর মোট ওজন (Weight)</td>
-                    <td id="slipWeight" class="border border-gray-400 p-3 text-center font-bold">---</td>
+            <tbody class="divide-y divide-emerald-800">
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="border border-emerald-800 p-3.5 font-medium text-gray-800">শিক্ষার্থীর মোট ওজন (Weight)</td>
+                    <td id="slipWeight" class="border border-emerald-800 p-3.5 text-center font-bold text-gray-900 text-base">---</td>
                 </tr>
-                <tr>
-                    <td class="border border-gray-400 p-3">শিক্ষার্থীর উচ্চতা (Height)</td>
-                    <td id="slipHeight" class="border border-gray-400 p-3 text-center font-bold">---</td>
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="border border-emerald-800 p-3.5 font-medium text-gray-800">$\text{শিক্ষার্থীর উচ্চতা (Height)}$</td>
+                    <td id="slipHeight" class="border border-emerald-800 p-3.5 text-center font-bold text-gray-900 text-base">---</td>
+                </tr>
+                <tr class="bg-emerald-50/50">
+                    <td class="border border-emerald-800 p-3.5 font-bold text-emerald-900 text-base">বডি মাস ইনডেক্স स्कोर (BMI Score)</td>
+                    <td id="slipBmiValue" class="border border-emerald-800 p-3.5 text-center text-xl font-extrabold text-emerald-700 bg-emerald-50">---</td>
                 </tr>
                 <tr class="bg-gray-50">
-                    <td class="border border-gray-400 p-3 font-bold text-base">বডি মাস ইনডেক্স (BMI Score)</td>
-                    <td id="slipBmiValue" class="border border-gray-400 p-3 text-center text-lg font-extrabold text-emerald-700">---</td>
-                </tr>
-                <tr class="bg-gray-50">
-                    <td class="border border-gray-400 p-3 font-bold">শারীরিক ওজনের স্থিতি (Status)</td>
-                    <td id="slipStatus" class="border border-gray-400 p-3 text-center font-bold text-base">---</td>
+                    <td class="border border-emerald-800 p-3.5 font-bold text-gray-800">শারীরিক ওজনের স্থিতি (Health Status)</td>
+                    <td id="slipStatus" class="border border-emerald-800 p-3.5 text-center font-extrabold text-base text-gray-900">---</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="border border-gray-400 p-4 rounded-lg text-sm mb-8">
-            <h4 class="font-bold mb-1"><i class="fa-solid fa-comment-medical"></i> প্রধান শিক্ষকের কার্যালয় ও পুষ্টি শিক্ষকের নির্দেশনা:</h4>
-            <p id="slipAdvice" class="text-gray-800 leading-relaxed">---</p>
+        <div class="border-2 border-dashed border-emerald-600 bg-emerald-50/20 p-5 rounded-xl text-sm mb-12 shadow-2xs">
+            <h4 class="font-bold text-emerald-900 text-base mb-1.5 flex items-center gap-2">
+                <i class="fa-solid fa-comment-medical"></i> স্বাস্থ্য কর্তৃপক্ষ ও বিদ্যালয়ের পুষ্টি নির্দেশনা:
+            </h4>
+            <p id="slipAdvice" class="text-gray-800 leading-relaxed font-medium text-justify">---</p>
         </div>
 
-        <div class="flex justify-between items-center pt-12 text-sm mt-12">
-            <div class="text-center w-1/3 border-t border-gray-800 pt-2">
+        <div class="flex justify-between items-center pt-16 text-sm">
+            <div class="text-center w-48 border-t-2 border-gray-800 pt-2 font-semibold text-gray-800">
                 শ্রেণি শিক্ষকের স্বাক্ষর
             </div>
-            <div class="text-center w-1/3 border-t border-gray-800 pt-2">
+            <div class="text-center w-52 border-t-2 border-gray-800 pt-2 font-bold text-gray-900">
                 প্রধান শিক্ষকের স্বাক্ষর ও সিল
             </div>
         </div>
@@ -229,18 +259,15 @@
 
 
     <script>
-        // গ্লোবাল ভেরিয়েবল ব্যাকআপ রাখার জন্য
         let calculatedBMI = 0;
         let healthStatus = "";
         let adviceText = "";
 
-        // ১. বিএমআই গণনা করার ফাংশন
         function calculateBMI() {
             const weightInput = document.getElementById('weight').value;
             const feetInput = document.getElementById('heightFeet').value;
             const inchesInput = document.getElementById('heightInches').value;
 
-            // ভ্যালিডেশন চেক
             if (!weightInput || !feetInput) {
                 alert("দয়া করে ওজন এবং উচ্চতার ফিট ঘরটি সঠিকভাবে পূরণ করুন!");
                 return;
@@ -250,21 +277,18 @@
             const feet = parseInt(feetInput);
             const inches = parseInt(inchesInput) || 0;
 
-            // ফিট ও ইঞ্চি থেকে মোট মিটার-এ কনভার্ট করার ফর্মুলা
             const totalInches = (feet * 12) + inches;
             const meters = totalInches * 0.0254;
 
-            // বিএমআই ম্যাথমেটিকাল ফর্মুলা
             const bmi = weight / (meters * meters);
             calculatedBMI = bmi.toFixed(1);
 
-            // ডাটাবেজ কন্ডিশন এবং পরামর্শ নির্ধারণ (বাংলায় বাচ্চাদের উপযোগী)
             let badgeBg = "";
             
             if (bmi < 18.5) {
                 healthStatus = "কম ওজন (Underweight)";
                 badgeBg = "bg-blue-500";
-                adviceText = "আপনার সন্তানের ওজন প্রয়োজনের তুলনায় কম। তাকে প্রতিদিন পর্যাপ্ত পরিমাণে পুষ্টিকর খাবার যেমন: ডিম, খাঁটি দুধ, ডাল, ভাত এবং তাজা ফলমূল বেশি করে খাওয়ান। চিকিৎসকের পরামর্শ নিতে পারেন।";
+                adviceText = "আপনার সন্তানের ওজন প্রয়োজনের তুলনায় কম। তাকে প্রতিদিন পর্যাপ্ত পরিমাণে পুষ্টিকর খাবার যেমন: ডিম, খাঁটি দুধ, ডাল, ভাত এবং তাজা ফলমূল বেশি করে খাওয়ান। প্রয়োজনে চিকিৎসকের পরামর্শ নিতে পারেন।";
             } else if (bmi >= 18.5 && bmi <= 24.9) {
                 healthStatus = "সঠিক ওজন (Healthy Weight)";
                 badgeBg = "bg-green-500";
@@ -279,7 +303,6 @@
                 adviceText = "আপনার সন্তানের ওজন আশঙ্কাজনকভাবে বেশি। দ্রুত একজন শিশু পুষ্টিবিদ বা ডাক্তারের পরামর্শ নিয়ে তার ডায়েট চার্ট ঠিক করুন। মিষ্টি জাতীয় খাবার নিয়ন্ত্রণ করুন এবং নিয়মিত হাঁটাচলা ও শারীরিক ব্যায়ামের ব্যবস্থা করুন।";
             }
 
-            // ফ্রন্টএন্ড UI-তে ডাটা রেন্ডার করা
             document.getElementById('bmiValue').innerText = calculatedBMI;
             
             const statusBadge = document.getElementById('statusBadge');
@@ -288,53 +311,30 @@
             
             document.getElementById('healthAdvice').innerText = adviceText;
 
-            // ফলাফল বক্সটি স্মুথলি শো করানো
             const resultBox = document.getElementById('resultBox');
             resultBox.classList.remove('hidden');
             resultBox.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ২. প্রিন্ট মডাল পপ-আপ খোলার ফাংশন
         function openPrintModal() {
             document.getElementById('printModal').classList.remove('hidden');
         }
 
-        // ৩. প্রিন্ট মডাল পপ-আপ বন্ধ করার ফাংশন
         function closePrintModal() {
             document.getElementById('printModal').classList.add('hidden');
         }
 
-        // ৪. তথ্য প্রসেস করে চূড়ান্ত প্রিন্ট কমান্ড এক্সিকিউট করা
         function executePrint() {
-            // মডাল থেকে ইনপুট ডেটা কালেক্ট করা
             const name = document.getElementById('modalName').value || "নাম উল্লেখ করা হয়নি";
             const currentClass = document.getElementById('modalClass').value;
             const roll = document.getElementById('modalRoll').value || "---";
             
-            // আজকের তারিখ ফরম্যাট করা
             const today = new Date();
             const dateString = today.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
 
-            // প্রিন্ট স্লিপে ডাটা পুশ করা
             document.getElementById('slipName').innerText = name;
             document.getElementById('slipClass').innerText = currentClass + " শ্রেণি";
             document.getElementById('slipRoll').innerText = roll;
             document.getElementById('slipDate').innerText = dateString;
             
-            document.getElementById('slipWeight').innerText = document.getElementById('weight').value + " কেজি";
-            document.getElementById('slipHeight').innerText = document.getElementById('heightFeet').value + " ফিট " + (document.getElementById('heightInches').value || "০") + " ইঞ্চি";
-            document.getElementById('slipBmiValue').innerText = calculatedBMI;
-            document.getElementById('slipStatus').innerText = healthStatus;
-            document.getElementById('slipAdvice').innerText = adviceText;
-
-            // পপ-আপ উইন্ডো ক্লোজ করা
-            closePrintModal();
-
-            // ব্রাউজারের প্রিন্ট উইন্ডো ট্রিপ বা ফায়ার করা
-            setTimeout(() => {
-                window.print();
-            }, 300);
-        }
-    </script>
-</body>
-  </html>
+            document.getElementById('slipWeight').innerText = document.getElementById('weight').v
