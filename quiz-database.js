@@ -76,8 +76,612 @@ const quizData = [
         answer: "১৫ টাকা"
     }
 ];
+// =========================================================================
+// 🎒 ৫ম শ্রেণী (Class 5) - ইংরেজি (English) | আইডি ব্লক: 6001 থেকে 6100 (মোট ১০০টি)
+// =========================================================================
 
+const class5EnglishQuestions = [
+    // --- Textbook Lessons (Hello!, See You!, Leisure Time, Fit Foods) ---
+    {
+        id: 6001, class: "5", subject: "english",
+        question: "Where is Jessica going in the story 'Hello!'?",
+        options: ["Chittagong", "Sylhet", "Dhaka", "Khulna"],
+        answer: "Chittagong"
+    },
+    {
+        id: 6002, class: "5", subject: "english",
+        question: "Where is Jessica from?",
+        options: ["United Kingdom", "United States", "Australia", "Canada"],
+        answer: "United Kingdom"
+    },
+    {
+        id: 6003, class: "5", subject: "english",
+        question: "Sima is from which district of Bangladesh?",
+        options: ["Sylhet", "Cumilla", "Rajshahi", "Barishal"],
+        answer: "Sylhet"
+    },
+    {
+        id: 6004, class: "5", subject: "english",
+        question: "Where are Tamal and Sima sitting to practice English?",
+        options: ["Town Hall Language Club", "School Library", "Railway Station", "Book Fair"],
+        answer: "Town Hall Language Club"
+    },
+    {
+        id: 6005, class: "5", subject: "english",
+        question: "Who is the foreign gentleman introducing himself to Tamal?",
+        options: ["Andy Smith", "David Miller", "John Doe", "Robert Frost"],
+        answer: "Andy Smith"
+    },
+    {
+        id: 6006, class: "5", subject: "english",
+        question: "What does Andy Smith do?",
+        options: ["Works with an NGO", "He is a doctor", "He is a pilot", "He is a student"],
+        answer: "Works with an NGO"
+    },
+    {
+        id: 6007, class: "5", subject: "english",
+        question: "What is Biju's favorite leisure activity or hobby?",
+        options: ["Swimming and reading", "Gardening", "Playing cricket", "Drawing pictures"],
+        answer: "Swimming and reading"
+    },
+    {
+        id: 6008, class: "5", subject: "english",
+        question: "Where is the Liberation War Museum located?",
+        options: ["Agargaon, Dhaka", "Savar, Dhaka", "Shahbagh, Dhaka", "Uttara, Dhaka"],
+        answer: "Agargaon, Dhaka"
+    },
+    {
+        id: 6009, class: "5", subject: "english",
+        question: "On what date did the class visit the Liberation War Museum?",
+        options: ["14 December", "26 March", "16 December", "21 February"],
+        answer: "14 December"
+    },
+    {
+        id: 6010, class: "5", subject: "english",
+        question: "How many permanent galleries are there in the Liberation War Museum?",
+        options: ["Two", "Three", "Four", "Five"],
+        answer: "Four"
+    },
+    {
+        id: 6011, class: "5", subject: "english",
+        question: "Laila and Bithi are friends. Who is very active and likes to run?",
+        options: ["Laila", "Bithi", "Both of them", "None of them"],
+        answer: "Laila"
+    },
+    {
+        id: 6012, class: "5", subject: "english",
+        question: "Between Laila and Bithi, who is a quiet person and likes reading books?",
+        options: ["Bithi", "Laila", "Sima", "Jessica"],
+        answer: "Bithi"
+    },
+    {
+        id: 6013, class: "5", subject: "english",
+        question: "What is Mamun's home district?",
+        options: ["Kishoreganj", "Narsingdi", "Bogura", "Mymensingh"],
+        answer: "Kishoreganj"
+    },
+    {
+        id: 6014, class: "5", subject: "english",
+        question: "What is the approximate distance from Dhaka to Kishoreganj?",
+        options: ["100 kilometers", "145 kilometers", "200 kilometers", "50 kilometers"],
+        answer: "145 kilometers"
+    },
+    {
+        id: 6015, class: "5", subject: "english",
+        question: "Kishoreganj is famous for the largest Eid fair grounds named —",
+        options: ["Solakia Eid Ground", "Maizdee Ground", "Palton Ground", "Cox's Bazar Ground"],
+        answer: "Solakia Eid Ground"
+    },
+    {
+        id: 6016, class: "5", subject: "english",
+        question: "Which river flows through the Kishoreganj town?",
+        options: ["Narasunda River", "Padma River", "Meghna River", "Buriganga River"],
+        answer: "Narasunda River"
+    },
+    {
+        id: 6017, class: "5", subject: "english",
+        question: "Who is the first woman poet of Bangla literature born in Kishoreganj?",
+        options: ["Chandrabati", "Begum Rokeya", "Sufia Kamal", "Jahanara Imam"],
+        answer: "Chandrabati"
+    },
+    {
+        id: 6018, class: "5", subject: "english",
+        question: "Sukumar Ray, the famous writer of children's literature, is from which district?",
+        options: ["Kishoreganj", "Dhaka", "Chattogram", "Sylhet"],
+        answer: "Kishoreganj"
+    },
+    {
+        id: 6019, class: "5", subject: "english",
+        question: "Where is the birthplace of the great artist Zainul Abedin?",
+        options: ["Kishoreganj", "Mymensingh", "Jashore", "Kushtia"],
+        answer: "Kishoreganj"
+    },
+    {
+        id: 6020, class: "5", subject: "english",
+        question: "What foods are at the bottom of the Food Pyramid?",
+        options: ["Grains like rice, ruti and bread", "Fruits and vegetables", "Meat, fish and dairy", "Fat and oil"],
+        answer: "Grains like rice, ruti and bread"
+    },
+    {
+        id: 6021, class: "5", subject: "english",
+        question: "Grains like rice and ruti give us —",
+        options: ["Energy", "Vitamins", "Calcium", "Protein"],
+        answer: "Energy"
+    },
+    {
+        id: 6022, class: "5", subject: "english",
+        question: "Vitamins and minerals are mainly found in —",
+        options: ["Fruits and vegetables", "Rice and bread", "Fat and oil", "Fish and meat"],
+        answer: "Fruits and vegetables"
+    },
+    {
+        id: 6023, class: "5", subject: "english",
+        question: "Dairy products like milk and yogurt help to make our —",
+        options: ["Teeth and bones strong", "Hair long", "Eyes blue", "Body fat"],
+        answer: "Teeth and bones strong"
+    },
+    {
+        id: 6024, class: "5", subject: "english",
+        question: "What foods are at the top of the Food Pyramid and should be eaten less?",
+        options: ["Fat and oil", "Fruits", "Grains", "Fish"],
+        answer: "Fat and oil"
+    },
+    {
+        id: 6025, class: "5", subject: "english",
+        question: "In the story 'The Hare and the Tortoise', who was the fastest animal in the forest?",
+        options: ["The hare", "The tortoise", "The fox", "The lion"],
+        answer: "The hare"
+    },
+    {
+        id: 6026, class: "5", subject: "english",
+        question: "Who won the race between the hare and the tortoise?",
+        options: ["The tortoise", "The hare", "Both of them", "None of them"],
+        answer: "The tortoise"
+    },
+    {
+        id: 6027, class: "5", subject: "english",
+        question: "Where did the hare fall asleep during the race?",
+        options: ["Under a tree", "In a cave", "On the grass", "By the river"],
+        answer: "Under a tree"
+    },
+    {
+        id: 6028, class: "5", subject: "english",
+        question: "What is the moral of the story 'The Hare and the Tortoise'?",
+        options: ["Slow and steady wins the race", "Pride brings fall", "Honesty is the best policy", "All that glitters is not gold"],
+        answer: "Slow and steady wins the race"
+    },
+    {
+        id: 6029, class: "5", subject: "english",
+        question: "Where did the historic Olympic Games originally start?",
+        options: ["Greece", "United Kingdom", "France", "America"],
+        answer: "Greece"
+    },
+    {
+        id: 6030, class: "5", subject: "english",
+        question: "How often are the Olympic Games held?",
+        options: ["Every 4 years", "Every 2 years", "Every 5 years", "Every year"],
+        answer: "Every 4 years"
+    },
 
+    // --- Grammar Section: Articles (a, an, the) ---
+    {
+        id: 6031, class: "5", subject: "english",
+        question: "Fill in the blank: She is ___ honest girl.",
+        options: ["a", "an", "the", "no article"],
+        answer: "an"
+    },
+    {
+        id: 6032, class: "5", subject: "english",
+        question: "Fill in the blank: The sun rises in ___ east.",
+        options: ["a", "an", "the", "no article"],
+        answer: "the"
+    },
+    {
+        id: 6033, class: "5", subject: "english",
+        question: "Fill in the blank: I saw ___ one-eyed man on the street.",
+        options: ["a", "an", "the", "no article"],
+        answer: "a"
+    },
+    {
+        id: 6034, class: "5", subject: "english",
+        question: "Fill in the blank: His father is ___ M.A.",
+        options: ["a", "an", "the", "no article"],
+        answer: "an"
+    },
+    {
+        id: 6035, class: "5", subject: "english",
+        question: "Fill in the blank: Cow is ___ useful animal.",
+        options: ["a", "an", "the", "no article"],
+        answer: "a"
+    },
+    {
+        id: 6036, class: "5", subject: "english",
+        question: "Fill in the blank: ___ Padma is a very big river.",
+        options: ["A", "An", "The", "No article"],
+        answer: "The"
+    },
+    {
+        id: 6037, class: "5", subject: "english",
+        question: "Fill in the blank: Do you have ___ umbrella?",
+        options: ["a", "an", "the", "no article"],
+        answer: "an"
+    },
+    {
+        id: 6038, class: "5", subject: "english",
+        question: "Fill in the blank: ___ Quran is a holy book.",
+        options: ["A", "An", "The", "No article"],
+        answer: "The"
+    },
+
+    // --- Grammar Section: Prepositions (in, on, at, under, between, among etc.) ---
+    {
+        id: 6039, class: "5", subject: "english",
+        question: "Fill in the blank: Look ___ the blackboard.",
+        options: ["at", "on", "in", "to"],
+        answer: "at"
+    },
+    {
+        id: 6040, class: "5", subject: "english",
+        question: "Fill in the blank: The book is ___ the table.",
+        options: ["on", "in", "into", "at"],
+        answer: "on"
+    },
+    {
+        id: 6041, class: "5", subject: "english",
+        question: "Fill in the blank: He goes to school ___ foot.",
+        options: ["by", "on", "with", "in"],
+        answer: "on"
+    },
+    {
+        id: 6042, class: "5", subject: "english",
+        question: "Fill in the blank: Divide the mango ___ the two boys.",
+        options: ["between", "among", "with", "into"],
+        answer: "between"
+    },
+    {
+        id: 6043, class: "5", subject: "english",
+        question: "Fill in the blank: The teacher divided the apples ___ all the children.",
+        options: ["between", "among", "to", "for"],
+        answer: "among"
+    },
+    {
+        id: 6044, class: "5", subject: "english",
+        question: "Fill in the blank: Sima lives ___ Dhaka.",
+        options: ["at", "in", "on", "into"],
+        answer: "in"
+    },
+    {
+        id: 6045, class: "5", subject: "english",
+        question: "Fill in the blank: We celebrate our Independence Day ___ 26th March.",
+        options: ["in", "on", "at", "by"],
+        answer: "on"
+    },
+    {
+        id: 6046, class: "5", subject: "english",
+        question: "Fill in the blank: The cat is sleeping ___ the bed.",
+        options: ["under", "on top", "between", "into"],
+        answer: "under"
+    },
+    {
+        id: 6047, class: "5", subject: "english",
+        question: "Fill in the blank: The boy ran ___ the room.",
+        options: ["in", "into", "on", "at"],
+        answer: "into"
+    },
+    {
+        id: 6048, class: "5", subject: "english",
+        question: "Fill in the blank: He will come back ___ an hour.",
+        options: ["in", "on", "at", "by"],
+        answer: "in"
+    },
+    {
+        id: 6049, class: "5", subject: "english",
+        question: "Fill in the blank: What is the time ___ your watch?",
+        options: ["by", "in", "on", "at"],
+        answer: "by"
+    },
+    {
+        id: 6050, class: "5", subject: "english",
+        question: "Fill in the blank: She is good ___ English.",
+        options: ["at", "in", "on", "for"],
+        answer: "at"
+    },
+
+    // --- Grammar Section: Wh-Questions ---
+    {
+        id: 6051, class: "5", subject: "english",
+        question: "Choose the correct Wh-question for: 'Sima is from Sylhet.'",
+        options: ["Where is Sima from?", "Who is Sima?", "When does Sima leave?", "How is Sima?"],
+        answer: "Where is Sima from?"
+    },
+    {
+        id: 6052, class: "5", subject: "english",
+        question: "Choose the correct Wh-question for: 'Jessica is going to Chittagong.'",
+        options: ["Where is Jessica going?", "Who is going to Chittagong?", "Why is Jessica going?", "How is Jessica going?"],
+        answer: "Where is Jessica going?"
+    },
+    {
+        id: 6053, class: "5", subject: "english",
+        question: "Choose the correct Wh-question for: 'She gets up at 6:00 AM.'",
+        options: ["When does she get up?", "What does she do?", "Where does she get up?", "Who gets up at 6:00 AM?"],
+        answer: "When does she get up?"
+    },
+    {
+        id: 6054, class: "5", subject: "english",
+        question: "Choose the correct Wh-question for: 'He is crying because he lost his pen.'",
+        options: ["Why is he crying?", "What is he doing?", "Where is his pen?", "Who is crying?"],
+        answer: "Why is he crying?"
+    },
+    {
+        id: 6055, class: "5", subject: "english",
+        question: "Fill in the blank: ___ is your best friend?",
+        options: ["Who", "What", "Which", "Where"],
+        answer: "Who"
+    },
+    {
+        id: 6056, class: "5", subject: "english",
+        question: "Fill in the blank: ___ book do you want, red or blue?",
+        options: ["Which", "Who", "Where", "Why"],
+        answer: "Which"
+    },
+    {
+        id: 6057, class: "5", subject: "english",
+        question: "Fill in the blank: ___ old are you?",
+        options: ["How", "What", "When", "Who"],
+        answer: "How"
+    },
+
+    // --- Grammar Section: Tense & Verb Forms ---
+    {
+        id: 6058, class: "5", subject: "english",
+        question: "What is the past tense of the verb 'go'?",
+        options: ["went", "gone", "goes", "going"],
+        answer: "went"
+    },
+    {
+        id: 6059, class: "5", subject: "english",
+        question: "What is the past participle form of the verb 'do'?",
+        options: ["done", "did", "does", "doing"],
+        answer: "done"
+    },
+    {
+        id: 6060, class: "5", subject: "english",
+        question: "Identify the tense: 'She is reading a book.'",
+        options: ["Present Continuous", "Present Simple", "Past Simple", "Future Simple"],
+        answer: "Present Continuous"
+    },
+    {
+        id: 6061, class: "5", subject: "english",
+        question: "Identify the tense: 'They played football yesterday.'",
+        options: ["Past Simple", "Present Simple", "Past Continuous", "Future Simple"],
+        answer: "Past Simple"
+    },
+    {
+        id: 6062, class: "5", subject: "english",
+        question: "What is the future tense of 'I write a letter'?",
+        options: ["I will write a letter", "I wrote a letter", "I am writing a letter", "I have written a letter"],
+        answer: "I will write a letter"
+    },
+    {
+        id: 6063, class: "5", subject: "english",
+        question: "Choose the correct sentence structure:",
+        options: ["He goes to school every day.", "He go to school every day.", "He going to school every day.", "He gone to school every day."],
+        answer: "He goes to school every day."
+    },
+    {
+        id: 6064, class: "5", subject: "english",
+        question: "Choose the correct sentence structure:",
+        options: ["They are playing cricket.", "They is playing cricket.", "They am playing cricket.", "They playing cricket."],
+        answer: "They are playing cricket."
+    },
+    {
+        id: 6065, class: "5", subject: "english",
+        question: "What is the past tense of 'run'?",
+        options: ["ran", "runned", "running", "runs"],
+        answer: "ran"
+    },
+    {
+        id: 6066, class: "5", subject: "english",
+        question: "What is the past tense of 'see'?",
+        options: ["saw", "seen", "seeing", "sees"],
+        answer: "saw"
+    },
+    {
+        id: 6067, class: "5", subject: "english",
+        question: "What is the base/present form of 'bought'?",
+        options: ["buy", "bring", "buying", "buys"],
+        answer: "buy"
+    },
+    {
+        id: 6068, class: "5", subject: "english",
+        question: "What is the negative form of 'He likes milk'?",
+        options: ["He does not like milk.", "He not likes milk.", "He do not like milk.", "He did not liked milk."],
+        answer: "He does not like milk."
+    },
+    {
+        id: 6069, class: "5", subject: "english",
+        question: "What is the interrogative form of 'You are a student'?",
+        options: ["Are you a student?", "You are a student?", "Do you a student?", "Is you a student?"],
+        answer: "Are you a student?"
+    },
+
+    // --- Vocabulary: Synonyms (Same Meanings) ---
+    {
+        id: 6070, class: "5", subject: "english",
+        question: "What is the synonym of 'Beautiful'?",
+        options: ["Pretty", "Ugly", "Dirty", "Sad"],
+        answer: "Pretty"
+    },
+    {
+        id: 6071, class: "5", subject: "english",
+        question: "What is the synonym of 'Large'?",
+        options: ["Huge", "Small", "Tiny", "Short"],
+        answer: "Huge"
+    },
+    {
+        id: 6072, class: "5", subject: "english",
+        question: "What is the synonym of 'Quickly'?",
+        options: ["Fast", "Slowly", "Loudly", "Quietly"],
+        answer: "Fast"
+    },
+    {
+        id: 6073, class: "5", subject: "english",
+        question: "What is the synonym of 'Happy'?",
+        options: ["Glad", "Sad", "Angry", "Afraid"],
+        answer: "Glad"
+    },
+    {
+        id: 6074, class: "5", subject: "english",
+        question: "What is the synonym of 'Start'?",
+        options: ["Begin", "Stop", "End", "Finish"],
+        answer: "Begin"
+    },
+    {
+        id: 6075, class: "5", subject: "english",
+        question: "What is the synonym of 'Quiet'?",
+        options: ["Silent", "Noisy", "Loud", "Active"],
+        answer: "Silent"
+    },
+    {
+        id: 6076, class: "5", subject: "english",
+        question: "What is the synonym of 'Smart'?",
+        options: ["Intelligent", "Dull", "Lazy", "Slow"],
+        answer: "Intelligent"
+    },
+
+    // --- Vocabulary: Antonyms (Opposite Meanings) ---
+    {
+        id: 6077, class: "5", subject: "english",
+        question: "What is the antonym (opposite word) of 'Rich'?",
+        options: ["Poor", "Wealthy", "Happy", "Kind"],
+        answer: "Poor"
+    },
+    {
+        id: 6078, class: "5", subject: "english",
+        question: "What is the antonym of 'Hot'?",
+        options: ["Cold", "Warm", "Dry", "Sunny"],
+        answer: "Cold"
+    },
+    {
+        id: 6079, class: "5", subject: "english",
+        question: "What is the antonym of 'Always'?",
+        options: ["Never", "Often", "Sometimes", "Everyday"],
+        answer: "Never"
+    },
+    {
+        id: 6080, class: "5", subject: "english",
+        question: "What is the antonym of 'Heavy'?",
+        options: ["Light", "Weighty", "Hard", "Soft"],
+        answer: "Light"
+    },
+    {
+        id: 6081, class: "5", subject: "english",
+        question: "What is the antonym of 'Brave'?",
+        options: ["Coward", "Fearless", "Strong", "Bold"],
+        answer: "Coward"
+    },
+    {
+        id: 6082, class: "5", subject: "english",
+        question: "What is the antonym of 'True'?",
+        options: ["False", "Right", "Correct", "Real"],
+        answer: "False"
+    },
+    {
+        id: 6083, class: "5", subject: "english",
+        question: "What is the antonym of 'Early'?",
+        options: ["Late", "Morning", "Quick", "Soon"],
+        answer: "Late"
+    },
+    {
+        id: 6084, class: "5", subject: "english",
+        question: "What is the antonym of 'Strong'?",
+        options: ["Weak", "Powerful", "Heavy", "Hard"],
+        answer: "Weak"
+    },
+    {
+        id: 6085, class: "5", subject: "english",
+        question: "What is the antonym of 'Active'?",
+        options: ["Lazy", "Energetic", "Busy", "Quick"],
+        answer: "Lazy"
+    },
+
+    // --- Basic Grammar: Number & Gender ---
+    {
+        id: 6086, class: "5", subject: "english",
+        question: "What is the plural form of 'Book'?",
+        options: ["Books", "Bookes", "Booking", "Bookis"],
+        answer: "Books"
+    },
+    {
+        id: 6087, class: "5", subject: "english",
+        question: "What is the plural form of 'Man'?",
+        options: ["Men", "Mans", "Manes", "Mens"],
+        answer: "Men"
+    },
+    {
+        id: 6088, class: "5", subject: "english",
+        question: "What is the plural form of 'Child'?",
+        options: ["Children", "Childs", "Childrens", "Childes"],
+        answer: "Children"
+    },
+    {
+        id: 6089, class: "5", subject: "english",
+        question: "What is the plural form of 'Box'?",
+        options: ["Boxes", "Boxs", "Boxen", "Boxx"],
+        answer: "Boxes"
+    },
+    {
+        id: 6090, class: "5", subject: "english",
+        question: "What is the plural form of 'Fly'?",
+        options: ["Flies", "Flys", "Flyes", "Flying"],
+        answer: "Flies"
+    },
+    {
+        id: 6091, class: "5", subject: "english",
+        question: "What is the plural form of 'Knife'?",
+        options: ["Knives", "Knifes", "Knifees", "Knifis"],
+        answer: "Knives"
+    },
+    {
+        id: 6092, class: "5", subject: "english",
+        question: "What is the feminine gender of 'King'?",
+        options: ["Queen", "Princess", "Woman", "Lady"],
+        answer: "Queen"
+    },
+    {
+        id: 6093, class: "5", subject: "english",
+        question: "What is the feminine gender of 'Tiger'?",
+        options: ["Tigress", "Lioness", "She-tiger", "Tigeress"],
+        answer: "Tigress"
+    },
+    {
+        id: 6094, class: "5", subject: "english",
+        question: "What is the opposite gender of 'Uncle'?",
+        options: ["Aunt", "Mother", "Sister", "Queen"],
+        answer: "Aunt"
+    },
+
+    // --- Spelling Testing ---
+    {
+        id: 6095, class: "5", subject: "english",
+        question: "Choose the correct spelling:",
+        options: ["Beautiful", "Beautifull", "Beutiful", "Bautisful"],
+        answer: "Beautiful"
+    },
+    {
+        id: 6096, class: "5", subject: "english",
+        question: "Choose the correct spelling:",
+        options: ["Tomorrow", "To-morrow", "Tomorow", "Tommorrow"],
+        answer: "Tomorrow"
+    },
+    {
+        id: 6097, class: "5", subject: "english",
+        question: "Choose the correct spelling:",
+        options: ["Language", "Lenguage", "Langwage", "Languaje"],
+        answer: "Language"
+    },
+
+                  
 // =========================================================================
 // 🎒 ৫ম শ্রেণী (Class 5) - সাধারণ জ্ঞান (GK) | আইডি ব্লক: 5001 থেকে 5100 (মোট ১০০টি)
 // =========================================================================
