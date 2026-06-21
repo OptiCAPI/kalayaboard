@@ -18,6 +18,7 @@
             --kids-blue: #4CC9F0;
             --kids-orange: #FF9F1C;
             --kids-red: #FF4D6D;
+            --kids-purple: #9B5DE5; /* নতুন বাংলা গানের জন্য বেগুনী কালার */
         }
 
         body { 
@@ -26,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        h2, h5, button { font-family: 'Atma', cursive; }
+        h2, h4, h5, button { font-family: 'Atma', cursive; }
 
         /* হেডার */
         .header-box {
@@ -50,6 +51,7 @@
         }
         .btn-all { background: var(--kids-blue); color: white; }
         .btn-bn { background: var(--kids-orange); color: white; }
+        .btn-bengali { background: var(--kids-purple); color: white; } /* বাংলা গান বাটন */
         .btn-en { background: var(--kids-red); color: white; }
         .btn-other { background: var(--kids-yellow); color: #333; }
         
@@ -79,26 +81,29 @@
             top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* প্লেয়ার কন্ট্রোল বার */
+        /* প্লেয়ার কন্ট্রোল বার (৫ বাটন লেআউট) */
         .theater-controls {
             background: #222;
             padding: 12px;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
+            gap: 15px; /* বাটনগুলোর মাঝের দূরত্ব */
         }
 
         .th-btn {
-            width: 48px; height: 48px;
+            width: 46px; height: 46px;
             border-radius: 50%; border: none;
             display: flex; align-items: center; justify-content: center;
-            font-size: 18px; color: white; transition: 0.2s;
+            font-size: 16px; color: white; transition: 0.2s;
         }
         .th-btn:active { transform: scale(0.9); }
-        .th-prev { background: var(--kids-orange); }
-        .th-play { background: var(--primary); width: 55px; height: 55px; font-size: 22px; border: 3px solid white; }
-        .th-next { background: var(--kids-orange); }
-        .th-close { background: var(--kids-red); }
+        
+        .th-prev { background: var(--kids-blue); }
+        .th-seek-back { background: var(--kids-orange); }
+        .th-play { background: var(--primary); width: 60px; height: 60px; font-size: 24px; border: 3px solid white; } /* প্লে বাটনটি কিছুটা বড় */
+        .th-seek-forward { background: var(--kids-orange); }
+        .th-next { background: var(--kids-blue); }
 
         .theater-title {
             color: #fff; background: #000; padding: 8px;
@@ -143,11 +148,18 @@
         }
         .kids-back-btn:hover { transform: scale(1.1) rotate(-15deg); background: #006A4E; }
         .kids-back-btn i { font-size: 24px; }
+        
+        /* সেকশন হেডার স্টাইল */
+        .section-divider-title {
+            border-left: 6px solid var(--primary);
+            padding-left: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 
-<!-- হেডার সেকশন -->
 <header class="header-box text-center animate__animated animate__fadeInDown" id="mainHeader">
     <div class="container">
         <h2 class="display-5 fw-bold mb-1">🎬 সোনামণিদের থিয়েটার</h2>
@@ -156,79 +168,126 @@
         <div class="mt-3">
             <button class="btn btn-cat btn-all" onclick="filterGallery('all')">সব ভিডিও</button>
             <button class="btn btn-cat btn-bn" onclick="startPlaylistMode('bangla')">ছড়া গান 🎶</button>
+            <button class="btn btn-cat btn-bengali" onclick="startPlaylistMode('bengali')">বাংলা গান 🇧🇩</button>
             <button class="btn btn-cat btn-en" onclick="startPlaylistMode('english')">English Song 🇬🇧</button>
             <button class="btn btn-cat btn-other" onclick="startPlaylistMode('others')">অন্যান্য 🌟</button>
         </div>
     </div>
 </header>
 
-<!-- 📺 টপ স্টিকি প্লেয়ার প্যানেল -->
 <div id="stickyTheater" class="sticky-theater-panel">
     <h5 id="theaterTitle" class="theater-title">ভিডিও লোড হচ্ছে...</h5>
     <div class="player-wrapper">
         <div id="mainIframeContainer" style="width:100%; height:100%; position:absolute;"></div>
     </div>
     <div class="theater-controls">
-        <button class="th-btn th-prev" onclick="navigatePlaylist(-1)"><i class="fas fa-backward"></i></button>
-        <button class="th-btn th-play" onclick="togglePlayback()" id="thPlayBtn"><i class="fas fa-pause"></i></button>
-        <button class="th-btn th-next" onclick="navigatePlaylist(1)"><i class="fas fa-forward"></i></button>
-        <button class="th-btn th-close" onclick="exitTheaterMode()"><i class="fas fa-times"></i></button>
+        <button class="th-btn th-prev" onclick="navigatePlaylist(-1)" title="আগের গান"><i class="fas fa-step-backward"></i></button>
+        <button class="th-btn th-seek-back" onclick="seekVideo(-10)" title="১০ সেকেন্ড পিছনে"><i class="fas fa-backward"></i></button>
+        <button class="th-btn th-play" onclick="togglePlayback()" id="thPlayBtn" title="প্লে/পজ"><i class="fas fa-pause"></i></button>
+        <button class="th-btn th-seek-forward" onclick="seekVideo(10)" title="১০ সেকেন্ড সামনে"><i class="fas fa-forward"></i></button>
+        <button class="th-btn th-next" onclick="navigatePlaylist(1)" title="পরের গান"><i class="fas fa-step-forward"></i></button>
     </div>
 </div>
 
-<!-- ভিডিও লিস্ট গ্রিড -->
 <div class="container my-4">
     <div class="row g-3" id="videoGrid">
-        <!-- জাভাস্ক্রিপ্ট কার্ডগুলো এখানে লোড হবে -->
-    </div>
+        </div>
 </div>
 
-<!-- ========================================== -->
-<!-- 📜 স্ক্রিপ্ট লোড করার সঠিক এবং নির্ভুল ক্রমানুসার -->
-<!-- ========================================== -->
-
-<!-- ১. সবার আগে এক্সটার্নাল ভিডিও ডাটাবেজ ফাইলটি লোড হবে -->
 <script src="video-database.js"></script>
 
-<!-- ২. ইউটিউব আইফ্রেম এপিআই স্ক্রিপ্ট -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
-<!-- ৩. অ্যাপ্লিকেশনের মূল লজিক স্ক্রিপ্ট -->
 <script>
-    // গ্লোবাল ভেরিয়েবলসমূহ (যা ভিডিও ডাটাবেজ থেকে ডাটা রিড করবে)
     let currentPlaylist = [...videoData];
     let currentIndex = 0;
     let ytPlayer = null;
     let isTheaterActive = false;
 
-    // ১. ভিডিও গ্রিড রেন্ডার ফাংশন
+    // ১. স্মার্ট ভিডিও গ্রিড রেন্ডার ফাংশন (যা চলতি ক্যাটাগরি উপরে এবং বাকিগুলো নিচে সাজাবে)
     function renderGallery(list) {
         const grid = document.getElementById('videoGrid');
         grid.innerHTML = '';
-        list.forEach((v, index) => {
-            const thumbUrl = v.type === 'youtube' 
-                ? `https://img.youtube.com/vi/${v.id}/mqdefault.jpg` 
-                : `https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400`; 
-            
-            const isPlayingClass = (isTheaterActive && index === currentIndex) ? 'playing-now' : '';
+        
+        if (list.length === 0) return;
 
+        // যদি কোনো গান চালু থাকে (Theater Active) তবে ক্যাটাগরি ভাগ করে দেখাবে
+        if (isTheaterActive) {
+            const currentVideo = currentPlaylist[currentIndex];
+            const activeCat = currentVideo ? currentVideo.cat : '';
+            
+            // ক্যাটাগরির বাংলা নাম নির্ধারণ
+            const catNames = {
+                bangla: "ছড়া গান 🎶",
+                bengali: "বাংলা গান 🇧🇩",
+                english: "English Song 🇬🇧",
+                others: "অন্যান্য 🌟"
+            };
+            const currentCatName = catNames[activeCat] || "চলতি ক্যাটাগরি";
+
+            // চলতি ক্যাটাগরি এবং অন্যান্য ক্যাটাগরির গান আলাদা করা
+            const sameCatSongs = list.filter(v => v.cat === activeCat);
+            const otherCatSongs = list.filter(v => v.cat !== activeCat);
+
+            // সেকশন ১: চলতি ক্যাটাগরির গানের লিস্ট
             grid.innerHTML += `
-                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
-                    <div class="video-card ${isPlayingClass}" onclick="selectVideo(${index})">
-                        <div class="thumb-box">
-                            <img src="${thumbUrl}" alt="${v.title}">
-                            <div class="play-btn-overlay"><i class="fas fa-play-circle animate__animated animate__pulse animate__infinite"></i></div>
-                        </div>
-                        <div class="p-3 text-center">
-                            <h5 class="m-0 text-dark fs-6">${v.title}</h5>
-                        </div>
-                    </div>
+                <div class="col-12 mt-2 animate__animated animate__fadeIn">
+                    <h4 class="section-divider-title text-success fs-5 fw-bold">
+                        <i class="fas fa-play-circle me-2"></i>এই ক্যাটাগরির গানসমূহ (${currentCatName})
+                    </h4>
                 </div>
             `;
-        });
+            sameCatSongs.forEach((v) => {
+                const origIndex = currentPlaylist.findIndex(item => item.id === v.id);
+                renderCardHTML(v, origIndex, grid);
+            });
+
+            // সেকশন ২: অন্যান্য ক্যাটাগরির গানের লিস্ট
+            if (otherCatSongs.length > 0) {
+                grid.innerHTML += `
+                    <div class="col-12 mt-4 animate__animated animate__fadeIn">
+                        <h4 class="section-divider-title text-muted fs-5 fw-bold">
+                            <i class="fas fa-list-ul me-2"></i>অন্যান্য ক্যাটাগরির ভিডিওসমূহ
+                        </h4>
+                    </div>
+                `;
+                otherCatSongs.forEach((v) => {
+                    const origIndex = currentPlaylist.findIndex(item => item.id === v.id);
+                    renderCardHTML(v, origIndex, grid);
+                });
+            }
+        } else {
+            // নরমাল মোড: কোনো গান প্লে না থাকলে স্বাভাবিক গ্রিড দেখাবে
+            list.forEach((v, index) => {
+                renderCardHTML(v, index, grid);
+            });
+        }
     }
 
-    // ২. ফিল্টার ফাংশন
+    // কার্ডের HTML তৈরি করার ছোট হেল্পার মেথড
+    function renderCardHTML(v, index, grid) {
+        const thumbUrl = v.type === 'youtube' 
+            ? `https://img.youtube.com/vi/${v.id}/mqdefault.jpg` 
+            : `https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400`; 
+        
+        const isPlayingClass = (isTheaterActive && index === currentIndex) ? 'playing-now' : '';
+
+        grid.innerHTML += `
+            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
+                <div class="video-card ${isPlayingClass}" onclick="selectVideo(${index})">
+                    <div class="thumb-box">
+                        <img src="${thumbUrl}" alt="${v.title}">
+                        <div class="play-btn-overlay"><i class="fas fa-play-circle animate__animated animate__pulse animate__infinite"></i></div>
+                    </div>
+                    <div class="p-3 text-center">
+                        <h5 class="m-0 text-dark fs-6">${v.title}</h5>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // ২. ফিল্টার ফাংশন (ক্যাটাগরি বাটনে চাপ দিলে প্লেয়ার বন্ধ করে শুধু ঐ গানগুলো দেখাবে)
     function filterGallery(category) {
         exitTheaterMode();
         if(category === 'all') currentPlaylist = [...videoData];
@@ -236,29 +295,43 @@
         renderGallery(currentPlaylist);
     }
 
-    // ৩. প্লেলিস্ট অটো-প্লে মোড অ্যাক্টিভেশন
+    // ৩. প্লেলিস্ট অটো-প্লে মোড অ্যাক্টিভেশন (ক্যাটাগরি প্লে বাটনে চাপ দিলে)
     function startPlaylistMode(category) {
-        currentPlaylist = videoData.filter(v => v.cat === category);
-        if(currentPlaylist.length === 0) return;
+        const selectedCatSongs = videoData.filter(v => v.cat === category);
+        if(selectedCatSongs.length === 0) return;
         
         isTheaterActive = true;
         document.getElementById('stickyTheater').style.display = 'block'; 
         document.getElementById('mainHeader').style.padding = "20px 0"; 
 
+        // চলতি ক্যাটাগরি প্রথমে রেখে বাকি গানগুলো নিচে যুক্ত করে সাজানো
+        const otherCatSongs = videoData.filter(v => v.cat !== category);
+        currentPlaylist = [...selectedCatSongs, ...otherCatSongs];
+        
         selectVideo(0); 
     }
 
-    // ৪. ভিডিও সিলেকশন ও প্লেয়ার ইঞ্জিন
+    // ৪. ভিডিও সিলেকশন ও প্লেয়ার ইঞ্জিন (লিস্ট রিস্ট্রাকচার লজিক সহ)
     function selectVideo(index) {
+        const selectedVideo = currentPlaylist[index];
+        
         if (!isTheaterActive) {
             isTheaterActive = true;
             document.getElementById('stickyTheater').style.display = 'block';
         }
         
-        currentIndex = index;
-        const video = currentPlaylist[currentIndex];
-        document.getElementById('theaterTitle').innerText = video.title;
+        // প্লে হওয়া মাত্রই চলতি গানের ক্যাটাগরিকে সবার উপরে এনে প্লেলিস্ট রি-অ্যারেঞ্জ করা
+        const activeCat = selectedVideo.cat;
+        const sameCatSongs = videoData.filter(v => v.cat === activeCat);
+        const otherCatSongs = videoData.filter(v => v.cat !== activeCat);
         
+        currentPlaylist = [...sameCatSongs, ...otherCatSongs];
+        
+        // নতুন সাজানো লিস্টে ভিডিওটির বর্তমান ইনডেক্স খুঁজে বের করা
+        currentIndex = currentPlaylist.findIndex(v => v.id === selectedVideo.id);
+        const video = currentPlaylist[currentIndex];
+        
+        document.getElementById('theaterTitle').innerText = video.title;
         const container = document.getElementById('mainIframeContainer');
         container.innerHTML = ''; 
 
@@ -288,14 +361,28 @@
         selectVideo(currentIndex);
     }
 
-    // ৬. অটো-প্লে নেক্সট ইভেন্ট হ্যান্ডলার
+    // ৬. ⏩/⏪ ১০ সেকেন্ড আগে বা পিছে যাওয়ার ফাংশন (শুধু ইউটিউবের জন্য কাজ করবে)
+    function seekVideo(seconds) {
+        if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function' && typeof ytPlayer.seekTo === 'function') {
+            let currentTime = ytPlayer.getCurrentTime();
+            let duration = ytPlayer.getDuration();
+            let newTime = currentTime + seconds;
+            
+            if (newTime < 0) newTime = 0;
+            if (newTime > duration) newTime = duration;
+            
+            ytPlayer.seekTo(newTime, true);
+        }
+    }
+
+    // ৭. অটো-প্লে নেক্সট ইভেন্ট হ্যান্ডলার (গান শেষ হলে পরের গানে যাবে)
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.ENDED) {
             navigatePlaylist(1); 
         }
     }
 
-    // ৭. প্লে/পজ কন্ট্রোল
+    // ৮. প্লে/পজ কন্ট্রোল
     function togglePlayback() {
         if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
         const state = ytPlayer.getPlayerState();
@@ -309,7 +396,7 @@
         }
     }
 
-    // ৮. থিয়েটার মোড ক্লোজ ফাংশন
+    // ৯. থিয়েটার মোড ক্লোজ করার ইন্টারনাল মেথড (ফিল্টারে চাপ দিলে রান হয়)
     function exitTheaterMode() {
         isTheaterActive = false;
         document.getElementById('stickyTheater').style.display = 'none';
@@ -319,22 +406,19 @@
             ytPlayer.stopVideo();
             ytPlayer = null;
         }
-        renderGallery(currentPlaylist);
     }
 
     // ইউটিউব এপিআই রেডি মেথড
     function onYouTubeIframeAPIReady() {
-        // API লোডের জন্য ট্র্যাকিং ট্রিপার
+        // API ট্র্যাকিং রেডি
     }
 
     // পেজ লোড হওয়ার সাথে সাথে গ্যালারি চালু হবে
     window.onload = () => renderGallery(videoData);
 </script>
 
-<!-- ৪. বুটস্ট্রাপ স্ক্রিপ্ট ফাইল -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- ব্যাক বাটন -->
 <button onclick="window.history.back();" class="kids-back-btn" title="আগের পেজে ফিরে যাও">
     <i class="fas fa-arrow-left"></i>
 </button>
