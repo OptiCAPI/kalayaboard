@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মজার কুইজ স্টেশন - কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Hind+Siliguri:wght@500;700&display=swap');
+        
+        :root {
+            --primary: #006A4E;
+            --kids-yellow: #FFD93D;
+            --kids-blue: #4CC9F0;
+            --kids-pink: #FF4D6D;
+            --kids-orange: #FF9F1C;
+        }
+
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: #fdfbf7 url('https://www.transparenttextures.com/patterns/kids-outline.png');
+        }
+        h2, h3, h4, h5, button { font-family: 'Atma', cursive; }
+
+        .header-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #004d39 100%);
+            border-bottom: 6px solid var(--kids-yellow);
+            color: white; border-radius: 0 0 30px 30px; padding: 25px 0;
+        }
+
+        .kids-card {
+            border: 4px solid white; border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); background: white;
+            padding: 25px; transition: 0.3s;
+        }
+
+        /* অপশন বাটনের গেম স্টাইল */
+        .option-btn {
+            background: #f8fafc; border: 3px solid #e2e8f0;
+            border-radius: 18px; padding: 15px; text-align: left;
+            font-weight: 700; width: 100%; transition: 0.2s; margin-bottom: 12px;
+        }
+        .option-btn:hover { background: #f0fdf4; border-color: var(--kids-blue); transform: translateY(-2px); }
+        
+        /* সঠিক ও ভুলের ক্লাসের অ্যানিমেশন */
+        .option-btn.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d; animation: pulse 0.4s; }
+        .option-btn.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c; animation: shakeX 0.4s; }
+
+        .progress { height: 15px; border-radius: 50px; background: #e2e8f0; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, var(--kids-blue), #3b82f6); }
+
+        .kids-btn { border-radius: 50px; font-weight: 700; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* লিডারবোর্ড টেবিল */
+        .leaderboard-table th { background-color: var(--primary); color: white; }
+        .leaderboard-table tr:nth-child(1) { background-color: #fef08a !important; font-weight: bold; } /* ১ম স্থান */
+    </style>
+</head>
+<body>
+
+<header class="header-box text-center mb-4">
+    <div class="container">
+        <h2>🧠 সোনামণিদের কুইজ স্টেশন</h2>
+        <p class="m-0 opacity-75">ঝটপট উত্তর দিয়ে হয়ে যাও কুইজ মাস্টার!</p>
+    </div>
+</header>
+
+<div class="container mb-5">
+    <!-- ১. নাম এবং প্রোফাইল সেকশন (Persistent Name) -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <div class="kids-card text-center py-3">
+                <div class="d-flex align-items-center justify-content-center gap-2">
+                    <i class="fas fa-user-circle text-primary fs-3"></i>
+                    <span class="fw-bold">তোমার নাম:</span>
+                    <input type="text" id="studentName" class="form-control d-inline-block w-50 rounded-pill border-2" placeholder="এখানে নাম লেখো..." oninput="saveName()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ২. কন্টেন্ট ডিসপ্লে স্ক্রিনসমূহ -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            
+            <!-- স্ক্রিন ক: সিলেক্ট ক্যাটাগরি (Class & Subject) -->
+            <div id="setupScreen" class="kids-card text-center animate__animated animate__fadeIn">
+                <h4 class="mb-4 text-success">কুইজের বিষয় সিলেক্ট করো</h4>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label class="fw-bold mb-2">শ্রেণি নির্বাচন করো:</label>
+                        <select id="classSelect" class="form-select rounded-pill p-2 border-2">
+                            <option value="4">চতুর্থ শ্রেণি</option>
+                            <option value="5">পঞ্চম শ্রেণি</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="fw-bold mb-2">বিষয় নির্বাচন করো:</label>
+                        <select id="subjectSelect" class="form-select rounded-pill p-2 border-2">
+                            <option value="math">গণিত 🔢</option>
+                            <option value="bangla">বাংলা ✍️</option>
+                            <option value="science">বিজ্ঞান 🔬</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-4 d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn btn-warning btn-lg kids-btn px-4" onclick="startQuiz()"><i class="fas fa-play me-2"></i>কুইজ শুরু করো</button>
+                    <button class="btn btn-info btn-lg kids-btn px-4 text-white" onclick="showLeaderboard()"><i class="fas fa-trophy me-2"></i>স্কোর লিস্ট</button>
+                </div>
+            </div>
+
+            <!-- স্ক্রিন খ: লাইভ কুইজ ইন্টারফেস -->
+            <div id="quizScreen" class="kids-card style-none animate__animated animate__fadeIn" style="display: none;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge bg-primary fs-6 rounded-pill" id="questionCounter">প্রশ্ন ১/৫</span>
+                    <span class="badge bg-success fs-6 rounded-pill" id="liveScore">স্কোর: ০</span>
+                </div>
+                <div class="progress mb-4">
+                    <div id="quizProgress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                </div>
+                
+                <h4 id="questionText" class="mb-4 text-dark fs-5 fw-bold text-center">লোড হচ্ছে...</h4>
+                <div id="optionsContainer"></div>
+            </div>
+
+            <!-- স্ক্রিন গ: রেজাল্ট স্ক্রিন -->
+            <div id="resultScreen" class="kids-card text-center animate__animated animate__zoomIn" style="display: none;">
+                <h3 class="text-success mb-3"><i class="fas fa-award text-warning fs-1 d-block mb-2"></i>অসাধারণ খেলেছ!</h3>
+                <h4 class="mb-3 text-dark">তোমার অর্জিত মোট স্কোর: <span id="finalScore" class="text-danger">০</span></h4>
+                <p id="resultFeedback" class="text-muted fw-bold"></p>
+                <hr>
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-primary kids-btn px-4" onclick="retryQuiz()"><i class="fas fa-redo me-2"></i>আবার খেলো (র‍্যান্ডম কুইজ)</button>
+                    <button class="btn btn-secondary kids-btn px-4" onclick="backToHome()"><i class="fas fa-home me-2"></i>হোম পেজ</button>
+                </div>
+            </div>
+
+            <!-- স্ক্রিন ঘ: লিডারবোর্ড (স্কোর লিস্ট) -->
+            <div id="leaderboardScreen" class="kids-card animate__animated animate__fadeIn" style="display: none;">
+                <h3 class="text-center text-primary mb-4"><i class="fas fa-crown text-warning me-2"></i>কুইজ সেরা চ্যাম্পিয়নদের তালিকা</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover rounded border leaderboard-table text-center">
+                        <thead>
+                            <tr>
+                                <th>স্থান</th>
+                                <th>নাম</th>
+                                <th>শ্রেণি ও বিষয়</th>
+                                <th>সর্বোচ্চ স্কোর</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody">
+                            <!-- ডাটা এখানে ডাইনামিকালি পপুলেট হবে -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-secondary kids-btn px-4" onclick="backToHome()"><i class="fas fa-arrow-left me-2"></i>ফিরে যাও</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- এক্সটার্নাল স্ক্রিপ্ট লিঙ্কসমূহ -->
+<script src="quiz-database.js"></script>
+
+<script>
+    let filteredQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let canClick = true;
+
+    // ১. লোকাল স্টোরেজ থেকে নাম রিকভার করা (Page Refresh Guard)
+    window.onload = function() {
+        const savedName = localStorage.getItem('studentName');
+        if (savedName) {
+            document.getElementById('studentName').value = savedName;
+        }
+    };
+
+    function saveName() {
+        const nameInput = document.getElementById('studentName').value;
+        localStorage.setItem('studentName', nameInput);
+    }
+
+    // ২. কুইজ ইঞ্জিন শুরু করা (Filtering + Shuffling)
+    function startQuiz() {
+        const name = document.getElementById('studentName').value.trim();
+        if(!name) {
+            alert('সোনামণি, কুইজ শুরু করার আগে তোমার নাম লিখে নাও!');
+            return;
+        }
+
+        const selectedClass = document.getElementById('classSelect').value;
+        const selectedSubject = document.getElementById('subjectSelect').value;
+
+        // ডাটাবেজ থেকে নির্দিষ্ট শ্রেণি ও সাবজেক্টের প্রশ্ন আলাদা করা
+        filteredQuestions = quizData.filter(q => q.class === selectedClass && q.subject === selectedSubject);
+
+        if(filteredQuestions.length === 0) {
+            alert('দুঃখিত! এই বিষয়ে এখনো কোনো কুইজ যুক্ত করা হয়নি। ডাটাবেজে প্রশ্ন যোগ করুন।');
+            return;
+        }
+
+        // 🎲 প্রশ্ন এলোমেলো (Randomize) করার অ্যালগরিদম (Fisher-Yates Shuffle)
+        filteredQuestions.sort(() => Math.random() - 0.5);
+        
+        // সর্বোচ্চ ৫টি প্রশ্ন নিয়ে কুইজ সেট করা হবে
+        filteredQuestions = filteredQuestions.slice(0, 5);
+
+        // ভেরিয়েবল রিসেট
+        currentQuestionIndex = 0;
+        score = 0;
+        
+        // স্ক্রিন সুইচ
+        document.getElementById('setupScreen').style.display = 'none';
+        document.getElementById('quizScreen').style.display = 'block';
+
+        loadQuestion();
+    }
+
+    // ৩. প্রশ্ন ও অপশন রেন্ডারিং লজিক
+    function loadQuestion() {
+        canClick = true;
+        const currentQuestion = filteredQuestions[currentQuestionIndex];
+        
+        // প্রোগ্রেস ও ট্র্যাকিং আপডেট
+        document.getElementById('questionCounter').innerText = `প্রশ্ন ${currentQuestionIndex + 1}/${filteredQuestions.length}`;
+        document.getElementById('liveScore').innerText = `স্কোর: ${score}`;
+        
+        const progressPct = ((currentQuestionIndex) / filteredQuestions.length) * 100;
+        document.getElementById('quizProgress').style.width = progressPct + '%';
+
+        // প্রশ্নের টেক্সট সেট করা
+        document.getElementById('questionText').innerText = currentQuestion.question;
+
+        // অপশনগুলো ডুপ্লিকেট করে অপশনও র্যান্ডমাইজ করা
+        let shuffledOptions = [...currentQuestion.options];
+        shuffledOptions.sort(() => Math.random() - 0.5);
+
+        const container = document.getElementById('optionsContainer');
+        container.innerHTML = '';
+
+        // অপশন বাটন ডিজাইন ইনজেকশন
+        shuffledOptions.forEach(opt => {
+            container.innerHTML += `
+                <button class="option-btn animate__animated animate__fadeInUp" onclick="checkAnswer(this, '${opt}')">
+                    <i class="far fa-circle me-2 text-muted"></i> ${opt}
+                </button>
+            `;
+        });
+    }
+
+    // ৪. উত্তর যাচাইকরণ ইঞ্জিন
+    function checkAnswer(selectedBtn, selectedOption) {
+        if (!canClick) return; // একবার ক্লিক করলে যেন ডাবল ক্লিক না হয়
+        canClick = false;
+
+        const currentQuestion = filteredQuestions[currentQuestionIndex];
+        const allButtons = document.querySelectorAll('.option-btn');
+
+        if (selectedOption === currentQuestion.answer) {
+            selectedBtn.classList.add('correct');
+            selectedBtn.querySelector('i').className = 'fas fa-check-circle text-success';
+            score += 10; // প্রতিটি সঠিক উত্তরের জন্য ১০ পয়েন্ট
+            document.getElementById('liveScore').innerText = `স্কোর: ${score}`;
+        } else {
+            selectedBtn.classList.add('wrong');
+            selectedBtn.querySelector('i').className = 'fas fa-times-circle text-danger';
+            
+            // ভুল দিলে সঠিক উত্তরটি গ্রিন হাইলাইট করে দেখিয়ে দেবে
+            allButtons.forEach(btn => {
+                if (btn.innerText.trim() === currentQuestion.answer) {
+                    btn.classList.add('correct');
+                    btn.querySelector('i').className = 'fas fa-check-circle text-success';
+                }
+            });
+        }
+
+        // ১.৫ সেকেন্ড বিরতি দিয়ে অটোমেটিক পরের প্রশ্নে যাবে
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < filteredQuestions.length) {
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }, 1500);
+    }
+
+    // ৫. কুইজ শেষ ও লিডারবোর্ডে স্কোর সংরক্ষণ
+    function finishQuiz() {
+        document.getElementById('quizScreen').style.display = 'none';
+        document.getElementById('resultScreen').style.display = 'block';
+        document.getElementById('finalScore').innerText = score;
+
+        // ফিডব্যাক মেসেজ
+        let feedback = "দারুণ চেষ্টা করেছ! একটু প্র্যাকটিস করলেই আরও ভালো হবে।";
+        if (score === 50) feedback = "অসাধারণ! তুমি তো কুইজ জিনিয়াস! সব উত্তর সঠিক হয়েছে। 🌟👑";
+        else if (score >= 30) feedback = "খুব ভালো হয়েছে! তোমার মেধা সত্যিই প্রশংসনীয়। 👍";
+        document.getElementById('resultFeedback').innerText = feedback;
+
+        // লিডারবোর্ডে স্কোর যুক্ত করা
+        saveToLeaderboard();
+    }
+
+    function saveToLeaderboard() {
+        const name = document.getElementById('studentName').value;
+        const selectedClass = document.getElementById('classSelect').value;
+        const selectedSubject = document.getElementById('subjectSelect').value;
+        
+        const catMap = { math: "গণিত", bangla: "বাংলা", science: "বিজ্ঞান" };
+        const metaInfo = `শ্রেণি: ${selectedClass} (${catMap[selectedSubject]})`;
+
+        let leaderboard = JSON.parse(localStorage.getItem('quizLeaderboard')) || [];
+        
+        // নতুন স্কোর রেকর্ড পুশ
+        leaderboard.push({ name: name, meta: metaInfo, score: score });
+        
+        // স্কোর অনুযায়ী বড় থেকে ছোট সাজানো (Descending Sort)
+        leaderboard.sort((a, b) => b.score - a.score);
+        
+        // শুধু টপ ১০ জনের ডাটা রাখা
+        leaderboard = leaderboard.slice(0, 10);
+        
+        localStorage.setItem('quizLeaderboard', JSON.stringify(leaderboard));
+    }
+
+    // ৬. লিডারবোর্ড ভিউ ফাংশন
+    function showLeaderboard() {
+        document.getElementById('setupScreen').style.display = 'none';
+        document.getElementById('leaderboardScreen').style.display = 'block';
+
+        const leaderboard = JSON.parse(localStorage.getItem('quizLeaderboard')) || [];
+        const tbody = document.getElementById('leaderboardBody');
+        tbody.innerHTML = '';
+
+        if(leaderboard.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" class="text-muted py-3">এখনো কেউ কুইজে অংশ নেয়নি। প্রথম চ্যাম্পিয়ন তুমিই হও!</td></tr>`;
+            return;
+        }
+
+        leaderboard.forEach((data, index) => {
+            let medal = index + 1;
+            if(index === 0) medal = "🥇";
+            else if(index === 1) medal = "🥈";
+            else if(index === 2) medal = "🥉";
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${medal}</td>
+                    <td>${data.name}</td>
+                    <td><small class="text-muted">${data.meta}</small></td>
+                    <td><span class="badge bg-danger rounded-pill px-3">${data.score}</span></td>
+                </tr>
+            `;
+        });
+    }
+
+    // ৭. রিট্রাই ও ব্যাক নেভিগেশন
+    function retryQuiz() {
+        document.getElementById('resultScreen').style.display = 'none';
+        startQuiz(); // এটি আবার ডাটা ফিল্টার করে নতুন করে র‍্যান্ডমাইজ করবে
+    }
+
+    function backToHome() {
+        document.getElementById('resultScreen').style.display = 'none';
+        document.getElementById('leaderboardScreen').style.display = 'none';
+        document.getElementById('setupScreen').style.display = 'block';
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
