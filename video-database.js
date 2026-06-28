@@ -7,6 +7,7 @@ const videoData = [
     { id: "mU_fI3fI4rM", type: "youtube", title: "ঐ দেখা যায় তাল গাছ", cat: "rhyme" },
 
     // ==== ২. বাংলা গান  (bengali)====
+    { id: "Xo30PPV7obc", type: "youtube", title: "আমার ভাইয়ের রক্তে রাঙানো", cat: "bengali" },
     { id: "WZP-U2gxiqQ", type: "youtube", title: "বাংলা গান ১ (নাম পরিবর্তন করুন)", cat: "bengali" },
     { id: "0jO0DCz-xW4", type: "youtube", title: "বাংলা গান ২ (নাম পরিবর্তন করুন)", cat: "bengali" },
     
