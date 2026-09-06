@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অনলাইন শিখন (E-Learning) | কালাইয়া বোর্ড সপ্রাবি</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Atma:wght@500;700&display=swap');
+
+        :root {
+            --primary-green: #2ecc71;
+            --ocean-blue: #3498db;
+            --sunny-yellow: #f1c40f;
+            --berry-pink: #ff4757;
+            --purple-magic: #9b59b6;
+        }
+
+        body { 
+            font-family: 'Hind Siliguri', sans-serif; 
+            background: #e0f7fa url('https://www.transparenttextures.com/patterns/kids-outline.png');
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        h1, h2, .nav-link, .card-title, .bubble-text { font-family: 'Atma', cursive; }
+
+        /* Animated Header Hero */
+        .elearning-hero {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 60px 0 100px;
+            text-align: center;
+            border-radius: 0 0 50% 50% / 0px 0px 80px 80px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        @keyframes customSwing {
+            0% { transform: rotate(-2deg) translateY(0); }
+            50% { transform: rotate(2deg) translateY(-10px); }
+            100% { transform: rotate(-2deg) translateY(0); }
+        }
+
+        .floating-text {
+            display: inline-block;
+            animation: customSwing 3s ease-in-out infinite;
+        }
+
+        .cartoon-char {
+            position: absolute;
+            bottom: -40px;
+            right: 10%;
+            width: 130px;
+            z-index: 1000;
+            cursor: pointer;
+            animation: floatChar 4s ease-in-out infinite;
+        }
+
+        @keyframes floatChar {
+            0%, 100% { transform: translateY(0) rotate(5deg); }
+            50% { transform: translateY(-20px) rotate(-5deg); }
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -50px;
+            left: -80px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: none;
+            width: 180px;
+        }
+
+        .cartoon-char:hover .speech-bubble { display: block; }
+
+        /* Navigation Pills */
+        .nav-pills { gap: 10px; margin-top: -40px; position: relative; z-index: 100; }
+        .nav-pills .nav-link {
+            background: white;
+            color: #333;
+            border: 4px solid #fff;
+            border-radius: 30px;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+        }
+
+        .nav-pills .nav-link.active {
+            background: var(--sunny-yellow);
+            border-color: #f39c12;
+            transform: scale(1.1) rotate(-3deg);
+            color: black;
+        }
+
+        /* Section Headings */
+        .section-header {
+            background: white;
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 3px dashed #3498db;
+            color: #2c3e50;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* Topic Cards */
+        .topic-card {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            border: none;
+            box-shadow: 0 10px 0px #ddd;
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: customSwing 4s ease-in-out infinite;
+        }
+
+        .topic-card:hover {
+            transform: scale(1.06) !important;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+            background: #fffdf0;
+            animation-play-state: paused;
+        }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .topic-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .badge-english { background-color: #e74c3c; }
+        .badge-bangla { background-color: #2ecc71; }
+        .badge-gonit { background-color: #9b59b6; }
+
+        .card-title {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Action Button */
+        .btn-learn {
+            background: linear-gradient(to bottom, #2ecc71, #27ae60);
+            color: white;
+            border-radius: 50px;
+            padding: 10px;
+            font-weight: 700;
+            border: none;
+            width: 100%;
+            box-shadow: 0 6px 0 #1e8449;
+            text-decoration: none;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .btn-learn:active {
+            transform: translateY(6px);
+            box-shadow: none;
+        }
+
+        /* Fixed Back Button */
+        .kids-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 9999;
+            background: linear-gradient(45deg, #FF4D6D, #FF8C42);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+            border: 4px solid white;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: bounceInUp 1.5s, heartbeat 2s infinite;
+            cursor: pointer;
+        }
+
+        .kids-back-btn:hover {
+            transform: scale(1.1) rotate(-15deg);
+            background: #006A4E;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 106, 78, 0.5);
+        }
+
+        .kids-back-btn i { font-size: 30px; }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="magicSound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+
+<header class="elearning-hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold animate__animated animate__bounce">💻 অনলাইন শিখন (E-Learning) 🚀</h1>
+        <p class="lead floating-text">ডিজিটাল মাধ্যমে মজায় মজায় শিখি!</p>
+    </div>
+
+    <div class="cartoon-char">
+        <div class="speech-bubble">আজকে তুমি কোনটা শিখবে? 🤓</div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3532/3532156.png" class="img-fluid" alt="Cartoon">
+    </div>
+</header>
+
+<div class="container mb-5 mt-5">
+    
+    <ul class="nav nav-pills justify-content-center mb-5" id="subjectFilters">
+        <li class="nav-item"><a class="nav-link active" data-filter="all"><i class="fas fa-th"></i> সব বিষয়</a></li>
+        <li class="nav-item"><a class="nav-link" data-filter="english"><i class="fas fa-language"></i> English</a></li>
+        <li class="nav-item"><a class="nav-link" data-filter="bangla"><i class="fas fa-book-open"></i> বাংলা</a></li>
+        <li class="nav-item"><a class="nav-link" data-filter="gonit"><i class="fas fa-calculator"></i> গণিত</a></li>
+    </ul>
+
+    <div class="text-center">
+        <h2 class="section-header animate__animated animate__fadeInDown">
+            👶 ছোটদের জন্য (Kids Corner)
+        </h2>
+    </div>
+    <div class="row g-4 mb-5" id="kidsGrid">
+        </div>
+
+    <div class="text-center mt-5">
+        <h2 class="section-header animate__animated animate__fadeInDown" style="border-color: #ff4757;">
+            🎓 বড়দের জন্য (Advanced Learning)
+        </h2>
+    </div>
+    <div class="row g-4" id="seniorsGrid">
+        </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+    // Learning Content Database
+    const eContent = [
+        // --- CHOTODER JONYO (KIDS) ---
+        { id: 'english', section: 'kids', title: 'ABC Alphabet Fun', icon: '🔤', desc: 'ছবি ও শব্দ সহ ইংরেজি বর্ণমালা শেখা।', badge: 'English', badgeClass: 'badge-english', url: '#' },
+        { id: 'bangla', section: 'kids', title: 'অ আ ক খ শেখা', icon: '✏️', desc: 'স্বরবর্ণ ও ব্যঞ্জনবর্ণের সহজ পাঠ।', badge: 'বাংলা', badgeClass: 'badge-bangla', url: '#' },
+        { id: 'gonit', section: 'kids', title: 'সংখ্যা ও গণনা (১-৫০)', icon: '🔢', desc: 'মজার কার্টুন দেখে সংখ্যা গণনা শেখা।', badge: 'গণিত', badgeClass: 'badge-gonit', url: '#' },
+        { id: 'english', section: 'kids', title: 'Nursery Rhymes', icon: '🎵', desc: 'মজার ইংরেজি ছড়া ও অ্যানিমেশন।', badge: 'English', badgeClass: 'badge-english', url: '#' },
+        { id: 'bangla', section: 'kids', title: 'ছোটদের ছড়া গান', icon: '🎒', desc: 'হাট্টিমা টিম টিম ও অন্যান্য ছড়া।', badge: 'বাংলা', badgeClass: 'badge-bangla', url: '#' },
+        { id: 'gonit', section: 'kids', title: 'সহজ যোগ ও বিয়োগ', icon: '➕', desc: 'ছবি দেখে ছোটদের মৌলিক গণিত।', badge: 'গণিত', badgeClass: 'badge-gonit', url: '#' },
+
+        // --- BORODER JONYO (SENIORS) ---
+        { id: 'english', section: 'seniors', title: 'Tense (কাল)', icon: '⏰', desc: 'Present, Past & Future Tense এর সহজ নিয়ম।', badge: 'English', badgeClass: 'badge-english', url: '#' },
+        { id: 'english', section: 'seniors', title: 'Voice Change', icon: '🗣️', desc: 'Active & Passive Voice রূপান্তরের কৌশল।', badge: 'English', badgeClass: 'badge-english', url: '#' },
+        { id: 'english', section: 'seniors', title: 'Number & Gender', icon: '👥', desc: 'Singular, Plural এবং Gender এর ব্যবহার।', badge: 'English', badgeClass: 'badge-english', url: '#' },
+        { id: 'bangla', section: 'seniors', title: 'বাংলা ব্যাকরণ: সন্ধি', icon: '📖', desc: 'স্বরসন্ধি ও ব্যঞ্জনসন্ধির সহজ সূত্র।', badge: 'বাংলা', badgeClass: 'badge-bangla', url: '#' },
+        { id: 'bangla', section: 'seniors', title: 'সমাস ও কারক', icon: '✍️', desc: 'সমাস চেনার উপায় ও কারক-বিভক্তি নির্ণয়।', badge: 'বাংলা', badgeClass: 'badge-bangla', url: '#' },
+        { id: 'gonit', section: 'seniors', title: 'জ্যামিতি (Geometry)', icon: '📐', desc: 'রেখা, কোণ, ত্রিভুজ ও চতুর্ভুজের ধারণা।', badge: 'গণিত', badgeClass: 'badge-gonit', url: '#' },
+        { id: 'gonit', section: 'seniors', title: 'সংখ্যা তত্ত্ব ও গুণনীয়ক', icon: '📊', desc: 'ল.সা.গু, গ.সা.গু এবং মৌলিক সংখ্যা।', badge: 'গণিত', badgeClass: 'badge-gonit', url: '#' },
+        { id: 'gonit', section: 'seniors', title: 'বীজগণিত (Algebra)', icon: '🧮', desc: 'বীজগণিতীয় সূত্র ও মান নির্ণয়।', badge: 'গণিত', badgeClass: 'badge-gonit', url: '#' }
+    ];
+
+    // Function to render items
+    function renderElearning(filter = 'all') {
+        const kidsGrid = document.getElementById('kidsGrid');
+        const seniorsGrid = document.getElementById('seniorsGrid');
+
+        kidsGrid.innerHTML = '';
+        seniorsGrid.innerHTML = '';
+
+        let kidsCount = 0;
+        let seniorsCount = 0;
+
+        eContent.forEach((item) => {
+            if (filter === 'all' || item.id === filter) {
+                const cardHTML = `
+                    <div class="col-12 col-md-6 col-lg-4 animate__animated animate__zoomIn">
+                        <div class="topic-card text-center">
+                            <div>
+                                <span class="topic-badge ${item.badgeClass}">${item.badge}</span>
+                                <div class="topic-icon">${item.icon}</div>
+                                <div class="card-title">${item.title}</div>
+                                <div class="card-desc">${item.desc}</div>
+                            </div>
+                            <a href="${item.url}" class="btn-learn mt-3" onclick="magicAction(event)">
+                                <i class="fas fa-rocket"></i> শিখি
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                if (item.section === 'kids') {
+                    kidsGrid.innerHTML += cardHTML;
+                    kidsCount++;
+                } else if (item.section === 'seniors') {
+                    seniorsGrid.innerHTML += cardHTML;
+                    seniorsCount++;
+                }
+            }
+        });
+
+        // Show fallback message if section is empty for a category
+        if (kidsCount === 0) {
+            kidsGrid.innerHTML = `<div class="col-12 text-center text-muted fs-5">এই ক্যাটাগরিতে ছোটদের কোনো বিষয় পাওয়া যায়নি।</div>`;
+        }
+        if (seniorsCount === 0) {
+            seniorsGrid.innerHTML = `<div class="col-12 text-center text-muted fs-5">এই ক্যাটাগরিতে বড়দের কোনো বিষয় পাওয়া যায়নি।</div>`;
+        }
+    }
+
+    // Magic Sound & Confetti Action
+    function magicAction(e) {
+        document.getElementById('magicSound').play().catch(() => {});
+        confetti({
+            particleCount: 80,
+            spread: 60,
+            origin: { y: 0.6 }
+        });
+    }
+
+    // Filter Click Listener
+    document.querySelectorAll('#subjectFilters .nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('#subjectFilters .nav-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            renderElearning(this.getAttribute('data-filter'));
+        });
+    });
+
+    // Initial Load
+    renderElearning();
+</script>
+
+<button onclick="window.history.back();" class="kids-back-btn" title="আগের পেজে ফিরে যাও">
+    <i class="fas fa-arrow-left"></i>
+</button>
+
+</body>
+</html>
