@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Notes Complete - Easy Learn with Sumona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:wght@400;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-paper: #fffef8;
+            --line-color: #e5ecf6;
+            --pink-bg: #fde8ed;
+            --pink-border: #f8b4c4;
+            --blue-bg: #e6f0fa;
+            --blue-border: #9ec5fe;
+            --yellow-bg: #fff9db;
+            --yellow-border: #ffe066;
+            --purple-bg: #f3e8ff;
+            --purple-border: #d8b4fe;
+            --green-bg: #ebfbee;
+            --green-border: #8ce99a;
+            --text-dark: #222222;
+            --highlight-yellow: #fff3bf;
+            --highlight-pink: #ffdeeb;
+            --highlight-purple: #f3d9fa;
+        }
+
+        body {
+            background-color: #d8d8d8;
+            font-family: 'Comic Neue', 'Hind Siliguri', cursive, sans-serif;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .notebook-page {
+            width: 100%;
+            max-width: 850px;
+            background-color: var(--bg-paper);
+            background-image: repeating-linear-gradient(var(--bg-paper) 0px, var(--bg-paper) 27px, var(--line-color) 28px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-sizing: border-box;
+            position: relative;
+            border-left: 20px solid #f8f9fa;
+        }
+
+        .notebook-page::before {
+            content: "";
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            bottom: 20px;
+            width: 10px;
+            background-image: radial-gradient(circle, #444 40%, transparent 45%);
+            background-size: 10px 25px;
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .header-title::before, .header-title::after {
+            content: "➔";
+            display: inline-block;
+            margin: 0 15px;
+            color: #ff6b6b;
+        }
+
+        .sub-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .sub-header .pill {
+            display: inline-block;
+            border: 2px solid var(--text-dark);
+            border-radius: 20px;
+            padding: 4px 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: #fff;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin: 5px 0;
+        }
+        .badge-pink { background-color: var(--pink-bg); border: 1.5px solid var(--pink-border); }
+        .badge-blue { background-color: var(--blue-bg); border: 1.5px solid var(--blue-border); }
+        .badge-yellow { background-color: var(--yellow-bg); border: 1.5px solid var(--yellow-border); }
+        .badge-purple { background-color: var(--purple-bg); border: 1.5px solid var(--purple-border); }
+
+        .hl-yellow { background-color: var(--highlight-yellow); padding: 1px 5px; border-radius: 4px; }
+        .hl-pink { background-color: var(--highlight-pink); padding: 1px 5px; border-radius: 4px; }
+        .hl-purple { background-color: var(--highlight-purple); padding: 1px 5px; border-radius: 4px; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            border: 1.5px solid var(--text-dark);
+            border-radius: 12px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.85);
+            position: relative;
+        }
+
+        .box-dashed {
+            border: 2px dashed #888;
+            border-radius: 12px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        table.note-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #fff;
+            font-size: 0.92rem;
+        }
+
+        table.note-table th, table.note-table td {
+            border: 1px solid #333;
+            padding: 6px 8px;
+            text-align: left;
+        }
+
+        table.note-table th {
+            background-color: var(--yellow-bg);
+            text-align: center;
+        }
+
+        .center { text-align: center; }
+
+        .footer-tag {
+            text-align: right;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #444;
+            font-family: 'Caveat', cursive;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .notebook-page { padding: 20px 15px; border-left: 10px solid #f8f9fa; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div>
+            <span class="badge badge-pink">1. Voice কাকে বলে?</span>
+            <p style="margin-left: 15px;">বাক্যের Subject কাজটি নিজে করে, নাকি Subject-এর ওপর কাজটি হয়ে — ক্রিয়ার এই প্রকাশভঙ্গিকেই <span class="hl-pink">Voice বা বাক্য</span> বলে।</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="badge badge-pink">2. Voice-এর প্রকারভেদ</span>
+            <div class="grid-2" style="margin-top: 10px;">
+                <div class="box center" style="background-color: #f0f7ff;">
+                    <span class="badge badge-blue">১. Active Voice</span>
+                    <p>(কর্তৃবাচ্য)<br>Subject নিজে কাজ করে।</p>
+                </div>
+                <div class="box center" style="background-color: #f0f7ff;">
+                    <span class="badge badge-blue">২. Passive Voice</span>
+                    <p>(কর্মবাচ্য)<br>Subject-এর ওপর কাজটি হয়।</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div>
+                <span class="badge badge-purple">3. Active Voice</span>
+                <p>যে বাক্যে Subject নিজে কাজ করে, তাকে Active Voice বলে।</p>
+                <p><strong>Structure :</strong><br><span class="hl-yellow">Subject + Verb + Object</span></p>
+                <p><strong>Example :</strong> Rahim reads a book.</p>
+            </div>
+            <div>
+                <span class="badge badge-purple">4. Passive Voice</span>
+                <p>যে বাক্যে Subject-এর ওপর কাজটি ঘটিত হয়, তাকে Passive Voice বলে।</p>
+                <p><strong>Structure :</strong><br><span class="hl-yellow">Object + Auxiliary Verb + V³ + by + Subject</span></p>
+                <p><strong>Example :</strong> A book is read by Rahim.</p>
+            </div>
+        </div>
+        <div>
+            <span class="badge badge-pink">5. Subject, Verb ও Object চেনার সহজ উপায়</span>
+            <div class="box center" style="margin-top: 10px;">
+                Rahim reads a book. ➔ কে কাজটি করে? (Subject = Rahim) ➔ কী কাজ করে? (Verb = reads) ➔ কী/কাকে? (Object = a book)
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="badge badge-pink">6. Subject-এর Objective form (by-এর পর ব্যবহৃত হয়)</span>
+            <table class="note-table">
+                <tr><th>Subject</th><td>I</td><td>We</td><td>You</td><td>He</td><td>She</td><td>They</td><td>It</td></tr>
+                <tr><th>Objective</th><td>me</td><td>us</td><td>you</td><td>him</td><td>her</td><td>them</td><td>it</td></tr>
+            </table>
+        </div>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="notebook-page">
+ <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">💖 Verb Form & Auxiliary Verb 💖</span></div>
+        <span class="badge badge-pink">1. VERB FORM ➔ PASSIVE FORM</span>
+        <table class="note-table">
+            <thead><tr style="background-color: var(--blue-bg);"><th>Active-এ থাকে</th><th>Passive-এ হবে</th></tr></thead>
+            <tbody>
+                <tr><td>V1 / Vs</td><td>am / is / are + V³</td></tr>
+                <tr><td>am / is / are + V-ing</td><td>am / is / are + being + V³</td></tr>
+                <tr><td>has / have + V³</td><td>has / have + been + V³</td></tr>
+                <tr><td>V2</td><td>was / were + V³</td></tr>
+                <tr><td>was / were + V-ing</td><td>was / were + being + V³</td></tr>
+                <tr><td>had + V³</td><td>had + been + V³</td></tr>
+                <tr><td>shall / will + V1</td><td>shall / will + be + V³</td></tr>
+                <tr><td>shall / will + be + V-ing</td><td>shall / will + be + being + V³</td></tr>
+                <tr><td>shall / will + have + V³</td><td>shall / will + have + been + V³</td></tr>
+            </tbody>
+        </table>
+        <span class="badge badge-pink">2. MODAL VERB</span>
+        <table class="note-table">
+            <thead><tr style="background-color: var(--blue-bg);"><th>Active</th><th>Passive</th></tr></thead>
+            <tbody>
+                <tr><td>can / could + V1</td><td>can / could + be + V³</td></tr>
+                <tr><td>may / might + V1</td><td>may / might + be + V³</td></tr>
+                <tr><td>must + V1</td><td>must + be + V³</td></tr>
+                <tr><td>should + V1</td><td>should + be + V³</td></tr>
+                <tr><td>would + V1</td><td>would + be + V³</td></tr>
+                <tr><td>ought to + V1</td><td>ought to + be + V³</td></tr>
+                <tr><td>have to / has to / had to + V1</td><td>have to / has to / had to + be + V³</td></tr>
+            </tbody>
+        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Simple Present Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active: Rahim reads a book.<br>
+                Passive: <span class="hl-yellow">A book is read by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Simple Present-এর Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + V1/Vs + Object</span><br>
+                Passive : <span class="hl-pink">Object + am/is/are + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">20 টি Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active (Simple Present)</th><th></th><th>Passive (Simple Present)</th></tr></thead>
+<tbody>
+    <tr><td>1.</td><td>He reads a book.</td><td class="center">➔</td><td>A book is read by him.</td></tr>
+    <tr><td>2.</td><td>She writes a letter.</td><td class="center">➔</td><td>A letter is written by her.</td></tr>
+    <tr><td>3.</td><td>They play football.</td><td class="center">➔</td><td>Football is played by them.</td></tr>
+    <tr><td>4.</td><td>We help the poor.</td><td class="center">➔</td><td>The poor are helped by us.</td></tr>
+    <tr><td>5.</td><td>Rahim opens the door.</td><td class="center">➔</td><td>The door is opened by Rahim.</td></tr>
+    <tr><td>6.</td><td>Karim washes the car.</td><td class="center">➔</td><td>The car is washed by Karim.</td></tr>
+    <tr><td>7.</td><td>Mother cooks rice.</td><td class="center">➔</td><td>Rice is cooked by mother.</td></tr>
+    <tr><td>8.</td><td>Father reads the newspaper.</td><td class="center">➔</td><td>The newspaper is read by father.</td></tr>
+    <tr><td>9.</td><td>The teacher teaches English.</td><td class="center">➔</td><td>English is taught by the teacher.</td></tr>
+    <tr><td>10.</td><td>Students obey their teacher.</td><td class="center">➔</td><td>Their teacher is obeyed by the students.</td></tr>
+    <tr><td>11.</td><td>The committee selects the best candidate.</td><td class="center">➔</td><td>The best candidate is selected by the committee.</td></tr>
+    <tr><td>12.</td><td>The government provides free education.</td><td class="center">➔</td><td>Free education is provided by the government.</td></tr>
+    <tr><td>13.</td><td>People speak English in many countries.</td><td class="center">➔</td><td>English is spoken in many countries.</td></tr>
+    <tr><td>14.</td><td>The police arrest the criminals.</td><td class="center">➔</td><td>The criminals are arrested by the police.</td></tr>
+    <tr><td>15.</td><td>Good students follow the rules.</td><td class="center">➔</td><td>The rules are followed by good students.</td></tr>
+    <tr><td>16.</td><td>The authority maintains strict discipline.</td><td class="center">➔</td><td>Strict discipline is maintained by the authority.</td></tr>
+    <tr><td>17.</td><td>The teacher gives the students useful advice.</td><td class="center">➔</td><td>Useful advice is given to the students by the teacher.</td></tr>
+    <tr><td>18.</td><td>The teacher encourages the students to work hard.</td><td class="center">➔</td><td>The students are encouraged by the teacher to work hard.</td></tr>
+    <tr><td>19.</td><td>Everyone considers him an honest man.</td><td class="center">➔</td><td>He is considered an honest man by everyone.</td></tr>
+    <tr><td>20.</td><td>The school authority distributes free books.</td><td class="center">➔</td><td>Free books are distributed by the school authority.</td></tr>
+</tbody>        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+
+
+    <!-- PAGE 4 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Present Continuous Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim is reading a book.<br>
+                Passive : <span class="hl-yellow">A book is being read by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Present Continuous-এর Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + am/is/are + V-ing + Object</span><br>
+                Passive : <span class="hl-pink">Object + am/is/are + being + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active (Present Continuous)</th><th></th><th>Passive (Present Continuous)</th></tr></thead>
+            <tbody>
+                <tr><td>1.</td><td>He is reading a book.</td><td class="center">➔</td><td>A book is being read by him.</td></tr>
+                <tr><td>2.</td><td>She is writing a letter.</td><td class="center">➔</td><td>A letter is being written by her.</td></tr>
+                <tr><td>3.</td><td>They are playing football.</td><td class="center">➔</td><td>Football is being played by them.</td></tr>
+                <tr><td>4.</td><td>We are helping the poor.</td><td class="center">➔</td><td>The poor are being helped by us.</td></tr>
+                <tr><td>5.</td><td>Rahim is opening the door.</td><td class="center">➔</td><td>The door is being opened by Rahim.</td></tr>
+		<tr><td>6.</td><td>Karim is washing the car.</td><td class="center">➔</td><td>The car is being washed by Karim.</td></tr>
+<tr><td>7.</td><td>Mother is cooking rice.</td><td class="center">➔</td><td>Rice is being cooked by mother.</td></tr>
+<tr><td>8.</td><td>Father is reading the newspaper.</td><td class="center">➔</td><td>The newspaper is being read by father.</td></tr>
+<tr><td>9.</td><td>The teacher is teaching English.</td><td class="center">➔</td><td>English is being taught by the teacher.</td></tr>
+<tr><td>10.</td><td>Students are obeying their teacher.</td><td class="center">➔</td><td>Their teacher is being obeyed by the students.</td></tr>
+<tr><td>11.</td><td>The committee is selecting the candidate.</td><td class="center">➔</td><td>The candidate is being selected by the committee.</td></tr>
+<tr><td>12.</td><td>The government is providing free education.</td><td class="center">➔</td><td>Free education is being provided by the government.</td></tr>
+<tr><td>13.</td><td>People are speaking English.</td><td class="center">➔</td><td>English is being spoken by people.</td></tr>
+<tr><td>14.</td><td>The police are arresting the criminals.</td><td class="center">➔</td><td>The criminals are being arrested by the police.</td></tr>
+<tr><td>15.</td><td>Good students are following the rules.</td><td class="center">➔</td><td>The rules are being followed by good students.</td></tr>
+<tr><td>16.</td><td>The authority is maintaining discipline.</td><td class="center">➔</td><td>Discipline is being maintained by the authority.</td></tr>
+<tr><td>17.</td><td>The teacher is giving advice.</td><td class="center">➔</td><td>Advice is being given by the teacher.</td></tr>
+<tr><td>18.</td><td>The teacher is encouraging the students.</td><td class="center">➔</td><td>The students are being encouraged by the teacher.</td></tr>
+<tr><td>19.</td><td>Everyone is considering him honest.</td><td class="center">➔</td><td>He is being considered honest by everyone.</td></tr>
+<tr><td>20.</td><td>The school is distributing free books.</td><td class="center">➔</td><td>Free books are being distributed by the school.</td></tr>
+            </tbody>
+        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+
+    <!-- PAGE 5 -->
+	    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Present Perfect Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim has written a letter.<br>
+                Passive : <span class="hl-yellow">A letter has been written by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Present Perfect-এর Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + has/have + V³ + Object</span><br>
+                Passive : <span class="hl-pink">Object + has/have + been + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active (Present Perfect)</th><th></th><th>Passive (Present Perfect)</th></tr></thead>
+            <tbody>
+                <tr><td>1.</td><td>He has read a book.</td><td class="center">➔</td><td>A book has been read by him.</td></tr>
+                <tr><td>2.</td><td>She has written a letter.</td><td class="center">➔</td><td>A letter has been written by her.</td></tr>
+                <tr><td>3.</td><td>They have played football.</td><td class="center">➔</td><td>Football has been played by them.</td></tr>
+                <tr><td>4.</td><td>We have helped the poor.</td><td class="center">➔</td><td>The poor have been helped by us.</td></tr>
+		<tr><td>5.</td><td>Rahim has opened the door.</td><td class="center">➔</td><td>The door has been opened by Rahim.</td></tr>
+<tr><td>6.</td><td>Karim has washed the car.</td><td class="center">➔</td><td>The car has been washed by Karim.</td></tr>
+<tr><td>7.</td><td>Mother has cooked rice.</td><td class="center">➔</td><td>Rice has been cooked by mother.</td></tr>
+<tr><td>8.</td><td>Father has read the newspaper.</td><td class="center">➔</td><td>The newspaper has been read by father.</td></tr>
+<tr><td>9.</td><td>The teacher has taught English.</td><td class="center">➔</td><td>English has been taught by the teacher.</td></tr>
+<tr><td>10.</td><td>Students have obeyed their teacher.</td><td class="center">➔</td><td>Their teacher has been obeyed by the students.</td></tr>
+<tr><td>11.</td><td>The committee has selected the candidate.</td><td class="center">➔</td><td>The candidate has been selected by the committee.</td></tr>
+<tr><td>12.</td><td>The government has provided free education.</td><td class="center">➔</td><td>Free education has been provided by the government.</td></tr>
+<tr><td>13.</td><td>People have spoken English.</td><td class="center">➔</td><td>English has been spoken by people.</td></tr>
+<tr><td>14.</td><td>The police have arrested the criminals.</td><td class="center">➔</td><td>The criminals have been arrested by the police.</td></tr>
+<tr><td>15.</td><td>Good students have followed the rules.</td><td class="center">➔</td><td>The rules have been followed by good students.</td></tr>
+<tr><td>16.</td><td>The authority has maintained discipline.</td><td class="center">➔</td><td>Discipline has been maintained by the authority.</td></tr>
+<tr><td>17.</td><td>The teacher has given advice.</td><td class="center">➔</td><td>Advice has been given by the teacher.</td></tr>
+<tr><td>18.</td><td>The teacher has encouraged the students.</td><td class="center">➔</td><td>The students have been encouraged by the teacher.</td></tr>
+<tr><td>19.</td><td>Everyone has considered him honest.</td><td class="center">➔</td><td>He has been considered honest by everyone.</td></tr>
+<tr><td>20.</td><td>The school has distributed free books.</td><td class="center">➔</td><td>Free books have been distributed by the school.</td></tr>
+            </tbody>
+        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+
+
+    <!-- PAGE 6 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Simple Past Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim wrote a letter.<br>
+                Passive : <span class="hl-yellow">A letter was written by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Simple Past-এর Rule ☆</strong><br>
+                Active Structure : <span class="hl-yellow">Subject + V² + Object</span><br>
+                Passive Structure : <span class="hl-pink">Object + was/were + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">20 টি Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active Voice (Simple Past)</th><th></th><th>Passive Voice (Simple Past)</th></tr></thead>
+<tbody>
+    <tr><td>1.</td><td>He read a book.</td><td class="center">➔</td><td>A book was read by him.</td></tr>
+    <tr><td>2.</td><td>She wrote a letter.</td><td class="center">➔</td><td>A letter was written by her.</td></tr>
+    <tr><td>3.</td><td>They played football.</td><td class="center">➔</td><td>Football was played by them.</td></tr>
+    <tr><td>4.</td><td>We helped the poor.</td><td class="center">➔</td><td>The poor were helped by us.</td></tr>
+    <tr><td>5.</td><td>Rahim opened the door.</td><td class="center">➔</td><td>The door was opened by Rahim.</td></tr>
+    <tr><td>6.</td><td>Karim washed the car.</td><td class="center">➔</td><td>The car was washed by Karim.</td></tr>
+    <tr><td>7.</td><td>Mother cooked rice.</td><td class="center">➔</td><td>Rice was cooked by mother.</td></tr>
+    <tr><td>8.</td><td>Father read the newspaper.</td><td class="center">➔</td><td>The newspaper was read by father.</td></tr>
+    <tr><td>9.</td><td>The teacher taught English.</td><td class="center">➔</td><td>English was taught by the teacher.</td></tr>
+    <tr><td>10.</td><td>Students obeyed their teacher.</td><td class="center">➔</td><td>Their teacher was obeyed by the students.</td></tr>
+    <tr><td>11.</td><td>The committee selected the best candidate.</td><td class="center">➔</td><td>The best candidate was selected by the committee.</td></tr>
+    <tr><td>12.</td><td>The government provided free education.</td><td class="center">➔</td><td>Free education was provided by the government.</td></tr>
+    <tr><td>13.</td><td>People spoke English in many countries.</td><td class="center">➔</td><td>English was spoken in many countries.</td></tr>
+    <tr><td>14.</td><td>The police arrested the criminals.</td><td class="center">➔</td><td>The criminals were arrested by the police.</td></tr>
+    <tr><td>15.</td><td>Good students followed the rules.</td><td class="center">➔</td><td>The rules were followed by good students.</td></tr>
+    <tr><td>16.</td><td>The authority maintained strict discipline.</td><td class="center">➔</td><td>Strict discipline was maintained by the authority.</td></tr>
+    <tr><td>17.</td><td>The teacher gave the students useful advice.</td><td class="center">➔</td><td>Useful advice was given to the students by the teacher.</td></tr>
+    <tr><td>18.</td><td>The teacher encouraged the students to work hard.</td><td class="center">➔</td><td>The students were encouraged by the teacher to work hard.</td></tr>
+    <tr><td>19.</td><td>Everyone considered him an honest man.</td><td class="center">➔</td><td>He was considered an honest man by everyone.</td></tr>
+    <tr><td>20.</td><td>The school authority distributed free books.</td><td class="center">➔</td><td>Free books were distributed by the school authority.</td></tr>
+</tbody>
+        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+
+    <!-- PAGE 7 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Past Continuous Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim was reading a book.<br>
+                Passive : <span class="hl-yellow">A book was being read by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + was/were + V-ing + Object</span><br>
+                Passive : <span class="hl-pink">Object + was/were + being + V³ + by + Objective form</span>
+            </div>
+        </div>
+<!-- Change badge to 20 Examples to match standard structure -->
+<span class="badge badge-yellow">20 টি Examples</span>
+<table class="note-table">
+    <thead><tr><th>No.</th><th>Active Voice (Past Continuous)</th><th></th><th>Passive Voice (Past Continuous)</th></tr></thead>
+    <tbody>
+        <tr><td>1.</td><td>He was reading a book.</td><td class="center">➔</td><td>A book was being read by him.</td></tr>
+        <tr><td>2.</td><td>She was writing a letter.</td><td class="center">➔</td><td>A letter was being written by her.</td></tr>
+        <tr><td>3.</td><td>They were playing football.</td><td class="center">➔</td><td>Football was being played by them.</td></tr>
+        <tr><td>4.</td><td>We were helping the poor.</td><td class="center">➔</td><td>The poor were being helped by us.</td></tr>
+        <tr><td>5.</td><td>Rahim was opening the door.</td><td class="center">➔</td><td>The door was being opened by Rahim.</td></tr>
+        <tr><td>6.</td><td>Karim was washing the car.</td><td class="center">➔</td><td>The car was being washed by Karim.</td></tr>
+        <tr><td>7.</td><td>Mother was cooking rice.</td><td class="center">➔</td><td>Rice was being cooked by mother.</td></tr>
+        <tr><td>8.</td><td>Father was reading the newspaper.</td><td class="center">➔</td><td>The newspaper was being read by father.</td></tr>
+        <tr><td>9.</td><td>The teacher was teaching English.</td><td class="center">➔</td><td>English was being taught by the teacher.</td></tr>
+        <tr><td>10.</td><td>Students were obeying their teacher.</td><td class="center">➔</td><td>Their teacher was being obeyed by the students.</td></tr>
+        <tr><td>11.</td><td>The committee was selecting the candidate.</td><td class="center">➔</td><td>The candidate was being selected by the committee.</td></tr>
+        <tr><td>12.</td><td>The government was providing free education.</td><td class="center">➔</td><td>Free education was being provided by the government.</td></tr>
+        <tr><td>13.</td><td>People were speaking English.</td><td class="center">➔</td><td>English was being spoken by people.</td></tr>
+        <tr><td>14.</td><td>The police were arresting the criminals.</td><td class="center">➔</td><td>The criminals were being arrested by the police.</td></tr>
+        <tr><td>15.</td><td>Good students were following the rules.</td><td class="center">➔</td><td>The rules were being followed by good students.</td></tr>
+        <tr><td>16.</td><td>The authority was maintaining discipline.</td><td class="center">➔</td><td>Discipline was being maintained by the authority.</td></tr>
+        <tr><td>17.</td><td>The teacher was giving advice.</td><td class="center">➔</td><td>Advice was being given by the teacher.</td></tr>
+        <tr><td>18.</td><td>The teacher was encouraging the students.</td><td class="center">➔</td><td>The students were being encouraged by the teacher.</td></tr>
+        <tr><td>19.</td><td>Everyone was considering him honest.</td><td class="center">➔</td><td>He was being considered honest by everyone.</td></tr>
+        <tr><td>20.</td><td>The school was distributing free books.</td><td class="center">➔</td><td>Free books were being distributed by the school.</td></tr>
+    </tbody>
+</table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 8 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Past Perfect Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim had written a letter.<br>
+                Passive : <span class="hl-yellow">A letter had been written by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + had + V³ + Object</span><br>
+                Passive : <span class="hl-pink">Object + had been + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">20 টি Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active Voice (Past Perfect)</th><th></th><th>Passive Voice (Past Perfect)</th></tr></thead>
+<tbody>
+    <tr><td>1.</td><td>He had read a book.</td><td class="center">➔</td><td>A book had been read by him.</td></tr>
+    <tr><td>2.</td><td>She had written a letter.</td><td class="center">➔</td><td>A letter had been written by her.</td></tr>
+    <tr><td>3.</td><td>They had played football.</td><td class="center">➔</td><td>Football had been played by them.</td></tr>
+    <tr><td>4.</td><td>We had helped the poor.</td><td class="center">➔</td><td>The poor had been helped by us.</td></tr>
+    <tr><td>5.</td><td>Rahim had opened the door.</td><td class="center">➔</td><td>The door had been opened by Rahim.</td></tr>
+    <tr><td>6.</td><td>Karim had washed the car.</td><td class="center">➔</td><td>The car had been washed by Karim.</td></tr>
+    <tr><td>7.</td><td>Mother had cooked rice.</td><td class="center">➔</td><td>Rice had been cooked by mother.</td></tr>
+    <tr><td>8.</td><td>Father had read the newspaper.</td><td class="center">➔</td><td>The newspaper had been read by father.</td></tr>
+    <tr><td>9.</td><td>The teacher had taught English.</td><td class="center">➔</td><td>English had been taught by the teacher.</td></tr>
+    <tr><td>10.</td><td>Students had obeyed their teacher.</td><td class="center">➔</td><td>Their teacher had been obeyed by the students.</td></tr>
+    <tr><td>11.</td><td>The committee had selected the candidate.</td><td class="center">➔</td><td>The candidate had been selected by the committee.</td></tr>
+    <tr><td>12.</td><td>The government had provided free education.</td><td class="center">➔</td><td>Free education had been provided by the government.</td></tr>
+    <tr><td>13.</td><td>People had spoken English.</td><td class="center">➔</td><td>English had been spoken by people.</td></tr>
+    <tr><td>14.</td><td>The police had arrested the criminals.</td><td class="center">➔</td><td>The criminals had been arrested by the police.</td></tr>
+    <tr><td>15.</td><td>Good students had followed the rules.</td><td class="center">➔</td><td>The rules had been followed by good students.</td></tr>
+    <tr><td>16.</td><td>The authority had maintained discipline.</td><td class="center">➔</td><td>Discipline had been maintained by the authority.</td></tr>
+    <tr><td>17.</td><td>The teacher had given advice.</td><td class="center">➔</td><td>Advice had been given by the teacher.</td></tr>
+    <tr><td>18.</td><td>The teacher had encouraged the students.</td><td class="center">➔</td><td>The students had been encouraged by the teacher.</td></tr>
+    <tr><td>19.</td><td>Everyone had considered him honest.</td><td class="center">➔</td><td>He had been considered honest by everyone.</td></tr>
+    <tr><td>20.</td><td>The school had distributed free books.</td><td class="center">➔</td><td>Free books had been distributed by the school.</td></tr>
+</tbody>        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 9 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Simple Future Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim will write a letter.<br>
+                Passive : <span class="hl-yellow">A letter will be written by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + will + V¹ + Object</span><br>
+                Passive : <span class="hl-pink">Object + will + be + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">20 টি Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active Voice (Simple Future)</th><th></th><th>Passive Voice (Simple Future)</th></tr></thead>
+<tbody>
+    <tr><td>1.</td><td>He will read a book.</td><td class="center">➔</td><td>A book will be read by him.</td></tr>
+    <tr><td>2.</td><td>She will write a letter.</td><td class="center">➔</td><td>A letter will be written by her.</td></tr>
+    <tr><td>3.</td><td>They will play football.</td><td class="center">➔</td><td>Football will be played by them.</td></tr>
+    <tr><td>4.</td><td>We will help the poor.</td><td class="center">➔</td><td>The poor will be helped by us.</td></tr>
+    <tr><td>5.</td><td>Rahim will open the door.</td><td class="center">➔</td><td>The door will be opened by Rahim.</td></tr>
+    <tr><td>6.</td><td>Karim will wash the car.</td><td class="center">➔</td><td>The car will be washed by Karim.</td></tr>
+    <tr><td>7.</td><td>Mother will cook rice.</td><td class="center">➔</td><td>Rice will be cooked by mother.</td></tr>
+    <tr><td>8.</td><td>Father will read the newspaper.</td><td class="center">➔</td><td>The newspaper will be read by father.</td></tr>
+    <tr><td>9.</td><td>The teacher will teach English.</td><td class="center">➔</td><td>English will be taught by the teacher.</td></tr>
+    <tr><td>10.</td><td>Students will obey their teacher.</td><td class="center">➔</td><td>Their teacher will be obeyed by the students.</td></tr>
+    <tr><td>11.</td><td>The committee will select the candidate.</td><td class="center">➔</td><td>The candidate will be selected by the committee.</td></tr>
+    <tr><td>12.</td><td>The government will provide free education.</td><td class="center">➔</td><td>Free education will be provided by the government.</td></tr>
+    <tr><td>13.</td><td>People will speak English.</td><td class="center">➔</td><td>English will be spoken by people.</td></tr>
+    <tr><td>14.</td><td>The police will arrest the criminals.</td><td class="center">➔</td><td>The criminals will be arrested by the police.</td></tr>
+    <tr><td>15.</td><td>Good students will follow the rules.</td><td class="center">➔</td><td>The rules will be followed by good students.</td></tr>
+    <tr><td>16.</td><td>The authority will maintain discipline.</td><td class="center">➔</td><td>Discipline will be maintained by the authority.</td></tr>
+    <tr><td>17.</td><td>The teacher will give advice.</td><td class="center">➔</td><td>Advice will be given by the teacher.</td></tr>
+    <tr><td>18.</td><td>The teacher will encourage the students.</td><td class="center">➔</td><td>The students will be encouraged by the teacher.</td></tr>
+    <tr><td>19.</td><td>Everyone will consider him honest.</td><td class="center">➔</td><td>He will be considered honest by everyone.</td></tr>
+    <tr><td>20.</td><td>The school will distribute free books.</td><td class="center">➔</td><td>Free books will be distributed by the school.</td></tr>
+</tbody>        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 10 -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Future Continuous Tense (Active ➔ Passive)</span></div>
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim will be reading a book.<br>
+                Passive : <span class="hl-yellow">A book will be being read by Rahim.</span>
+            </div>
+            <div class="box-dashed">
+                <strong>Rule ☆</strong><br>
+                Active : <span class="hl-yellow">Subject + will be + V-ing + Object</span><br>
+                Passive : <span class="hl-pink">Object + will be being + V³ + by + Objective form</span>
+            </div>
+        </div>
+        <span class="badge badge-yellow">20 টি Examples</span>
+        <table class="note-table">
+            <thead><tr><th>No.</th><th>Active Voice (Future Continuous)</th><th></th><th>Passive Voice (Future Continuous)</th></tr></thead>
+<tbody>
+    <tr><td>1.</td><td>He will be reading a book.</td><td class="center">➔</td><td>A book will be being read by him.</td></tr>
+    <tr><td>2.</td><td>She will be writing a letter.</td><td class="center">➔</td><td>A letter will be being written by her.</td></tr>
+    <tr><td>3.</td><td>They will be playing football.</td><td class="center">➔</td><td>Football will be being played by them.</td></tr>
+    <tr><td>4.</td><td>We will be helping the poor.</td><td class="center">➔</td><td>The poor will be being helped by us.</td></tr>
+    <tr><td>5.</td><td>Rahim will be opening the door.</td><td class="center">➔</td><td>The door will be being opened by Rahim.</td></tr>
+    <tr><td>6.</td><td>Karim will be washing the car.</td><td class="center">➔</td><td>The car will be being washed by Karim.</td></tr>
+    <tr><td>7.</td><td>Mother will be cooking rice.</td><td class="center">➔</td><td>Rice will be being cooked by mother.</td></tr>
+    <tr><td>8.</td><td>Father will be reading the newspaper.</td><td class="center">➔</td><td>The newspaper will be being read by father.</td></tr>
+    <tr><td>9.</td><td>The teacher will be teaching English.</td><td class="center">➔</td><td>English will be being taught by the teacher.</td></tr>
+    <tr><td>10.</td><td>Students will be obeying their teacher.</td><td class="center">➔</td><td>Their teacher will be being obeyed by the students.</td></tr>
+    <tr><td>11.</td><td>The committee will be selecting the candidate.</td><td class="center">➔</td><td>The candidate will be being selected by the committee.</td></tr>
+    <tr><td>12.</td><td>The government will be providing education.</td><td class="center">➔</td><td>Education will be being provided by the government.</td></tr>
+    <tr><td>13.</td><td>People will be speaking English.</td><td class="center">➔</td><td>English will be being spoken by people.</td></tr>
+    <tr><td>14.</td><td>The police will be arresting criminals.</td><td class="center">➔</td><td>Criminals will be being arrested by the police.</td></tr>
+    <tr><td>15.</td><td>Good students will be following rules.</td><td class="center">➔</td><td>Rules will be being followed by good students.</td></tr>
+    <tr><td>16.</td><td>The authority will be maintaining discipline.</td><td class="center">➔</td><td>Discipline will be being maintained by the authority.</td></tr>
+    <tr><td>17.</td><td>The teacher will be giving advice.</td><td class="center">➔</td><td>Advice will be being given by the teacher.</td></tr>
+    <tr><td>18.</td><td>The teacher will be encouraging students.</td><td class="center">➔</td><td>Students will be being encouraged by the teacher.</td></tr>
+    <tr><td>19.</td><td>Everyone will be considering him honest.</td><td class="center">➔</td><td>He will be being considered honest by everyone.</td></tr>
+    <tr><td>20.</td><td>The school will be distributing books.</td><td class="center">➔</td><td>Books will be being distributed by the school.</td></tr>
+</tbody>        </table>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+
+    <!-- PAGE 11: Future Perfect Tense -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE</div>
+        <div class="sub-header"><span class="pill">Future Perfect Tense (Active ➔ Passive)</span></div>
+        
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                Active : Rahim will have written a letter.<br>
+                Passive : <span class="hl-yellow">A letter will have been written by Rahim.</span><br><br>
+                Rahim ➔ Subject<br>
+                will have written ➔ Verb<br>
+                a letter ➔ Object
+            </div>
+            <div class="box-dashed">
+                <span class="badge badge-blue">Rule</span><br>
+                Active : <span class="hl-yellow">Subject + will have + V³ + Object</span><br><br>
+                Passive : <span class="hl-pink">Object + will have been + V³ + by + Objective form</span>
+            </div>
+        </div>
+
+        <div class="box-dashed">
+            <strong>ধাপে ধাপে:</strong><br>
+            ① Object খুঁজে বের করো।<br>
+            ② Object-কে সামনে বসাও।<br>
+            ③ will have বসাও।<br>
+            ④ been যোগ করো।<br>
+            ⑤ Main Verb-এর V³ বসাও।<br>
+            ⑥ Subject-কে Objective form করে by-এর পরে বসাও।
+        </div>
+
+        <span class="badge badge-yellow">20 টি Examples</span>
+        <table class="note-table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Active Voice (Future Perfect)</th>
+                    <th></th>
+                    <th>Passive Voice (Future Perfect)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.</td><td>He will have read a book.</td><td class="center">➔</td><td>A book will have been read by him.</td></tr>
+                <tr><td>2.</td><td>She will have written a letter.</td><td class="center">➔</td><td>A letter will have been written by her.</td></tr>
+                <tr><td>3.</td><td>They will have played the match.</td><td class="center">➔</td><td>The match will have been played by them.</td></tr>
+                <tr><td>4.</td><td>We will have helped the poor.</td><td class="center">➔</td><td>The poor will have been helped by us.</td></tr>
+                <tr><td>5.</td><td>Rahim will have opened the door.</td><td class="center">➔</td><td>The door will have been opened by Rahim.</td></tr>
+                <tr><td>6.</td><td>Karim will have washed the car.</td><td class="center">➔</td><td>The car will have been washed by Karim.</td></tr>
+                <tr><td>7.</td><td>Mother will have cooked the food.</td><td class="center">➔</td><td>The food will have been cooked by mother.</td></tr>
+                <tr><td>8.</td><td>Father will have read the newspaper.</td><td class="center">➔</td><td>The newspaper will have been read by father.</td></tr>
+                <tr><td>9.</td><td>The teacher will have taught English.</td><td class="center">➔</td><td>English will have been taught by the teacher.</td></tr>
+                <tr><td>10.</td><td>The students will have obeyed their teacher.</td><td class="center">➔</td><td>Their teacher will have been obeyed by the students.</td></tr>
+                <tr><td>11.</td><td>The committee will have selected the best candidate.</td><td class="center">➔</td><td>The best candidate will have been selected by the committee.</td></tr>
+                <tr><td>12.</td><td>The government will have provided free education.</td><td class="center">➔</td><td>Free education will have been provided by the government.</td></tr>
+                <tr><td>13.</td><td>People will have spoken English in many countries.</td><td class="center">➔</td><td>English will have been spoken in many countries.</td></tr>
+                <tr><td>14.</td><td>The police will have arrested the criminals.</td><td class="center">➔</td><td>The criminals will have been arrested by the police.</td></tr>
+                <tr><td>15.</td><td>Good students will have followed the rules.</td><td class="center">➔</td><td>The rules will have been followed by good students.</td></tr>
+                <tr><td>16.</td><td>The authority will have maintained strict discipline.</td><td class="center">➔</td><td>Strict discipline will have been maintained by the authority.</td></tr>
+                <tr><td>17.</td><td>The teacher will have given the students useful advice.</td><td class="center">➔</td><td>The students will have been given useful advice by the teacher.</td></tr>
+                <tr><td>18.</td><td>The teacher will have encouraged the students to work hard.</td><td class="center">➔</td><td>The students will have been encouraged by the teacher to work hard.</td></tr>
+                <tr><td>19.</td><td>Everyone will have considered him an honest man.</td><td class="center">➔</td><td>He will have been considered an honest man by everyone.</td></tr>
+                <tr><td>20.</td><td>The school authority will have distributed free books among the students.</td><td class="center">➔</td><td>Free books will have been distributed among the students by the school authority.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="box-dashed center">
+            <strong>Quick Revision:</strong> S + will have + V³ + O ➔ O + will have been + V³ + by + Obj. form
+        </div>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 12: Voice - Modal Verb -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE — MODAL VERB</div>
+        <div class="sub-header"><span class="pill">Active ➔ Passive</span></div>
+
+        <div class="grid-2">
+            <div class="box">
+                <strong>প্রথমে Example দেখি</strong><br>
+                He can do the work.<br>
+                ➔ <span class="hl-yellow">The work can be done by him.</span><br><br>
+                He ➔ Subject<br>
+                can do ➔ Verb<br>
+                the work ➔ Object
+            </div>
+            <div class="box-dashed">
+                <span class="badge badge-blue">Rule</span><br>
+                Active : <span class="hl-yellow">Subject + Modal + V¹ + Object</span><br><br>
+                Passive : <span class="hl-pink">Object + Modal + be + V³ + by + Objective form</span>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="box">
+                <span class="badge badge-yellow">সহজে মনে রাখো</span><br>
+                Modal + V¹ ➔ Modal + be + V³<br><br>
+                can ➔ can be + V³<br>
+                could ➔ could be + V³<br>
+                may ➔ may be + V³<br>
+                might ➔ might be + V³<br>
+                must ➔ must be + V³<br>
+                should ➔ should be + V³<br>
+                would ➔ would be + V³
+            </div>
+            <div class="box">
+                <span class="badge badge-pink">Have to / Has to / Had to</span><br>
+                have to + V¹ ➔ have to be + V³<br>
+                has to + V¹ ➔ has to be + V³<br>
+                had to + V¹ ➔ had to be + V³<br><br>
+                <span class="badge badge-purple">Ought to</span><br>
+                ought to + V¹ ➔ ought to be + V³
+            </div>
+        </div>
+
+        <span class="badge badge-yellow">30 টি Examples</span>
+        <table class="note-table">
+            <thead>
+                <tr>
+                    <th>No.</th><th>Active Voice</th><th>Passive Voice</th>
+                    <th>No.</th><th>Active Voice</th><th>Passive Voice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.</td><td>He can do the work.</td><td>The work can be done by him.</td><td>16.</td><td>We must protect the environment.</td><td>The environment must be protected by us.</td></tr>
+                <tr><td>2.</td><td>She can solve the problem.</td><td>The problem can be solved by her.</td><td>17.</td><td>Students must follow the instructions.</td><td>The instructions must be followed by students.</td></tr>
+                <tr><td>3.</td><td>They can build a bridge.</td><td>A bridge can be built by them.</td><td>18.</td><td>You should respect your parents.</td><td>Your parents should be respected by you.</td></tr>
+                <tr><td>4.</td><td>We can help the poor.</td><td>The poor can be helped by us.</td><td>19.</td><td>We should follow the rules.</td><td>The rules should be followed by us.</td></tr>
+                <tr><td>5.</td><td>I can answer the question.</td><td>The question can be answered by me.</td><td>20.</td><td>The students should complete the task.</td><td>The task should be completed by the students.</td></tr>
+                <tr><td>6.</td><td>He could repair the machine.</td><td>The machine could be repaired by him.</td><td>21.</td><td>He would accept the proposal.</td><td>The proposal would be accepted by him.</td></tr>
+                <tr><td>7.</td><td>She could solve the puzzle.</td><td>The puzzle could be solved by her.</td><td>22.</td><td>They would organize the event.</td><td>The event would be organized by them.</td></tr>
+                <tr><td>8.</td><td>They could complete the project.</td><td>The project could be completed by them.</td><td>23.</td><td>She would prepare the report.</td><td>The report would be prepared by her.</td></tr>
+                <tr><td>9.</td><td>You may use this computer.</td><td>This computer may be used by you.</td><td>24.</td><td>You ought to respect your elders.</td><td>Your elders ought to be respected by you.</td></tr>
+                <tr><td>10.</td><td>The teacher may ask a question.</td><td>A question may be asked by the teacher.</td><td>25.</td><td>We ought to help the helpless.</td><td>The helpless ought to be helped by us.</td></tr>
+                <tr><td>11.</td><td>We may change the plan.</td><td>The plan may be changed by us.</td><td>26.</td><td>They have to follow the rules.</td><td>The rules have to be followed by them.</td></tr>
+                <tr><td>12.</td><td>He might win the competition.</td><td>The competition might be won by him.</td><td>27.</td><td>He has to finish the work.</td><td>The work has to be finished by him.</td></tr>
+                <tr><td>13.</td><td>They might cancel the program.</td><td>The program might be cancelled by them.</td><td>28.</td><td>She has to submit the application.</td><td>The application has to be submitted by her.</td></tr>
+                <tr><td>14.</td><td>She might invite her friends.</td><td>Her friends might be invited by her.</td><td>29.</td><td>We had to cancel the meeting.</td><td>The meeting had to be cancelled by us.</td></tr>
+                <tr><td>15.</td><td>You must obey the rules.</td><td>The rules must be obeyed by you.</td><td>30.</td><td>The authority had to close the road.</td><td>The road had to be closed by the authority.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="box-dashed center">
+            <strong>Quick Revision:</strong> S + Modal + V¹ + O ➔ O + Modal + be + V³ + by + Objective form
+        </div>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 13: Voice - Mixed Practice -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE-MIXED PRACTICE</div>
+        <div class="sub-header"><span class="pill">Tense + Modal Verb | Active ➔ Passive</span></div>
+
+        <div class="grid-2">
+            <div class="box">
+                <span class="badge badge-blue">Rule (Tense)</span><br>
+                1) V¹ ➔ am/is/are + V³<br>
+                2) am/is/are + V-ing ➔ am/is/are being + V³<br>
+                3) has/have + V³ ➔ has/have been + V³<br>
+                4) V² ➔ was/were + V³<br>
+                5) was/were + V-ing ➔ was/were being + V³<br>
+                6) had + V³ ➔ had been + V³<br>
+                7) will + V¹ ➔ will be + V³<br>
+                8) will have + V³ ➔ will have been + V³
+            </div>
+            <div class="box">
+                <span class="badge badge-purple">Rule (Modal)</span><br>
+                Modal + V¹ ➔ Modal + be + V³<br><br>
+                <span class="badge badge-yellow">Shortcut</span><br>
+                Tense Change or Modal Change ➔ <strong>+ be + V³</strong>
+            </div>
+        </div>
+
+        <span class="badge badge-yellow">40 Mixed Examples</span>
+        <table class="note-table">
+            <thead>
+                <tr>
+                    <th>No.</th><th>Active Voice</th><th>Passive Voice</th>
+                    <th>No.</th><th>Active Voice</th><th>Passive Voice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.</td><td>He reads a book.</td><td>A book is read by him.</td><td>21.</td><td>Students must obey the rules.</td><td>The rules must be obeyed by students.</td></tr>
+                <tr><td>2.</td><td>She is writing a letter.</td><td>A letter is being written by her.</td><td>22.</td><td>We should protect the environment.</td><td>The environment should be protected by us.</td></tr>
+                <tr><td>3.</td><td>They have completed the work.</td><td>The work has been completed by them.</td><td>23.</td><td>He would accept the proposal.</td><td>The proposal would be accepted by him.</td></tr>
+                <tr><td>4.</td><td>Rahim bought a new phone.</td><td>A new phone was bought by Rahim.</td><td>24.</td><td>You ought to respect your parents.</td><td>Your parents ought to be respected by you.</td></tr>
+                <tr><td>5.</td><td>We were watching a movie.</td><td>A movie was being watched by us.</td><td>25.</td><td>They have to follow the instructions.</td><td>The instructions have to be followed by them.</td></tr>
+                <tr><td>6.</td><td>He had finished the work.</td><td>The work had been finished by him.</td><td>26.</td><td>He has to complete the task.</td><td>The task has to be completed by him.</td></tr>
+                <tr><td>7.</td><td>She will write a report.</td><td>A report will be written by her.</td><td>27.</td><td>We had to cancel the program.</td><td>The program had to be cancelled by us.</td></tr>
+                <tr><td>8.</td><td>They will have completed the project.</td><td>The project will have been completed by them.</td><td>28.</td><td>The teacher can explain the lesson.</td><td>The lesson can be explained by the teacher.</td></tr>
+                <tr><td>9.</td><td>The teacher teaches English.</td><td>English is taught by the teacher.</td><td>29.</td><td>She may invite her friends.</td><td>Her friends may be invited by her.</td></tr>
+                <tr><td>10.</td><td>Mother is cooking dinner.</td><td>Dinner is being cooked by mother.</td><td>30.</td><td>The government must provide proper education.</td><td>Proper education must be provided by the government.</td></tr>
+                <tr><td>11.</td><td>The students have cleaned the classroom.</td><td>The classroom has been cleaned by the students.</td><td>31.</td><td>People speak English all over the world.</td><td>English is spoken all over the world.</td></tr>
+                <tr><td>12.</td><td>The police arrested the thief.</td><td>The thief was arrested by the police.</td><td>32.</td><td>The teacher is checking the scripts.</td><td>The scripts are being checked by the teacher.</td></tr>
+                <tr><td>13.</td><td>They have built a new school.</td><td>A new school has been built by them.</td>
+<td>33.</td><td>She is making tea.</td><td>Tea is being made by her.</td></tr>
+                <tr><td>14.</td><td>She had written the letter.</td><td>The letter had been written by her.</td><td>34.</td><td>The gardener watered the plants.</td><td>The plants were watered by the gardener.</td></tr>
+                <tr><td>15.</td><td>They will organize the program.</td><td>The program will be organized by them.</td><td>35.</td><td>The workers were painting the building.</td><td>The building was being painted by the workers.</td></tr>
+                <tr><td>16.</td><td>The authority will have completed the bridge.</td><td>The bridge will have been completed by the authority.</td><td>36.</td><td>The students had completed the assignment.</td><td>The assignment had been completed by the students.</td></tr>
+                <tr><td>17.</td><td>He can solve the problem.</td><td>The problem can be solved by him.</td><td>37.</td><td>The company will launch a new product.</td><td>A new product will be launched by the company.</td></tr>
+                <tr><td>18.</td><td>She could answer the question.</td><td>The question could be answered by her.</td><td>38.</td><td>She will have prepared the report.</td><td>The report will have been prepared by her.</td></tr>
+                <tr><td>19.</td><td>You may use this computer.</td><td>This computer may be used by you.</td><td>39.</td><td>We can complete the project on time.</td><td>The project can be completed by us on time.</td></tr>
+                <tr><td>20.</td><td>They might cancel the meeting.</td><td>The meeting might be cancelled by them.</td><td>40.</td><td>The authority should take necessary steps.</td><td>Necessary steps should be taken by the authority.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="box-dashed center">
+            <strong>Quick Revision:</strong> S + Verb (Tense/Modal) + O ➔ O + Verb (Tense/Modal) + be + V³ + by + Obj. form
+        </div>
+	  <div class="footer-tag">Easy Learn with Sumona 💖</div>   
+    </div>
+
+
+	<!-- PAGE 14: Voice - Imperative Sentence -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE — IMPERATIVE</div>
+        <div class="sub-header"><span class="pill">Active ➔ Passive</span></div>
+
+        <div class="grid-2">
+            <div class="box">
+                <span class="badge badge-pink">1. Affirmative (Do object)</span><br>
+                Active : Do the work.<br>
+                Passive : <span class="hl-yellow">Let + Object + be + V³</span><br>
+                ➔ <strong>Let the work be done.</strong>
+            </div>
+            <div class="box">
+                <span class="badge badge-pink">2. Negative (Do not object)</span><br>
+                Active : Do not waste time.<br>
+                Passive : <span class="hl-yellow">Let not + Object + be + V³</span><br>
+                ➔ <strong>Let not time be wasted.</strong>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="box">
+                <span class="badge badge-purple">3. With "Let"</span><br>
+                Active : Let me do the work.<br>
+                Passive : <span class="hl-yellow">Let + Object + be + V³ + by + Obj.</span><br>
+                ➔ <strong>Let the work be done by me.</strong>
+            </div>
+            <div class="box">
+                <span class="badge badge-purple">4. Advice / Request (Please/Never)</span><br>
+                Active : Always speak the truth.<br>
+                Passive : <span class="hl-yellow">Let + Object + be + always + V³</span><br>
+                ➔ <strong>Let the truth be always spoken.</strong>
+            </div>
+        </div>
+
+        <span class="badge badge-yellow">15 Examples</span>
+        <table class="note-table">
+            <thead>
+                <tr>
+                    <th>No.</th><th>Active Voice</th><th></th><th>Passive Voice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.</td><td>Close the door.</td><td class="center">➔</td><td>Let the door be closed.</td></tr>
+                <tr><td>2.</td><td>Open the window.</td><td class="center">➔</td><td>Let the window be opened.</td></tr>
+                <tr><td>3.</td><td>Write a letter.</td><td class="center">➔</td><td>Let a letter be written.</td></tr>
+                <tr><td>4.</td><td>Help the poor.</td><td class="center">➔</td><td>Let the poor be helped.</td></tr>
+                <tr><td>5.</td><td>Do not tell a lie.</td><td class="center">➔</td><td>Let not a lie be told.</td></tr>
+                <tr><td>6.</td><td>Do not break the glass.</td><td class="center">➔</td><td>Let not the glass be broken.</td></tr>
+                <tr><td>7.</td><td>Never deceive anyone.</td><td class="center">➔</td><td>Let not anyone be ever deceived.</td></tr>
+                <tr><td>8.</td><td>Let him play football.</td><td class="center">➔</td><td>Let football be played by him.</td></tr>
+                <tr><td>9.</td><td>Let her sing a song.</td><td class="center">➔</td><td>Let a song be sung by her.</td></tr>
+                <tr><td>10.</td><td>Let us settle the matter.</td><td class="center">➔</td><td>Let the matter be settled by us.</td></tr>
+                <tr><td>11.</td><td>Please help me.</td><td class="center">➔</td><td>You are requested to help me.</td></tr>
+                <tr><td>12.</td><td>Obey your parents.</td><td class="center">➔</td><td>Let your parents be obeyed.</td></tr>
+                <tr><td>13.</td><td>Take care of your health.</td><td class="center">➔</td><td>Let your health be taken care of.</td></tr>
+                <tr><td>14.</td><td>Do it at once.</td><td class="center">➔</td><td>Let it be done at once.</td></tr>
+                <tr><td>15.</td><td>Don't make a noise.</td><td class="center">➔</td><td>Let not a noise be made.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="box-dashed center">
+            <strong>Quick Revision:</strong> Imperative Active ➔ Let + Object + (not) + be + V³ (+ by + Obj)
+        </div>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+    <!-- PAGE 15: Voice - Interrogative Sentence -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE — INTERROGATIVE</div>
+        <div class="sub-header"><span class="pill">Active ➔ Passive</span></div>
+
+        <div class="grid-2">
+            <div class="box">
+                <span class="badge badge-blue">Auxiliary Verb Rules</span><br>
+                1. <strong>Do/Does</strong> ➔ am / is / are<br>
+                2. <strong>Did</strong> ➔ was / were<br>
+                3. <strong>Have/Has/Had</strong> ➔ Have/Has/Had + Obj + been + V³
+            </div>
+            <div class="box">
+                <span class="badge badge-pink">WH-Question Rules</span><br>
+                1. <strong>Who</strong> ➔ By whom<br>
+                2. <strong>Whom</strong> ➔ Who<br>
+                3. <strong>What/Which</strong> ➔ Remains same
+            </div>
+        </div>
+
+        <span class="badge badge-yellow">15 Examples</span>
+        <table class="note-table">
+            <thead>
+                <tr>
+                    <th>No.</th><th>Active Voice</th><th></th><th>Passive Voice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.</td><td>Do you play football?</td><td class="center">➔</td><td>Is football played by you?</td></tr>
+                <tr><td>2.</td><td>Does she write a letter?</td><td class="center">➔</td><td>Is a letter written by her?</td></tr>
+                <tr><td>3.</td><td>Did he finish the work?</td><td class="center">➔</td><td>Was the work finished by him?</td></tr>
+                <tr><td>4.</td><td>Have you done the math?</td><td class="center">➔</td><td>Has the math been done by you?</td></tr>
+                <tr><td>5.</td><td>Is he reading a book?</td><td class="center">➔</td><td>Is a book being read by him?</td></tr>
+                <tr><td>6.</td><td>Were they playing cricket?</td><td class="center">➔</td><td>Was cricket being played by them?</td></tr>
+                <tr><td>7.</td><td>Will you help me?</td><td class="center">➔</td><td>Will I be helped by you?</td></tr>
+                <tr><td>8.</td><td>Can you solve the problem?</td><td class="center">➔</td><td>Can the problem be solved by you?</td></tr>
+                <tr><td>9.</td><td>Who broke the glass?</td><td class="center">➔</td><td>By whom was the glass broken?</td></tr>
+                <tr><td>10.</td><td>Who is calling me?</td><td class="center">➔</td><td>By whom am I being called?</td></tr>
+                <tr><td>11.</td><td>Whom did you see?</td><td class="center">➔</td><td>Who was seen by you?</td></tr>
+                <tr><td>12.</td><td>Whom has he invited?</td><td class="center">➔</td><td>Who has been invited by him?</td></tr>
+                <tr><td>13.</td><td>What do you want?</td><td class="center">➔</td><td>What is wanted by you?</td></tr>
+                <tr><td>14.</td><td>Which book do you need?</td><td class="center">➔</td><td>Which book is needed by you?</td></tr>
+                <tr><td>15.</td><td>Why did you punish him?</td><td class="center">➔</td><td>Why was he punished by you?</td></tr>
+            </tbody>
+        </table>
+
+        <div class="box-dashed center">
+            <strong>Quick Revision:</strong> Interrogative Passive always maintains question form (Auxiliary Verb stays before Subject).
+        </div>
+        <div class="footer-tag">Easy Learn with Sumona 💖</div>
+    </div>
+
+
+<!-- PAGE 16: Voice - Quasi-Passive Sentence -->
+    <div class="notebook-page">
+        <div class="header-title">VOICE — QUASI-PASSIVE</div>
+        <div class="sub-header"><span class="pill">Quasi-Passive ➔ Passive</span></div>
+
+        <div class="grid-2">
+            <div class="box">
+                <span class="badge badge-pink">1. Quasi-Passive With Complement</span><br>
+                Active structure : <span class="hl-yellow">Subject + Verb + Adjective</span><br><br>
+                <strong>Rule A:</strong> Sub + Auxiliary Verb + Adjective + when + it/they + is/are + V³<br>
+                <strong>Rule B:</strong> Sub + Auxiliary Verb + V³ + Adjective
+            </div>
+            <div class="box">
+                <span class="badge badge-purple">2. Quasi-Passive Without Complement</span><br>
+                Active structure : <span class="hl-yellow">Subject + Verb (Action without object)</span><br><br>
+                <strong>Rule:</strong> Subject + Auxiliary Verb + being + V³
+            </div>
+        </div>
+
+        <span class="badge badge-yellow">15 Examples</span>
+        <table class="note-table">
+            <thead>
+                <tr>
+                    <th>No.</th><th>Active (Quasi-Passive)</th><th></th><th>Passive Voice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.</td><td>Rice sells cheap.</td><td class="center">➔</td><td>Rice is cheap when it is sold. / Rice is sold cheap.</td></tr>
+                <tr><td>2.</td><td>Honey tastes sweet.</td><td class="center">➔</td><td>Honey is sweet when it is tasted.</td></tr>
+                <tr><td>3.</td><td>The rose smells sweet.</td><td class="center">➔</td><td>The rose is sweet when it is smelled.</td></tr>
+                <tr><td>4.</td><td>This bed feels soft.</td><td class="center">➔</td><td>This bed is soft when it is felt.</td></tr>
+                <tr><td>5.</td><td>The pill tastes bitter.</td><td class="center">➔</td><td>The pill is bitter when it is tasted.</td></tr>
+                <tr><td>6.</td><td>Iron feels hard.</td><td class="center">➔</td><td>Iron is hard when it is felt.</td></tr>
+                <tr><td>7.</td><td>The paper feels smooth.</td><td class="center">➔</td><td>The paper is smooth when it is felt.</td></tr>
+                <tr><td>8.</td><td>The house is building.</td><td class="center">➔</td><td>The house is being built.</td></tr>
+                <tr><td>9.</td><td>The book is printing.</td><td class="center">➔</td><td>The book is being printed.</td></tr>
+                <tr><td>10.</td><td>The cow is milking.</td><td class="center">➔</td><td>The cow is being milked.</td></tr>
+                <tr><td>11.</td><td>The drums are beating.</td><td class="center">➔</td><td>The drums are being beaten.</td></tr>
+                <tr><td>12.</td><td>The trumpet is sounding.</td><td class="center">➔</td><td>The trumpet is being sounded.</td></tr>
+                <tr><td>13.</td><td>The story reads interesting.</td><td class="center">➔</td><td>The story is interesting when it is read.</td></tr>
+                <tr><td>14.</td><td>Green mangoes taste sour.</td><td class="center">➔</td><td>Green mangoes are sour when they are tasted.</td></tr>
+                <tr><td>15.</td><td>The shoes look good.</td><td class="center">➔</td><td>The shoes are good when they are looked at.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="box-dashed center">
+            <strong>Quick Revision:</strong> Quasi-Passive sentence look active in form but passive in sense.
+        </div>
+
+        <div style="text-align:center; font-family:'Caveat', cursive; font-size:1.5rem; margin-bottom:10px;">Easy Learn with Sumona 💖</div>
+    </div>
+
+</body>
+</html>
