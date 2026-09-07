@@ -6,188 +6,158 @@
     <title>Wh-Questions Special Study Sheet - Class 5</title>
     <style>
         :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #2b7a78;
+            --text-color: #2d3748;
             --bg-paper: #ffffff;
             --line-color: #e2e8f0;
         }
 
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f7f6;
+            color: var(--text-color);
+            background-color: #f7fafc;
             margin: 0;
             padding: 20px;
-            position: relative;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        /* Screen Watermark */
-        .watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            max-width: 80vw;
-            opacity: 0.10;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        h1 {
-            color: #1a5f7a;
-            text-align: center;
-            border-bottom: 3px solid #1a5f7a;
-            padding-bottom: 8px;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 10px;
         }
 
-        .school-logo {
-            height: 35px;
-            width: auto;
-            vertical-align: middle;
-            display: inline-block;
-        }
-
-        h2 {
-            color: #2c3e50;
-            background-color: #ecf0f1;
-            padding: 6px 12px;
-            border-left: 5px solid #3498db;
-            border-radius: 3px;
-            font-size: 1.3em;
-        }
-
-        .structure-box {
-            background-color: #e8f4f8;
-            border: 1px dashed #2980b9;
-            padding: 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 12px;
-        }
-
-        .example-block {
-            background-color: #fafafa;
-            border-left: 3px solid #2ecc71;
-            padding: 9px 12px;
-            margin: 10px 0;
-        }
-
-        .underline {
-            text-decoration: underline;
-            font-weight: bold;
-            color: #e74c3c;
-        }
-
-        .bold-wh {
-            color: #1a5f7a;
-            font-weight: bold;
+        /* Fixed Full-Page Printable Watermark */
+        .watermark {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 380px !important;
+            height: auto !important;
+            opacity: 0.08 !important;
+            z-index: -1000 !important;
+            pointer-events: none;
+            display: block !important;
         }
 
         .notebook-page {
             width: 100%;
             max-width: 830px;
-            background-color: var(--bg-paper);
-            background-image: repeating-linear-gradient(var(--bg-paper) 0px, var(--bg-paper) 27px, var(--line-color) 28px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border-radius: 12px;
-            padding: 35px 30px;
-            box-sizing: border-box;
+            background-color: transparent !important;
+            padding: 10px 20px;
             position: relative;
-            border-left: 20px solid #f8f9fa;
             z-index: 1;
         }
 
-        .notebook-page::before {
-            content: "";
-            position: absolute;
-            left: -15px;
-            top: 20px;
-            bottom: 20px;
-            width: 10px;
-            background-image: radial-gradient(circle, #444 40%, transparent 45%);
-            background-size: 10px 25px;
-        }
-
-        .note-box {
-            background-color: #fdf2e9;
-            border-left: 5px solid #e67e22;
-            padding: 12px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .print-btn {
-            display: block;
-            width: 150px;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: #1a5f7a;
-            color: white;
+        .header-container {
             text-align: center;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+            border-bottom: 3px double var(--primary-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .school-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .general-structure {
+            background-color: rgba(26, 95, 122, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .general-structure h3 {
+            margin: 0 0 6px 0;
+            color: var(--primary-color);
+        }
+
+        .tip-box {
+            background-color: rgba(230, 255, 250, 0.7);
+            border: 1px dashed var(--secondary-color);
+            padding: 10px 15px;
+            margin-top: 8px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .rule-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--line-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--line-color);
+            padding-bottom: 4px;
+        }
+
+        .rule-desc {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .example-block {
+            margin-left: 10px;
+            margin-bottom: 8px;
+            padding-left: 10px;
+            border-left: 2px solid var(--secondary-color);
+        }
+
+        .sentence {
+            font-weight: 500;
+        }
+
+        .wh-question {
+            color: #c53030;
             font-weight: bold;
         }
 
-        .print-btn:hover {
-            background-color: #2c3e50;
+        .note-box {
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 4px solid #dd6b20;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-top: 20px;
         }
 
-        /* PRINT SPECIFIC STYLING FOR LOGO & WATERMARK */
         @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .notebook-page {
+                box-shadow: none;
+            }
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
-
-            body { 
-                background-color: #fff !important; 
-                padding: 0; 
-                margin: 0;
-            }
-
-            .notebook-page {
-                width: 100%;
-                max-width: 100%;
-                background-color: transparent !important;
-                background-image: repeating-linear-gradient(var(--bg-paper) 0px, var(--bg-paper) 25px, var(--line-color) 26px) !important;
-                box-shadow: none !important;
-                border-radius: 0;
-                padding: 10px 15px;
-                box-sizing: border-box;
-                position: relative;
-                border-left: 12px solid #f8f9fa;
-            }
-
-            .print-btn { display: none !important; }
-
-            .school-logo {
-                height: 35px !important;
-                width: auto !important;
-                display: inline-block !important;
-                visibility: visible !important;
-            }
-
             .watermark {
-                position: fixed !important;
-                top: 45% !important;
-                left: 50% !important;
-                transform: translate(-50%, -50%) !important;
-                width: 320px !important;
-                opacity: 0.15 !important;
-                z-index: -1000 !important;
+                opacity: 0.10 !important;
                 display: block !important;
                 visibility: visible !important;
             }
@@ -196,145 +166,140 @@
 </head>
 <body>
 
-<!-- Watermark image pointing to the correct path -->
-<img src="images/School_Logo.png" class="watermark" alt="Watermark Logo">
+<!-- Watermark Image -->
+<img src="data:image/png;base64,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xVBRDc4LWDAVYHoeDAoQuudCKUU/tgHTCADQoGsm64Rgp11omgHXAcvoftqygkinHOi6Ccf2IOXB/ADrap4Gl3WCZhiGsuB4OnQzxCKWH7qsY4TyIACTYwtHoAeYZnnPNaFcy6rYES3c8OOmVqtXfdXxlzU/77v5y5+6/GXFkwNvHL9o7OAjL5ncd+8zxl3c9fxh404c1a/dR18f9t6jL+32j1c+KPrlu5/NVB2i2Zt7c3qO375c2/9kNF563gAAEABJARRp3fOM54wwz0mAnC3I6mP3p2aNc4owZxZQ4f9vKeXm/6e3o1v6fH2pS/f4G3TdM/3jItgt/X6/X1a37q3+9K3D+xK/Vv1w7fip3u1m31o01e4fR9m8tX/029/L33o1+/fX4f9fE/3v3H249sXmB+m00XnrO/7x4X3/fS3X/5/m/eOn/353//eO/e/41e//v/Xn515p49x1247/7b/3p18a4/33d5966d9f41d/+/d86895316r4/7bX5//f/3/m7X/38d998f8+d33//i++/v+/8834a348/Pn+swP+sAqrS4LveL/u5fv18u978qO0y9fL/atf/0861P55mOnr1m6vXq5839/j/8s5d41f//u5fP3v9N168/s9X/88d//u/v3nnznv+fv/X11+fef9/X9/3+O///7f+/8e/v/1f1177/X++d+74567/78/f/9/v77//53fef++//f3vf/339/98x51/e+/dd/983933vvf//20/8232O54/82v3G494/3r5v/9///m/vv++v//788/ff/f//v4vf/4xAn+swH/TCpAxb2/j69v/bSve/2S9+p9qS8eOf75z5f/28Y8b///x4x/v9///f//3v//241//X4E/3v/Nf/j/2T46s2bA/+1A8L/P3yv27+36f/y9v1/8/873f4A/Pn+swH/rCsC/+p3//vf///j9///v3//9v/37f8f/58D3j/2PAf3D/48F+e/+/+/9//77b/9XwP+4/8sN8T3e/9eP3/+L93f/w2P/Y1r+49u1431/j28//9fX9+O3/3//t/59/x+v/09S5iO2xvfNcf/i5m3w14E///r41r8E//v84f88fvj271v//43f///X8fPnv8fv/eO1f/z9v///AAMAkDq1yXl22/sAAAAASUVORK5CYII=" class="watermark" alt="Watermark Logo">
 
 <div class="notebook-page">
-    <h1>
-        <img src="images/School_Logo.png" alt="School Logo" class="school-logo">
-        📄 Wh-Questions Special Study Sheet (Class 5)
-    </h1>
-    
-    <div class="structure-box">
-        📌 Wh-Question তৈরির সাধারণ গঠন (General Structure):<br>
-        <span style="color: #d35400;">Wh-word + Auxiliary Verb (সাহায্যকারী ভার্ব) + Subject (কর্তা) + Main Verb (মূল ভার্ব) + Extension + ?</span>
+
+    <!-- Header with Embedded Base64 Logo -->
+    <div class="header-container">
+        <img src="data:image/png;base64,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xVBRDc4LWDAVYHoeDAoQuudCKUU/tgHTCADQoGsm64Rgp11omgHXAcvoftqygkinHOi6Ccf2IOXB/ADrap4Gl3WCZhiGsuB4OnQzxCKWH7qsY4TyIACTYwtHoAeYZnnPNaFcy6rYES3c8OOmVqtXfdXxlzU/77v5y5+6/GXFkwNvHL9o7OAjL5ncd+8zxl3c9fxh404c1a/dR18f9t6jL+32j1c+KPrlu5/NVB2i2Zt7c3qO375c2/9kNF563gAAEABJARRp3fOM54wwz0mAnC3I6mP3p2aNc4owZxZQ4f9vKeXm/6e3o1v6fH2pS/f4G3TdM/3jItgt/X6/X1a37q3+9K3D+xK/Vv1w7fip3u1m31o01e4fR9m8tX/029/L33o1+/fX4f9fE/3v3H249sXmB+m00XnrO/7x4X3/fS3X/5/m/eOn/353//eO/e/41e//v/Xn515p49x1247/7b/3p18a4/33d5966d9f41d/+/d86895316r4/7bX5//f/3/m7X/38d998f8+d33//i++/v+/8834a348/Pn+swP+sAqrS4LveL/u5fv18u978qO0y9fL/atf/0861P55mOnr1m6vXq5839/j/8s5d41f//u5fP3v9N168/s9X/88d//u/v3nnznv+fv/X11+fef9/X9/3+O///7f+/8e/v/1f1177/X++d+74567/78/f/9/v77//53fef++//f3vf/339/98x51/e+/dd/983933vvf//20/8232O54/82v3G494/3r5v/9///m/vv++v//788/ff/f//v4vf/4xAn+swH/TCpAxb2/j69v/bSve/2S9+p9qS8eOf75z5f/28Y8b///x4x/v9///f//3v//241//X4E/3v/Nf/j/2T46s2bA/+1A8L/P3yv27+36f/y9v1/8/873f4A/Pn+swH/rCsC/+p3//vf///j9///v3//9v/37f8f/58D3j/2PAf3D/48F+e/+/+/9//77b/9XwP+4/8sN8T3e/9eP3/+L93f/w2P/Y1r+49u1431/j28//9fX9+O3/3//t/59/x+v/09S5iO2xvfNcf/i5m3w14E///r41r8E//v84f88fvj271v//43f///X8fPnv8fv/eO1f/z9v///AAMAkDq1yXl22/sAAAAASUVORK5CYII=" class="school-logo" alt="School Logo">
+        <h1>Wh-Questions Special Study Sheet (Class 5)</h1>
     </div>
-    
-    <p><strong>সহজ টিপস:</strong> বাক্যে সাহায্যকারী Verb (ভার্ব) (am, is, are, was, were, can, will) না থাকলে, টেন্স অনুযায়ী <strong>Do, Does</strong> (Present Tense) অথবা <strong>Did</strong> (Past Tense) বসাতে হবে।</p>
+
+    <!-- General Structure -->
+    <div class="general-structure">
+        <h3>Wh-Question তৈরির সাধারণ গঠন (General Structure):</h3>
+        <div><strong>Wh-word + Auxiliary Verb (সাহায্যকারী ভার্ব) + Subject (কর্তা) + Main Verb (মূল ভার্ব) + Extension + ?</strong></div>
+        <div class="tip-box">
+            <strong>সহজ টিপস:</strong> বাক্যে সাহায্যকারী Verb (am, is, are, was, were, can, will) না থাকলে, টেন্স অনুযায়ী <strong>Do, Does</strong> (Present Tense) অথবা <strong>Did</strong> (Past Tense) বসাতে হবে।
+        </div>
+    </div>
 
     <!-- Rule 1 -->
-    <h2>Rule 1: 'Who' এর ব্যবহার (কে / কারা)</h2>
-    <p><strong>নিয়ম:</strong> বাক্যের শুরুতে কোনো ব্যক্তিবাচক Subject (মানুষের নাম বা Pronoun)-এর নিচে দাগ থাকলে, তার পরিবর্তে <strong>Who</strong> বসে। বাকি সব শব্দ অপরিবর্তিত থাকে।</p>
-    <div class="structure-box" style="background-color: #f9f9f9; border-color: #ccc;">গঠন: Who + বাকি অংশ + ?</div>
-    
-    <div class="example-block">
-        <strong>১ম উদাহরণ:</strong><br>
-        Sentence: <span class="underline">Raju</span> is a firefighter.<br>
-        Wh-Question: <span class="bold-wh">Who</span> is a firefighter?
-    </div>
-    <div class="example-block">
-        <strong>২য় উদাহরণ:</strong><br>
-        Sentence: <span class="underline">Sima and Tamal</span> are in the town hall language club.<br>
-        Wh-Question: <span class="bold-wh">Who</span> are in the town hall language club?
-    </div>
-    <div class="example-block">
-        <strong>৩য় উদাহরণ:</strong><br>
-        Sentence: <span class="underline">Laila</span> likes to run in the park.<br>
-        Wh-Question: <span class="bold-wh">Who</span> likes to run in the park?
+    <div class="rule-card">
+        <div class="rule-title">Rule 1: 'Who' এর ব্যবহার (কে / কারা)</div>
+        <div class="rule-desc">
+            <strong>নিয়ম:</strong> বাক্যের শুরুতে কোনো ব্যক্তিবাচক Subject (মানুষের নাম বা Pronoun)-এর নিচে দাগ থাকলে, তার পরিবর্তে Who বসে। বাকি সব শব্দ অপরিবর্তিত থাকে।<br>
+            <strong>গঠন:</strong> Who + বাকি অংশ + ?
+        </div>
+        <div class="example-block">
+            <div class="sentence">১ম উদাহরণ: Raju is a firefighter.</div>
+            <div class="wh-question">Wh-Question: Who is a firefighter?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">২য় উদাহরণ: Sima and Tamal are in the town hall language club.</div>
+            <div class="wh-question">Wh-Question: Who are in the town hall language club?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">৩য় উদাহরণ: Laila likes to run in the park.</div>
+            <div class="wh-question">Wh-Question: Who likes to run in the park?</div>
+        </div>
     </div>
 
     <!-- Rule 2 -->
-    <h2>Rule 2: 'What' এর ব্যবহার (কী / পেশা)</h2>
-    <p><strong>নিয়ম:</strong> দাগ দেওয়া অংশটি দ্বারা কোনো বস্তু, পেশা, বা কাজের নাম বোঝালে <strong>What</strong> বসে।</p>
-    
-    <div class="example-block">
-        <strong>১ম উদাহরণ (বস্তু বোঝালে):</strong><br>
-        Sentence: Babul eats <span class="underline">an apple</span> every day.<br>
-        Wh-Question: <span class="bold-wh">What</span> does Babul eat every day?
-    </div>
-    <div class="example-block">
-        <strong>২য় উদাহরণ (পেশা বোঝালে):</strong><br>
-        Sentence: His father is <span class="underline">a doctor</span>.<br>
-        Wh-Question: <span class="bold-wh">What</span> is his father?
-    </div>
-    <div class="example-block">
-        <strong>৩য় উদাহরণ (কাজ/বিষয় বোঝালে):</strong><br>
-        Sentence: They are learning <span class="underline">English</span>.<br>
-        Wh-Question: <span class="bold-wh">What</span> are they learning?
+    <div class="rule-card">
+        <div class="rule-title">Rule 2: 'What' এর ব্যবহার (কী / পেশা)</div>
+        <div class="rule-desc"><strong>নিয়ম:</strong> দাগ দেওয়া অংশটি দ্বারা কোনো বস্তু, পেশা, বা কাজের নাম বোঝালে What বসে।</div>
+        <div class="example-block">
+            <div class="sentence">১ম উদাহরণ (বস্তু বোঝালে): Babul eats an apple every day.</div>
+            <div class="wh-question">Wh-Question: What does Babul eat every day?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">২য় উদাহরণ (পেশা বোঝালে): His father is a doctor.</div>
+            <div class="wh-question">Wh-Question: What is his father?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">৩য় উদাহরণ (কাজ/বিষয় বোঝালে): They are learning English.</div>
+            <div class="wh-question">Wh-Question: What are they learning?</div>
+        </div>
     </div>
 
     <!-- Rule 3 -->
-    <h2>Rule 3: 'Where' এর ব্যবহার (কোথায়)</h2>
-    <p><strong>নিয়ম:</strong> দাগ দেওয়া অংশটি দ্বারা কোনো স্থান বা জায়গার নাম (school, home, Dhaka, country ইত্যাদি) বোঝালে <strong>Where</strong> বসে।</p>
-    
-    <div class="example-block">
-        <strong>১ম উদাহরণ:</strong><br>
-        Sentence: Jessica is from <span class="underline">the United Kingdom</span>.<br>
-        Wh-Question: <span class="bold-wh">Where</span> is Jessica from?
-    </div>
-    <div class="example-block">
-        <strong>২য় উদাহরণ:</strong><br>
-        Sentence: The boy lives <span class="underline">in a small village</span>.<br>
-        Wh-Question: <span class="bold-wh">Where</span> does the boy live?
-    </div>
-    <div class="example-block">
-        <strong>৩য় উদাহরণ:</strong><br>
-        Sentence: They went <span class="underline">to Cox's Bazar</span> last week.<br>
-        Wh-Question: <span class="bold-wh">Where</span> did they go last week?
+    <div class="rule-card">
+        <div class="rule-title">Rule 3: 'Where' এর ব্যবহার (কোথায়)</div>
+        <div class="rule-desc"><strong>নিয়ম:</strong> দাগ দেওয়া অংশটি দ্বারা কোনো স্থান বা জায়গার নাম (school, home, Dhaka, country ইত্যাদি) বোঝালে Where বসে।</div>
+        <div class="example-block">
+            <div class="sentence">১ম উদাহরণ: Jessica is from the United Kingdom.</div>
+            <div class="wh-question">Wh-Question: Where is Jessica from?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">২য় উদাহরণ: The boy lives in a small village.</div>
+            <div class="wh-question">Wh-Question: Where does the boy live?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">৩য় উদাহরণ: They went to Cox's Bazar last week.</div>
+            <div class="wh-question">Wh-Question: Where did they go last week?</div>
+        </div>
     </div>
 
     <!-- Rule 4 -->
-    <h2>Rule 4: 'When' এর ব্যবহার (কখন)</h2>
-    <p><strong>নিয়ম:</strong> দাগ দেওয়া অংশটি দ্বারা কোনো সময়, দিন, মাস, বছর বা ঋতুর নাম বোঝালে <strong>When</strong> বসে।</p>
-    
-    <div class="example-block">
-        <strong>১ম উদাহরণ:</strong><br>
-        Sentence: Reshma goes to school <span class="underline">at 9 a.m.</span><br>
-        Wh-Question: <span class="bold-wh">When</span> does Reshma go to school?
-    </div>
-    <div class="example-block">
-        <strong>২য় উদাহরণ:</strong><br>
-        Sentence: We celebrate our Independence Day <span class="underline">on 26th March</span>.<br>
-        Wh-Question: <span class="bold-wh">When</span> do we celebrate our Independence Day?
-    </div>
-    <div class="example-block">
-        <strong>৩য় উদাহরণ:</strong><br>
-        Sentence: It rained heavily <span class="underline">yesterday</span>.<br>
-        Wh-Question: <span class="bold-wh">When</span> did it rain heavily?
+    <div class="rule-card">
+        <div class="rule-title">Rule 4: 'When' এর ব্যবহার (কখন)</div>
+        <div class="rule-desc"><strong>নিয়ম:</strong> দাগ দেওয়া অংশটি দ্বারা কোনো সময়, দিন, মাস, বছর বা ঋতুর নাম বোঝালে When বসে।</div>
+        <div class="example-block">
+            <div class="sentence">১ম উদাহরণ: Reshma goes to school at 9 a.m.</div>
+            <div class="wh-question">Wh-Question: When does Reshma go to school?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">২য় উদাহরণ: We celebrate our Independence Day on 26th March.</div>
+            <div class="wh-question">Wh-Question: When do we celebrate our Independence Day?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">৩য় উদাহরণ: It rained heavily yesterday.</div>
+            <div class="wh-question">Wh-Question: When did it rain heavily?</div>
+        </div>
     </div>
 
     <!-- Rule 5 -->
-    <h2>Rule 5: 'Why' এর ব্যবহার (কেন)</h2>
-    <p><strong>নিয়ম:</strong> বাক্যে কোনো কারণ বোঝালে, সাধারণত to, for, because, so that যুক্ত অংশের নিচে দাগ থাকলে <strong>Why</strong> বসে।</p>
-    
-    <div class="example-block">
-        <strong>১ম উদাহরণ:</strong><br>
-        Sentence: Sima stays at home <span class="underline">because she has the flu</span>.<br>
-        Wh-Question: <span class="bold-wh">Why</span> does Sima stay at home?
-    </div>
-    <div class="example-block">
-        <strong>২য় উদাহরণ:</strong><br>
-        Sentence: They go to the club <span class="underline">to practice speaking English</span>.<br>
-        Wh-Question: <span class="bold-wh">Why</span> do they go to the club?
+    <div class="rule-card">
+        <div class="rule-title">Rule 5: 'Why' এর ব্যবহার (কেন)</div>
+        <div class="rule-desc"><strong>নিয়ম:</strong> বাক্যে কোনো কারণ বোঝালে, সাধারণত to, for, because, so that যুক্ত অংশের নিচে দাগ থাকলে Why বসে।</div>
+        <div class="example-block">
+            <div class="sentence">১ম উদাহরণ: Sima stays at home because she has the flu.</div>
+            <div class="wh-question">Wh-Question: Why does Sima stay at home?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">২য় উদাহরণ: They go to the club to practice speaking English.</div>
+            <div class="wh-question">Wh-Question: Why do they go to the club?</div>
+        </div>
     </div>
 
     <!-- Rule 6 -->
-    <h2>Rule 6: 'How' এর ব্যবহার (কেমন / কিভাবে / বয়স)</h2>
-    <p><strong>নিয়ম:</strong> কোনো কাজ কীভাবে হয় (অবস্থা/উপায়), শরীরের অবস্থা কেমন, বা বয়স কত বোঝালে <strong>How / How old / How many</strong> বসে।</p>
-    
-    <div class="example-block">
-        <strong>১ম উদাহরণ (অবস্থা):</strong><br>
-        Sentence: She feels <span class="underline">very happy</span>.<br>
-        Wh-Question: <span class="bold-wh">How</span> does she feel?
-    </div>
-    <div class="example-block">
-        <strong>২য় উদাহরণ (যাতায়াত মাধ্যম):</strong><br>
-        Sentence: Babul goes to school <span class="underline">by bus</span>.<br>
-        Wh-Question: <span class="bold-wh">How</span> does Babul go to school?
-    </div>
-    <div class="example-block">
-        <strong>৩য় উদাহরণ (বয়স বোঝালে):</strong><br>
-        Sentence: Reshma is <span class="underline">eighteen years old</span>.<br>
-        Wh-Question: <span class="bold-wh">How old</span> is Reshma?
+    <div class="rule-card">
+        <div class="rule-title">Rule 6: 'How' এর ব্যবহার (কেমন / কীভাবে / বয়স)</div>
+        <div class="rule-desc"><strong>নিয়ম:</strong> কোনো কাজ কীভাবে হয় (অবস্থা/উপায়), শরীরের অবস্থা কেমন, বা বয়স কত বোঝালে How / How old / How many বসে।</div>
+        <div class="example-block">
+            <div class="sentence">১ম উদাহরণ (অবস্থা): She feels very happy.</div>
+            <div class="wh-question">Wh-Question: How does she feel?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">২য় উদাহরণ (যাতায়াত মাধ্যম): Babul goes to school by bus.</div>
+            <div class="wh-question">Wh-Question: How does Babul go to school?</div>
+        </div>
+        <div class="example-block">
+            <div class="sentence">৩য় উদাহরণ (বয়স বোঝালে): Reshma is eighteen years old.</div>
+            <div class="wh-question">Wh-Question: How old is Reshma?</div>
+        </div>
     </div>
 
+    <!-- Pronoun Note -->
     <div class="note-box">
-        <strong>⚠️ অতি গুরুত্বপূর্ণ নোট (Pronoun Change):</strong><br>
+        <strong>অতি গুরুত্বপূর্ণ নোট (Pronoun Change):</strong><br>
         বাক্যে যদি <strong>I</strong> (আমি) বা <strong>We</strong> (আমরা) থাকে, প্রশ্ন করার সময় তা বদলে <strong>You</strong> হয়ে যায়। একইভাবে <strong>My / Our</strong> পরিবর্তিত হয়ে <strong>Your</strong> হয়ে যায়।<br>
-        <em>যেমন:</em> I am ten years old. ➔ <strong>How old are you?</strong> (I পরিবর্তিত হয়ে you হওয়ায় am বদলে are হয়েছে)।
+        <em>যেমন:</em> I am ten years old. → <strong>How old are you?</strong> (I পরিবর্তিত হয়ে you হওয়ায় am বদলে are হয়েছে)।
     </div>
 
-    <button class="print-btn" onclick="window.print()">Print Handout</button>
 </div>
 
 </body>
