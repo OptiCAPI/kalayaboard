@@ -24,7 +24,7 @@
             gap: 30px;
         }
 
-        /* Screen Watermark (Centered, Faded Logo) */
+        /* Screen Watermark */
         .watermark {
             position: fixed;
             top: 50%;
@@ -32,7 +32,7 @@
             transform: translate(-50%, -50%);
             width: 320px;
             max-width: 80vw;
-            opacity: 0.08; /* Subtle background watermark on screen */
+            opacity: 0.10;
             z-index: 0;
             pointer-events: none;
         }
@@ -50,9 +50,10 @@
         }
 
         .school-logo {
-            height: 30px;
+            height: 35px;
             width: auto;
             vertical-align: middle;
+            display: inline-block;
         }
 
         h2 {
@@ -144,14 +145,17 @@
             background-color: #2c3e50;
         }
 
-        /* PRINT SPECIFIC STYLING FOR PDF/PRINT WATERMARK */
+        /* PRINT SPECIFIC STYLING FOR LOGO & WATERMARK */
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             body { 
                 background-color: #fff !important; 
                 padding: 0; 
                 margin: 0;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
             }
 
             .notebook-page {
@@ -170,31 +174,34 @@
             .print-btn { display: none !important; }
 
             .school-logo {
-                height: 30px;
+                height: 35px !important;
+                width: auto !important;
+                display: inline-block !important;
+                visibility: visible !important;
             }
 
-            /* Watermark repeats centered on every printed page */
             .watermark {
                 position: fixed !important;
-                top: 40% !important;
+                top: 45% !important;
                 left: 50% !important;
                 transform: translate(-50%, -50%) !important;
                 width: 320px !important;
-                opacity: 0.12 !important; /* Visible faded watermark */
+                opacity: 0.15 !important;
                 z-index: -1000 !important;
                 display: block !important;
+                visibility: visible !important;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Background Watermark Logo -->
+<!-- Watermark image pointing to the correct path -->
 <img src="images/School_Logo.png" class="watermark" alt="Watermark Logo">
 
 <div class="notebook-page">
     <h1>
-        <img src="images/School_Logo.png" alt="KBGPS" class="school-logo">
+        <img src="images/School_Logo.png" alt="School Logo" class="school-logo">
         📄 Wh-Questions Special Study Sheet (Class 5)
     </h1>
     
