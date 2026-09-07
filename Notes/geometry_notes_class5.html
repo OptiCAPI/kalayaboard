@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>৫ম শ্রেণি - জ্যামিতি পূর্ণাঙ্গ হ্যান্ডনোট</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        :root {
+            --paper-bg: #fffef0;
+            --line-color: #e2e8f0;
+            --margin-line: #f87171;
+            --primary: #1a5f7a;
+            --dark: #2c3e50;
+            --border: #cbd5e1;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --primary-light: #e0f2fe;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #d1d5db;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Notepad Container Styling */
+        .notepad {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            background: var(--paper-bg);
+            /* Notebook Ruled Background Lines */
+            background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
+            background-size: 100% 28px;
+            padding: 50px 40px 40px 70px;
+            border-radius: 4px 16px 16px 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 2px solid var(--margin-line);
+        }
+
+        /* Notepad Top Spiral/Binder holes visual */
+        .notepad::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--margin-line);
+        }
+
+        .spiral {
+            position: absolute;
+            left: 8px;
+            top: 40px;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hole {
+            width: 14px;
+            height: 14px;
+            background-color: #94a3b8;
+            border-radius: 50%;
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            border-bottom: 2px dashed var(--primary);
+            padding-bottom: 10px;
+            font-size: 2.2rem;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--dark);
+            background: #eef2f3;
+            padding: 10px 15px;
+            border-left: 5px solid #3498db;
+            border-radius: 4px;
+            margin-top: 35px;
+        }
+
+        h3 {
+            color: #27ae60;
+            margin-top: 20px;
+        }
+
+        h4 {
+            margin: 5px 0 10px 0;
+            color: var(--dark);
+        }
+
+        .note-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .feature-list {
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 8px;
+        }
+
+        .formula-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .diagram-container, .svg-container {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px dashed #bbb;
+            border-radius: 6px;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .notepad { padding: 40px 20px 20px 45px; }
+            .notepad::before { left: 20px; }
+            .spiral { left: 3px; }
+        }
+
+        .math-box {
+            background-color: var(--success-light);
+            border-left: 5px solid var(--success);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .homework-box {
+            background-color: var(--warning-light);
+            border-left: 5px solid var(--warning);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .print-btn {
+            display: block;
+            width: 160px;
+            margin: 30px auto 10px auto;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .print-btn:hover {
+            background-color: var(--dark);
+        }
+
+        @media print {
+            body { background-color: #fff; padding: 0; }
+            .notepad { box-shadow: none; border: none; padding: 0; max-width: 100%; background: none; }
+            .notepad::before, .spiral, .print-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="notepad">
+    <!-- Visual Spiral Rings -->
+    <div class="spiral">
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    </div>
+
+    <h1>📐 ৫ম শ্রেণি: জ্যামিতি পূর্ণাঙ্গ হ্যান্ডনোট 📝</h1>
+    <p style="text-align: center; font-style: italic; color: #666;">ডিজিটাল চিত্রসহ একটি সম্পূর্ণ জ্যামিতিক গাইডলাইন</p>
+
+    <!-- ১. মৌলিক ধারণা -->
+    <h2>📌 ১. বিন্দু, রেখা, রশ্মি ও রেখাংশ</h2>
+    
+    <div class="note-card">
+        <h3>• বিন্দু (Point)</h3>
+        <p><strong>সংজ্ঞা:</strong> যার কেবল অবস্থান আছে, কিন্তু দৈর্ঘ্য, প্রস্থ ও উচ্চতা কিছুই নেই, তাকে বিন্দু বলে।</p>
+        <ul class="feature-list">
+            <li>বিন্দুর কোনো মাত্রা (Dimension) নেই।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="200" height="60">
+                <circle cx="100" cy="30" r="4" fill="#000" />
+                <text x="100" y="50" font-family="Arial" font-size="14" text-anchor="middle">A (বিন্দু)</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <h3>• রেখা (Line)</h3>
+        <p><strong>সংজ্ঞা:</strong> বিন্দুর চলার পথকে রেখা বলে।</p>
+        <ul class="feature-list">
+            <li>রেখার কোনো নির্দিষ্ট দৈর্ঘ্য নেই।</li>
+            <li>এর কোনো প্রান্তবিন্দু নেই (উভয় দিকে অসীম পর্যন্ত বিস্তৃত)।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="300" height="60">
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#000"/>
+                    </marker>
+                </defs>
+                <line x1="40" y1="30" x2="260" y2="30" stroke="#000" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <circle cx="80" cy="30" r="3" fill="red" />
+                <text x="80" y="20" font-size="12" text-anchor="middle">A</text>
+                <circle cx="220" cy="30" r="3" fill="red" />
+                <text x="220" y="20" font-size="12" text-anchor="middle">B</text>
+                <text x="150" y="50" font-size="14" text-anchor="middle">রেখা AB</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <h3>• রশ্মি (Ray)</h3>
+        <p><strong>সংজ্ঞা:</strong> যে রেখার একটি নির্দিষ্ট প্রান্তবিন্দু আছে এবং অন্যদিকে অসীম পর্যন্ত চলতে থাকে, তাকে রশ্মি বলে।</p>
+        <ul class="feature-list">
+            <li>রশ্মির একটি মাত্র প্রান্তবিন্দু থাকে।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="300" height="60">
+                <line x1="60" y1="30" x2="240" y2="30" stroke="#000" stroke-width="2" marker-end="url(#arrow)" />
+                <circle cx="60" cy="30" r="4" fill="#000" />
+                <text x="60" y="20" font-size="12" text-anchor="middle">A (প্রান্তবিন্দু)</text>
+                <circle cx="200" cy="30" r="3" fill="red" />
+                <text x="200" y="20" font-size="12" text-anchor="middle">B</text>
+                <text x="150" y="50" font-size="14" text-anchor="middle">রশ্মি AB</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <h3>• রেখাংশ (Line Segment)</h3>
+        <p><strong>সংজ্ঞা:</strong> রেখার একটি নির্দিষ্ট অংশ, যার দুটি প্রান্তবিন্দু আছে, তাকে রেখাংশ বলে।</p>
+        <ul class="feature-list">
+            <li>রেখাংশের দৈর্ঘ্য নির্দিষ্ট এবং এর দুটি প্রান্তবিন্দু থাকে।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="300" height="60">
+                <line x1="60" y1="30" x2="240" y2="30" stroke="#000" stroke-width="2" />
+                <circle cx="60" cy="30" r="4" fill="#000" />
+                <text x="60" y="20" font-size="12" text-anchor="middle">A</text>
+                <circle cx="240" cy="30" r="4" fill="#000" />
+                <text x="240" y="20" font-size="12" text-anchor="middle">B</text>
+                <text x="150" y="50" font-size="14" text-anchor="middle">রেখাংশ AB</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ২. ত্রিভুজ -->
+    <h2>🔺 ২. ত্রিভুজ (Triangle)</h2>
+    <p><strong>সংজ্ঞা:</strong> তিনটি রেখাংশ দ্বারা আবদ্ধ ক্ষেত্রকে ত্রিভুজ বলে।</p>
+
+    <div class="formula-box">
+        📐 ত্রিভুজের ক্ষেত্রফল = (ভূমি × উচ্চতা) ÷ ২<br>
+        <span style="font-weight: normal; font-size: 0.95rem;">উদাহরণ: ভূমি = ৫ সেমি, উচ্চতা = ৪ সেমি হলে,<br>
+        ক্ষেত্রফল = (৫ × ৪) ÷ ২ = ২০ ÷ ২ = ১০ বর্গ সেমি।</span>
+    </div>
+
+    <h3>কোণভেদে ত্রিভুজ ৩ প্রকার:</h3>
+    <div class="flex-container">
+        <div class="note-card" style="flex: 1; min-width: 200px;">
+            <h4>১. সমকোণী ত্রিভুজ</h4>
+            <p>যে ত্রিভুজের একটি কোণ সমকোণ বা ৯০°।</p>
+            <div class="svg-container">
+                <svg width="160" height="130" viewBox="0 0 160 130">
+                    <polygon points="30,20 30,110 140,110" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+                    <path d="M 30,100 L 40,100 L 40,110" fill="none" stroke="#2e7d32" stroke-width="1.5"/>
+                    <text x="25" y="15" font-size="13" font-weight="600">A</text>
+                    <text x="15" y="118" font-size="13" font-weight="600">B</text>
+                    <text x="145" y="118" font-size="13" font-weight="600">C</text>
+                </svg>
+            </div>   
+        </div>
+
+        <div class="note-card" style="flex: 1; min-width: 200px;">
+            <h4>২. সূক্ষ্মকোণী ত্রিভুজ</h4>
+            <p>যে ত্রিভুজের তিনটি কোণই সূক্ষ্মকোণ (অর্থাৎ ৯০° অপেক্ষা ছোট)।</p>
+            <div class="svg-container">
+                <svg width="160" height="130" viewBox="0 0 160 130">
+                    <polygon points="80,20 35,110 125,110" fill="none" stroke="#0288d1" stroke-width="2.5"/>
+                    <text x="75" y="15" font-size="13" font-weight="600">A</text>
+                    <text x="20" y="118" font-size="13" font-weight="600">B</text>
+                    <text x="130" y="118" font-size="13" font-weight="600">C</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="note-card" style="flex: 1; min-width: 200px;">
+            <h4>৩. স্থূলকোণী ত্রিভুজ</h4>
+            <p>যে ত্রিভুজের একটি কোণ স্থূলকোণ (অর্থাৎ ৯০° অপেক্ষা বড় কিন্তু ১৮০° অপেক্ষা ছোট)।</p>
+            <div class="svg-container">
+                <svg width="200" height="130" viewBox="0 0 200 130">
+                    <polygon points="90,40 30,110 180,110" fill="none" stroke="#f57c00" stroke-width="2.5"/>
+                    <text x="85" y="35" font-size="13" font-weight="600">A</text>
+                    <text x="15" y="118" font-size="13" font-weight="600">B</text>
+                    <text x="185" y="118" font-size="13" font-weight="600">C</text>
+                </svg>
+            </div>
+        </div> 
+    </div>
+
+    <h3>বাহুভেদে ত্রিভুজ ৩ প্রকার:</h3>
+    <div class="flex-container">
+        <div class="note-card" style="flex: 1; min-width: 200px;">
+            <h4>১. সমবাহু ত্রিভুজ</h4>
+            <p>প্রতিটি বাহু পরস্পর সমান।</p>
+            <div class="svg-container">
+                <svg width="150" height="130">
+                    <polygon points="75,20 25,110 125,110" fill="none" stroke="#27ae60" stroke-width="2"/>
+                    <text x="75" y="15" text-anchor="middle">A</text>
+                    <text x="20" y="120" text-anchor="middle">B</text>
+                    <text x="130" y="120" text-anchor="middle">C</text>
+                </svg>
+            </div>
+        </div>
+        <div class="note-card" style="flex: 1; min-width: 200px;">
+            <h4>২. সমদ্বিবাহু ত্রিভুজ</h4>
+            <p>যেকোনো দুইটি বাহু পরস্পর সমান।</p>
+            <div class="svg-container">
+                <svg width="150" height="130">
+                    <polygon points="75,15 35,110 115,110" fill="none" stroke="#2980b9" stroke-width="2"/>
+                    <text x="75" y="10" text-anchor="middle">A</text>
+                    <text x="30" y="120" text-anchor="middle">B</text>
+                    <text x="120" y="120" text-anchor="middle">C</text>
+                </svg>
+            </div>
+        </div>
+        <div class="note-card" style="flex: 1; min-width: 200px;">
+            <h4>৩. বিষমবাহু ত্রিভুজ</h4>
+            <p>তিনটি বাহুর দৈর্ঘ্যই পরস্পর অসমান।</p>
+            <div class="svg-container">
+                <svg width="150" height="130">
+                    <polygon points="60,20 20,110 135,110" fill="none" stroke="#e67e22" stroke-width="2"/>
+                    <text x="60" y="15" text-anchor="middle">A</text>
+                    <text x="15" y="120" text-anchor="middle">B</text>
+                    <text x="140" y="120" text-anchor="middle">C</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ৩. চতুর্ভুজ -->
+    <h2>🔲 ৩. চতুর্ভুজ ও তাদের বৈশিষ্ট্য (Quadrilateral)</h2>
+
+    <div class="note-card">
+        <h3>• বর্গক্ষেত্র (Square)</h3>
+        <p><strong>সংজ্ঞা:</strong> যে চতুর্ভুজের প্রতিটি বাহু পরস্পর সমান এবং প্রতিটি কোণ সমকোণ, তাকে বর্গ বলে।</p>
+        <ul class="feature-list">
+            <li>১. বর্গের চারটি বাহুর দৈর্ঘ্য পরস্পর সমান।</li>
+            <li>২. বর্গের প্রতিটি কোণ সমকোণ বা ৯০°।</li>
+            <li>৩. বর্গের কর্ণদুটির দৈর্ঘ্য সমান এবং এরা একে অপরকে সমদ্বিখণ্ডিত করে।</li>
+        </ul>
+        <div class="formula-box">📐 বর্গের ক্ষেত্রফল = দৈর্ঘ্য × দৈর্ঘ্য</div>
+        <div class="diagram-container">
+            <svg width="120" height="120">
+                <rect x="20" y="20" width="80" height="80" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                <text x="15" y="20">A</text><text x="105" y="20">D</text>
+                <text x="15" y="105">B</text><text x="105" y="105">C</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <h3>• রম্বস (Rhombus)</h3>
+        <p><strong>সংজ্ঞা:</strong> যে চতুর্ভুজের প্রতিটি বাহু পরস্পর সমান কিন্তু কোনো কোণই সমকোণ নয়, তাকে রম্বস বলে।</p>
+        <ul class="feature-list">
+            <li>১. রম্বসের চারটি বাহুর দৈর্ঘ্য পরস্পর সমান।</li>
+            <li>২. রম্বসের বিপরীত কোণগুলো পরস্পর সমান।</li>
+            <li>৩. রম্বসের কর্ণদ্বয় পরস্পরকে সমদ্বিখণ্ডিত করে।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="160" height="120">
+                <polygon points="50,20 130,20 100,100 20,100" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                <text x="45" y="15">A</text><text x="135" y="15">D</text>
+                <text x="15" y="115">B</text><text x="105" y="115">C</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <h3>• সামান্তরিক (Parallelogram)</h3>
+        <p><strong>সংজ্ঞা:</strong> যে চতুর্ভুজের বিপরীত বাহুগুলো পরস্পর সমান ও সমান্তরাল কিন্তু কোনো কোণই সমকোণ নয়, তাকে সামান্তরিক বলে।</p>
+        <ul class="feature-list">
+            <li>১. সামান্তরিকের বিপরীত বাহুগুলো পরস্পর সমান ও সমান্তরাল।</li>
+            <li>২. সামান্তরিকের বিপরীত কোণগুলো পরস্পর সমান।</li>
+            <li>৩. সামান্তরিকের কর্ণদ্বয় পরস্পরকে সমদ্বিখণ্ডিত করে।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="180" height="120">
+                <polygon points="60,20 160,20 120,100 20,100" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                <text x="55" y="15">A</text><text x="165" y="15">D</text>
+                <text x="15" y="115">B</text><text x="125" y="115">C</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <h3>• ট্রাপিজিয়াম (Trapezium)</h3>
+        <p><strong>সংজ্ঞা:</strong> যে চতুর্ভুজের একজোড়া বিপরীত বাহু পরস্পর সমান্তরাল, তাকে ট্রাপিজিয়াম বলে।</p>
+        <ul class="feature-list">
+            <li>১. ট্রাপিজিয়ামের এক জোড়া বিপরীত বাহু পরস্পর সমান্তরাল।</li>
+            <li>২. ট্রাপিজিয়ামের বিপরীত কোণগুলো সমান নয়।</li>
+            <li>৩. ট্রাপিজিয়ামের অপর বাহু জোড়া সমান্তরাল নয়।</li>
+        </ul>
+        <div class="diagram-container">
+            <svg width="180" height="120">
+                <polygon points="50,20 130,20 160,100 20,100" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                <text x="45" y="15">A</text><text x="135" y="15">D</text>
+                <text x="15" y="115">B</text><text x="165" y="115">C</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ৪. বৃত্ত -->
+    <h2>⚪ ৪. বৃত্ত (Circle)</h2>
+    <div class="note-card">
+        <p><strong>সংজ্ঞা:</strong> একটি নির্দিষ্ট বিন্দুকে কেন্দ্র করে সর্বদা সমান দূরত্ব বজায় রেখে একটি বক্ররেখা একবার ঘুরে এসে যে ক্ষেত্র তৈরি করে, তাকে বৃত্ত বলে。</p>
+        <ul class="feature-list">
+            <li>১. বৃত্ত একটি সমতলীয় আবদ্ধ বক্ররেখা।</li>
+            <li>২. বৃত্তের ভেতরে একটি নির্দিষ্ট কেন্দ্র থাকে।</li>
+            <li>৩. বৃত্তের কেন্দ্রগামী যেকোনো সরলরেখাকে ব্যাস বলে।</li>
+        </ul>
+
+        <h3>বৃত্তের বিভিন্ন অংশ:</h3>
+        <ul class="feature-list">
+            <li><strong>কেন্দ্র (Center):</strong> বৃত্তের কেন্দ্র হলো বৃত্তের ভেতরে অবস্থিত একটি নির্দিষ্ট বিন্দু, যা থেকে পরিধির উপর অবস্থিত সকল বিন্দুর দূরত্ব সমান।</li>
+            <li><strong>ব্যাস (Diameter):</strong> বৃত্তের কেন্দ্র দিয়ে গমনকারী জ্যা-কে বৃত্তের ব্যাস বলে। ব্যাস হলো বৃত্তের বৃহত্তম জ্যা।</li>
+            <li><strong>ব্যাসার্ধ (Radius):</strong> কেন্দ্র থেকে পরিধি পর্যন্ত দূরত্বকে বৃত্তের ব্যাসার্ধ বলে (ব্যাসার্ধ হলো ব্যাসের অর্ধেক)।</li>
+        </ul>
+
+        <div class="diagram-container">
+            <svg width="200" height="200">
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#2c3e50" stroke-width="2" />
+                <circle cx="100" cy="100" r="3" fill="red" />
+                <text x="100" y="90" font-size="12" text-anchor="middle">কেন্দ্র</text>
+                <line x1="30" y1="100" x2="170" y2="100" stroke="blue" stroke-dasharray="4" />
+                <text x="50" y="115" font-size="12" fill="blue">ব্যাস</text>
+                <line x1="100" y1="100" x2="149" y2="51" stroke="green" stroke-width="2" />
+                <text x="130" y="85" font-size="12" fill="green">ব্যাসার্ধ</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Section 5: Composite Areas -->
+    <h2>📂 ৫. সংযুক্ত ক্ষেত্রের ক্ষেত্রফল নির্ণয় (সৃজনশীল অংক)</h2>
+    <div class="note-card">
+        <p><b>নিয়ম:</b> মিশ্র বা সংযুক্ত চিত্রের ক্ষেত্রফল বের করতে চিত্রটিকে আলাদা অংশে (আয়ত ও ত্রিভুজ) ভাগ করে হিসাব করতে হয়।</p>
+        
+        <div class="grid">
+            <div class="math-box" style="background-color: transparent; border: none; padding: 0;">
+                <h3>🧮 খাতার অংক সমাধান-২:</h3>
+                <p><b>প্রশ্ন:</b> পাশে দেওয়া সংযুক্ত চিত্রটির মোট ক্ষেত্রফল নির্ণয় করো।</p>
+                <p><b>ধাপ ১: আয়তক্ষেত্রের ক্ষেত্রফল নির্ণয়</b><br>
+                দৈর্ঘ্য = ৭ সেমি, প্রস্থ = ৪ সেমি<br>
+                আয়তের ক্ষেত্রফল = (৭ × ৪) = <b>২৮ বর্গ সেমি।</b></p>
+                
+                <p><b>ধাপ ২: ত্রিভুজের ক্ষেত্রফল নির্ণয়</b><br>
+                ভূমি = (মোট দৈর্ঘ্য ১০ সেমি - আয়তের দৈর্ঘ্য ৭ সেমি) = ৩ সেমি<br>
+                উচ্চতা = ৪ সেমি (আয়তের প্রস্থের সমান)<br>
+                ত্রিভুজের ক্ষেত্রফল = (৩ × ৪) ÷ ২ = ১২ ÷ ২ = <b>৬ বর্গ সেমি।</b></p>
+                
+                <p><b>ধাপ ৩: চিত্রটির মোট ক্ষেত্রফল</b><br>
+                মোট ক্ষেত্রফল = ২৮ + ৬ = <b>৩৪ বর্গ সেমি।</b></p>
+                <p><b>উত্তর:</b> ৩৪ বর্গ সেমি।</p>
+            </div>
+            <div style="text-align: center;">
+                <svg width="240" height="150">
+                    <!-- Rectangle -->
+                    <rect x="20" y="30" width="140" height="80" fill="#e0f2fe" stroke="#1e293b" stroke-width="2"/>
+                    <!-- Triangle -->
+                    <polygon points="160,30 220,110 160,110" fill="#ffedd5" stroke="#1e293b" stroke-width="2"/>
+                    <!-- Text Labels -->
+                    <text x="80" y="25" font-weight="bold">৭ সেমি</text>
+                    <text x="15" y="75" font-weight="bold" transform="rotate(-90,15,75)" text-anchor="middle">৪ সেমি</text>
+                    <text x="180" y="125" font-weight="bold">৩ সেমি</text>
+                    <line x1="20" y1="140" x2="220" y2="140" stroke="#ea580c" stroke-width="2" stroke-dasharray="4"/>
+                    <text x="40" y="135" fill="#ea580c" font-weight="bold">মোট দৈর্ঘ্য = ১০ সেমি</text>
+                </svg>
+                <p><i>চিত্র: আয়তক্ষেত্র ও ত্রিভুজের সমন্বয়ে গঠিত সংযুক্ত ক্ষেত্র</i></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Expanded Math Section -->
+    <h2>🧮 গাণিতিক সমস্যার ধাপভিত্তিক সমাধান</h2>
+    <div class="note-card" style="border-top: 4px solid var(--success);">
+        <div style="margin-bottom: 25px;">
+            <h3 style="color: var(--success);">📝 সমস্যা ১: একক ত্রিভুজের ক্ষেত্রফল</h3>
+            <p><b>প্রশ্ন:</b> একটি ত্রিভুজের ভূমি ৫ সেমি এবং উচ্চতা ৪ সেমি হলে ক্ষেত্রফল কত?</p>
+            <div class="math-box">
+                <p><b>সমাধান:</b></p>
+                <p>আমরা জানি, ত্রিভুজের ক্ষেত্রফল = (ভূমি &times; উচ্চতা) &divide; ২</p>
+                <p>অতএব, ক্ষেত্রফল = (৫ &times; ৪) &divide; ২ বর্গ সেমি</p>
+                <p>=> ২০ &divide; ২ = <b>১০ বর্গ সেমি।</b></p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <h3 style="color: var(--primary);">📝 সমস্যা ২: আয়তাকার অংশের ক্ষেত্রফল</h3>
+            <p><b>প্রশ্ন:</b> সংযুক্ত চিত্রের আয়তাকার অংশের দৈর্ঘ্য ৭ সেমি এবং প্রস্থ ৪ সেমি হলে এর ক্ষেত্রফল কত?</p>
+            <div class="math-box" style="border-left-color: var(--primary); background-color: var(--primary-light);">
+                <p><b>সমাধান:</b></p>
+                <p>আমরা জানি, আয়তক্ষেত্রের ক্ষেত্রফল = দৈর্ঘ্য &times; প্রস্থ</p>
+                <p>অতএব, ক্ষেত্রফল = ৭ &times; ৪ = <b>২৮ বর্গ সেমি।</b></p>
+            </div>
+        </div>
+
+        <div>
+            <h3 style="color: var(--warning);">📝 সমস্যা ৩: সৃজনশীল সংযুক্ত ক্ষেত্রের মোট ক্ষেত্রফল</h3>
+            <p><b>প্রশ্ন:</b> সম্পূর্ণ চিত্রটির মোট দৈর্ঘ্য ১০ সেমি হলে, মিশ্র ক্ষেত্রটির মোট ক্ষেত্রফল কত?</p>
+            <div class="math-box" style="border-left-color: var(--warning); background-color: var(--warning-light);">
+                <p><b>সমাধান:</b></p>
+                <p>১. ত্রিভুজ অংশের ভূমি = (মোট দৈর্ঘ্য - আয়তের দৈর্ঘ্য) = (১০ - ৭) = ৩ সেমি।</p>
+                <p>২. ত্রিভুজ অংশের উচ্চতা = আয়তের প্রস্থ = ৪ সেমি।</p>
+                <p>৩. ত্রিভুজ অংশের ক্ষেত্রফল = (৩ &times; ৪) &divide; ২ = ৬ বর্গ সেমি।</p>
+                <p>৪. মোট ক্ষেত্রফল = আয়তের ক্ষেত্রফল + ত্রিভুজের ক্ষেত্রফল = ২৮ + ৬ = <b>৩৪ বর্গ সেমি।</b></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 7: Homework -->
+    <div class="homework-box">
+        <h2>📝 শিক্ষার্থীর বাড়ির কাজ (Homework)</h2>
+        <ol>
+            <li>একটি আয়তের দৈর্ঘ্য ৯ সেমি এবং প্রস্থ ৬ সেমি হলে এর ক্ষেত্রফল ও পরিসীমা বের করো।</li>
+            <li>স্কেল, চাঁদা ও কম্পাস ব্যবহার করে একটি সামান্তরিক আঁকো যার একটি কোণ ৭০° এবং বাহু দুটি ৫ সেমি ও ৪ সেমি।</li>
+            <li>বৃত্তের ব্যাস এবং ব্যাসার্ধের মধ্যে মূল গাণিতিক সম্পর্কটি বুঝিয়ে লেখো।</li>
+        </ol>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">Print Handout</button>
+</div>
+
+</body>
+</html>
