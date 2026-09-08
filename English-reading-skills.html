@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Z English Learning Material - Bangla Medium Primary Students</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #2980b9;
+            --accent: #27ae60;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border-left: 6px solid var(--secondary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .letter-box {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--secondary);
+            background-color: #ebf5fb;
+            padding: 4px 14px;
+            border-radius: 8px;
+        }
+
+        .phonic-sound {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            background-color: #eafaf1;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #7f8c8d;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+
+        .word-item:last-child {
+            border-bottom: none;
+        }
+
+        .en-word {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .pronunciation {
+            color: #d35400;
+            font-size: 14px;
+        }
+
+        .bn-meaning {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .sentence-box {
+            background-color: #fcf8e3;
+            border-left: 3px solid #f1c40f;
+            padding: 8px 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 13.5px;
+        }
+
+        .sentence-en {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .sentence-bn {
+            color: #555;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .alphabet-grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>A-Z English Learning Word Book</h1>
+        <p>বাংলা মাধ্যম শিক্ষার্থীদের জন্য উচ্চারণ, ফোনিক্স ও সহজ বাক্যসহ রিডিং মেটেরিয়াল</p>
+    </header>
+
+    <div class="alphabet-grid">
+
+        <!-- A -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Aa</div>
+                <div class="phonic-sound">Sound: /æ/ (অ্যা)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Apple</span>
+                <span class="pronunciation">(অ্যাপল)</span>
+                <span class="bn-meaning">আপেল</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Ant</span>
+                <span class="pronunciation">(অ্যান্ট)</span>
+                <span class="bn-meaning">পিঁপড়া</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">An apple is red.</div>
+                <div class="sentence-bn">আপেলটি লাল রঙের।</div>
+            </div>
+        </div>
+
+        <!-- B -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Bb</div>
+                <div class="phonic-sound">Sound: /b/ (ব)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Ball</span>
+                <span class="pronunciation">(বল)</span>
+                <span class="bn-meaning">বল / খেলার বল</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Bag</span>
+                <span class="pronunciation">(ব্যাগ)</span>
+                <span class="bn-meaning">থলে / ব্যাগ</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">This is my bag.</div>
+                <div class="sentence-bn">এটি আমার ব্যাগ।</div>
+            </div>
+        </div>
+
+        <!-- C -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Cc</div>
+                <div class="phonic-sound">Sound: /k/ (ক)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Cat</span>
+                <span class="pronunciation">(ক্যাট)</span>
+                <span class="bn-meaning">বিড়াল</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Cup</span>
+                <span class="pronunciation">(কাপ)</span>
+                <span class="bn-meaning">কাপ / পেয়ালা</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">The cat is small.</div>
+                <div class="sentence-bn">বিড়ালটি ছোট।</div>
+            </div>
+        </div>
+
+        <!-- D -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Dd</div>
+                <div class="phonic-sound">Sound: /d/ (ড)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Dog</span>
+                <span class="pronunciation">(ডগ)</span>
+                <span class="bn-meaning">কুকুর</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Door</span>
+                <span class="pronunciation">(ডোর)</span>
+                <span class="bn-meaning">দরজা</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">Open the door.</div>
+                <div class="sentence-bn">দরজাটি খোলো।</div>
+            </div>
+        </div>
+
+        <!-- E -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Ee</div>
+                <div class="phonic-sound">Sound: /e/ (এ)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Egg</span>
+                <span class="pronunciation">(এগ)</span>
+                <span class="bn-meaning">ডিম</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Eye</span>
+                <span class="pronunciation">(আই)</span>
+                <span class="bn-meaning">চোখ</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">I eat an egg.</div>
+                <div class="sentence-bn">আমি একটি ডিম খাই।</div>
+            </div>
+        </div>
+
+        <!-- F -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Ff</div>
+                <div class="phonic-sound">Sound: /f/ (ফ)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Fish</span>
+                <span class="pronunciation">(ফিশ)</span>
+                <span class="bn-meaning">মাছ</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Fan</span>
+                <span class="pronunciation">(ফ্যান)</span>
+                <span class="bn-meaning">পাখা</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">Fish lives in water.</div>
+                <div class="sentence-bn">মাছ পানিতে থাকে।</div>
+            </div>
+        </div>
+
+        <!-- G -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Gg</div>
+                <div class="phonic-sound">Sound: /ɡ/ (গ)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Girl</span>
+                <span class="pronunciation">(গার্ল)</span>
+                <span class="bn-meaning">বালিকা / মেয়ে</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Goat</span>
+                <span class="pronunciation">(গোট)</span>
+                <span class="bn-meaning">ছাগল</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">She is a good girl.</div>
+                <div class="sentence-bn">সে একজন ভালো মেয়ে।</div>
+            </div>
+        </div>
+
+        <!-- H -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Hh</div>
+                <div class="phonic-sound">Sound: /h/ (হ)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Hat</span>
+                <span class="pronunciation">(হ্যাট)</span>
+                <span class="bn-meaning">টুপি</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Hen</span>
+                <span class="pronunciation">(হেন)</span>
+                <span class="bn-meaning">মুরগি</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">The hen lays eggs.</div>
+                <div class="sentence-bn">মুরগি ডিম পাড়ে।</div>
+            </div>
+        </div>
+
+        <!-- I -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Ii</div>
+                <div class="phonic-sound">Sound: /ɪ/ (ই)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Ink</span>
+                <span class="pronunciation">(ইংক)</span>
+                <span class="bn-meaning">কালি</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Ice</span>
+                <span class="pronunciation">(আইস)</span>
+                <span class="bn-meaning">বরফ</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">This is a pen ink.</div>
+                <div class="sentence-bn">এটি কলমের কালি।</div>
+            </div>
+        </div>
+
+        <!-- J -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Jj</div>
+                <div class="phonic-sound">Sound: /dʒ/ (জ)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Jug</span>
+                <span class="pronunciation">(জগ)</span>
+                <span class="bn-meaning">জগ / পানির পাত্র</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Jam</span>
+                <span class="pronunciation">(জ্যাম)</span>
+                <span class="bn-meaning">মোরব্বা / জ্যাম</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">The jug has water.</div>
+                <div class="sentence-bn">জগে পানি আছে।</div>
+            </div>
+        </div>
+
+        <!-- K -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Kk</div>
+                <div class="phonic-sound">Sound: /k/ (ক)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Kite</span>
+                <span class="pronunciation">(কাইট)</span>
+                <span class="bn-meaning">ঘুড়ি</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Key</span>
+                <span class="pronunciation">(কী)</span>
+                <span class="bn-meaning">চাবি</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">Fly a red kite.</div>
+                <div class="sentence-bn">একটি লাল ঘুড়ি ওড়াও।</div>
+            </div>
+        </div>
+
+        <!-- L -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Ll</div>
+                <div class="phonic-sound">Sound: /l/ (ল)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Lion</span>
+                <span class="pronunciation">(লায়ন)</span>
+                <span class="bn-meaning">সিংহ</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Leaf</span>
+                <span class="pronunciation">(লিফ)</span>
+                <span class="bn-meaning">গাছের পাতা</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">The leaf is green.</div>
+                <div class="sentence-bn">পাতাটি সবুজ।</div>
+            </div>
+        </div>
+
+        <!-- M -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Mm</div>
+                <div class="phonic-sound">Sound: /m/ (ম)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Mango</span>
+                <span class="pronunciation">(ম্যাঙ্গো)</span>
+                <span class="bn-meaning">আম</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Moon</span>
+                <span class="pronunciation">(মুন)</span>
+                <span class="bn-meaning">চাঁদ</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">I like sweet mango.</div>
+                <div class="sentence-bn">আমি মিষ্টি আম পছন্দ করি।</div>
+            </div>
+        </div>
+
+        <!-- N -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Nn</div>
+                <div class="phonic-sound">Sound: /n/ (ন)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Net</span>
+                <span class="pronunciation">(নেট)</span>
+                <span class="bn-meaning">জাল</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Nest</span>
+                <span class="pronunciation">(নেস্ট)</span>
+                <span class="bn-meaning">পাখির বাসা</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">Birds live in a nest.</div>
+                <div class="sentence-bn">পাখিরা বাসায় বাস করে।</div>
+            </div>
+        </div>
+
+        <!-- O -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Oo</div>
+                <div class="phonic-sound">Sound: /ɒ/ (অ)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Orange</span>
+                <span class="pronunciation">(অরেঞ্জ)</span>
+                <span class="bn-meaning">কমলালেবু</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Owl</span>
+                <span class="pronunciation">(আউল)</span>
+                <span class="bn-meaning">পেঁচা</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">The orange is juicy.</div>
+                <div class="sentence-bn">কমলালেবুটি রসালো।</div>
+            </div>
+        </div>
+
+        <!-- P -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Pp</div>
+                <div class="phonic-sound">Sound: /p/ (প)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Pen</span>
+                <span class="pronunciation">(পেন)</span>
+                <span class="bn-meaning">কলম</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Paper</span>
+                <span class="pronunciation">(পেপার)</span>
+                <span class="bn-meaning">কাগজ</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">Write with a pen.</div>
+                <div class="sentence-bn">কলম দিয়ে লেখো।</div>
+            </div>
+        </div>
+
+        <!-- Q -->
+        <div class="card">
+            <div class="card-header">
+                <div class="letter-box">Qq</div>
+                <div class="phonic-sound">Sound: /kw/ (ক্ব)</div>
+            </div>
+            <div class="section-title">Word Book & Pronunciation</div>
+            <div class="word-item">
+                <span class="en-word">Queen</span>
+                <span class="pronunciation">(কুইন)</span>
+                <span class="bn-meaning">রানী</span>
+            </div>
+            <div class="word-item">
+                <span class="en-word">Quiet</span>
+                <span class="pronunciation">(কুয়াট)</span>
+                <span class="bn-meaning">শান্ত / নীরব</span>
+            </div>
+            <div class="sentence-box">
+                <div class="sentence-en">Be quiet in class.</div>
+                <div class="sentence-bn">শ্রেণীকক্ষে শান
