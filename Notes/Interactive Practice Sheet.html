@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ধাপ ৪: ইন্টারেক্টিভ ইংরেজি অনুশীলন পত্র (Interactive Practice Sheet)</title>
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --secondary: #9b59b6;
+            --accent: #2980b9;
+            --success: #27ae60;
+            --danger: #c0392b;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1b4f72;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        .btn-print {
+            background-color: #e67e22;
+        }
+
+        .btn-print:hover {
+            background-color: #d35400;
+        }
+
+        .btn-check {
+            background-color: #27ae60;
+            font-size: 16px;
+            padding: 12px 24px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .btn-reset {
+            background-color: #7f8c8d;
+            font-size: 16px;
+            padding: 12px 24px;
+            margin: 20px auto;
+            display: inline-block;
+        }
+
+        .student-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fafafa;
+        }
+
+        .info-field {
+            font-weight: bold;
+            color: #444;
+        }
+
+        .info-field input {
+            border: none;
+            border-bottom: 1px dotted #333;
+            background: transparent;
+            width: 65%;
+            font-size: 15px;
+            padding: 2px 5px;
+            outline: none;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #2e4053;
+            background: #f4ecf7;
+            padding: 10px 15px;
+            border-left: 5px solid var(--secondary);
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .word-bank {
+            background-color: #fef9e7;
+            border: 2px dashed #f1c40f;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: #b7950b;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .exercise-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .exercise-list li {
+            font-size: 17px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        select.blank-select, input.blank-input {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--primary);
+            padding: 5px 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.2s;
+            background-color: #fff;
+        }
+
+        select.blank-select:focus, input.blank-input:focus {
+            border-color: var(--secondary);
+        }
+
+        .correct-bg {
+            border-color: var(--success) !important;
+            background-color: #e8f8f5 !important;
+            color: var(--success) !important;
+        }
+
+        .incorrect-bg {
+            border-color: var(--danger) !important;
+            background-color: #fadbd8 !important;
+            color: var(--danger) !important;
+        }
+
+        /* Matching Table */
+        table.matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table.matching-table th, table.matching-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table.matching-table th {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        table.matching-table td.connector {
+            width: 25%;
+            text-align: center;
+        }
+
+        /* Score Display */
+        #score-board {
+            display: none;
+            background: #eaf2f8;
+            border: 2px solid var(--accent);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .action-center {
+            text-align: center;
+            gap: 10px;
+        }
+
+        @media print {
+            .header-actions, .action-center, #score-board {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            h2 {
+                background: #eee !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .word-bank {
+                background-color: #fff8e1 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            select.blank-select, input.blank-input {
+                border: none;
+                border-bottom: 2px solid #000;
+                border-radius: 0;
+                appearance: none;
+                -webkit-appearance: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .student-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print Sheet</button>
+        <button class="btn" onclick="copyContent()">📋 Copy Code</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML</button>
+    </div>
+
+    <h1>ইন্টারেক্টিভ ইংরেজি অনুশীলন পত্র (Interactive Worksheet)</h1>
+
+    <!-- Student Meta Info -->
+    <div class="student-info-grid">
+        <div class="info-field">নাম (Name): <input type="text" placeholder="এখানে নাম লিখুন"></div>
+        <div class="info-field">রোল (Roll): <input type="text" placeholder="রোল নম্বর"></div>
+        <div class="info-field">শ্রেণী (Class): <input type="text" placeholder="শ্রেণী"></div>
+        <div class="info-field">তারিখ (Date): <input type="text" id="current-date"></div>
+    </div>
+
+    <!-- Score Display Board -->
+    <div id="score-board"></div>
+
+    <!-- Task 1: Fill in the Blanks -->
+    <h2>১. সঠিক শব্দ বেছে নিয়ে শূন্যস্থান পূরণ করো (Fill in the Blanks)</h2>
+    <div class="section-card">
+        <div class="word-bank">
+            শব্দকোষ (Word Bank): [ book &nbsp;|&nbsp; name &nbsp;|&nbsp; red &nbsp;|&nbsp; water &nbsp;|&nbsp; morning ]
+        </div>
+
+        <ol class="exercise-list">
+            <li> Good 
+                <select class="blank-select" data-answer="morning">
+                    <option value="">-- Choose --</option>
+                    <option value="book">book</option>
+                    <option value="name">name</option>
+                    <option value="red">red</option>
+                    <option value="water">water</option>
+                    <option value="morning">morning</option>
+                </select>, Teacher!
+            </li>
+            <li> My 
+                <select class="blank-select" data-answer="name">
+                    <option value="">-- Choose --</option>
+                    <option value="book">book</option>
+                    <option value="name">name</option>
+                    <option value="red">red</option>
+                    <option value="water">water</option>
+                    <option value="morning">morning</option>
+                </select> is Rahul.
+            </li>
+            <li> This is a 
+                <select class="blank-select" data-answer="book">
+                    <option value="">-- Choose --</option>
+                    <option value="book">book</option>
+                    <option value="name">name</option>
+                    <option value="red">red</option>
+                    <option value="water">water</option>
+                    <option value="morning">morning</option>
+                </select>.
+            </li>
+            <li> An apple is 
+                <select class="blank-select" data-answer="red">
+                    <option value="">-- Choose --</option>
+                    <option value="book">book</option>
+                    <option value="name">name</option>
+                    <option value="red">red</option>
+                    <option value="water">water</option>
+                    <option value="morning">morning</option>
+                </select>.
+            </li>
+            <li> Drink clean 
+                <select class="blank-select" data-answer="water">
+                    <option value="">-- Choose --</option>
+                    <option value="book">book</option>
+                    <option value="name">name</option>
+                    <option value="red">red</option>
+                    <option value="water">water</option>
+                    <option value="morning">morning</option>
+                </select>.
+            </li>
+        </ol>
+    </div>
+
+    <!-- Task 2: Matching Column A with Column B -->
+    <h2>২. কলাম 'A' এর সাথে কলাম 'B' মেলাও (Matching Exercise)</h2>
+    <div class="section-card">
+        <p>বামপাশের ইংরেজি শব্দের সাথে মিল রেখে ডানপাশের সঠিক বাংলা অর্থ সিলেক্ট করো:</p>
+
+        <table class="matching-table">
+            <thead>
+                <tr>
+                    <th>Column A (English)</th>
+                    <th>Select Match</th>
+                    <th>Column B (বাংলা অর্থ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>1. Cat</b></td>
+                    <td class="connector">
+                        <select class="blank-select match-select" data-answer="C">
+                            <option value="">-- Select --</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </td>
+                    <td>A. সূর্য</td>
+                </tr>
+                <tr>
+                    <td><b>2. Tree</b></td>
+                    <td class="connector">
+                        <select class="blank-select match-select" data-answer="E">
+                            <option value="">-- Select --</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </td>
+                    <td>B. ছাতা</td>
+                </tr>
+                <tr>
+                    <td><b>3. Sun</b></td>
+                    <td class="connector">
+                        <select class="blank-select match-select" data-answer="A">
+                            <option value="">-- Select --</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </td>
+                    <td>C. বিড়াল</td>
+                </tr>
+                <tr>
+                    <td><b>4. Umbrella</b></td>
+                    <td class="connector">
+                        <select class="blank-select match-select" data-answer="B">
+                            <option value="">-- Select --</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </td>
+                    <td>D. কলম</td>
+                </tr>
+                <tr>
+                    <td><b>5. Pen</b></td>
+                    <td class="connector">
+                        <select class="blank-select match-select" data-answer="D">
+                            <option value="">-- Select --</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </td>
+                    <td>E. গাছ</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Task 3: Sentence Rearrange -->
+    <h2>৩. সঠিক বাক্য টাইপ করো (Type the Correct Sentence)</h2>
+    <div class="section-card">
+        <ol class="exercise-list">
+            <li>
+                <strong>is / a / This / bag .</strong><br>
+                &rarr; <input type="text" class="blank-input" data-answer="This is a bag." placeholder="Type full sentence here" style="width: 80%;">
+            </li>
+            <li>
+                <strong>eat / I / rice .</strong><br>
+                &rarr; <input type="text" class="blank-input" data-answer="I eat rice." placeholder="Type full sentence here" style="width: 80%;">
+            </li>
+            <li>
+                <strong>green / is / The / leaf .</strong><br>
+                &rarr; <input type="text" class="blank-input" data-answer="The leaf is green." placeholder="Type full sentence here" style="width: 80%;">
+            </li>
+        </ol>
+    </div>
+
+    <!-- Interactive Action Buttons -->
+    <div class="action-center">
+        <button class="btn btn-check" onclick="checkAnswers()">✅ Check Answers (উত্তর যাচাই করো)</button>
+        <button class="btn btn-reset" onclick="resetForm()">🔄 Reset (পুনরায় শুরু করো)</button>
+    </div>
+</div>
+
+<script>
+    // Auto fill current date
+    document.getElementById('current-date').value = new Date().toLocaleDateString('bn-BD');
+
+    function checkAnswers() {
+        let totalQuestions = 0;
+        let correctCount = 0;
+
+        // Check select boxes
+        const selects = document.querySelectorAll('.blank-select');
+        selects.forEach(select => {
+            totalQuestions++;
+            const expected = select.getAttribute('data-answer').trim().toLowerCase();
+            const actual = select.value.trim().toLowerCase();
+
+            if (actual !== "" && actual === expected) {
+                correctCount++;
+                select.classList.remove('incorrect-bg');
+                select.classList.add('correct-bg');
+            } else {
+                select.classList.remove('correct-bg');
+                select.classList.add('incorrect-bg');
+            }
+        });
+
+        // Check text inputs
+        const inputs = document.querySelectorAll('.blank-input');
+        inputs.forEach(input => {
+            totalQuestions++;
+            const expected = input.getAttribute('data-answer').trim().toLowerCase().replace(/\s+/g, ' ');
+            const actual = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+
+            if (actual !== "" && actual === expected) {
+                correctCount++;
+                input.classList.remove('incorrect-bg');
+                input.classList.add('correct-bg');
+            } else {
+                input.classList.remove('correct-bg');
+                input.classList.add('incorrect-bg');
+            }
+        });
+
+        // Show Score Board
+        const scoreBoard = document.getElementById('score-board');
+        scoreBoard.style.display = 'block';
+        scoreBoard.innerHTML = `মোট স্কোর (Score): ${correctCount} / ${totalQuestions} ` + 
+            (correctCount === totalQuestions ? '🎉 চমৎকার! সব উত্তর সঠিক হয়েছে!' : '👍 চমৎকার চেষ্টা! আবার চেষ্টা করো।');
+        
+        scoreBoard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetForm() {
+        const elements = document.querySelectorAll('.blank-select, .blank-input');
+        elements.forEach(el => {
+            el.value = '';
+            el.classList.remove('correct-bg', 'incorrect-bg');
+        });
+        const scoreBoard = document.getElementById('score-board');
+        scoreBoard.style.display = 'none';
+    }
+
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Stage_4_Interactive_Practice_Worksheet.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ধাপ ৩: দৈনিক ইংরেজি কথোপকথন ওয়ার্কশপ (Daily Conversation Worksheets)</title>
+    <style>
+        :root {
+            --primary: #1e8449;
+            --secondary: #27ae60;
+            --accent: #2980b9;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1b4f72;
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #2e4053;
+            background: #eafaf1;
+            padding: 10px 15px;
+            border-left: 5px solid var(--secondary);
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .dialogue-card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .speaker-a {
+            background-color: #ebf5fb;
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 4px;
+        }
+
+        .speaker-b {
+            background-color: #eafaf1;
+            border-left: 4px solid #2ecc71;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 4px;
+        }
+
+        .en-text {
+            font-weight: bold;
+            color: #1a5276;
+            display: block;
+        }
+
+        .bn-text {
+            color: #555555;
+            font-size: 14px;
+        }
+
+        .practice-task {
+            background: #fef9e7;
+            border: 1px dashed #f1c40f;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn" onclick="copyContent()">📋 Copy Content</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML File</button>
+    </div>
+
+    <h1>ধাপ ৩: দৈনন্দিন ইংরেজি কথোপকথন (Daily Dialogues)</h1>
+    <p>শিক্ষার্থীদের দৈনন্দিন জীবনে ইংরেজিতে কথা বলার অভ্যাস গড়ার জন্য নিচে ৩টি বাস্তবসম্মত পরিস্থিতির ডায়ালগ এবং রোল-প্লে শিট দেওয়া হলো।</p>
+
+    <!-- Dialogue 1 -->
+    <h2>১. ক্লাসরুমে অনুমতি নেওয়া (Classroom Permission)</h2>
+    <div class="dialogue-card">
+        <div class="speaker-a">
+            <span class="en-text">Student: May I come in, Teacher?</span>
+            <span class="bn-text">ছাত্র: শিক্ষক, আমি কি ভেতরে আসতে পারি?</span>
+        </div>
+        <div class="speaker-b">
+            <span class="en-text">Teacher: Yes, come in. Sit down please.</span>
+            <span class="bn-text">শিক্ষক: হ্যাঁ, ভেতরে এসো। অনুগ্রহ করে বসো।</span>
+        </div>
+        <div class="speaker-a">
+            <span class="en-text">Student: Thank you, Teacher.</span>
+            <span class="bn-text">ছাত্র: ধন্যবাদ, শিক্ষক।</span>
+        </div>
+
+        <div class="practice-task">
+            <strong>রোল-প্লে অনুশীলন (Pair Work):</strong> দুজন শিক্ষার্থী জোড়ায় দাঁড়িয়ে একজন ছাত্র ও একজন শিক্ষক সেজে এই ডায়ালগটি রিহার্সাল করবে।
+        </div>
+    </div>
+
+    <!-- Dialogue 2 -->
+    <h2>২. বন্ধুর সাথে পরিচয় ও কুশল বিনিময় (Meeting a Friend)</h2>
+    <div class="dialogue-card">
+        <div class="speaker-a">
+            <span class="en-text">Raju: Hello Mina! How are you?</span>
+            <span class="bn-text">রাজু: হ্যালো মিনা! তুমি কেমন আছো?</span>
+        </div>
+        <div class="speaker-b">
+            <span class="en-text">Mina: Hi Raju! I am fine, thank you. And you?</span>
+            <span class="bn-text">মিনা: হাই রাজু! আমি ভালো আছি, ধন্যবাদ। আর তুমি?</span>
+        </div>
+        <div class="speaker-a">
+            <span class="en-text">Raju: I am good too. What is in your hand?</span>
+            <span class="bn-text">রাজু: আমিও ভালো আছি। তোমার হাতে ওটা কি?</span>
+        </div>
+        <div class="speaker-b">
+            <span class="en-text">Mina: It is a storybook.</span>
+            <span class="bn-text">মিনা: এটি একটি গল্পের বই।</span>
+        </div>
+    </div>
+
+    <!-- Dialogue 3 -->
+    <h2>৩. জিনিসপত্র চাওয়া ও দেওয়া (Asking for Things)</h2>
+    <div class="dialogue-card">
+        <div class="speaker-a">
+            <span class="en-text">Sumi: Can I have your pencil, please?</span>
+            <span class="bn-text">সুমি: আমি কি তোমার পেন্সিলটি পেতে পারি, অনুগ্রহ করে?</span>
+        </div>
+        <div class="speaker-b">
+            <span class="en-text">Arif: Sure! Here it is.</span>
+            <span class="bn-text">আরিফ: অবশ্যই! এই নাও।</span>
+        </div>
+        <div class="speaker-a">
+            <span class="en-text">Sumi: Thank you very much!</span>
+            <span class="bn-text">সুমি: তোমাকে অনেক ধন্যবাদ!</span>
+        </div>
+        <div class="speaker-b">
+            <span class="en-text">Arif: You are welcome!</span>
+            <span class="bn-text">আরিফ: তোমাকে স্বাগতম!</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Stage_3_Daily_Dialogues.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

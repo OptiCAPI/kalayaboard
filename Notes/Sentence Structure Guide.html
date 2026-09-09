@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইংরেজি বাক্য গঠন গাইড (Sentence Structure Guide)</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2980b9;
+            --accent: #27ae60;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1c5980;
+        }
+
+        .btn-success {
+            background-color: var(--accent);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #2e4053;
+            background: #ebf5fb;
+            padding: 10px 15px;
+            border-left: 5px solid var(--secondary);
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .formula-box {
+            background-color: #eaf2f8;
+            border: 1px dashed var(--secondary);
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .en-text {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .bn-text {
+            color: var(--accent);
+        }
+
+        .practice-box {
+            background: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn" onclick="copyContent()">📋 Copy Content</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML File</button>
+    </div>
+
+    <h1>ধাপ ২: সহজ বাক্য গঠন পদ্ধতি (Sentence Making Guide)</h1>
+    <p>A-Z শব্দ শেখার পর শিক্ষার্থীদের সবচেয়ে বড় চ্যালেঞ্জ হলো শব্দগুলো দিয়ে বাক্য তৈরি করা। বাংলা মাধ্যমের শিক্ষার্থীদের জন্য নিচে সহজ উপায়ে ইংরেজি বাক্য গঠনের নিয়ম ও ছক দেওয়া হলো।</p>
+
+    <!-- Rule 1 -->
+    <h2>১. মৌলিক বাক্য গঠন (Basic Structure: S + V + O)</h2>
+    <div class="card">
+        <p>বাংলা ও ইংরেজি বাক্যের ক্রমানুসারে পার্থক্য রয়েছে:</p>
+        <ul>
+            <li><b>বাংলা বাক্যের ক্রম:</b> কর্তা (Subject) + কর্ম (Object) + ক্রিয়া (Verb) &rarr; <i>আমি (S) ভাত (O) খাই (V)।</i></li>
+            <li><b>ইংরেজি বাক্যের ক্রম:</b> Subject + Verb + Object &rarr; <i>I (S) eat (V) rice (O).</i></li>
+        </ul>
+        <div class="formula-box">
+            Subject (কে/কারা) + Verb (কাজ) + Object (কি/কাকে)
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject (কর্তা)</th>
+                    <th>Verb (ক্রিয়া)</th>
+                    <th>Object (কর্ম)</th>
+                    <th>সম্পূর্ণ বাক্য (English)</th>
+                    <th>বাংলা অর্থ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="en-text">I</span></td>
+                    <td><span class="en-text">read</span></td>
+                    <td><span class="en-text">a book</span></td>
+                    <td><span class="en-text">I read a book.</span></td>
+                    <td><span class="bn-text">আমি একটি বই পড়ি।</span></td>
+                </tr>
+                <tr>
+                    <td><span class="en-text">He</span></td>
+                    <td><span class="en-text">plays</span></td>
+                    <td><span class="en-text">football</span></td>
+                    <td><span class="en-text">He plays football.</span></td>
+                    <td><span class="bn-text">সে ফুটবল খেলে।</span></td>
+                </tr>
+                <tr>
+                    <td><span class="en-text">We</span></td>
+                    <td><span class="en-text">like</span></td>
+                    <td><span class="en-text">mangoes</span></td>
+                    <td><span class="en-text">We like mangoes.</span></td>
+                    <td><span class="bn-text">আমরা আম পছন্দ করি।</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Rule 2 -->
+    <h2>২. "This is" এবং "That is" এর ব্যবহার (Identifying Objects)</h2>
+    <div class="card">
+        <p>কাছের এবং দূরের একটি জিনিস বোঝাতে এই নিয়ম ব্যবহৃত হয়:</p>
+        <ul>
+            <li><b>This is a...</b> (কাছের একটি জিনিস) &rarr; <span class="en-text">This is a pen.</span> (এটি একটি কলম)</li>
+            <li><b>That is a...</b> (দূরের একটি জিনিস) &rarr; <span class="en-text">That is a tree.</span> (ওটি একটি গাছ)</li>
+        </ul>
+
+        <div class="practice-box">
+            <strong>শ্রেণীকক্ষ অনুশীলন (Classroom Practice):</strong><br>
+            শিক্ষার্থীদের হাতের কাছের বস্তু দেখিয়ে বলুন: <span class="en-text">"This is my bag."</span><br>
+            দূর রাতের জিনিস দেখিয়ে বলুন: <span class="en-text">"That is the moon."</span>
+        </div>
+    </div>
+
+    <!-- Rule 3 -->
+    <h2>৩. প্রশ্ন করা ও উত্তর দেওয়া (Simple Questioning)</h2>
+    <div class="card">
+        <p>দৈনন্দিন কথা বলার জন্য ছোট ছোট প্রশ্ন ও উত্তর শেখান:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>প্রশ্ন (Question)</th>
+                    <th>উত্তর (Answer)</th>
+                    <th>বাংলা অর্থ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="en-text">What is your name?</span></td>
+                    <td><span class="en-text">My name is Rahul.</span></td>
+                    <td>তোমার নাম কি? / আমার নাম রাহুল।</td>
+                </tr>
+                <tr>
+                    <td><span class="en-text">What is this?</span></td>
+                    <td><span class="en-text">This is a cup.</span></td>
+                    <td>এটি কি? / এটি একটি কাপ।</td>
+                </tr>
+                <tr>
+                    <td><span class="en-text">How are you?</span></td>
+                    <td><span class="en-text">I am fine, thank you.</span></td>
+                    <td>তুমি কেমন আছো? / আমি ভালো আছি, ধন্যবাদ।</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Actions/Tips -->
+    <h2>শিক্ষকের পরবর্তী পদক্ষেপ (Next Steps for Teacher)</h2>
+    <div class="card">
+        <ol>
+            <li>শিক্ষার্থীদের প্রতিদিন বোর্ডে একটি করে নতুন Subject ও Verb দিয়ে ৩টি সহজ বাক্য তৈরি করতে বলুন।</li>
+            <li>ভুল সংশোধনের চেয়ে শিক্ষার্থী মুখ ফুটে ইংরেজিতে বাক্য বলতে পারছে কিনা সেটিকে বেশি প্রাধান্য দিন।</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+    // Copy HTML Content Function
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    // Download HTML File Function
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Sentence_Structure_Guide.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

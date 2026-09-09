@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ধাপ ৪: শিক্ষার্থী অনুশীলন পত্র (Student Practice Exercise Sheet)</title>
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --secondary: #9b59b6;
+            --accent: #2980b9;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1b4f72;
+        }
+
+        .btn-success {
+            background-color: #27ae60;
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        .btn-print {
+            background-color: #e67e22;
+        }
+
+        .btn-print:hover {
+            background-color: #d35400;
+        }
+
+        /* Printable Header Meta */
+        .student-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background-color: #fafafa;
+        }
+
+        .info-field {
+            font-weight: bold;
+            color: #444;
+        }
+
+        .line-fill {
+            border-bottom: 1px dotted #333;
+            display: inline-block;
+            width: 60%;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #2e4053;
+            background: #f4ecf7;
+            padding: 10px 15px;
+            border-left: 5px solid var(--secondary);
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .word-bank {
+            background-color: #fef9e7;
+            border: 2px dashed #f1c40f;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: #b7950b;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .exercise-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .exercise-list li {
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .blank-space {
+            display: inline-block;
+            width: 120px;
+            border-bottom: 2px solid #333;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Matching Table */
+        table.matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table.matching-table th, table.matching-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table.matching-table th {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        table.matching-table td {
+            width: 40%;
+        }
+
+        table.matching-table td.connector {
+            width: 20%;
+            text-align: center;
+            font-weight: bold;
+            color: #888;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            .header-actions {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            h2 {
+                background: #eee !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .word-bank {
+                background-color: #fff8e1 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .student-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print Sheet</button>
+        <button class="btn" onclick="copyContent()">📋 Copy Code</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML</button>
+    </div>
+
+    <h1>ইংরেজি অনুশীলন পত্র (Practice Worksheet)</h1>
+
+    <!-- Student Meta Info -->
+    <div class="student-info-grid">
+        <div class="info-field">নাম (Name): <span class="line-fill"></span></div>
+        <div class="info-field">রোল (Roll): <span class="line-fill"></span></div>
+        <div class="info-field">শ্রেনী (Class): <span class="line-fill"></span></div>
+        <div class="info-field">তারিখ (Date): <span class="line-fill"></span></div>
+    </div>
+
+    <!-- Task 1: Fill in the Blanks -->
+    <h2>১. শূন্যস্থান পূরণ করো (Fill in the Blanks)</h2>
+    <div class="section-card">
+        <p>নিচের শব্দকোষ (Word Bank) থেকে সঠিক শব্দ বেছে নিয়ে শূন্যস্থান পূরণ করো:</p>
+        
+        <div class="word-bank">
+            [ book &nbsp;|&nbsp; name &nbsp;|&nbsp; red &nbsp;|&nbsp; water &nbsp;|&nbsp; morning ]
+        </div>
+
+        <ol class="exercise-list">
+            <li>Good <span class="blank-space"></span>, Teacher!</li>
+            <li>My <span class="blank-space"></span> is Rahul.</li>
+            <li>This is a <span class="blank-space"></span>.</li>
+            <li>An apple is <span class="blank-space"></span>.</li>
+            <li>Drink clean <span class="blank-space"></span>.</li>
+        </ol>
+    </div>
+
+    <!-- Task 2: Matching Column A with Column B -->
+    <h2>২. কলাম 'A' এর সাথে কলাম 'B' মেলাও (Match Column A with Column B)</h2>
+    <div class="section-card">
+        <p>বামপাশের ইংরেজি শব্দের সাথে ডানপাশের সঠিক বাংলা অর্থ দাগ টেনে মেলাও:</p>
+
+        <table class="matching-table">
+            <thead>
+                <tr>
+                    <th>Column A (English)</th>
+                    <th>Match Line</th>
+                    <th>Column B (বাংলা অর্থ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>1. Cat</b></td>
+                    <td class="connector">---</td>
+                    <td>A. সূর্য</td>
+                </tr>
+                <tr>
+                    <td><b>2. Tree</b></td>
+                    <td class="connector">---</td>
+                    <td>B. ছাতা</td>
+                </tr>
+                <tr>
+                    <td><b>3. Sun</b></td>
+                    <td class="connector">---</td>
+                    <td>C. বিড়াল</td>
+                </tr>
+                <tr>
+                    <td><b>4. Umbrella</b></td>
+                    <td class="connector">---</td>
+                    <td>D. কলম</td>
+                </tr>
+                <tr>
+                    <td><b>5. Pen</b></td>
+                    <td class="connector">---</td>
+                    <td>E. গাছ</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Task 3: Sentence Making Practice -->
+    <h2>৩. সঠিক শব্দ বসিয়ে বাক্য সাজাও (Re-arrange the Words)</h2>
+    <div class="section-card">
+        <ol class="exercise-list">
+            <li>is / a / This / bag . <br>&rarr; <span class="blank-space" style="width: 80%;"></span></li>
+            <li>eat / I / rice . <br>&rarr; <span class="blank-space" style="width: 80%;"></span></li>
+            <li>green / is / The / leaf . <br>&rarr; <span class="blank-space" style="width: 80%;"></span></li>
+        </ol>
+    </div>
+</div>
+
+<script>
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Stage_4_Practice_Worksheet.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>
