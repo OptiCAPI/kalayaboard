@@ -271,7 +271,7 @@
 <!-- External Library Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<!-- External Database Script (Corrected File Path) -->
+<!-- Corrected database path (both files are inside 'notes' folder) -->
 <script src="e-learning-database.js"></script>
 
 <!-- Application Script -->
@@ -287,9 +287,9 @@
         let kidsCount = 0;
         let seniorsCount = 0;
 
-        // Check if database file loaded properly
+        // Check if database script is loaded
         if (typeof eContent === 'undefined') {
-            console.error('eContent database not loaded! Make sure e-learning-database.js is in the same folder.');
+            console.error('eContent database not loaded! Check if e-learning-database.js exists in the notes folder.');
             return;
         }
 
@@ -321,7 +321,7 @@
             }
         });
 
-        // Fallback message if no cards found
+        // Fallback messages
         if (kidsCount === 0) {
             kidsGrid.innerHTML = `<div class="col-12 text-center text-muted fs-5">এই ক্যাটাগরিতে ছোটদের কোনো বিষয় পাওয়া যায়নি।</div>`;
         }
