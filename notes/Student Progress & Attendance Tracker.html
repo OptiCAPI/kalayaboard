@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শিক্ষার্থীর মাসিক উপস্থিতি ও অগ্রগতি ট্র্যাকার (Student Progress & Attendance Tracker)</title>
+    <style>
+        :root {
+            --primary: #1b4f72;
+            --secondary: #27ae60;
+            --accent: #2980b9;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.4;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1b4f72;
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        .btn-print {
+            background-color: #e67e22;
+        }
+
+        .btn-print:hover {
+            background-color: #d35400;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .student-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            border: 2px solid #cbd5e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #f8fafc;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .line-fill {
+            border-bottom: 1px dotted #333;
+            display: inline-block;
+            width: 55%;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 8px;
+        }
+
+        /* Attendance Table */
+        table.tracker-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        table.tracker-table th, table.tracker-table td {
+            border: 1px solid #cbd5e1;
+            padding: 6px 4px;
+            text-align: center;
+        }
+
+        table.tracker-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .week-header {
+            background-color: #e2e8f0;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        /* Skills Progress Table */
+        table.skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        table.skills-table th, table.skills-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table.skills-table th {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        .rating-box {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .rating-circle {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid #333;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Remarks Section */
+        .remarks-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .remarks-box {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px;
+            background-color: #fafafa;
+            min-height: 80px;
+        }
+
+        .signature-area {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 10px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .sig-line {
+            border-top: 1px solid #333;
+            width: 200px;
+            text-align: center;
+            padding-top: 4px;
+        }
+
+        .key-legend {
+            font-size: 11px;
+            color: #555;
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        @media print {
+            .header-actions {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            table.tracker-table th {
+                background-color: #eee !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            table.skills-table th {
+                background-color: #ddd !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .student-meta {
+                grid-template-columns: 1fr;
+            }
+            .remarks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print Tracker</button>
+        <button class="btn" onclick="copyContent()">📋 Copy Code</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML</button>
+    </div>
+
+    <h1>মাসিক উপস্থিতি ও ইংরেজি অগ্রগতি ট্র্যাকার (Monthly Progress & Attendance Tracker)</h1>
+
+    <!-- Student Metadata -->
+    <div class="student-meta">
+        <div>শিক্ষার্থীর নাম: <span class="line-fill"></span></div>
+        <div>রোল নম্বর: <span class="line-fill"></span></div>
+        <div>শ্রেণী: <span class="line-fill"></span></div>
+        <div>মাস: <span class="line-fill"></span></div>
+        <div>শাখা/সেকশন: <span class="line-fill"></span></div>
+        <div>শিক্ষাবর্ষ: <span class="line-fill"></span></div>
+    </div>
+
+    <!-- Section 1: Attendance Sheet -->
+    <h2>১. দৈনিক উপস্থিতি ট্র্যাকার (Daily Attendance Grid)</h2>
+    <table class="tracker-table">
+        <thead>
+            <tr>
+                <th>সপ্তাহ / দিন</th>
+                <th>রবি (Sun)</th>
+                <th>সোম (Mon)</th>
+                <th>মঙ্গল (Tue)</th>
+                <th>বুধ (Wed)</th>
+                <th>বৃহস্পতি (Thu)</th>
+                <th>মোট উপস্থিতি</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="week-header">Week 1 (১-৭ তারিখ)</td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="week-header">Week 2 (৮-১৪ তারিখ)</td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="week-header">Week 3 (১৫-২১ তারিখ)</td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="week-header">Week 4 (২২-২৮ তারিখ)</td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="week-header">Week 5 (২৯-৩১ তারিখ)</td>
+                <td></td><td></td><td></td><td>-</td><td>-</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="key-legend">সংকেত: P = উপস্থিত (Present) | A = অনুপস্থিত (Absent) | L = ছুটি (Leave)</div>
+
+    <!-- Section 2: English Learning Skill Evaluation -->
+    <h2>২. ইংরেজি ভাষা দক্ষতা মূল্যায়ন (English Skill Progress Evaluation)</h2>
+    <table class="skills-table">
+        <thead>
+            <tr>
+                <th style="width: 40%;">দক্ষতার ক্ষেত্র (Skill Area)</th>
+                <th style="width: 35%;">মানদণ্ড (Criteria)</th>
+                <th style="width: 25%;">রেটিং (১ - ৫)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>১. Phonics & Pronunciation</b></td>
+                <td>বর্ণের ধ্বনি ও সঠিক উচ্চারণ করতে পারা</td>
+                <td>
+                    <div class="rating-box">
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>২. Vocabulary Development</b></td>
+                <td>নতুন ইংরেজি শব্দের অর্থ ও বানান জানা</td>
+                <td>
+                    <div class="rating-box">
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>৩. Sentence Structure (S+V+O)</b></td>
+                <td>সহজ ইংরেজি বাক্য নিজে তৈরি ও লিখতে পারা</td>
+                <td>
+                    <div class="rating-box">
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>৪. Classroom Speaking</b></td>
+                <td>শ্রেণীকক্ষে শিক্ষক ও বন্ধুদের সাথে কথা বলা</td>
+                <td>
+                    <div class="rating-box">
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>৫. Handwriting & Neatness</b></td>
+                <td>সুন্দর ও পরিষ্কারভাবে ইংরেজি খাতায় লেখা</td>
+                <td>
+                    <div class="rating-box">
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                        <span class="rating-circle"></span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="key-legend">রেটিং স্কেল: ১ = প্রাথমিক স্তর, ৩ = সন্তোষজনক, ৫ = চমৎকার অগ্রগতি</div>
+
+    <!-- Section 3: Teacher Remarks & Signatures -->
+    <h2>৩. শিক্ষকের মন্তব্য ও স্বাক্ষর (Teacher Remarks)</h2>
+    <div class="remarks-grid">
+        <div class="remarks-box">
+            <b>বিশেষ মন্তব্য (Teacher Notes):</b>
+        </div>
+        <div class="remarks-box">
+            <b>সামগ্রিক গ্রেড (Overall Grade):</b>
+            <p style="text-align: center; font-size: 24px; font-weight: bold; color: var(--primary); margin: 10px 0 0 0;">[ &nbsp; ]</p>
+        </div>
+    </div>
+
+    <div class="signature-area">
+        <div class="sig-line">শ্রেণী শিক্ষকের স্বাক্ষর</div>
+        <div class="sig-line">অভিভাবকের স্বাক্ষর</div>
+        <div class="sig-line">প্রধান শিক্ষকের স্বাক্ষর</div>
+    </div>
+</div>
+
+<script>
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Student_Progress_And_Attendance_Tracker.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

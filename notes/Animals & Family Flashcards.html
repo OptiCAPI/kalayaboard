@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রাণী ও পরিবারের সদস্যদের প্রিন্টযোগ্য ফ্লাশকার্ড (Animals & Family Flashcards)</title>
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --secondary: #27ae60;
+            --accent: #d35400;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.5;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1b4f72;
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        .btn-print {
+            background-color: #e67e22;
+        }
+
+        .btn-print:hover {
+            background-color: #d35400;
+        }
+
+        h1 {
+            color: #4a235a;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        p.intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #2e4053;
+            background: #f4ecf7;
+            padding: 10px 15px;
+            border-left: 5px solid var(--primary);
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        /* Flashcard Grid Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .flashcard {
+            border: 3px dashed #8e44ad;
+            border-radius: 12px;
+            background: #fff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 220px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .flashcard-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            background-color: #f4ecf7;
+            color: #8e44ad;
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid #d2b4de;
+        }
+
+        .svg-icon {
+            width: 80px;
+            height: 80px;
+            margin: 15px 0 10px 0;
+        }
+
+        .en-word {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a235a;
+            margin-bottom: 2px;
+        }
+
+        .phonics {
+            font-size: 14px;
+            color: #e67e22;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .bn-meaning {
+            font-size: 16px;
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        @media print {
+            .header-actions {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .flashcard {
+                page-break-inside: avoid;
+                border: 2px dashed #000;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print Flashcards</button>
+        <button class="btn" onclick="copyContent()">📋 Copy Code</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML</button>
+    </div>
+
+    <h1>প্রাণী ও পরিবার ফ্লাশকার্ড (Animals & Family Flashcards)</h1>
+    <p class="intro">শ্রেণীকক্ষে ব্যবহারের জন্য প্রাণী এবং পরিবারের সদস্যদের ভিজ্যুয়াল ফ্লাশকার্ড। কাঁচি দিয়ে কেটে ব্যবহারের জন্য ড্যাশড বর্ডার দেওয়া হয়েছে।</p>
+
+    <!-- Category 1: Animals -->
+    <h2>১. পশুপাখি (Animals)</h2>
+    <div class="card-grid">
+
+        <!-- Card: Cat -->
+        <div class="flashcard">
+            <span class="flashcard-badge">Animal</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#d35400" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 26l-6-12 10 4c4-2 8-3 12-3s8 1 12 3l10-4-6 12c4 4 6 10 6 16 0 10-10 16-22 16S10 52 10 42c0-6 2-12 6-16z"/>
+                <circle cx="24" cy="38" r="2" fill="#d35400"/>
+                <circle cx="40" cy="38" r="2" fill="#d35400"/>
+                <path d="M32 44v3M20 42h-8M20 46h-6M44 42h8M44 46h6"/>
+            </svg>
+            <div>
+                <div class="en-word">Cat</div>
+                <div class="phonics">/kæt/ (ক্যাট)</div>
+                <div class="bn-meaning">বিড়াল</div>
+            </div>
+        </div>
+
+        <!-- Card: Dog -->
+        <div class="flashcard">
+            <span class="flashcard-badge">Animal</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#7f8c8d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 18c0-4 4-8 8-8h20c4 0 8 4 8 8v16c0 8-6 14-18 14S14 42 14 34V18z"/>
+                <path d="M10 20c-2 6 0 14 4 14M54 20c2 6 0 14-4 14"/>
+                <circle cx="24" cy="26" r="2" fill="#7f8c8d"/>
+                <circle cx="40" cy="26" r="2" fill="#7f8c8d"/>
+                <ellipse cx="32" cy="34" rx="4" ry="3" fill="#7f8c8d"/>
+            </svg>
+            <div>
+                <div class="en-word">Dog</div>
+                <div class="phonics">/dɒɡ/ (ডগ)</div>
+                <div class="bn-meaning">কুকুর</div>
+            </div>
+        </div>
+
+        <!-- Card: Fish -->
+        <div class="flashcard">
+            <span class="flashcard-badge">Animal</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#2980b9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 32c12-14 36-14 48 0-12 14-36 14-48 0z"/>
+                <path d="M54 32l8-10v20l-8-10zM18 22c4 6 4 14 0 20"/>
+                <circle cx="42" cy="28" r="2" fill="#2980b9"/>
+            </svg>
+            <div>
+                <div class="en-word">Fish</div>
+                <div class="phonics">/fɪʃ/ (ফিশ)</div>
+                <div class="bn-meaning">মাছ</div>
+            </div>
+        </div>
+
+        <!-- Card: Bird -->
+        <div class="flashcard">
+            <span class="flashcard-badge">Animal</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 36c6-12 18-20 32-20 10 0 16 6 16 12 0 10-8 18-20 18H16L8 36z"/>
+                <path d="M56 28l6 2-6 4M24 46l-4 10M32 46l2 10M20 32c8 0 14-6 14-14"/>
+                <circle cx="46" cy="24" r="2" fill="#27ae60"/>
+            </svg>
+            <div>
+                <div class="en-word">Bird</div>
+                <div class="phonics">/bɜːd/ (বার্ড)</div>
+                <div class="bn-meaning">পাখি</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Category 2: Family Members -->
+    <h2>২. পরিবারের সদস্যবৃন্দ (Family Members)</h2>
+    <div class="card-grid">
+
+        <!-- Card: Father -->
+        <div class="flashcard">
+            <span class="flashcard-badge" style="background-color:#eaf2f8; color:#2980b9; border-color:#aed6f1;">Family</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#1b4f72" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="20" r="10"/>
+                <path d="M14 54c0-10 8-16 18-16s18 6 18 16M24 30c4 3 12 3 16 0"/>
+            </svg>
+            <div>
+                <div class="en-word">Father</div>
+                <div class="phonics">/ˈfɑːðər/ (ফাদার)</div>
+                <div class="bn-meaning">বাবা</div>
+            </div>
+        </div>
+
+        <!-- Card: Mother -->
+        <div class="flashcard">
+            <span class="flashcard-badge" style="background-color:#eaf2f8; color:#2980b9; border-color:#aed6f1;">Family</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#8e44ad" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="20" r="10"/>
+                <path d="M18 18c-4 6-2 14-2 14M46 18c4 6 2 14 2 14M14 54c0-10 8-16 18-16s18 6 18 16"/>
+            </svg>
+            <div>
+                <div class="en-word">Mother</div>
+                <div class="phonics">/ˈmʌðər/ (মাদার)</div>
+                <div class="bn-meaning">মা</div>
+            </div>
+        </div>
+
+        <!-- Card: Brother -->
+        <div class="flashcard">
+            <span class="flashcard-badge" style="background-color:#eaf2f8; color:#2980b9; border-color:#aed6f1;">Family</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="22" r="8"/>
+                <path d="M18 54c0-8 6-12 14-12s14 4 14 12M22 18s4-4 10-4 10 4 10 4"/>
+            </svg>
+            <div>
+                <div class="en-word">Brother</div>
+                <div class="phonics">/ˈbrʌðər/ (ব্রাদার)</div>
+                <div class="bn-meaning">ভাই</div>
+            </div>
+        </div>
+
+        <!-- Card: Sister -->
+        <div class="flashcard">
+            <span class="flashcard-badge" style="background-color:#eaf2f8; color:#2980b9; border-color:#aed6f1;">Family</span>
+            <svg class="svg-icon" viewBox="0 0 64 64" fill="none" stroke="#e74c3c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="22" r="8"/>
+                <path d="M20 22c-4 4-2 10-2 10M44 22c4 4 2 10 2 10M18 54c0-8 6-12 14-12s14 4 14 12"/>
+            </svg>
+            <div>
+                <div class="en-word">Sister</div>
+                <div class="phonics">/ˈsɪstər/ (সিষ্টার)</div>
+                <div class="bn-meaning">বোন</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Animals_And_Family_Flashcards.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>
