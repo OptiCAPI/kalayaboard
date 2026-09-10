@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইংরেজি মূল্যায়ন পরীক্ষা - শ্রেণি ২ (Class 2 English Assessment Paper)</title>
+    <style>
+        :root {
+            --primary: #1b4f72;
+            --secondary: #27ae60;
+            --accent: #2980b9;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #222222;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.5;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: #1b4f72;
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        .btn-print {
+            background-color: #e67e22;
+        }
+
+        .btn-print:hover {
+            background-color: #d35400;
+        }
+
+        /* School & Exam Header */
+        .exam-header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .school-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .exam-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 4px 0;
+            color: #2c3e50;
+        }
+
+        .exam-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 8px;
+            padding: 0 10px;
+        }
+
+        /* Student Info Box */
+        .student-box {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .dot-line {
+            border-bottom: 1px dotted #000;
+            display: inline-block;
+            width: 60%;
+        }
+
+        /* Questions Styling */
+        .question-block {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+
+        .q-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .q-marks {
+            color: #d35400;
+        }
+
+        .sub-q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding-left: 15px;
+            font-size: 14px;
+        }
+
+        .sub-q-list {
+            padding-left: 15px;
+            font-size: 14px;
+        }
+
+        .sub-q-item {
+            margin-bottom: 8px;
+        }
+
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .matching-table td {
+            border: 1px solid #777;
+            padding: 8px 12px;
+            width: 50%;
+        }
+
+        .line-space {
+            letter-spacing: 2px;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        @media print {
+            .header-actions {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .student-box {
+                grid-template-columns: 1fr;
+            }
+            .sub-q-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print Exam Paper</button>
+        <button class="btn" onclick="copyContent()">📋 Copy Code</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML</button>
+    </div>
+
+    <!-- Exam Paper Header -->
+    <div class="exam-header">
+        <div class="school-name">আইডিয়াল প্রাইমারি স্কুল (Ideal Primary School)</div>
+        <div class="exam-title">চূড়ান্ত মূল্যায়ন পরীক্ষা (End-of-Term Examination)</div>
+        <div class="exam-meta">
+            <span>বিষয়: ইংরেজি (English)</span>
+            <span>শ্রেণি: দ্বিতীয় (Class 2)</span>
+            <span>পূর্ণমান: ৫০ (Total Marks: 50)</span>
+            <span>সময়: ১ ঘণ্টা ৩০ মিনিট</span>
+        </div>
+    </div>
+
+    <!-- Student Info -->
+    <div class="student-box">
+        <div>শিক্ষার্থীর নাম: <span class="dot-line"></span></div>
+        <div>রোল নম্বর: <span class="dot-line"></span></div>
+        <div>প্রাপ্ত নম্বর: ________ / ৫০</div>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="question-block">
+        <div class="q-title">
+            <span>১. ইংরেজি শব্দের বাংলা অর্থ লেখো (Write the Bengali meaning):</span>
+            <span class="q-marks">(২ × ৫ = ১০)</span>
+        </div>
+        <div class="sub-q-grid">
+            <div class="sub-q-item">(a) Father = __________________</div>
+            <div class="sub-q-item">(b) Green = __________________</div>
+            <div class="sub-q-item">(c) Fish = ____________________</div>
+            <div class="sub-q-item">(d) Sister = __________________</div>
+            <div class="sub-q-item">(e) Yellow = _________________</div>
+        </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-block">
+        <div class="q-title">
+            <span>২. সঠিক ইংরেজি শব্দ দিয়ে শূন্যস্থান পূরণ করো (Fill in the blanks):</span>
+            <span class="q-marks">(২ × ৫ = ১০)</span>
+        </div>
+        <div class="sub-q-list">
+            <div class="sub-q-item">(a) A cat says __________ (meow / woof).</div>
+            <div class="sub-q-item">(b) The grass is __________ (red / green).</div>
+            <div class="sub-q-item">(c) I have __________ (two / ten) eyes.</div>
+            <div class="sub-q-item">(d) My __________ (father / fish) is a doctor.</div>
+            <div class="sub-q-item">(e) The sun is __________ (yellow / black).</div>
+        </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-block">
+        <div class="q-title">
+            <span>৩. বামপাশের ইংরেজি শব্দের সাথে ডানপাশের বাংলা অর্থ মিলাও (Match Column A with Column B):</span>
+            <span class="q-marks">(২ × ৫ = ১০)</span>
+        </div>
+        <table class="matching-table">
+            <thead>
+                <tr style="background:#f2f2f2; text-align:center;">
+                    <th>Column A (English)</th>
+                    <th>Column B (Bengali)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>(a) Dog</td>
+                    <td>(১) ভাই</td>
+                </tr>
+                <tr>
+                    <td>(b) Red</td>
+                    <td>(২) পাখি</td>
+                </tr>
+                <tr>
+                    <td>(c) Mother</td>
+                    <td>(৩) কুকুর</td>
+                </tr>
+                <tr>
+                    <td>(d) Brother</td>
+                    <td>(৪) মা</td>
+                </tr>
+                <tr>
+                    <td>(e) Bird</td>
+                    <td>(৫) লাল</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-block">
+        <div class="q-title">
+            <span>৪. এলোমেলো বর্ণ সাজিয়ে সঠিক শব্দ লেখো (Rearrange the letters to make words):</span>
+            <span class="q-marks">(২ × ৫ = ১০)</span>
+        </div>
+        <div class="sub-q-grid">
+            <div class="sub-q-item">(a) O D G &nbsp;&rarr;&nbsp; __________________</div>
+            <div class="sub-q-item">(b) A T C &nbsp;&rarr;&nbsp; __________________</div>
+            <div class="sub-q-item">(c) L U B E &nbsp;&rarr;&nbsp; _________________</div>
+            <div class="sub-q-item">(d) N E O &nbsp;&rarr;&nbsp; __________________</div>
+            <div class="sub-q-item">(e) I F S H &nbsp;&rarr;&nbsp; _________________</div>
+        </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-block">
+        <div class="q-title">
+            <span>৫. নিচের প্রশ্নগুলোর উত্তর দাও (Answer the following questions):</span>
+            <span class="q-marks">(২ × ৫ = ১০)</span>
+        </div>
+        <div class="sub-q-list">
+            <div class="sub-q-item">
+                (a) What is your name?<br>
+                Ans: My name is ____________________________________________________.
+            </div>
+            <div class="sub-q-item">
+                (b) What class are you in?<br>
+                Ans: I am in class __________________________________________________.
+            </div>
+            <div class="sub-q-item">
+                (c) What color is a tomato?<br>
+                Ans: A tomato is ___________________________________________________.
+            </div>
+            <div class="sub-q-item">
+                (d) How many fingers do you have on one hand?<br>
+                Ans: I have _______________________________________ fingers on one hand.
+            </div>
+            <div class="sub-q-item">
+                (e) What sound does a dog make?<br>
+                Ans: A dog says ____________________________________________________.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Class_2_English_Exam_Paper_50_Marks.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইংরেজি পাঠ পরিকল্পনা ও শিক্ষক সহায়িকা (Weekly English Lesson Plan Template)</title>
+    <style>
+        :root {
+            --primary: #4a235a;
+            --secondary: #8e44ad;
+            --accent: #27ae60;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text: #222222;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.5;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+        }
+
+        .btn-success {
+            background-color: var(--accent);
+        }
+
+        .btn-success:hover {
+            background-color: #1e8449;
+        }
+
+        .btn-print {
+            background-color: #e67e22;
+        }
+
+        .btn-print:hover {
+            background-color: #d35400;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .plan-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            border: 2px solid #cbd5e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #f8fafc;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .line-fill {
+            border-bottom: 1px dotted #333;
+            display: inline-block;
+            width: 55%;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 8px;
+        }
+
+        /* Weekly Plan Table */
+        table.plan-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        table.plan-table th, table.plan-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table.plan-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .day-col {
+            font-weight: bold;
+            background-color: #f4ecf7;
+            text-align: center;
+            width: 12%;
+        }
+
+        /* Checklist & Notes Layout */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .box-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 12px;
+            background-color: #fafafa;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid #333;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .notes-area {
+            min-height: 100px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        @media print {
+            .header-actions {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            table.plan-table th {
+                background-color: #ddd !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .header-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .plan-meta, .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content-to-copy">
+    <div class="header-actions">
+        <button class="btn btn-print" onclick="window.print()">🖨️ Print Lesson Plan</button>
+        <button class="btn" onclick="copyContent()">📋 Copy Code</button>
+        <button class="btn btn-success" onclick="downloadHTML()">📥 Download HTML</button>
+    </div>
+
+    <h1>সাপ্তাহিক ইংরেজি পাঠ পরিকল্পনা (Weekly Lesson Plan)</h1>
+
+    <!-- Meta Information -->
+    <div class="plan-meta">
+        <div>শিক্ষকের নাম: <span class="line-fill"></span></div>
+        <div>বিষয়: <span class="line-fill"></span></div>
+        <div>শ্রেণি: <span class="line-fill"></span></div>
+        <div>সপ্তাহ নং: <span class="line-fill"></span></div>
+        <div>তারিখ: <span class="line-fill"></span></div>
+        <div>মোট শিক্ষার্থী: <span class="line-fill"></span></div>
+    </div>
+
+    <!-- Lesson Breakdown Table -->
+    <h2>১. দৈনিক পাঠ বিভাজন (Daily Lesson Breakdown)</h2>
+    <table class="plan-table">
+        <thead>
+            <tr>
+                <th class="day-col">দিন</th>
+                <th style="width: 28%;">পাঠের বিষয় ও টপিক (Topic)</th>
+                <th style="width: 30%;">শিক্ষণ পদ্ধতি ও কার্যক্রম (Activities)</th>
+                <th style="width: 30%;">প্রয়োজনীয় উপকরণ (Teaching Aids)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="day-col">রবিবার<br>(Sun)</td>
+                <td><b>Topic: Animals Vocabulary</b><br>Cat, Dog, Fish, Bird শেখানো</td>
+                <td>• Flashcard প্রদর্শন<br>• Phonics উচ্চারণ অনুশীলন<br>• দলগত উচ্চারণ প্রতিযোগিতা</td>
+                <td>• Visual Flashcards<br>• Board & Marker</td>
+            </tr>
+            <tr>
+                <td class="day-col">সোমবার<br>(Mon)</td>
+                <td><b>Topic: Family Members</b><br>Father, Mother, Brother, Sister</td>
+                <td>• ছবি দেখে পরিবার সনাক্তকরণ<br>• 'Who is this?' রোলে-প্লে খেলা<br>• খাতায় শব্দ লেখা</td>
+                <td>• Family Flashcards<br>• Picture Worksheets</td>
+            </tr>
+            <tr>
+                <td class="day-col">মঙ্গলবার<br>(Tue)</td>
+                <td><b>Topic: Colours Identification</b><br>Red, Blue, Green, Yellow</td>
+                <td>• কালার ম্যাচিং গেম<br>• শ্রেণীকক্ষের বস্তু দেখে রঙ চেনা<br>• ফ্লাশকার্ড ড্রয়িং অনুশীলন</td>
+                <td>• Colour Swatch Cards<br>• Colour Pencils</td>
+            </tr>
+            <tr>
+                <td class="day-col">বুধবার<br>(Wed)</td>
+                <td><b>Topic: Numbers (1-10)</b><br>গণনা ও ইংরেজি বানান</td>
+                <td>• Dot Counting গেম<br>• বোর্ডে সংখ্যা ও বানানের ম্যাচিং<br>• জোড়ায় গণনা প্রতিযোগিতা</td>
+                <td>• Number Cards<br>• Counting Dots Sheet</td>
+            </tr>
+            <tr>
+                <td class="day-col">বৃহস্পতিবার<br>(Thu)</td>
+                <td><b>Topic: Weekly Review & Assessment</b><br>সম্পূর্ণ সপ্তাহের পুনরাবৃত্তি</td>
+                <td>• সংক্ষিপ্ত কুইজ প্রতিযোগিতা<br>• ওয়ার্কশপ ফিল-আপ<br>• সাপ্তাহিক অগ্রগতি মূল্যায়ন</td>
+                <td>• Assessment Question Sheet</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Checklist and Teaching Strategy Notes -->
+    <div class="grid-2col">
+        <div class="box-card">
+            <h2>২. ক্লাস প্রস্তুতি চেকলিস্ট (Checklist)</h2>
+            <div class="checklist-item"><span class="checkbox"></span> প্রিন্ট করা ফ্লাশকার্ড প্রস্তুত রাখা</div>
+            <div class="checklist-item"><span class="checkbox"></span> বোর্ডে মার্কার ও ইরেজার পরীক্ষা করা</div>
+            <div class="checklist-item"><span class="checkbox"></span> শিক্ষার্থীদের ওয়ার্কশপ শীট তৈরি রাখা</div>
+            <div class="checklist-item"><span class="checkbox"></span> দুর্বল শিক্ষার্থীদের সনাক্ত করে পৃথক সহায়তার পরিকল্পনা</div>
+            <div class="checklist-item"><span class="checkbox"></span> উপস্থিতি ও পারফরম্যান্স ট্র্যাকার সাথে রাখা</div>
+        </div>
+
+        <div class="box-card">
+            <h2>৩. বিশেষ শিক্ষণ কৌশল ও নোট (Teacher's Notes)</h2>
+            <div class="notes-area">
+                • যে সকল শিক্ষার্থী Phonetic উচ্চারণে পিছিয়ে আছে তাদের আলাদা গাইড করতে হবে।<br>
+                • শ্রেণীকক্ষে আনন্দের সাথে শেখানোর জন্য প্রতিটি টপিকে ৫ মিনিটের ভিজ্যুয়াল গেম অন্তর্ভুক্ত করা হয়েছে।
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyContent() {
+        const content = document.documentElement.outerHTML;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে!');
+        }).catch(err => {
+            alert('কপি করতে সমস্যা হয়েছে: ' + err);
+        });
+    }
+
+    function downloadHTML() {
+        const content = document.documentElement.outerHTML;
+        const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Weekly_English_Lesson_Plan.html';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>
