@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>বাংলাদেশের প্রাথমিক বিদ্যালয়ের ইংরেজি শব্দ শিক্ষা (Class 1-5)</title>
+    <style>
+        :root {
+            --primary: #FF5722;
+            --primary-dark: #E64A19;
+            --secondary: #4CAF50;
+            --accent: #FFEB3B;
+            --bg-color: #F0F4F8;
+            --card-bg: #FFFFFF;
+            --text-main: #212121;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'SolaimanLipi', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Sticky Navigation Header */
+        .sticky-nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header {
+            background: linear-gradient(135deg, #FF7043, #FF5722);
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Class Selection Tabs Bar */
+        .class-tabs-bar {
+            background: #FFFFFF;
+            padding: 8px 12px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            border-bottom: 2px solid #FFE0B2;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .class-tabs-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: 2px solid #FFE0B2;
+            background: #FFF8E1;
+            color: var(--primary-dark);
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Class Banner */
+        .class-banner {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #C8E6C9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Words Grid Container */
+        .container {
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        /* Word Card Component */
+        .word-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 4px solid #FFE0B2;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .word-card:active {
+            transform: scale(0.97);
+            border-color: var(--primary);
+        }
+
+        .img-container {
+            height: 200px;
+            width: 100%;
+            background-color: #FFF8E1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .audio-icon-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            color: var(--primary);
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .word-en {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            text-transform: capitalize;
+        }
+
+        .word-sound {
+            font-size: 14px;
+            color: #D84315;
+            font-weight: bold;
+            background: #FBE9E7;
+            padding: 3px 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 2px auto;
+        }
+
+        .word-bn {
+            font-size: 19px;
+            font-weight: bold;
+            color: #2E7D32;
+        }
+
+        /* Next Words Button */
+        .load-more-container {
+            text-align: center;
+            margin: 30px 0 50px 0;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .next-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Fullscreen Zoom-In Modal */
+        .zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 300;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            touch-action: none;
+        }
+
+        .zoom-card {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 25px;
+            overflow: hidden;
+            text-align: center;
+            animation: zoomIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .zoom-img-box {
+            height: 280px;
+            width: 100%;
+            background-color: #FFF8E1;
+        }
+
+        .zoom-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .zoom-en {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-top: 10px;
+        }
+
+        .zoom-sound {
+            font-size: 18px;
+            color: #D84315;
+            font-weight: bold;
+            background: #FBE9E7;
+            padding: 4px 16px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 6px 0;
+        }
+
+        .zoom-bn {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2E7D32;
+        }
+
+        .zoom-close-hint {
+            color: white;
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+            .img-container { height: 140px; }
+            .word-en { font-size: 18px; }
+            .word-sound { font-size: 12px; }
+            .word-bn { font-size: 15px; }
+            .zoom-img-box { height: 200px; }
+            .zoom-en { font-size: 28px; }
+            .zoom-sound { font-size: 15px; }
+            .zoom-bn { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sticky Header & Class Tabs Navigation -->
+<div class="sticky-nav-wrapper">
+    <header>
+        <h1>👶 প্রাথমিক শব্দ শিক্ষা (NCTB Class 1-5)</h1>
+    </header>
+    <div class="class-tabs-bar">
+        <button class="tab-btn active" onclick="switchClass('Class 1', this)">Class 1</button>
+        <button class="tab-btn" onclick="switchClass('Class 2', this)">Class 2</button>
+        <button class="tab-btn" onclick="switchClass('Class 3', this)">Class 3</button>
+        <button class="tab-btn" onclick="switchClass('Class 4', this)">Class 4</button>
+        <button class="tab-btn" onclick="switchClass('Class 5', this)">Class 5</button>
+    </div>
+</div>
+
+<!-- Current Class Banner -->
+<div class="class-banner">
+    <span id="current-class-title">শ্রেণি ১ (Class 1) শব্দের তালিকা</span>
+    <span id="word-count-badge">মোট শব্দ: 0</span>
+</div>
+
+<!-- Dynamic Cards Container -->
+<div class="container">
+    <div class="cards-grid" id="cards-container"></div>
+
+    <div class="load-more-container">
+        <button class="next-btn" onclick="loadNextBatch()">➡️ আরও শব্দ দেখুন (Next)</button>
+    </div>
+</div>
+
+<!-- Fullscreen Zoom Modal Popup -->
+<div class="zoom-overlay" id="zoom-overlay">
+    <div class="zoom-card" id="zoom-card">
+        <div class="zoom-img-box">
+            <img id="zoom-img" src="" alt="Word Visual">
+        </div>
+        <div class="zoom-en" id="zoom-en">Apple</div>
+        <div class="zoom-sound" id="zoom-sound">উচ্চারণ: অ্যাপল্</div>
+        <div class="zoom-bn" id="zoom-bn">আপেল</div>
+    </div>
+    <div class="zoom-close-hint">👆 ৩ সেকেন্ডে অটো বন্ধ হবে (ধরে রাখলে খোলা থাকবে)</div>
+</div>
+
+<script>
+    // Authentic Bangladeshi Primary School (NCTB) Vocabulary Database (Class 1 to 5)
+    const nctbDatabase = {
+        'Class 1': [
+            { en: 'Apple', sound: 'অ্যাপল্', bn: 'আপেল', img: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&auto=format&fit=crop' },
+            { en: 'Ball', sound: 'বল্', bn: 'বল', img: 'https://images.unsplash.com/photo-1614632537190-23e4146777db?w=600&auto=format&fit=crop' },
+            { en: 'Cat', sound: 'ক্যাট্', bn: 'বিড়াল', img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop' },
+            { en: 'Dog', sound: 'ডগ্', bn: 'কুকুর', img: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&auto=format&fit=crop' },
+            { en: 'Egg', sound: 'এগ্', bn: 'ডিম', img: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=600&auto=format&fit=crop' },
+            { en: 'Fish', sound: 'ফিশ্', bn: 'মাছ', img: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600&auto=format&fit=crop' },
+            { en: 'Goat', sound: 'গোট্', bn: 'ছাগল', img: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?w=600&auto=format&fit=crop' },
+            { en: 'Hut', sound: 'হাট্', bn: 'কুঁড়েঘর', img: 'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=600&auto=format&fit=crop' },
+            { en: 'Jug', sound: 'জগ্', bn: 'জগ', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=600&auto=format&fit=crop' },
+            { en: 'Kite', sound: 'কাইট্', bn: 'ঘুড়ি', img: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=600&auto=format&fit=crop' },
+            { en: 'Mango', sound: 'ম্যাঙ্গো', bn: 'আম', img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&auto=format&fit=crop' },
+            { en: 'Net', sound: 'নেট্', bn: 'জাল', img: 'https://images.unsplash.com/photo-1516715094483-75da7dee9758?w=600&auto=format&fit=crop' },
+            { en: 'Pencil', sound: 'পেনসিল্', bn: 'পেন্সিল', img: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&auto=format&fit=crop' },
+            { en: 'Sun', sound: 'সান্', bn: 'সূর্য', img: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=600&auto=format&fit=crop' },
+            { en: 'Tiger', sound: 'টাইগার্', bn: 'বাঘ', img: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=600&auto=format&fit=crop' },
+            { en: 'Umbrella', sound: 'আমব্রেলা', bn: 'ছাতা', img: 'https://images.unsplash.com/photo-1517479149777-5f3b7771d4fa?w=600&auto=format&fit=crop' },
+            { en: 'Van', sound: 'ভ্যান্', bn: 'ভ্যান গাড়ি', img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&auto=format&fit=crop' },
+            { en: 'Window', sound: 'উইন্ডো', bn: 'জানালা', img: 'https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?w=600&auto=format&fit=crop' }
+        ],
+        'Class 2': [
+            { en: 'Banana', sound: 'বানানা', bn: 'কলা', img: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&auto=format&fit=crop' },
+            { en: 'Crow', sound: 'ক্রো', bn: 'কাক', img: 'https://images.unsplash.com/photo-1522926193341-e9ffd686c60f?w=600&auto=format&fit=crop' },
+            { en: 'Farmer', sound: 'ফার্মার', bn: 'কৃষক', img: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&auto=format&fit=crop' },
+            { en: 'Paddy field', sound: 'প্যাডি ফিল্ড', bn: 'ধান ক্ষেত', img: 'https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?w=600&auto=format&fit=crop' },
+            { en: 'Rickshaw', sound: 'রিকশা', bn: 'রিকশা', img: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&auto=format&fit=crop' },
+            { en: 'Jackfruit', sound: 'জ্যাকফ্রুট', bn: 'কাঁঠাল', img: 'https://images.unsplash.com/photo-1588615419957-ef6713175317?w=600&auto=format&fit=crop' },
+            { en: 'Tub', sound: 'টাব্', bn: 'টব / গামলা', img: 'https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=600&auto=format&fit=crop' },
+            { en: 'Pond', sound: 'পন্ড্', bn: 'পুকুর', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&auto=format&fit=crop' },
+            { en: 'School', sound: 'স্কুল', bn: 'বিদ্যালয়', img: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&auto=format&fit=crop' },
+            { en: 'Teacher', sound: 'টিচার', bn: 'শিক্ষক', img: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&auto=format&fit=crop' },
+            { en: 'Student', sound: 'স্টুডেন্ট', bn: 'ছাত্র-ছাত্রী', img: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop' },
+            { en: 'Watermelon', sound: 'ওয়াটারমেলন', bn: 'তরমুজ', img: 'https://images.unsplash.com/photo-1587049352847-4a222e784d38?w=600&auto=format&fit=crop' }
+        ],
+        'Class 3': [
+            { en: 'Fisherman', sound: 'ফিশারম্যান', bn: 'জেলে', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop' },
+            { en: 'Doctor', sound: 'ডক্টর', bn: 'চিকিৎসক', img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&auto=format&fit=crop' },
+            { en: 'Tailor', sound: 'টেইলর', bn: 'দরজি', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop' },
+            { en: 'Cobbler', sound: 'কবলার', bn: 'মুচি', img: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&auto=format&fit=crop' },
+            { en: 'Driver', sound: 'ড্রাইভার', bn: 'চালক', img: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&auto=format&fit=crop' },
+            { en: 'Command', sound: 'কমান্ড', bn: 'আদেশ', img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&auto=format&fit=crop' },
+            { en: 'Breakfast', sound: 'ব্রেকফাস্ট', bn: 'সকালের নাস্তা', img: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&auto=format&fit=crop' },
+            { en: 'Clean', sound: 'ক্লিন', bn: 'পরিষ্কার করা', img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop' },
+            { en: 'Wash', sound: 'ওয়াশ', bn: 'ধৌত করা', img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop' },
+            { en: 'Family', sound: 'ফ্যামিলি', bn: 'পরিবার', img: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&auto=format&fit=crop' }
+        ],
+        'Class 4': [
+            { en: 'National Flag', sound: 'ন্যাশনাল ফ্ল্যাগ', bn: 'জাতীয় পতাকা', img: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=600&auto=format&fit=crop' },
+            { en: 'River', sound: 'রিভার', bn: 'নদী', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop' },
+            { en: 'Boat', sound: 'বোট', bn: 'নৌকা', img: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&auto=format&fit=crop' },
+            { en: 'Village', sound: 'ভিলেজ', bn: 'গ্রাম', img: 'https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=600&auto=format&fit=crop' },
+            { en: 'Market', sound: 'মার্কেট', bn: 'বাজার', img: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&auto=format&fit=crop' },
+            { en: 'Traffic Light', sound: 'ট্রাফিক লাইট', bn: 'ট্রাফিক বাতি', img: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=600&auto=format&fit=crop' },
+            { en: 'Hospital', sound: 'হাসপাতাল', bn: 'হাসপাতাল', img: 'https://images.unsplash.com/photo-1587354246490-7e29e31ecb58?w=600&auto=format&fit=crop' },
+            { en: 'Postman', sound: 'পোস্টম্যান', bn: 'ডালপিয়ন', img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&auto=format&fit=crop' }
+        ],
+        'Class 5': [
+            { en: 'Liberation War', sound: 'লিবারেশন ওয়ার', bn: 'মুক্তিযুদ্ধ', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&auto=format&fit=crop' },
+            { en: 'Martyr', sound: 'মার্টার', bn: 'শহীদ', img: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop' },
+            { en: 'St Martin Island', sound: 'সেন্ট মার্টিনস আইল্যান্ড', bn: 'সেন্ট মার্টিন দ্বীপ', img: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&auto=format&fit=crop' },
+            { en: 'Sundarbans', sound: 'সুন্দরবন', bn: 'সুন্দরবন', img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop' },
+            { en: 'Cyclone', sound: 'সাইক্লোন', bn: 'ঘূর্ণিঝড়', img: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=600&auto=format&fit=crop' },
+            { en: 'Tourist', sound: 'ট্যুরিস্ট', bn: 'পর্যটক', img: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop' }
+        ]
+    };
+
+    // State Variables
+    let currentClass = 'Class 1';
+    let currentIndex = 0;
+    const batchSize = 12;
+    let autoZoomTimer = null;
+    let isHolding = false;
+
+    window.onload = () => {
+        renderClassWords(true);
+        setupHoldEvents();
+    };
+
+    // Corrected Switch Class Function
+    function switchClass(className, btnElement) {
+        currentClass = className;
+        
+        // Update Active Class Tab Style
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+
+        // Update Title Header
+        const bnClassNames = {
+            'Class 1': 'শ্রেণি ১ (Class 1)',
+            'Class 2': 'শ্রেণি ২ (Class 2)',
+            'Class 3': 'শ্রেণি ৩ (Class 3)',
+            'Class 4': 'শ্রেণি ৪ (Class 4)',
+            'Class 5': 'শ্রেণি ৫ (Class 5)'
+        };
+        document.getElementById('current-class-title').innerText = `${bnClassNames[className]} শব্দের তালিকা`;
+
+        // Reset and re-render grid
+        renderClassWords(true);
+    }
+
+    function renderClassWords(reset = false) {
+        const container = document.getElementById('cards-container');
+        if (reset) {
+            currentIndex = 0;
+            container.innerHTML = '';
+        }
+
+        const words = nctbDatabase[currentClass] || [];
+        const nextBatch = words.slice(currentIndex, currentIndex + batchSize);
+
+        nextBatch.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'word-card';
+            card.onclick = () => triggerCardZoomAndAudio(item);
+
+            card.innerHTML = `
+                <div class="img-container">
+                    <img src="${item.img}" alt="${item.en}" loading="lazy">
+                    <div class="audio-icon-overlay">🔊</div>
+                </div>
+                <div class="card-content">
+                    <div class="word-en">${item.en}</div>
+                    <div class="word-sound">উচ্চারণ: ${item.sound}</div>
+                    <div class="word-bn">${item.bn}</div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        currentIndex += nextBatch.length;
+        document.getElementById('word-count-badge').innerText = `প্রদর্শিত: ${Math.min(currentIndex, words.length)} / ${words.length}`;
+    }
+
+    function loadNextBatch() {
+        const words = nctbDatabase[currentClass] || [];
+        if (currentIndex < words.length) {
+            renderClassWords(false);
+        } else {
+            alert(`${currentClass}-এর সকল শব্দ দেখানো সম্পূর্ণ হয়েছে!`);
+        }
+    }
+
+    // High-Pitch Nursery Child Voice Generator
+    function speakWordInChildVoice(text) {
+        if (!('speechSynthesis' in window)) return;
+        
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        const voices = window.speechSynthesis.getVoices();
+        
+        // Pick best matching soft female or child base voice
+        const preferredVoice = voices.find(v => 
+            v.lang.startsWith('en') && (
+                v.name.toLowerCase().includes('kid') ||
+                v.name.toLowerCase().includes('child') ||
+                v.name.toLowerCase().includes('samantha') ||
+                v.name.toLowerCase().includes('victoria') ||
+                v.name.toLowerCase().includes('zira') ||
+                v.name.toLowerCase().includes('google us english')
+            )
+        );
+
+        if (preferredVoice) utterance.voice = preferredVoice;
+        utterance.lang = 'en-US';
+        
+        // High Pitch Settings for Nursery Tone
+        utterance.pitch = 1.95; // Extra high pitch frequency shift
+        utterance.rate = 0.72;   // Slow pace for toddler clear audio
+        utterance.volume = 1.0;
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    // Modal Zoom and Audio Trigger
+    function triggerCardZoomAndAudio(item) {
+        clearTimeout(autoZoomTimer);
+        isHolding = false;
+
+        speakWordInChildVoice(item.en);
+
+        document.getElementById('zoom-img').src = item.img;
+        document.getElementById('zoom-en').innerText = item.en;
+        document.getElementById('zoom-sound').innerText = `উচ্চারণ: ${item.sound}`;
+        document.getElementById('zoom-bn').innerText = item.bn;
+
+        const overlay = document.getElementById('zoom-overlay');
+        overlay.style.display = 'flex';
+
+        scheduleAutoZoomOut(2800);
+    }
+
+    function scheduleAutoZoomOut(delayMs) {
+        clearTimeout(autoZoomTimer);
+        autoZoomTimer = setTimeout(() => {
+            if (!isHolding) closeZoom();
+        }, delayMs);
+    }
+
+    function closeZoom() {
+        clearTimeout(autoZoomTimer);
+        document.getElementById('zoom-overlay').style.display = 'none';
+        isHolding = false;
+    }
+
+    function setupHoldEvents() {
+        const overlay = document.getElementById('zoom-overlay');
+
+        const startHold = () => {
+            isHolding = true;
+            clearTimeout(autoZoomTimer);
+        };
+
+        const endHold = () => {
+            if (isHolding) {
+                isHolding = false;
+                scheduleAutoZoomOut(800);
+            }
+        };
+
+        overlay.addEventListener('touchstart', startHold, { passive: true });
+        overlay.addEventListener('touchend', endHold);
+        overlay.addEventListener('mousedown', startHold);
+        overlay.addEventListener('mouseup', endHold);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeZoom();
+        });
+    }
+</script>
+
+</body>
+</html>
